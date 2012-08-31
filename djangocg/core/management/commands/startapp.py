@@ -44,8 +44,12 @@ class Command(TemplateCommand):
         f.write(new_urls)
         f.close()
 
-        # create directory in templates directory
+        # ensure there is a templates directory
         projects_templates_dir = os.path.join(base_dir, "templates")
+        if not os.path.exists(projects_templates_dir):
+            os.makedirs(projects_templates_dir)
+
+        # create directory in templates directory
         os.mkdir(os.path.join(projects_templates_dir, app_name))
 
         super(Command, self).handle('app', app_name, target, **options)
