@@ -164,7 +164,7 @@ following at your shell prompt (not the interactive Python prompt):
 
 .. code-block:: bash
 
-    python -c "import sys; sys.path = sys.path[1:]; import django; print(djangocg.__path__)"
+    python -c "import sys; sys.path = sys.path[1:]; import djangocg; print(djangocg.__path__)"
 
 
 .. _install-django-code:

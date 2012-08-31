@@ -22,7 +22,7 @@ from djangocg.utils.six.moves import socketserver
 from wsgiref import simple_server
 from wsgiref.util import FileWrapper   # for backwards compatibility
 
-import django
+import djangocg
 from djangocg.core.exceptions import ImproperlyConfigured
 from djangocg.core.management.color import color_style
 from djangocg.core.wsgi import get_wsgi_application

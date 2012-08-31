@@ -466,7 +466,7 @@ above, then copy ``django/contrib/admin/templates/admin/base_site.html`` to
         python -c "
         import sys
         sys.path = sys.path[1:]
-        import django
+        import djangocg
         print(djangocg.__path__)"
 
 Then, just edit the file and replace the generic Django text with your own

@@ -13,7 +13,7 @@ if "install" in sys.argv:
     # We have to try also with an explicit prefix of /usr/local in order to
     # catch Debian's custom user site-packages directory.
     for lib_path in get_python_lib(), get_python_lib(prefix="/usr/local"):
-        existing_path = os.path.abspath(os.path.join(lib_path, "django"))
+        existing_path = os.path.abspath(os.path.join(lib_path, "djangocg"))
         if os.path.exists(existing_path):
             # We note the need for the warning here, but present it after the
             # command is run, so it's more likely to be seen.
@@ -64,7 +64,7 @@ packages, data_files = [], []
 root_dir = os.path.dirname(__file__)
 if root_dir != '':
     os.chdir(root_dir)
-django_dir = 'django'
+django_dir = 'djangocg'
 
 for dirpath, dirnames, filenames in os.walk(django_dir):
     # Ignore dirnames that start with '.'
@@ -82,7 +82,7 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
         file_info[0] = '\\PURELIB\\%s' % file_info[0]
 
 # Dynamically calculate the version based on djangocg.VERSION.
-version = __import__('django').get_version()
+version = __import__('djangocg').get_version()
 
 setup(
     name = "Django",
@@ -95,7 +95,7 @@ setup(
     packages = packages,
     cmdclass = cmdclasses,
     data_files = data_files,
-    scripts = ['django/bin/django-admin.py'],
+    scripts = ['djangocg/bin/djangocg-admin.py'],
     classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',

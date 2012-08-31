@@ -7,7 +7,7 @@ from itertools import dropwhile
 from optparse import make_option
 from subprocess import PIPE, Popen
 
-import django
+import djangocg
 from djangocg.core.management.base import CommandError, NoArgsCommand
 from djangocg.utils.text import get_text_list
 from djangocg.utils.jslex import prepare_js_for_gettext

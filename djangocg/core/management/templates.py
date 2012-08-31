@@ -18,7 +18,7 @@ except ImportError:     # Python 2
 from optparse import make_option
 from os import path
 
-import django
+import djangocg
 from djangocg.template import Template, Context
 from djangocg.utils import archive
 from djangocg.utils._os import rmtree_errorhandler

@@ -11,7 +11,7 @@ from djangocg.utils.importlib import import_module
 from djangocg.utils import six
 
 # For backwards compatibility: get_version() used to be in this module.
-from django import get_version
+from djangocg import get_version
 
 # A cache of loaded commands, so that call_command
 # doesn't have to reload every time it's called.

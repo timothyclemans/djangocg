@@ -9,7 +9,7 @@ import sys
 from optparse import make_option, OptionParser
 import traceback
 
-import django
+import djangocg
 from djangocg.core.exceptions import ImproperlyConfigured
 from djangocg.core.management.color import color_style
 from djangocg.utils.encoding import force_str
