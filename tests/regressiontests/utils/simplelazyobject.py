@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 import copy
 import pickle
 
-from django.test.utils import str_prefix
-from django.utils import six
-from django.utils.unittest import TestCase
-from django.utils.functional import SimpleLazyObject, empty
+from djangocg.test.utils import str_prefix
+from djangocg.utils import six
+from djangocg.utils.unittest import TestCase
+from djangocg.utils.functional import SimpleLazyObject, empty
 
 
 class _ComplexObject(object):

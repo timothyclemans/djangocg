@@ -132,16 +132,16 @@ most notable changes in this release.
 New forms library
 -----------------
 
-``django.newforms`` is Django's new form-handling library. It's a
-replacement for ``django.forms``, the old form/manipulator/validation
+``djangocg.newforms`` is Django's new form-handling library. It's a
+replacement for ``djangocg.forms``, the old form/manipulator/validation
 framework.  Both APIs are available in 0.96, but over the next two
 releases we plan to switch completely to the new forms system, and
 deprecate and remove the old system.
 
 There are three elements to this transition:
 
-* We've copied the current ``django.forms`` to
-  ``django.oldforms``. This allows you to upgrade your code *now*
+* We've copied the current ``djangocg.forms`` to
+  ``djangocg.oldforms``. This allows you to upgrade your code *now*
   rather than waiting for the backwards-incompatible change and
   rushing to fix your code after the fact.  Just change your
   import statements like this::
@@ -150,19 +150,19 @@ There are three elements to this transition:
       from django import oldforms as forms # 0.96-style
 
 * The next official release of Django will move the current
-  ``django.newforms`` to ``django.forms``. This will be a
+  ``djangocg.newforms`` to ``djangocg.forms``. This will be a
   backwards-incompatible change, and anyone still using the old
-  version of ``django.forms`` at that time will need to change
+  version of ``djangocg.forms`` at that time will need to change
   their import statements as described above.
 
 * The next release after that will completely remove
-  ``django.oldforms``.
+  ``djangocg.oldforms``.
 
 Although the ``newforms`` library will continue to evolve, it's ready for use
 for most common cases. We recommend that anyone new to form handling skip the
 old forms system and start with the new.
 
-For more information about ``django.newforms``, read the :doc:`newforms
+For more information about ``djangocg.newforms``, read the :doc:`newforms
 documentation </topics/forms/index>`.
 
 URLconf improvements
@@ -172,7 +172,7 @@ You can now use any callable as the callback in URLconfs (previously, only
 strings that referred to callables were allowed). This allows a much more
 natural use of URLconfs. For example, this URLconf::
 
-    from django.conf.urls.defaults import *
+    from djangocg.conf.urls.defaults import *
 
     urlpatterns = patterns('',
         ('^myview/$', 'mysite.myapp.views.myview')
@@ -180,7 +180,7 @@ natural use of URLconfs. For example, this URLconf::
 
 can now be rewritten as::
 
-    from django.conf.urls.defaults import *
+    from djangocg.conf.urls.defaults import *
     from mysite.myapp.views import myview
 
     urlpatterns = patterns('',
@@ -192,9 +192,9 @@ change allows you to apply decorators to views *in your
 URLconf*. Thus, you can make a generic view require login very
 easily::
 
-    from django.conf.urls.defaults import *
-    from django.contrib.auth.decorators import login_required
-    from django.views.generic.list_detail import object_list
+    from djangocg.conf.urls.defaults import *
+    from djangocg.contrib.auth.decorators import login_required
+    from djangocg.views.generic.list_detail import object_list
     from mysite.myapp.models import MyModel
 
     info = {

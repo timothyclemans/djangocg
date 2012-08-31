@@ -1,11 +1,11 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.contenttypes.models import ContentType
-from django.core import management
-from django.core.exceptions import FieldError
-from django.db import models, DEFAULT_DB_ALIAS
-from django.db.models import signals
-from django.test import TestCase
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.core import management
+from djangocg.core.exceptions import FieldError
+from djangocg.db import models, DEFAULT_DB_ALIAS
+from djangocg.db.models import signals
+from djangocg.test import TestCase
 
 
 from .models import (MyPerson, Person, StatusPerson, LowerStatusPerson,
@@ -168,7 +168,7 @@ class ProxyModelTests(TestCase):
         self.assertEqual(resp, ['barney', 'wilma'])
 
     def test_permissions_created(self):
-        from django.contrib.auth.models import Permission
+        from djangocg.contrib.auth.models import Permission
         try:
             Permission.objects.get(name="May display users information")
         except Permission.DoesNotExist:

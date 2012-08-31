@@ -2,7 +2,7 @@
 Polish voivodeship as in http://en.wikipedia.org/wiki/Poland#Administrative_division
 """
 
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 VOIVODESHIP_CHOICES = (
     ('lower_silesia', _('Lower Silesia')),

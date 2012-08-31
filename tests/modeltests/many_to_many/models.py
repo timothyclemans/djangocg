@@ -7,8 +7,8 @@ In this example, an ``Article`` can be published in multiple ``Publication``
 objects, and a ``Publication`` has multiple ``Article`` objects.
 """
 
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible

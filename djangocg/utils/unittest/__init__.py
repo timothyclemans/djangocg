@@ -50,22 +50,22 @@ except ImportError:
         __all__.extend(['getTestCaseNames', 'makeSuite', 'findTestCases'])
 
 
-        from django.utils.unittest.collector import collector
-        from django.utils.unittest.result import TestResult
-        from django.utils.unittest.case import \
+        from djangocg.utils.unittest.collector import collector
+        from djangocg.utils.unittest.result import TestResult
+        from djangocg.utils.unittest.case import \
             TestCase, FunctionTestCase, SkipTest, skip, skipIf,\
             skipUnless, expectedFailure
 
-        from django.utils.unittest.suite import BaseTestSuite, TestSuite
-        from django.utils.unittest.loader import \
+        from djangocg.utils.unittest.suite import BaseTestSuite, TestSuite
+        from djangocg.utils.unittest.loader import \
             TestLoader, defaultTestLoader, makeSuite, getTestCaseNames,\
             findTestCases
 
-        from django.utils.unittest.main import TestProgram, main, main_
-        from django.utils.unittest.runner import TextTestRunner, TextTestResult
+        from djangocg.utils.unittest.main import TestProgram, main, main_
+        from djangocg.utils.unittest.runner import TextTestRunner, TextTestResult
 
         try:
-            from django.utils.unittest.signals import\
+            from djangocg.utils.unittest.signals import\
                 installHandler, registerResult, removeResult, removeHandler
         except ImportError:
             # Compatibility with platforms that don't have the signal module

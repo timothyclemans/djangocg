@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from djangocg.core.management.base import BaseCommand
 
 from optparse import make_option
 
@@ -18,8 +18,8 @@ class Command(BaseCommand):
     requires_model_validation = False
 
     def handle(self, *fixture_labels, **options):
-        from django.core.management import call_command
-        from django.db import connection
+        from djangocg.core.management import call_command
+        from djangocg.db import connection
 
         verbosity = int(options.get('verbosity'))
         interactive = options.get('interactive')

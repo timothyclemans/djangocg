@@ -1,5 +1,5 @@
 """
-SQLite3 backend for django.
+SQLite3 backend for djangocg.
 
 Works with either the pysqlite2 module or the sqlite3 module in the
 standard library.
@@ -12,17 +12,17 @@ import warnings
 import re
 import sys
 
-from django.db import utils
-from django.db.backends import *
-from django.db.backends.signals import connection_created
-from django.db.backends.sqlite3.client import DatabaseClient
-from django.db.backends.sqlite3.creation import DatabaseCreation
-from django.db.backends.sqlite3.introspection import DatabaseIntrospection
-from django.utils.dateparse import parse_date, parse_datetime, parse_time
-from django.utils.functional import cached_property
-from django.utils.safestring import SafeBytes
-from django.utils import six
-from django.utils import timezone
+from djangocg.db import utils
+from djangocg.db.backends import *
+from djangocg.db.backends.signals import connection_created
+from djangocg.db.backends.sqlite3.client import DatabaseClient
+from djangocg.db.backends.sqlite3.creation import DatabaseCreation
+from djangocg.db.backends.sqlite3.introspection import DatabaseIntrospection
+from djangocg.utils.dateparse import parse_date, parse_datetime, parse_time
+from djangocg.utils.functional import cached_property
+from djangocg.utils.safestring import SafeBytes
+from djangocg.utils import six
+from djangocg.utils import timezone
 
 try:
     try:
@@ -30,7 +30,7 @@ try:
     except ImportError:
         from sqlite3 import dbapi2 as Database
 except ImportError as exc:
-    from django.core.exceptions import ImproperlyConfigured
+    from djangocg.core.exceptions import ImproperlyConfigured
     raise ImproperlyConfigured("Error loading either pysqlite2 or sqlite3 modules (tried in that order): %s" % exc)
 
 
@@ -265,7 +265,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     def _sqlite_create_connection(self):
         settings_dict = self.settings_dict
         if not settings_dict['NAME']:
-            from django.core.exceptions import ImproperlyConfigured
+            from djangocg.core.exceptions import ImproperlyConfigured
             raise ImproperlyConfigured(
                 "settings.DATABASES is improperly configured. "
                 "Please supply the NAME value.")

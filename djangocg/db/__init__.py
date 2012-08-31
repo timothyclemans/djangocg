@@ -1,7 +1,7 @@
-from django.conf import settings
-from django.core import signals
-from django.core.exceptions import ImproperlyConfigured
-from django.db.utils import (ConnectionHandler, ConnectionRouter,
+from djangocg.conf import settings
+from djangocg.core import signals
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db.utils import (ConnectionHandler, ConnectionRouter,
     load_backend, DEFAULT_DB_ALIAS, DatabaseError, IntegrityError)
 
 __all__ = ('backend', 'connection', 'connections', 'router', 'DatabaseError',
@@ -56,7 +56,7 @@ signals.request_started.connect(reset_queries)
 # Register an event that rolls back the connections
 # when a Django request has an exception.
 def _rollback_on_exception(**kwargs):
-    from django.db import transaction
+    from djangocg.db import transaction
     for conn in connections:
         try:
             transaction.rollback_unless_managed(using=conn)

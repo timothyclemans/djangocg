@@ -2,11 +2,11 @@ from __future__ import absolute_import
 
 from operator import attrgetter
 
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.sessions.backends.db import SessionStore
-from django.db.models import Count
-from django.db.models.loading import cache
-from django.test import TestCase
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib.sessions.backends.db import SessionStore
+from djangocg.db.models import Count
+from djangocg.db.models.loading import cache
+from djangocg.test import TestCase
 
 from .models import (ResolveThis, Item, RelatedItem, Child, Leaf, Proxy,
     SimpleItem, Feature, ItemAndSimpleItem)
@@ -198,7 +198,7 @@ class DeferRegressionTest(TestCase):
         self.assertEqual(obj.item_id, item2.id)
 
     def test_deferred_class_factory(self):
-        from django.db.models.query_utils import deferred_class_factory
+        from djangocg.db.models.query_utils import deferred_class_factory
         new_class = deferred_class_factory(Item,
             ('this_is_some_very_long_attribute_name_so_modelname_truncation_is_triggered',))
         self.assertEqual(new_class.__name__,

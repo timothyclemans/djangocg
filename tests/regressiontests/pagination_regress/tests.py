@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.utils.unittest import TestCase
+from djangocg.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from djangocg.utils.unittest import TestCase
 
 class PaginatorTests(TestCase):
     """

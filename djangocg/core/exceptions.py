@@ -43,7 +43,7 @@ class ValidationError(Exception):
     """An error while validating data."""
     def __init__(self, message, code=None, params=None):
         import operator
-        from django.utils.encoding import force_text
+        from djangocg.utils.encoding import force_text
         """
         ValidationError can be passed any object that can be printed (usually
         a string), a list of objects or a dictionary.

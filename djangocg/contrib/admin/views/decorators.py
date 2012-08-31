@@ -1,8 +1,8 @@
 from functools import wraps
-from django.utils.translation import ugettext as _
-from django.contrib.admin.forms import AdminAuthenticationForm
-from django.contrib.auth.views import login
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from djangocg.utils.translation import ugettext as _
+from djangocg.contrib.admin.forms import AdminAuthenticationForm
+from djangocg.contrib.auth.views import login
+from djangocg.contrib.auth import REDIRECT_FIELD_NAME
 
 def staff_member_required(view_func):
     """
@@ -15,7 +15,7 @@ def staff_member_required(view_func):
             # The user is valid. Continue to the admin page.
             return view_func(request, *args, **kwargs)
 
-        assert hasattr(request, 'session'), "The Django admin requires session middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'django.contrib.sessions.middleware.SessionMiddleware'."
+        assert hasattr(request, 'session'), "The Django admin requires session middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'djangocg.contrib.sessions.middleware.SessionMiddleware'."
         defaults = {
             'template_name': 'admin/login.html',
             'authentication_form': AdminAuthenticationForm,

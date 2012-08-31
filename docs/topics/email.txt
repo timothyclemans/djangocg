@@ -2,7 +2,7 @@
 Sending email
 =============
 
-.. module:: django.core.mail
+.. module:: djangocg.core.mail
    :synopsis: Helpers to easily send email.
 
 Although Python makes sending email relatively easy via the :mod:`smtplib`
@@ -11,14 +11,14 @@ provided to make sending email extra quick, to make it easy to test email
 sending during development, and to provide support for platforms that can't use
 SMTP.
 
-The code lives in the ``django.core.mail`` module.
+The code lives in the ``djangocg.core.mail`` module.
 
 Quick example
 =============
 
 In two lines::
 
-    from django.core.mail import send_mail
+    from djangocg.core.mail import send_mail
 
     send_mail('Subject here', 'Here is the message.', 'from@example.com',
         ['to@example.com'], fail_silently=False)
@@ -31,7 +31,7 @@ set, are used to authenticate to the SMTP server, and the
 
 .. note::
 
-    The character set of email sent with ``django.core.mail`` will be set to
+    The character set of email sent with ``djangocg.core.mail`` will be set to
     the value of your :setting:`DEFAULT_CHARSET` setting.
 
 send_mail()
@@ -40,7 +40,7 @@ send_mail()
 .. function:: send_mail(subject, message, from_email, recipient_list, fail_silently=False, auth_user=None, auth_password=None, connection=None)
 
 The simplest way to send email is using
-``django.core.mail.send_mail()``.
+``djangocg.core.mail.send_mail()``.
 
 The ``subject``, ``message``, ``from_email`` and ``recipient_list`` parameters
 are required.
@@ -71,17 +71,17 @@ send_mass_mail()
 
 .. function:: send_mass_mail(datatuple, fail_silently=False, auth_user=None, auth_password=None, connection=None)
 
-``django.core.mail.send_mass_mail()`` is intended to handle mass emailing.
+``djangocg.core.mail.send_mass_mail()`` is intended to handle mass emailing.
 
 ``datatuple`` is a tuple in which each element is in this format::
 
     (subject, message, from_email, recipient_list)
 
 ``fail_silently``, ``auth_user`` and ``auth_password`` have the same functions
-as in :meth:`~django.core.mail.send_mail()`.
+as in :meth:`~djangocg.core.mail.send_mail()`.
 
 Each separate element of ``datatuple`` results in a separate email message.
-As in :meth:`~django.core.mail.send_mail()`, recipients in the same
+As in :meth:`~djangocg.core.mail.send_mail()`, recipients in the same
 ``recipient_list`` will all see the other addresses in the email messages'
 "To:" field.
 
@@ -96,19 +96,19 @@ mail server would be opened::
 send_mass_mail() vs. send_mail()
 --------------------------------
 
-The main difference between :meth:`~django.core.mail.send_mass_mail()` and
-:meth:`~django.core.mail.send_mail()` is that
-:meth:`~django.core.mail.send_mail()` opens a connection to the mail server
-each time it's executed, while :meth:`~django.core.mail.send_mass_mail()` uses
+The main difference between :meth:`~djangocg.core.mail.send_mass_mail()` and
+:meth:`~djangocg.core.mail.send_mail()` is that
+:meth:`~djangocg.core.mail.send_mail()` opens a connection to the mail server
+each time it's executed, while :meth:`~djangocg.core.mail.send_mass_mail()` uses
 a single connection for all of its messages. This makes
-:meth:`~django.core.mail.send_mass_mail()` slightly more efficient.
+:meth:`~djangocg.core.mail.send_mass_mail()` slightly more efficient.
 
 mail_admins()
 =============
 
 .. function:: mail_admins(subject, message, fail_silently=False, connection=None, html_message=None)
 
-``django.core.mail.mail_admins()`` is a shortcut for sending an email to the
+``djangocg.core.mail.mail_admins()`` is a shortcut for sending an email to the
 site admins, as defined in the :setting:`ADMINS` setting.
 
 ``mail_admins()`` prefixes the subject with the value of the
@@ -131,7 +131,7 @@ mail_managers()
 
 .. function:: mail_managers(subject, message, fail_silently=False, connection=None, html_message=None)
 
-``django.core.mail.mail_managers()`` is just like ``mail_admins()``, except it
+``djangocg.core.mail.mail_managers()`` is just like ``mail_admins()``, except it
 sends an email to the site managers, as defined in the :setting:`MANAGERS`
 setting.
 
@@ -163,8 +163,8 @@ scripts generate.
 The Django email functions outlined above all protect against header injection
 by forbidding newlines in header values. If any ``subject``, ``from_email`` or
 ``recipient_list`` contains a newline (in either Unix, Windows or Mac style),
-the email function (e.g. :meth:`~django.core.mail.send_mail()`) will raise
-``django.core.mail.BadHeaderError`` (a subclass of ``ValueError``) and, hence,
+the email function (e.g. :meth:`~djangocg.core.mail.send_mail()`) will raise
+``djangocg.core.mail.BadHeaderError`` (a subclass of ``ValueError``) and, hence,
 will not send the email. It's your responsibility to validate all data before
 passing it to the email functions.
 
@@ -175,7 +175,7 @@ Here's an example view that takes a ``subject``, ``message`` and ``from_email``
 from the request's POST data, sends that to admin@example.com and redirects to
 "/contact/thanks/" when it's done::
 
-    from django.core.mail import send_mail, BadHeaderError
+    from djangocg.core.mail import send_mail, BadHeaderError
 
     def send_email(request):
         subject = request.POST.get('subject', '')
@@ -199,29 +199,29 @@ from the request's POST data, sends that to admin@example.com and redirects to
 The EmailMessage class
 ======================
 
-Django's :meth:`~django.core.mail.send_mail()` and
-:meth:`~django.core.mail.send_mass_mail()` functions are actually thin
-wrappers that make use of the :class:`~django.core.mail.EmailMessage` class.
+Django's :meth:`~djangocg.core.mail.send_mail()` and
+:meth:`~djangocg.core.mail.send_mass_mail()` functions are actually thin
+wrappers that make use of the :class:`~djangocg.core.mail.EmailMessage` class.
 
-Not all features of the :class:`~django.core.mail.EmailMessage` class are
-available through the :meth:`~django.core.mail.send_mail()` and related
+Not all features of the :class:`~djangocg.core.mail.EmailMessage` class are
+available through the :meth:`~djangocg.core.mail.send_mail()` and related
 wrapper functions. If you wish to use advanced features, such as BCC'ed
 recipients, file attachments, or multi-part email, you'll need to create
-:class:`~django.core.mail.EmailMessage` instances directly.
+:class:`~djangocg.core.mail.EmailMessage` instances directly.
 
 .. note::
-    This is a design feature. :meth:`~django.core.mail.send_mail()` and
+    This is a design feature. :meth:`~djangocg.core.mail.send_mail()` and
     related functions were originally the only interface Django provided.
     However, the list of parameters they accepted was slowly growing over
     time. It made sense to move to a more object-oriented design for email
     messages and retain the original functions only for backwards
     compatibility.
 
-:class:`~django.core.mail.EmailMessage` is responsible for creating the email
+:class:`~djangocg.core.mail.EmailMessage` is responsible for creating the email
 message itself. The :ref:`email backend <topic-email-backends>` is then
 responsible for sending the email.
 
-For convenience, :class:`~django.core.mail.EmailMessage` provides a simple
+For convenience, :class:`~djangocg.core.mail.EmailMessage` provides a simple
 ``send()`` method for sending a single email. If you need to send multiple
 messages, the email backend API :ref:`provides an alternative
 <topics-sending-multiple-emails>`.
@@ -231,7 +231,7 @@ EmailMessage Objects
 
 .. class:: EmailMessage
 
-The :class:`~django.core.mail.EmailMessage` class is initialized with the
+The :class:`~djangocg.core.mail.EmailMessage` class is initialized with the
 following parameters (in the given order, if positional arguments are used).
 All parameters are optional and can be set at any time prior to calling the
 ``send()`` method.
@@ -282,11 +282,11 @@ The class has the following methods:
   used. If the keyword argument ``fail_silently`` is ``True``, exceptions
   raised while sending the message will be quashed.
 
-* ``message()`` constructs a ``django.core.mail.SafeMIMEText`` object (a
+* ``message()`` constructs a ``djangocg.core.mail.SafeMIMEText`` object (a
   subclass of Python's ``email.MIMEText.MIMEText`` class) or a
-  ``django.core.mail.SafeMIMEMultipart`` object holding the message to be
+  ``djangocg.core.mail.SafeMIMEMultipart`` object holding the message to be
   sent. If you ever need to extend the
-  :class:`~django.core.mail.EmailMessage` class, you'll probably want to
+  :class:`~djangocg.core.mail.EmailMessage` class, you'll probably want to
   override this method to put the content you want into the MIME object.
 
 * ``recipients()`` returns a list of all the recipients of the message,
@@ -330,14 +330,14 @@ Sending alternative content types
 It can be useful to include multiple versions of the content in an email; the
 classic example is to send both text and HTML versions of a message. With
 Django's email library, you can do this using the ``EmailMultiAlternatives``
-class. This subclass of :class:`~django.core.mail.EmailMessage` has an
+class. This subclass of :class:`~djangocg.core.mail.EmailMessage` has an
 ``attach_alternative()`` method for including extra versions of the message
 body in the email. All the other methods (including the class initialization)
-are inherited directly from :class:`~django.core.mail.EmailMessage`.
+are inherited directly from :class:`~djangocg.core.mail.EmailMessage`.
 
 To send a text and HTML combination, you could write::
 
-    from django.core.mail import EmailMultiAlternatives
+    from djangocg.core.mail import EmailMultiAlternatives
 
     subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
     text_content = 'This is an important message.'
@@ -347,12 +347,12 @@ To send a text and HTML combination, you could write::
     msg.send()
 
 By default, the MIME type of the ``body`` parameter in an
-:class:`~django.core.mail.EmailMessage` is ``"text/plain"``. It is good
+:class:`~djangocg.core.mail.EmailMessage` is ``"text/plain"``. It is good
 practice to leave this alone, because it guarantees that any recipient will be
 able to read the email, regardless of their mail client. However, if you are
 confident that your recipients can handle an alternative content type, you can
 use the ``content_subtype`` attribute on the
-:class:`~django.core.mail.EmailMessage` class to change the main content type.
+:class:`~djangocg.core.mail.EmailMessage` class to change the main content type.
 The major type will always be ``"text"``, but you can change the
 subtype. For example::
 
@@ -374,7 +374,7 @@ The email backend class has the following methods:
 * ``close()`` closes the current email-sending connection.
 
 * ``send_messages(email_messages)`` sends a list of
-  :class:`~django.core.mail.EmailMessage` objects. If the connection is
+  :class:`~djangocg.core.mail.EmailMessage` objects. If the connection is
   not open, this call will implicitly open the connection, and close the
   connection afterwards. If the connection is already open, it will be
   left open after mail has been sent.
@@ -382,10 +382,10 @@ The email backend class has the following methods:
 Obtaining an instance of an email backend
 -----------------------------------------
 
-The :meth:`get_connection` function in ``django.core.mail`` returns an
+The :meth:`get_connection` function in ``djangocg.core.mail`` returns an
 instance of the email backend that you can use.
 
-.. currentmodule:: django.core.mail
+.. currentmodule:: djangocg.core.mail
 
 .. function:: get_connection(backend=None, fail_silently=False, *args, **kwargs)
 
@@ -419,7 +419,7 @@ settings file.
 The SMTP backend is the default configuration inherited by Django. If you
 want to specify it explicitly, put the following in your settings::
 
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_BACKEND = 'djangocg.core.mail.backends.smtp.EmailBackend'
 
 .. _topic-email-console-backend:
 
@@ -433,7 +433,7 @@ providing the ``stream`` keyword argument when constructing the connection.
 
 To specify this backend, put the following in your settings::
 
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'djangocg.core.mail.backends.console.EmailBackend'
 
 This backend is not intended for use in production -- it is provided as a
 convenience that can be used during development.
@@ -447,11 +447,11 @@ The file backend writes emails to a file. A new file is created for each new
 session that is opened on this backend. The directory to which the files are
 written is either taken from the :setting:`EMAIL_FILE_PATH` setting or from
 the ``file_path`` keyword when creating a connection with
-:meth:`~django.core.mail.get_connection`.
+:meth:`~djangocg.core.mail.get_connection`.
 
 To specify this backend, put the following in your settings::
 
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_BACKEND = 'djangocg.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
 
 This backend is not intended for use in production -- it is provided as a
@@ -463,14 +463,14 @@ In-memory backend
 ~~~~~~~~~~~~~~~~~
 
 The ``'locmem'`` backend stores messages in a special attribute of the
-``django.core.mail`` module. The ``outbox`` attribute is created when the
+``djangocg.core.mail`` module. The ``outbox`` attribute is created when the
 first message is sent. It's a list with an
-:class:`~django.core.mail.EmailMessage` instance for each message that would
+:class:`~djangocg.core.mail.EmailMessage` instance for each message that would
 be send.
 
 To specify this backend, put the following in your settings::
 
-  EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+  EMAIL_BACKEND = 'djangocg.core.mail.backends.locmem.EmailBackend'
 
 This backend is not intended for use in production -- it is provided as a
 convenience that can be used during development and testing.
@@ -483,7 +483,7 @@ Dummy backend
 As the name suggests the dummy backend does nothing with your messages. To
 specify this backend, put the following in your settings::
 
-   EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+   EMAIL_BACKEND = 'djangocg.core.mail.backends.dummy.EmailBackend'
 
 This backend is not intended for use in production -- it is provided as a
 convenience that can be used during development.
@@ -498,9 +498,9 @@ backend. The :setting:`EMAIL_BACKEND` setting in your settings file is then
 the Python import path for your backend class.
 
 Custom email backends should subclass ``BaseEmailBackend`` that is located in
-the ``django.core.mail.backends.base`` module. A custom email backend must
+the ``djangocg.core.mail.backends.base`` module. A custom email backend must
 implement the ``send_messages(email_messages)`` method. This method receives a
-list of :class:`~django.core.mail.EmailMessage` instances and returns the
+list of :class:`~djangocg.core.mail.EmailMessage` instances and returns the
 number of successfully delivered messages. If your backend has any concept of
 a persistent session or connection, you should also implement the ``open()``
 and ``close()`` methods. Refer to ``smtp.EmailBackend`` for a reference
@@ -519,15 +519,15 @@ destroying a connection every time you want to send an email.
 There are two ways you tell an email backend to reuse a connection.
 
 Firstly, you can use the ``send_messages()`` method. ``send_messages()`` takes
-a list of :class:`~django.core.mail.EmailMessage` instances (or subclasses),
+a list of :class:`~djangocg.core.mail.EmailMessage` instances (or subclasses),
 and sends them all using a single connection.
 
 For example, if you have a function called ``get_notification_email()`` that
-returns a list of :class:`~django.core.mail.EmailMessage` objects representing
+returns a list of :class:`~djangocg.core.mail.EmailMessage` objects representing
 some periodic email you wish to send out, you could send these emails using
 a single call to send_messages::
 
-    from django.core import mail
+    from djangocg.core import mail
     connection = mail.get_connection()   # Use default email connection
     messages = get_notification_email()
     connection.send_messages(messages)
@@ -540,7 +540,7 @@ email backend to manually control the connection. ``send_messages()`` will not
 manually open or close the connection if it is already open, so if you
 manually open the connection, you can control when it is closed. For example::
 
-    from django.core import mail
+    from djangocg.core import mail
     connection = mail.get_connection()
 
     # Manually open the connection

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from django.conf import settings
+from djangocg.conf import settings
 
 if __name__ == '__main__':
     # When running this file in isolation, we need to set up the configuration
@@ -19,20 +19,20 @@ except ImportError:     # Python 2
     from urlparse import urljoin
 
 from django import template
-from django.template import base as template_base, RequestContext, Template, Context
-from django.core import urlresolvers
-from django.template import loader
-from django.template.loaders import app_directories, filesystem, cached
-from django.test import RequestFactory
-from django.test.utils import (setup_test_template_loader,
+from djangocg.template import base as template_base, RequestContext, Template, Context
+from djangocg.core import urlresolvers
+from djangocg.template import loader
+from djangocg.template.loaders import app_directories, filesystem, cached
+from djangocg.test import RequestFactory
+from djangocg.test.utils import (setup_test_template_loader,
     restore_template_loaders, override_settings)
-from django.utils import unittest
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.formats import date_format
-from django.utils.translation import activate, deactivate, ugettext as _
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.tzinfo import LocalTimezone
+from djangocg.utils import unittest
+from djangocg.utils.encoding import python_2_unicode_compatible
+from djangocg.utils.formats import date_format
+from djangocg.utils.translation import activate, deactivate, ugettext as _
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.tzinfo import LocalTimezone
 
 from .callables import CallableVariablesTests
 from .context import ContextTests
@@ -365,7 +365,7 @@ class Templates(unittest.TestCase):
     @override_settings(SETTINGS_MODULE=None, TEMPLATE_DEBUG=True)
     def test_url_reverse_no_settings_module(self):
         # Regression test for #9005
-        from django.template import Template, Context
+        from djangocg.template import Template, Context
 
         t = Template('{% url will_not_match %}')
         c = Context()
@@ -387,7 +387,7 @@ class Templates(unittest.TestCase):
 
     def test_invalid_block_suggestion(self):
         # See #7876
-        from django.template import Template, TemplateSyntaxError
+        from djangocg.template import Template, TemplateSyntaxError
         try:
             t = Template("{% if 1 %}lala{% endblock %}{% endif %}")
         except TemplateSyntaxError as e:

@@ -2,7 +2,7 @@
 
 import sys
 import unittest
-from django.utils.unittest import case, util
+from djangocg.utils.unittest import case, util
 
 __unittest = True
 

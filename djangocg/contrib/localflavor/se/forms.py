@@ -7,10 +7,10 @@ from __future__ import absolute_import, unicode_literals
 import re
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
-from django.core.validators import EMPTY_VALUES
-from django.contrib.localflavor.se.se_counties import COUNTY_CHOICES
-from django.contrib.localflavor.se.utils import (id_number_checksum,
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.contrib.localflavor.se.se_counties import COUNTY_CHOICES
+from djangocg.contrib.localflavor.se.utils import (id_number_checksum,
     validate_id_birthday, format_personal_id_number, valid_organisation,
     format_organisation_number)
 

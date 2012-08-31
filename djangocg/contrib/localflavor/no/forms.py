@@ -7,11 +7,11 @@ from __future__ import absolute_import, unicode_literals
 import re
 import datetime
 
-from django.contrib.localflavor.no.no_municipalities import MUNICIPALITY_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Field, RegexField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.no.no_municipalities import MUNICIPALITY_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Field, RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class NOZipCodeField(RegexField):

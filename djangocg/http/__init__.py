@@ -16,7 +16,7 @@ except ImportError:     # Python 2
     from urllib import quote, urlencode
     from urlparse import parse_qsl, urljoin, urlparse
 
-from django.utils.six.moves import http_cookies
+from djangocg.utils.six.moves import http_cookies
 # Some versions of Python 2.7 and later won't need this encoding bug fix:
 _cookie_encodes_correctly = http_cookies.SimpleCookie().value_encode(';') == (';', '"\\073"')
 # See ticket #13007, http://bugs.python.org/issue2193 and http://trac.edgewall.org/ticket/2256
@@ -78,17 +78,17 @@ else:
                     dict.__setitem__(self, key, http_cookies.Morsel())
 
 
-from django.conf import settings
-from django.core import signing
-from django.core.exceptions import ImproperlyConfigured, SuspiciousOperation
-from django.core.files import uploadhandler
-from django.http.multipartparser import MultiPartParser
-from django.http.utils import *
-from django.utils.datastructures import MultiValueDict, ImmutableList
-from django.utils.encoding import force_bytes, force_str, force_text, iri_to_uri
-from django.utils.http import cookie_date
-from django.utils import six
-from django.utils import timezone
+from djangocg.conf import settings
+from djangocg.core import signing
+from djangocg.core.exceptions import ImproperlyConfigured, SuspiciousOperation
+from djangocg.core.files import uploadhandler
+from djangocg.http.multipartparser import MultiPartParser
+from djangocg.http.utils import *
+from djangocg.utils.datastructures import MultiValueDict, ImmutableList
+from djangocg.utils.encoding import force_bytes, force_str, force_text, iri_to_uri
+from djangocg.utils.http import cookie_date
+from djangocg.utils import six
+from djangocg.utils import timezone
 
 RESERVED_CHARS="!*'();:@&=+$,/?%#[]"
 
@@ -781,7 +781,7 @@ def get_host(request):
     return request.get_host()
 
 # It's neither necessary nor appropriate to use
-# django.utils.encoding.smart_text for parsing URLs and form inputs. Thus,
+# djangocg.utils.encoding.smart_text for parsing URLs and form inputs. Thus,
 # this slightly more restricted function, used by QueryDict.
 def bytes_to_text(s, encoding):
     """

@@ -5,18 +5,18 @@ import re
 import random
 from io import BytesIO
 
-from django.conf import settings
-from django.core import mail
-from django.http import HttpRequest
-from django.http import HttpResponse
-from django.middleware.clickjacking import XFrameOptionsMiddleware
-from django.middleware.common import CommonMiddleware
-from django.middleware.http import ConditionalGetMiddleware
-from django.middleware.gzip import GZipMiddleware
-from django.test import TestCase, RequestFactory
-from django.test.utils import override_settings
-from django.utils import six
-from django.utils.six.moves import xrange
+from djangocg.conf import settings
+from djangocg.core import mail
+from djangocg.http import HttpRequest
+from djangocg.http import HttpResponse
+from djangocg.middleware.clickjacking import XFrameOptionsMiddleware
+from djangocg.middleware.common import CommonMiddleware
+from djangocg.middleware.http import ConditionalGetMiddleware
+from djangocg.middleware.gzip import GZipMiddleware
+from djangocg.test import TestCase, RequestFactory
+from djangocg.test.utils import override_settings
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
 
 
 class CommonMiddlewareTest(TestCase):

@@ -1,10 +1,10 @@
 import json
 
-from django.conf import settings
-from django.contrib.messages.storage.base import BaseStorage, Message
-from django.http import SimpleCookie
-from django.utils.crypto import salted_hmac, constant_time_compare
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.contrib.messages.storage.base import BaseStorage, Message
+from djangocg.http import SimpleCookie
+from djangocg.utils.crypto import salted_hmac, constant_time_compare
+from djangocg.utils import six
 
 
 class MessageEncoder(json.JSONEncoder):
@@ -112,7 +112,7 @@ class CookieStorage(BaseStorage):
         Creates an HMAC/SHA1 hash based on the value and the project setting's
         SECRET_KEY, modified to make it unique for the present purpose.
         """
-        key_salt = 'django.contrib.messages'
+        key_salt = 'djangocg.contrib.messages'
         return salted_hmac(key_salt, value).hexdigest()
 
     def _encode(self, messages, encode_empty=False):

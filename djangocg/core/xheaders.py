@@ -16,7 +16,7 @@ def populate_xheaders(request, response, model, object_id):
     given HttpRequest object has an IP address within the INTERNAL_IPS setting
     or if the request is from a logged in staff member.
     """
-    from django.conf import settings
+    from djangocg.conf import settings
     if (request.META.get('REMOTE_ADDR') in settings.INTERNAL_IPS
             or (hasattr(request, 'user') and request.user.is_active
                 and request.user.is_staff)):

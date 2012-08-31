@@ -1,5 +1,5 @@
-from django.conf import settings
-from django.db import DEFAULT_DB_ALIAS
+from djangocg.conf import settings
+from djangocg.db import DEFAULT_DB_ALIAS
 
 # function that will pass a test.
 def pass_test(*args): return
@@ -27,11 +27,11 @@ spatialite = _default_db == 'spatialite'
 
 HAS_SPATIALREFSYS = True
 if oracle:
-    from django.contrib.gis.db.backends.oracle.models import SpatialRefSys
+    from djangocg.contrib.gis.db.backends.oracle.models import SpatialRefSys
 elif postgis:
-    from django.contrib.gis.db.backends.postgis.models import SpatialRefSys
+    from djangocg.contrib.gis.db.backends.postgis.models import SpatialRefSys
 elif spatialite:
-    from django.contrib.gis.db.backends.spatialite.models import SpatialRefSys
+    from djangocg.contrib.gis.db.backends.spatialite.models import SpatialRefSys
 else:
     HAS_SPATIALREFSYS = False
     SpatialRefSys = None

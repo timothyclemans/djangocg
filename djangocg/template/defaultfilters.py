@@ -8,20 +8,20 @@ from decimal import Decimal, InvalidOperation, Context, ROUND_HALF_UP
 from functools import wraps
 from pprint import pformat
 
-from django.template.base import Variable, Library, VariableDoesNotExist
-from django.conf import settings
-from django.utils import formats
-from django.utils.dateformat import format, time_format
-from django.utils.encoding import force_text, iri_to_uri
-from django.utils.html import (conditional_escape, escapejs, fix_ampersands,
+from djangocg.template.base import Variable, Library, VariableDoesNotExist
+from djangocg.conf import settings
+from djangocg.utils import formats
+from djangocg.utils.dateformat import format, time_format
+from djangocg.utils.encoding import force_text, iri_to_uri
+from djangocg.utils.html import (conditional_escape, escapejs, fix_ampersands,
     escape, urlize as urlize_impl, linebreaks, strip_tags)
-from django.utils.http import urlquote
-from django.utils.text import Truncator, wrap, phone2numeric
-from django.utils.safestring import mark_safe, SafeData, mark_for_escaping
-from django.utils import six
-from django.utils.timesince import timesince, timeuntil
-from django.utils.translation import ugettext, ungettext
-from django.utils.text import normalize_newlines
+from djangocg.utils.http import urlquote
+from djangocg.utils.text import Truncator, wrap, phone2numeric
+from djangocg.utils.safestring import mark_safe, SafeData, mark_for_escaping
+from djangocg.utils import six
+from djangocg.utils.timesince import timesince, timeuntil
+from djangocg.utils.translation import ugettext, ungettext
+from djangocg.utils.text import normalize_newlines
 
 register = Library()
 
@@ -235,7 +235,7 @@ def slugify(value):
     underscores) and converts spaces to hyphens. Also strips leading and
     trailing whitespace.
     """
-    from django.utils.text import slugify
+    from djangocg.utils.text import slugify
     return slugify(value)
 
 @register.filter(is_safe=True)
@@ -468,7 +468,7 @@ def safeseq(value):
 @stringfilter
 def removetags(value, tags):
     """Removes a space separated list of [X]HTML tags from the output."""
-    from django.utils.html import remove_tags
+    from djangocg.utils.html import remove_tags
     return remove_tags(value, tags)
 
 @register.filter(is_safe=True)

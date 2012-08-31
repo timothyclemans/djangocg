@@ -98,7 +98,7 @@ Program                   Description                           Required        
 
     The GeoDjango interfaces to GEOS, GDAL, and GeoIP may be used
     independently of Django.  In other words, no database or settings file
-    required -- just import them as normal from :mod:`django.contrib.gis`.
+    required -- just import them as normal from :mod:`djangocg.contrib.gis`.
 
 .. _PROJ.4: http://trac.osgeo.org/proj/
 __ http://postgis.refractions.net/
@@ -309,7 +309,7 @@ will be false:
 
 .. code-block:: pycon
 
-    >>> from django.contrib.gis import gdal
+    >>> from djangocg.contrib.gis import gdal
     >>> gdal.HAS_GDAL
     False
 
@@ -585,7 +585,7 @@ metadata tables in your database in order to perform spatial queries.
 If you're using SpatiaLite 2.4 or newer, use the ``spatialite`` utility to
 call the ``InitSpatialMetaData()`` function, like this::
 
-   $ spatialite geodjango.db "SELECT InitSpatialMetaData();"
+   $ spatialite geodjangocg.db "SELECT InitSpatialMetaData();"
    the SPATIAL_REF_SYS table already contains some row(s)
     InitSpatiaMetaData ()error:"table spatial_ref_sys already exists"
    0
@@ -603,21 +603,21 @@ First, get it from the `SpatiaLite Resources`__ page::
 
 Then, use the ``spatialite`` command to initialize a spatial database::
 
-   $ spatialite geodjango.db < init_spatialite-2.3.sql
+   $ spatialite geodjangocg.db < init_spatialite-2.3.sql
 
 .. note::
 
-    The parameter ``geodjango.db`` is the *filename* of the SQLite database
+    The parameter ``geodjangocg.db`` is the *filename* of the SQLite database
     you want to use.  Use the same in the :setting:`DATABASES` ``"name"`` key
     inside your ``settings.py``.
 
 __ http://www.gaia-gis.it/spatialite-2.3.1/resources.html
 
-Add ``django.contrib.gis`` to :setting:`INSTALLED_APPS`
+Add ``djangocg.contrib.gis`` to :setting:`INSTALLED_APPS`
 -------------------------------------------------------
 
 Like other Django contrib applications, you will *only* need to add
-:mod:`django.contrib.gis` to :setting:`INSTALLED_APPS` in your settings.
+:mod:`djangocg.contrib.gis` to :setting:`INSTALLED_APPS` in your settings.
 This is the so that ``gis`` templates can be located -- if not done, then
 features such as the geographic admin or KML sitemaps will not function properly.
 
@@ -640,7 +640,7 @@ Invoke the Django shell from your project and execute the
 .. code-block:: pycon
 
     $ python manage shell
-    >>> from django.contrib.gis.utils import add_srs_entry
+    >>> from djangocg.contrib.gis.utils import add_srs_entry
     >>> add_srs_entry(900913)
 
 This adds an entry for the 900913 SRID to the ``spatial_ref_sys`` (or equivalent)

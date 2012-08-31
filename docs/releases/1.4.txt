@@ -37,7 +37,7 @@ Other notable new features in Django 1.4 include:
   the ability to `bulk insert <#model-objects-bulk-create-in-the-orm>`_
   large datasets for improved performance, and
   `QuerySet.prefetch_related`_, a method to batch-load related objects
-  in areas where :meth:`~django.db.models.QuerySet.select_related` doesn't
+  in areas where :meth:`~djangocg.db.models.QuerySet.select_related` doesn't
   work.
 
 * Some nice security additions, including `improved password hashing`_
@@ -111,10 +111,10 @@ Support for in-browser testing frameworks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Django 1.4 supports integration with in-browser testing frameworks like
-Selenium_. The new :class:`django.test.LiveServerTestCase` base class lets you
+Selenium_. The new :class:`djangocg.test.LiveServerTestCase` base class lets you
 test the interactions between your site's front and back ends more
 comprehensively. See the
-:class:`documentation<django.test.LiveServerTestCase>` for more details and
+:class:`documentation<djangocg.test.LiveServerTestCase>` for more details and
 concrete examples.
 
 .. _Selenium: http://seleniumhq.org/
@@ -141,7 +141,7 @@ The new recommended ``manage.py`` file should look like this::
     if __name__ == "__main__":
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ project_name }}.settings")
 
-        from django.core.management import execute_from_command_line
+        from djangocg.core.management import execute_from_command_line
 
         execute_from_command_line(sys.argv)
 
@@ -227,13 +227,13 @@ callable configured via :setting:`WSGI_APPLICATION`.)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Django 1.4 includes a :meth:`QuerySet.select_for_update()
-<django.db.models.query.QuerySet.select_for_update>` method, which generates a
+<djangocg.db.models.query.QuerySet.select_for_update>` method, which generates a
 ``SELECT ... FOR UPDATE`` SQL query. This will lock rows until the end of the
 transaction, meaning other transactions cannot modify or delete rows matched by
 a ``FOR UPDATE`` query.
 
 For more details, see the documentation for
-:meth:`~django.db.models.query.QuerySet.select_for_update`.
+:meth:`~djangocg.db.models.query.QuerySet.select_for_update`.
 
 ``Model.objects.bulk_create`` in the ORM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -244,21 +244,21 @@ significant performance increases if you have many objects.
 Django makes use of this internally, meaning some operations (such as database
 setup for test suites) have seen a performance benefit as a result.
 
-See the :meth:`~django.db.models.query.QuerySet.bulk_create` docs for more
+See the :meth:`~djangocg.db.models.query.QuerySet.bulk_create` docs for more
 information.
 
 ``QuerySet.prefetch_related``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Similar to :meth:`~django.db.models.query.QuerySet.select_related` but with a
+Similar to :meth:`~djangocg.db.models.query.QuerySet.select_related` but with a
 different strategy and broader scope,
-:meth:`~django.db.models.query.QuerySet.prefetch_related` has been added to
-:class:`~django.db.models.query.QuerySet`. This method returns a new
+:meth:`~djangocg.db.models.query.QuerySet.prefetch_related` has been added to
+:class:`~djangocg.db.models.query.QuerySet`. This method returns a new
 ``QuerySet`` that will prefetch each of the specified related lookups in a
 single batch as soon as the query begins to be evaluated. Unlike
 ``select_related``, it does the joins in Python, not in the database, and
 supports many-to-many relationships,
-:class:`~django.contrib.contenttypes.generic.GenericForeignKey` and more. This
+:class:`~djangocg.contrib.contenttypes.generic.GenericForeignKey` and more. This
 allows you to fix a very common performance problem in which your code ends up
 doing O(n) database queries (or worse) if objects on your primary ``QuerySet``
 each have many related objects that you also need to fetch.
@@ -266,7 +266,7 @@ each have many related objects that you also need to fetch.
 Improved password hashing
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Django's auth system (``django.contrib.auth``) stores passwords using a one-way
+Django's auth system (``djangocg.contrib.auth``) stores passwords using a one-way
 algorithm. Django 1.3 uses the SHA1_ algorithm, but increasing processor speeds
 and theoretical attacks have revealed that SHA1 isn't as secure as we'd like.
 Thus, Django 1.4 introduces a new password storage system: by default Django now
@@ -291,32 +291,32 @@ templates to change the doctype.
 List filters in admin interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Prior to Django 1.4, the :mod:`~django.contrib.admin` app let you specify
+Prior to Django 1.4, the :mod:`~djangocg.contrib.admin` app let you specify
 change list filters by specifying a field lookup, but it didn't allow you to
 create custom filters. This has been rectified with a simple API (previously
 used internally and known as "FilterSpec"). For more details, see the
-documentation for :attr:`~django.contrib.admin.ModelAdmin.list_filter`.
+documentation for :attr:`~djangocg.contrib.admin.ModelAdmin.list_filter`.
 
 Multiple sort in admin interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The admin change list now supports sorting on multiple columns. It respects all
-elements of the :attr:`~django.contrib.admin.ModelAdmin.ordering` attribute, and
+elements of the :attr:`~djangocg.contrib.admin.ModelAdmin.ordering` attribute, and
 sorting on multiple columns by clicking on headers is designed to mimic the
 behavior of desktop GUIs. We also added a
-:meth:`~django.contrib.admin.ModelAdmin.get_ordering` method for specifying the
+:meth:`~djangocg.contrib.admin.ModelAdmin.get_ordering` method for specifying the
 ordering dynamically (i.e., depending on the request).
 
 New ``ModelAdmin`` methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We added a :meth:`~django.contrib.admin.ModelAdmin.save_related` method to
-:mod:`~django.contrib.admin.ModelAdmin` to ease customization of how
+We added a :meth:`~djangocg.contrib.admin.ModelAdmin.save_related` method to
+:mod:`~djangocg.contrib.admin.ModelAdmin` to ease customization of how
 related objects are saved in the admin.
 
-Two other new :class:`~django.contrib.admin.ModelAdmin` methods,
-:meth:`~django.contrib.admin.ModelAdmin.get_list_display` and
-:meth:`~django.contrib.admin.ModelAdmin.get_list_display_links`
+Two other new :class:`~djangocg.contrib.admin.ModelAdmin` methods,
+:meth:`~djangocg.contrib.admin.ModelAdmin.get_list_display` and
+:meth:`~djangocg.contrib.admin.ModelAdmin.get_list_display_links`
 enable dynamic customization of fields and links displayed on the admin
 change list.
 
@@ -359,7 +359,7 @@ more information.
 New form wizard
 ~~~~~~~~~~~~~~~
 
-The previous ``FormWizard`` from :mod:`django.contrib.formtools` has been
+The previous ``FormWizard`` from :mod:`djangocg.contrib.formtools` has been
 replaced with a new implementation based on the class-based views
 introduced in Django 1.3. It features a pluggable storage API and doesn't
 require the wizard to pass around hidden fields for every previous step.
@@ -375,16 +375,16 @@ more information.
 ``reverse_lazy``
 ~~~~~~~~~~~~~~~~
 
-A lazily evaluated version of :func:`django.core.urlresolvers.reverse` was
+A lazily evaluated version of :func:`djangocg.core.urlresolvers.reverse` was
 added to allow using URL reversals before the project's URLconf gets loaded.
 
 Translating URL patterns
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Django can now look for a language prefix in the URLpattern when using the new
-:func:`~django.conf.urls.i18n.i18n_patterns` helper function.
+:func:`~djangocg.conf.urls.i18n.i18n_patterns` helper function.
 It's also now possible to define translatable URL patterns using
-:func:`~django.utils.translation.ugettext_lazy`. See
+:func:`~djangocg.utils.translation.ugettext_lazy`. See
 :ref:`url-internationalization` for more information about the language prefix
 and how to internationalize URL patterns.
 
@@ -400,10 +400,10 @@ Customizable ``SingleObjectMixin`` URLConf kwargs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Two new attributes,
-:attr:`pk_url_kwarg<django.views.generic.detail.SingleObjectMixin.pk_url_kwarg>`
+:attr:`pk_url_kwarg<djangocg.views.generic.detail.SingleObjectMixin.pk_url_kwarg>`
 and
-:attr:`slug_url_kwarg<django.views.generic.detail.SingleObjectMixin.slug_url_kwarg>`,
-have been added to :class:`~django.views.generic.detail.SingleObjectMixin` to
+:attr:`slug_url_kwarg<djangocg.views.generic.detail.SingleObjectMixin.slug_url_kwarg>`,
+have been added to :class:`~djangocg.views.generic.detail.SingleObjectMixin` to
 enable the customization of URLconf keyword arguments used for single
 object generic views.
 
@@ -466,7 +466,7 @@ more details.
 ``static`` template tag
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The :mod:`staticfiles<django.contrib.staticfiles>` contrib app has a new
+The :mod:`staticfiles<djangocg.contrib.staticfiles>` contrib app has a new
 :ttag:`static<staticfiles-static>` template tag to refer to files saved with
 the :setting:`STATICFILES_STORAGE` storage backend. It uses the storage
 backend's ``url`` method and therefore supports advanced features such as
@@ -475,14 +475,14 @@ backend's ``url`` method and therefore supports advanced features such as
 ``CachedStaticFilesStorage`` storage backend
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :mod:`staticfiles<django.contrib.staticfiles>` contrib app now has a
-:class:`~django.contrib.staticfiles.storage.CachedStaticFilesStorage` backend
+The :mod:`staticfiles<djangocg.contrib.staticfiles>` contrib app now has a
+:class:`~djangocg.contrib.staticfiles.storage.CachedStaticFilesStorage` backend
 that caches the files it saves (when running the :djadmin:`collectstatic`
 management command) by appending the MD5 hash of the file's content to the
 filename. For example, the file ``css/styles.css`` would also be saved as
 ``css/styles.55e7cbb9ba48.css``
 
-See the :class:`~django.contrib.staticfiles.storage.CachedStaticFilesStorage`
+See the :class:`~djangocg.contrib.staticfiles.storage.CachedStaticFilesStorage`
 docs for more information.
 
 Simple clickjacking protection
@@ -498,7 +498,7 @@ CSRF improvements
 ~~~~~~~~~~~~~~~~~
 
 We've made various improvements to our CSRF features, including the
-:func:`~django.views.decorators.csrf.ensure_csrf_cookie` decorator, which can
+:func:`~djangocg.views.decorators.csrf.ensure_csrf_cookie` decorator, which can
 help with AJAX-heavy sites; protection for PUT and DELETE requests; and the
 :setting:`CSRF_COOKIE_SECURE` and :setting:`CSRF_COOKIE_PATH` settings, which can
 improve the security and usefulness of CSRF protection. See the :doc:`CSRF
@@ -514,7 +514,7 @@ filtered out of error reports.
 
 All POST parameters are now systematically filtered out of error reports for
 certain views (``login``, ``password_reset_confirm``, ``password_change`` and
-``add_view`` in :mod:`django.contrib.auth.views`, as well as
+``add_view`` in :mod:`djangocg.contrib.auth.views`, as well as
 ``user_change_password`` in the admin app) to prevent the leaking of sensitive
 information such as user passwords.
 
@@ -526,23 +526,23 @@ Extended IPv6 support
 ~~~~~~~~~~~~~~~~~~~~~
 
 Django 1.4 can now better handle IPv6 addresses with the new
-:class:`~django.db.models.fields.GenericIPAddressField` model field,
-:class:`~django.forms.fields.GenericIPAddressField` form field and
-the validators :data:`~django.core.validators.validate_ipv46_address` and
-:data:`~django.core.validators.validate_ipv6_address`.
+:class:`~djangocg.db.models.fields.GenericIPAddressField` model field,
+:class:`~djangocg.forms.fields.GenericIPAddressField` form field and
+the validators :data:`~djangocg.core.validators.validate_ipv46_address` and
+:data:`~djangocg.core.validators.validate_ipv6_address`.
 
 HTML comparisons in tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The base classes in :mod:`django.test` now have some helpers to
+The base classes in :mod:`djangocg.test` now have some helpers to
 compare HTML without tripping over irrelevant differences in whitespace,
 argument quoting/ordering and closing of self-closing tags. You can either
 compare HTML directly with the new
-:meth:`~django.test.SimpleTestCase.assertHTMLEqual` and
-:meth:`~django.test.SimpleTestCase.assertHTMLNotEqual` assertions, or use
+:meth:`~djangocg.test.SimpleTestCase.assertHTMLEqual` and
+:meth:`~djangocg.test.SimpleTestCase.assertHTMLNotEqual` assertions, or use
 the ``html=True`` flag with
-:meth:`~django.test.TestCase.assertContains` and
-:meth:`~django.test.TestCase.assertNotContains` to test whether the
+:meth:`~djangocg.test.TestCase.assertContains` and
+:meth:`~djangocg.test.TestCase.assertNotContains` to test whether the
 client's response contains a given HTML fragment. See the :ref:`assertions
 documentation <assertions>` for more.
 
@@ -580,13 +580,13 @@ Django 1.4 also includes several smaller improvements worth noting:
 
 * :doc:`Tablespace support </topics/db/tablespaces>` in PostgreSQL.
 
-* Customizable names for :meth:`~django.template.Library.simple_tag`.
+* Customizable names for :meth:`~djangocg.template.Library.simple_tag`.
 
 * In the documentation, a helpful :doc:`security overview </topics/security>`
   page.
 
-* The :func:`django.contrib.auth.models.check_password` function has been moved
-  to the :mod:`django.contrib.auth.hashers` module. Importing it from the old
+* The :func:`djangocg.contrib.auth.models.check_password` function has been moved
+  to the :mod:`djangocg.contrib.auth.hashers` module. Importing it from the old
   location will still work, but you should update your imports.
 
 * The :djadmin:`collectstatic` management command now has a ``--clear`` option
@@ -597,8 +597,8 @@ Django 1.4 also includes several smaller improvements worth noting:
   MySQL with the InnoDB database engine.
 
 * A new 403 response handler has been added as
-  ``'django.views.defaults.permission_denied'``. You can set your own handler by
-  setting the value of :data:`django.conf.urls.handler403`. See the
+  ``'djangocg.views.defaults.permission_denied'``. You can set your own handler by
+  setting the value of :data:`djangocg.conf.urls.handler403`. See the
   documentation about :ref:`the 403 (HTTP Forbidden) view<http_forbidden_view>`
   for more information.
 
@@ -621,7 +621,7 @@ Django 1.4 also includes several smaller improvements worth noting:
 * A new, plain-text, version of the HTTP 500 status code internal error page
   served when :setting:`DEBUG` is ``True`` is now sent to the client when
   Django detects that the request has originated in JavaScript code.
-  (:meth:`~django.http.HttpRequest.is_ajax` is used for this.)
+  (:meth:`~djangocg.http.HttpRequest.is_ajax` is used for this.)
 
   Like its HTML counterpart, it contains a collection of different
   pieces of information about the state of the application.
@@ -644,7 +644,7 @@ Django 1.4 also includes several smaller improvements worth noting:
   fields. This is only supported in PostgreSQL.
 
   For more details, see the documentation for
-  :meth:`~django.db.models.query.QuerySet.distinct`.
+  :meth:`~djangocg.db.models.query.QuerySet.distinct`.
 
 * The admin login page will add a password reset link if you include a URL with
   the name `'admin_password_reset'` in your urls.py, so plugging in the built-in
@@ -661,12 +661,12 @@ Django 1.4 also includes several smaller improvements worth noting:
   forms, i.e. those which are not bound to an existing model instance.
 
 * The sitemaps framework can now handle HTTPS links using the new
-  :attr:`Sitemap.protocol <django.contrib.sitemaps.Sitemap.protocol>` class
+  :attr:`Sitemap.protocol <djangocg.contrib.sitemaps.Sitemap.protocol>` class
   attribute.
 
-* A new :class:`django.test.SimpleTestCase` subclass of
+* A new :class:`djangocg.test.SimpleTestCase` subclass of
   :class:`unittest.TestCase`
-  that's lighter than :class:`django.test.TestCase` and company. It can be
+  that's lighter than :class:`djangocg.test.TestCase` and company. It can be
   useful in tests that don't need to hit a database. See
   :ref:`testcase_hierarchy_diagram`.
 
@@ -687,12 +687,12 @@ refuse to start. This is slightly accelerated from the usual deprecation path
 due to the severity of the consequences of running Django with no
 :setting:`SECRET_KEY`.
 
-django.contrib.admin
+djangocg.contrib.admin
 ~~~~~~~~~~~~~~~~~~~~
 
-The included administration app ``django.contrib.admin`` has for a long time
+The included administration app ``djangocg.contrib.admin`` has for a long time
 shipped with a default set of static files such as JavaScript, images and
-stylesheets. Django 1.3 added a new contrib app ``django.contrib.staticfiles``
+stylesheets. Django 1.3 added a new contrib app ``djangocg.contrib.staticfiles``
 to handle such files in a generic way and defined conventions for static
 files included in apps.
 
@@ -745,8 +745,8 @@ Removed admin icons
 
 As part of an effort to improve the performance and usability of the admin's
 change-list sorting interface and :attr:`horizontal
-<django.contrib.admin.ModelAdmin.filter_horizontal>` and :attr:`vertical
-<django.contrib.admin.ModelAdmin.filter_vertical>` "filter" widgets, some icon
+<djangocg.contrib.admin.ModelAdmin.filter_horizontal>` and :attr:`vertical
+<djangocg.contrib.admin.ModelAdmin.filter_vertical>` "filter" widgets, some icon
 files were removed and grouped into two sprite files.
 
 Specifically: ``selector-add.gif``, ``selector-addall.gif``,
@@ -838,11 +838,11 @@ instance:
     well with Django 1.4 and you won't have to roll back to 1.3, enable the new
     password hashes.
 
-django.contrib.flatpages
+djangocg.contrib.flatpages
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Starting in 1.4, the
-:class:`~django.contrib.flatpages.middleware.FlatpageFallbackMiddleware` only
+:class:`~djangocg.contrib.flatpages.middleware.FlatpageFallbackMiddleware` only
 adds a trailing slash and redirects if the resulting URL refers to an existing
 flatpage. For example, requesting ``/notaflatpageoravalidurl`` in a previous
 version would redirect to ``/notaflatpageoravalidurl/``, which would
@@ -850,7 +850,7 @@ subsequently raise a 404. Requesting ``/notaflatpageoravalidurl`` now will
 immediately raise a 404.
 
 Also, redirects returned by flatpages are now permanent (with 301 status code),
-to match the behavior of :class:`~django.middleware.common.CommonMiddleware`.
+to match the behavior of :class:`~djangocg.middleware.common.CommonMiddleware`.
 
 Serialization of :class:`~datetime.datetime` and :class:`~datetime.time`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -890,7 +890,7 @@ object, Django raises an exception.
 
 The MySQL backend historically has raised :class:`MySQLdb.OperationalError`
 when a query triggered an exception. We've fixed this bug, and we now raise
-:class:`django.db.utils.DatabaseError` instead. If you were testing for
+:class:`djangocg.db.utils.DatabaseError` instead. If you were testing for
 :class:`MySQLdb.OperationalError`, you'll need to update your ``except``
 clauses.
 
@@ -898,16 +898,16 @@ Database connection's thread-locality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``DatabaseWrapper`` objects (i.e. the connection objects referenced by
-``django.db.connection`` and ``django.db.connections["some_alias"]``) used to
+``djangocg.db.connection`` and ``djangocg.db.connections["some_alias"]``) used to
 be thread-local. They are now global objects in order to be potentially shared
 between multiple threads. While the individual connection objects are now
-global, the ``django.db.connections`` dictionary referencing those objects is
+global, the ``djangocg.db.connections`` dictionary referencing those objects is
 still thread-local. Therefore if you just use the ORM or
 ``DatabaseWrapper.cursor()`` then the behavior is still the same as before.
-Note, however, that ``django.db.connection`` does not directly reference the
+Note, however, that ``djangocg.db.connection`` does not directly reference the
 default ``DatabaseWrapper`` object anymore and is now a proxy to access that
 object's attributes. If you need to access the actual ``DatabaseWrapper``
-object, use ``django.db.connections[DEFAULT_DB_ALIAS]`` instead.
+object, use ``djangocg.db.connections[DEFAULT_DB_ALIAS]`` instead.
 
 As part of this change, all underlying SQLite connections are now enabled for
 potential thread-sharing (by passing the ``check_same_thread=False`` attribute
@@ -932,8 +932,8 @@ from the feed class.
 If you rely on the feature and want to restore the old behavior, use a custom
 comment model manager to exclude the user group, like this::
 
-    from django.conf import settings
-    from django.contrib.comments.managers import CommentManager
+    from djangocg.conf import settings
+    from djangocg.contrib.comments.managers import CommentManager
 
     class BanningCommentManager(CommentManager):
         def get_query_set(self):
@@ -948,8 +948,8 @@ Save this model manager in your custom comment app (e.g., in
 ``my_comments_app/managers.py``) and add it your
 :ref:`custom comment app model <custom-comment-app-api>`::
 
-    from django.db import models
-    from django.contrib.comments.models import Comment
+    from djangocg.db import models
+    from djangocg.contrib.comments.models import Comment
 
     from my_comments_app.managers import BanningCommentManager
 
@@ -1013,27 +1013,27 @@ If you're using PUT or DELETE methods in AJAX applications, please see the
 Password reset view now accepts ``subject_template_name``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``password_reset`` view in ``django.contrib.auth`` now accepts a
+The ``password_reset`` view in ``djangocg.contrib.auth`` now accepts a
 ``subject_template_name`` parameter, which is passed to the password save form
 as a keyword argument. If you are using this view with a custom password reset
 form, then you will need to ensure your form's ``save()`` method accepts this
 keyword argument.
 
-``django.core.template_loaders``
+``djangocg.core.template_loaders``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This was an alias to ``django.template.loader`` since 2005, and we've removed it
+This was an alias to ``djangocg.template.loader`` since 2005, and we've removed it
 without emitting a warning due to the length of the deprecation. If your code
-still referenced this, please use ``django.template.loader`` instead.
+still referenced this, please use ``djangocg.template.loader`` instead.
 
-``django.db.models.fields.URLField.verify_exists``
+``djangocg.db.models.fields.URLField.verify_exists``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This functionality has been removed due to intractable performance and
 security issues. Any existing usage of ``verify_exists`` should be
 removed.
 
-``django.core.files.storage.Storage.open``
+``djangocg.core.files.storage.Storage.open``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``open`` method of the base Storage class used to take an obscure parameter
@@ -1042,8 +1042,8 @@ returned file object. This has been removed. In the rare case you relied on the
 `mixin` parameter, you can easily achieve the same by overriding the `open`
 method, like this::
 
-    from django.core.files import File
-    from django.core.files.storage import FileSystemStorage
+    from djangocg.core.files import File
+    from djangocg.core.files.storage import FileSystemStorage
 
     class Spam(File):
         """
@@ -1092,8 +1092,8 @@ wild, because they would confuse browsers too.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It's now possible to check whether a template was used within a block of
-code with :meth:`~django.test.test.TestCase.assertTemplateUsed` and
-:meth:`~django.test.test.TestCase.assertTemplateNotUsed`. And they
+code with :meth:`~djangocg.test.test.TestCase.assertTemplateUsed` and
+:meth:`~djangocg.test.test.TestCase.assertTemplateNotUsed`. And they
 can be used as a context manager::
 
     with self.assertTemplateUsed('index.html'):
@@ -1169,7 +1169,7 @@ FormMixin get_initial returns an instance-specific dictionary
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Django 1.3, the ``get_initial`` method of the
-:class:`django.views.generic.edit.FormMixin` class was returning the
+:class:`djangocg.views.generic.edit.FormMixin` class was returning the
 class ``initial`` dictionary. This has been fixed to return a copy of this
 dictionary, so form instances can modify their initial data without messing
 with the class variable.
@@ -1180,7 +1180,7 @@ Features deprecated in 1.4
 Old styles of calling ``cache_page`` decorator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some legacy ways of calling :func:`~django.views.decorators.cache.cache_page`
+Some legacy ways of calling :func:`~djangocg.views.decorators.cache.cache_page`
 have been deprecated. Please see the documentation for the correct way to use
 this decorator.
 
@@ -1200,27 +1200,27 @@ Request exceptions are now always logged
 
 When we added :doc:`logging support </topics/logging/>` in Django in 1.3, the
 admin error email support was moved into the
-:class:`django.utils.log.AdminEmailHandler`, attached to the
-``'django.request'`` logger. In order to maintain the established behavior of
-error emails, the ``'django.request'`` logger was called only when
+:class:`djangocg.utils.log.AdminEmailHandler`, attached to the
+``'djangocg.request'`` logger. In order to maintain the established behavior of
+error emails, the ``'djangocg.request'`` logger was called only when
 :setting:`DEBUG` was ``False``.
 
 To increase the flexibility of error logging for requests, the
-``'django.request'`` logger is now called regardless of the value of
+``'djangocg.request'`` logger is now called regardless of the value of
 :setting:`DEBUG`, and the default settings file for new projects now includes a
-separate filter attached to :class:`django.utils.log.AdminEmailHandler` to
+separate filter attached to :class:`djangocg.utils.log.AdminEmailHandler` to
 prevent admin error emails in ``DEBUG`` mode::
 
    'filters': {
         'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
+            '()': 'djangocg.utils.log.RequireDebugFalse'
         }
     },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'djangocg.utils.log.AdminEmailHandler'
         }
     },
 
@@ -1235,24 +1235,24 @@ backwards-compatibility shim will be removed entirely.
 The existence of any ``'filters'`` key under the ``'mail_admins'`` handler will
 disable this backward-compatibility shim and deprecation warning.
 
-``django.conf.urls.defaults``
+``djangocg.conf.urls.defaults``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Until Django 1.3, the functions :func:`~django.conf.urls.include`,
-:func:`~django.conf.urls.patterns` and :func:`~django.conf.urls.url` plus
-:data:`~django.conf.urls.handler404`, :data:`~django.conf.urls.handler500`
-were located in a ``django.conf.urls.defaults`` module.
+Until Django 1.3, the functions :func:`~djangocg.conf.urls.include`,
+:func:`~djangocg.conf.urls.patterns` and :func:`~djangocg.conf.urls.url` plus
+:data:`~djangocg.conf.urls.handler404`, :data:`~djangocg.conf.urls.handler500`
+were located in a ``djangocg.conf.urls.defaults`` module.
 
-In Django 1.4, they live in :mod:`django.conf.urls`.
+In Django 1.4, they live in :mod:`djangocg.conf.urls`.
 
-``django.contrib.databrowse``
+``djangocg.contrib.databrowse``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Databrowse has not seen active development for some time, and this does not show
 any sign of changing. There had been a suggestion for a `GSOC project`_ to
 integrate the functionality of databrowse into the admin, but no progress was
 made. While Databrowse has been deprecated, an enhancement of
-``django.contrib.admin`` providing a similar feature set is still possible.
+``djangocg.contrib.admin`` providing a similar feature set is still possible.
 
 .. _GSOC project: https://code.djangoproject.com/wiki/SummerOfCode2011#Integratedatabrowseintotheadmin
 
@@ -1260,7 +1260,7 @@ The code that powers Databrowse is licensed under the same terms as Django
 itself, so it's available to be adopted by an individual or group as
 a third-party project.
 
-``django.core.management.setup_environ``
+``djangocg.core.management.setup_environ``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This function temporarily modified ``sys.path`` in order to make the parent
@@ -1271,14 +1271,14 @@ needed with the new ``manage.py`` and default project layout.
 This function was never documented or part of the public API, but it was widely
 recommended for use in setting up a "Django environment" for a user script.
 These uses should be replaced by setting the ``DJANGO_SETTINGS_MODULE``
-environment variable or using :func:`django.conf.settings.configure`.
+environment variable or using :func:`djangocg.conf.settings.configure`.
 
-``django.core.management.execute_manager``
+``djangocg.core.management.execute_manager``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This function was previously used by ``manage.py`` to execute a management
 command. It is identical to
-``django.core.management.execute_from_command_line``, except that it first
+``djangocg.core.management.execute_from_command_line``, except that it first
 calls ``setup_environ``, which is now deprecated. As such, ``execute_manager``
 is also deprecated; ``execute_from_command_line`` can be used instead. Neither
 of these functions is documented as part of the public API, but a deprecation
@@ -1297,9 +1297,9 @@ the filter function::
     noop.is_safe = True
 
 However, this technique caused some problems in combination with decorators,
-especially :func:`@stringfilter <django.template.defaultfilters.stringfilter>`.
+especially :func:`@stringfilter <djangocg.template.defaultfilters.stringfilter>`.
 Now, the flags are keyword arguments of :meth:`@register.filter
-<django.template.Library.filter>`::
+<djangocg.template.Library.filter>`::
 
     @register.filter(is_safe=True)
     def noop(value):
@@ -1311,7 +1311,7 @@ Wildcard expansion of application names in `INSTALLED_APPS`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Until Django 1.3, :setting:`INSTALLED_APPS` accepted wildcards in application
-names, like ``django.contrib.*``. The expansion was performed by a
+names, like ``djangocg.contrib.*``. The expansion was performed by a
 filesystem-based implementation of ``from <package> import *``. Unfortunately,
 `this can't be done reliably`_.
 
@@ -1328,14 +1328,14 @@ This attribute was confusingly named ``HttpRequest.raw_post_data``, but it
 actually provided the body of the HTTP request. It's been renamed to
 ``HttpRequest.body``, and ``HttpRequest.raw_post_data`` has been deprecated.
 
-``django.contrib.sitemaps`` bug fix with potential performance implications
+``djangocg.contrib.sitemaps`` bug fix with potential performance implications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In previous versions, ``Paginator`` objects used in sitemap classes were
 cached, which could result in stale site maps. We've removed the caching, so
 each request to a site map now creates a new Paginator object and calls the
-:attr:`~django.contrib.sitemaps.Sitemap.items()` method of the
-:class:`~django.contrib.sitemaps.Sitemap` subclass. Depending on what your
+:attr:`~djangocg.contrib.sitemaps.Sitemap.items()` method of the
+:class:`~djangocg.contrib.sitemaps.Sitemap` subclass. Depending on what your
 ``items()`` method is doing, this may have a negative performance impact.
 To mitigate the performance impact, consider using the :doc:`caching
 framework </topics/cache>` within your ``Sitemap`` subclass.

@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 from datetime import date
 
-from django.contrib.localflavor.si.forms import (SIEMSOField, SITaxNumberField,
+from djangocg.contrib.localflavor.si.forms import (SIEMSOField, SITaxNumberField,
     SIPhoneNumberField, SIPostalCodeField, SIPostalCodeSelect)
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class SILocalFlavorTests(SimpleTestCase):

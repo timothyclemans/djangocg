@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.test import TestCase
-from django.core.exceptions import FieldError
+from djangocg.test import TestCase
+from djangocg.core.exceptions import FieldError
 
 from .models import Poll, Choice, OuterA, Inner, OuterB
 

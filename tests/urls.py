@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include
+from djangocg.conf.urls import patterns, include
 
 urlpatterns = patterns('',
     # test_client modeltest urls
@@ -9,8 +9,8 @@ urlpatterns = patterns('',
     (r'^file_uploads/', include('regressiontests.file_uploads.urls')),
 
     # Always provide the auth system login and logout views
-    (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
-    (r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
+    (r'^accounts/login/$', 'djangocg.contrib.auth.views.login', {'template_name': 'login.html'}),
+    (r'^accounts/logout/$', 'djangocg.contrib.auth.views.logout'),
 
     # test urlconf for {% url %} template tag
     (r'^url_tag/', include('regressiontests.templates.urls')),

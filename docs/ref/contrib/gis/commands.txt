@@ -9,7 +9,7 @@ inspectdb
 
 .. describe:: django-admin.py inspectdb
 
-When :mod:`django.contrib.gis` is in your :setting:`INSTALLED_APPS`, the
+When :mod:`djangocg.contrib.gis` is in your :setting:`INSTALLED_APPS`, the
 :djadmin:`inspectdb` management command is overridden with one from GeoDjango.
 The overridden command is spatially-aware, and places geometry fields in the
 auto-generated model definition, where appropriate.
@@ -20,7 +20,7 @@ ogrinspect <data_source> <model_name>
 .. django-admin:: ogrinspect
 
 The ``ogrinpsect`` management command will inspect the given OGR-compatible
-:class:`~django.contrib.gis.gdal.DataSource` (e.g., a shapefile) and will
+:class:`~djangocg.contrib.gis.gdal.DataSource` (e.g., a shapefile) and will
 output a GeoDjango model with the given model name.  There's a detailed example
 of using ``ogrinspect`` :ref:`in the tutorial <ogrinspect-intro>`.
 
@@ -33,8 +33,8 @@ of using ``ogrinspect`` :ref:`in the tutorial <ogrinspect-intro>`.
 .. django-admin-option:: --decimal <decimal_field(s)>
 
    Use a comma separated list of OGR float fields to generate
-   :class:`~django.db.models.DecimalField` instead of the default
-   :class:`~django.db.models.FloatField`. Set to ``true`` to apply to all
+   :class:`~djangocg.db.models.DecimalField` instead of the default
+   :class:`~djangocg.db.models.FloatField`. Set to ``true`` to apply to all
    OGR float fields.
 
 .. django-admin-option:: --geom-name <name>
@@ -45,22 +45,22 @@ of using ``ogrinspect`` :ref:`in the tutorial <ogrinspect-intro>`.
 .. django-admin-option:: --layer <layer>
 
    The key for specifying which layer in the OGR
-   :class:`~django.contrib.gis.gdal.DataSource` source to use.
+   :class:`~djangocg.contrib.gis.gdal.DataSource` source to use.
    Defaults to 0 (the first layer). May be an integer or a string identifier
-   for the :class:`~django.contrib.gis.gdal.Layer`.
+   for the :class:`~djangocg.contrib.gis.gdal.Layer`.
 
 .. django-admin-option:: --mapping
 
    Automatically generate a mapping dictionary for use with
-   :class:`~django.contrib.gis.utils.LayerMapping`.
+   :class:`~djangocg.contrib.gis.utils.LayerMapping`.
 
 .. django-admin-option:: --multi-geom
 
    When generating the geometry field, treat it as a geometry collection.
    For example, if this setting is enabled then a
-   :class:`~django.contrib.gis.db.models.MultiPolygonField` will be placed
+   :class:`~djangocg.contrib.gis.db.models.MultiPolygonField` will be placed
    in the generated model rather than
-   :class:`~django.contrib.gis.db.models.PolygonField`.
+   :class:`~djangocg.contrib.gis.db.models.PolygonField`.
 
 .. django-admin-option:: --name-field <name_field>
 
@@ -69,7 +69,7 @@ of using ``ogrinspect`` :ref:`in the tutorial <ogrinspect-intro>`.
 
 .. django-admin-option:: --no-imports
 
-   Suppresses the ``from django.contrib.gis.db import models`` import statement.
+   Suppresses the ``from djangocg.contrib.gis.db import models`` import statement.
 
 .. django-admin-option:: --null <null_field(s)>
 

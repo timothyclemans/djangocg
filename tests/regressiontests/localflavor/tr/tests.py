@@ -1,8 +1,8 @@
 # Tests for the contrib/localflavor/ TR form fields.
 
-from django.contrib.localflavor.tr import forms as trforms
-from django.core.exceptions import ValidationError
-from django.utils.unittest import TestCase
+from djangocg.contrib.localflavor.tr import forms as trforms
+from djangocg.core.exceptions import ValidationError
+from djangocg.utils.unittest import TestCase
 
 class TRLocalFlavorTests(TestCase):
     def test_TRPostalCodeField(self):

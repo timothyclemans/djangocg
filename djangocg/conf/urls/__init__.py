@@ -1,15 +1,15 @@
-from django.core.urlresolvers import (RegexURLPattern,
+from djangocg.core.urlresolvers import (RegexURLPattern,
     RegexURLResolver, LocaleRegexURLResolver)
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
-from django.utils import six
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.importlib import import_module
+from djangocg.utils import six
 
 
 __all__ = ['handler403', 'handler404', 'handler500', 'include', 'patterns', 'url']
 
-handler403 = 'django.views.defaults.permission_denied'
-handler404 = 'django.views.defaults.page_not_found'
-handler500 = 'django.views.defaults.server_error'
+handler403 = 'djangocg.views.defaults.permission_denied'
+handler404 = 'djangocg.views.defaults.page_not_found'
+handler500 = 'djangocg.views.defaults.server_error'
 
 def include(arg, namespace=None, app_name=None):
     if isinstance(arg, tuple):

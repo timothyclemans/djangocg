@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.template import Template, TemplateEncodingError, Context
-from django.utils.safestring import SafeData
-from django.utils import six
-from django.utils.unittest import TestCase
+from djangocg.template import Template, TemplateEncodingError, Context
+from djangocg.utils.safestring import SafeData
+from djangocg.utils import six
+from djangocg.utils.unittest import TestCase
 
 
 class UnicodeTests(TestCase):

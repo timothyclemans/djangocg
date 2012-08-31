@@ -4,7 +4,7 @@
 GeoQuerySet API Reference
 =========================
 
-.. currentmodule:: django.contrib.gis.db.models
+.. currentmodule:: djangocg.contrib.gis.db.models
 
 .. class:: GeoQuerySet([model=None])
 
@@ -521,7 +521,7 @@ Distance lookups take the following form::
 The value passed into a distance lookup is a tuple; the first two
 values are mandatory, and are the geometry to calculate distances to,
 and a distance value (either a number in units of the field or a
-:class:`~django.contrib.gis.measure.Distance` object).  On every
+:class:`~djangocg.contrib.gis.measure.Distance` object).  On every
 distance lookup but :lookup:`dwithin`, an optional
 third element, ``'spheroid'``, may be included to tell GeoDjango
 to use the more accurate spheroid distance calculation functions on
@@ -705,7 +705,7 @@ each element of this GeoQuerySet.
 
 This method takes a geometry as a parameter, and attaches a ``distance``
 attribute to every model in the returned queryset that contains the
-distance (as a :class:`~django.contrib.gis.measure.Distance` object) to the given geometry.
+distance (as a :class:`~djangocg.contrib.gis.measure.Distance` object) to the given geometry.
 
 In the following example (taken from the `GeoDjango distance tests`__),
 the distance from the `Tasmanian`__ city of Hobart to every other
@@ -728,7 +728,7 @@ the distance from the `Tasmanian`__ city of Hobart to every other
 .. note::
 
     Because the ``distance`` attribute is a
-    :class:`~django.contrib.gis.measure.Distance` object, you can easily express
+    :class:`~djangocg.contrib.gis.measure.Distance` object, you can easily express
     the value in the units of your choice.  For example, ``city.distance.mi`` is
     the distance value in miles and ``city.distance.km`` is the distance value
     in kilometers.  See the :ref:`ref-measure` for usage details and the list of
@@ -743,7 +743,7 @@ __ http://en.wikipedia.org/wiki/Tasmania
 .. method:: GeoQuerySet.length(**kwargs)
 
 Returns the length of the geometry field in a ``length`` attribute
-(a :class:`~django.contrib.gis.measure.Distance` object) on each model in
+(a :class:`~djangocg.contrib.gis.measure.Distance` object) on each model in
 the queryset.
 
 ``perimeter``
@@ -752,7 +752,7 @@ the queryset.
 .. method:: GeoQuerySet.perimeter(**kwargs)
 
 Returns the perimeter of the geometry field in a ``perimeter`` attribute
-(a :class:`~django.contrib.gis.measure.Distance` object) on each model in
+(a :class:`~djangocg.contrib.gis.measure.Distance` object) on each model in
 the queryset.
 
 Geometry Relationships
@@ -1161,7 +1161,7 @@ Example::
 
 *Availability*: PostGIS, Oracle, SpatiaLite
 
-This method returns a :class:`~django.contrib.gis.geos.GEOSGeometry` object
+This method returns a :class:`~djangocg.contrib.gis.geos.GEOSGeometry` object
 comprising the union of every geometry in the queryset.  Please note that
 use of ``unionagg`` is processor intensive and may take a significant amount
 of time on large querysets.
@@ -1192,7 +1192,7 @@ Aggregate Functions
 
 Example::
 
-    >>> from django.contrib.gis.db.models import Extent, Union
+    >>> from djangocg.contrib.gis.db.models import Extent, Union
     >>> WorldBorder.objects.aggregate(Extent('mpoly'), Union('mpoly'))
 
 ``Collect``

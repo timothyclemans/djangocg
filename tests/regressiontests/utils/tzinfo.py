@@ -3,8 +3,8 @@ import datetime
 import os
 import pickle
 import time
-from django.utils.tzinfo import FixedOffset, LocalTimezone
-from django.utils import unittest
+from djangocg.utils.tzinfo import FixedOffset, LocalTimezone
+from djangocg.utils import unittest
 
 class TzinfoTests(unittest.TestCase):
 

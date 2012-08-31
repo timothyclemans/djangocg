@@ -1,12 +1,12 @@
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from djangocg.utils.six.moves import cPickle as pickle
 except ImportError:
     import pickle
 
-from django.conf import settings
-from django.core import signing
+from djangocg.conf import settings
+from djangocg.core import signing
 
-from django.contrib.sessions.backends.base import SessionBase
+from djangocg.contrib.sessions.backends.base import SessionBase
 
 
 class PickleSerializer(object):
@@ -33,7 +33,7 @@ class SessionStore(SessionBase):
             return signing.loads(self.session_key,
                 serializer=PickleSerializer,
                 max_age=settings.SESSION_COOKIE_AGE,
-                salt='django.contrib.sessions.backends.signed_cookies')
+                salt='djangocg.contrib.sessions.backends.signed_cookies')
         except (signing.BadSignature, ValueError):
             self.create()
         return {}
@@ -89,5 +89,5 @@ class SessionStore(SessionBase):
         """
         session_cache = getattr(self, '_session_cache', {})
         return signing.dumps(session_cache, compress=True,
-            salt='django.contrib.sessions.backends.signed_cookies',
+            salt='djangocg.contrib.sessions.backends.signed_cookies',
             serializer=PickleSerializer)

@@ -3,7 +3,7 @@ import operator
 from functools import wraps, update_wrapper
 import sys
 
-from django.utils import six
+from djangocg.utils import six
 
 # You can't trivially replace this `functools.partial` because this binds to
 # classes and returns bound instances, whereas functools.partial (on CPython)
@@ -249,7 +249,7 @@ class SimpleLazyObject(LazyObject):
     A lazy object initialised from any function.
 
     Designed for compound objects of unknown type. For builtins or objects of
-    known type, use django.utils.functional.lazy.
+    known type, use djangocg.utils.functional.lazy.
     """
     def __init__(self, func):
         """

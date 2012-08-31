@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.core.management import call_command
-from django.test import TestCase, skipUnlessDBFeature
-from django.utils.six import StringIO
+from djangocg.core.management import call_command
+from djangocg.test import TestCase, skipUnlessDBFeature
+from djangocg.utils.six import StringIO
 
 
 class InspectDBTestCase(TestCase):

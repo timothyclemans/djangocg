@@ -1,11 +1,11 @@
 import copy
 import sys
 
-from django.core.management.validation import get_validation_errors
-from django.db.models.loading import cache, load_app
+from djangocg.core.management.validation import get_validation_errors
+from djangocg.db.models.loading import cache, load_app
 
-from django.utils import unittest
-from django.utils.six import StringIO
+from djangocg.utils import unittest
+from djangocg.utils.six import StringIO
 
 
 class InvalidModelTestCase(unittest.TestCase):

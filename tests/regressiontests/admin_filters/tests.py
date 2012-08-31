@@ -2,15 +2,15 @@ from __future__ import absolute_import, unicode_literals
 
 import datetime
 
-from django.contrib.admin import (site, ModelAdmin, SimpleListFilter,
+from djangocg.contrib.admin import (site, ModelAdmin, SimpleListFilter,
     BooleanFieldListFilter)
-from django.contrib.admin.views.main import ChangeList
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
-from django.core.exceptions import ImproperlyConfigured
-from django.test import TestCase, RequestFactory
-from django.test.utils import override_settings
-from django.utils.encoding import force_text
+from djangocg.contrib.admin.views.main import ChangeList
+from djangocg.contrib.auth.admin import UserAdmin
+from djangocg.contrib.auth.models import User
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test import TestCase, RequestFactory
+from djangocg.test.utils import override_settings
+from djangocg.utils.encoding import force_text
 
 from .models import Book, Department, Employee
 

@@ -1,12 +1,12 @@
 """
 Move a file in the safest way possible::
 
-    >>> from django.core.files.move import file_move_safe
+    >>> from djangocg.core.files.move import file_move_safe
     >>> file_move_safe("/tmp/old_file", "/tmp/new_file")
 """
 
 import os
-from django.core.files import locks
+from djangocg.core.files import locks
 
 try:
     from shutil import copystat

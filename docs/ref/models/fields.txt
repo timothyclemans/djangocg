@@ -2,10 +2,10 @@
 Model field reference
 =====================
 
-.. module:: django.db.models.fields
+.. module:: djangocg.db.models.fields
    :synopsis: Built-in field types.
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 This document contains all the gory details about all the `field options`_ and
 `field types`_ Django's got to offer.
@@ -13,15 +13,15 @@ This document contains all the gory details about all the `field options`_ and
 .. seealso::
 
     If the built-in fields don't do the trick, you can try
-    :mod:`django.contrib.localflavor`, which contains assorted pieces of code
+    :mod:`djangocg.contrib.localflavor`, which contains assorted pieces of code
     that are useful for particular countries or cultures. Also, you can easily
     :doc:`write your own custom model fields </howto/custom-model-fields>`.
 
 .. note::
 
-    Technically, these models are defined in :mod:`django.db.models.fields`, but
-    for convenience they're imported into :mod:`django.db.models`; the standard
-    convention is to use ``from django.db import models`` and refer to fields as
+    Technically, these models are defined in :mod:`djangocg.db.models.fields`, but
+    for convenience they're imported into :mod:`djangocg.db.models`; the standard
+    convention is to use ``from djangocg.db import models`` and refer to fields as
     ``models.<Foo>Field``.
 
 .. _common-model-field-options:
@@ -146,7 +146,7 @@ combined with ungrouped options within a single list (such as the
 
 For each model field that has :attr:`~Field.choices` set, Django will add a
 method to retrieve the human-readable name for the field's current value. See
-:meth:`~django.db.models.Model.get_FOO_display` in the database API
+:meth:`~djangocg.db.models.Model.get_FOO_display` in the database API
 documentation.
 
 Finally, note that choices can be any iterable object -- not necessarily a list
@@ -201,7 +201,7 @@ callable it will be called every time a new object is created.
 .. attribute:: Field.editable
 
 If ``False``, the field will not be displayed in the admin or any other
-:class:`~django.forms.ModelForm`. Default is ``True``.
+:class:`~djangocg.forms.ModelForm`. Default is ``True``.
 
 ``error_messages``
 ------------------
@@ -231,7 +231,7 @@ desire. For example::
     help_text="Please use the following format: <em>YYYY-MM-DD</em>."
 
 Alternatively you can use plain text and
-``django.utils.html.escape()`` to escape any HTML special characters.
+``djangocg.utils.html.escape()`` to escape any HTML special characters.
 
 ``primary_key``
 ---------------
@@ -258,8 +258,8 @@ If ``True``, this field must be unique throughout the table.
 
 This is enforced at the database level and by model validation. If
 you try to save a model with a duplicate value in a :attr:`~Field.unique`
-field, a :exc:`django.db.IntegrityError` will be raised by the model's
-:meth:`~django.db.models.Model.save` method.
+field, a :exc:`djangocg.db.IntegrityError` will be raised by the model's
+:meth:`~djangocg.db.models.Model.save` method.
 
 This option is valid on all field types except :class:`ManyToManyField` and
 :class:`FileField`.
@@ -315,7 +315,7 @@ documentation </ref/validators>` for more information.
 Field types
 ===========
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 ``AutoField``
 -------------
@@ -334,7 +334,7 @@ otherwise. See :ref:`automatic-primary-key-fields`.
 
 A 64 bit integer, much like an :class:`IntegerField` except that it is
 guaranteed to fit numbers from -9223372036854775808 to 9223372036854775807. The
-default form widget for this field is a :class:`~django.forms.TextInput`.
+default form widget for this field is a :class:`~djangocg.forms.TextInput`.
 
 
 ``BooleanField``
@@ -345,7 +345,7 @@ default form widget for this field is a :class:`~django.forms.TextInput`.
 A true/false field.
 
 The default form widget for this field is a
-:class:`~django.forms.CheckboxInput`.
+:class:`~djangocg.forms.CheckboxInput`.
 
 If you need to accept :attr:`~Field.null` values then use
 :class:`NullBooleanField` instead.
@@ -357,9 +357,9 @@ If you need to accept :attr:`~Field.null` values then use
 
 A string field, for small- to large-sized strings.
 
-For large amounts of text, use :class:`~django.db.models.TextField`.
+For large amounts of text, use :class:`~djangocg.db.models.TextField`.
 
-The default form widget for this field is a :class:`~django.forms.TextInput`.
+The default form widget for this field is a :class:`~djangocg.forms.TextInput`.
 
 :class:`CharField` has one extra required argument:
 
@@ -413,7 +413,7 @@ optional arguments:
     it's not just a default value that you can override.
 
 The default form widget for this field is a
-:class:`~django.forms.TextInput`. The admin adds a JavaScript calendar,
+:class:`~djangocg.forms.TextInput`. The admin adds a JavaScript calendar,
 and a shortcut for "Today". Includes an additional ``invalid_date`` error
 message key.
 
@@ -431,8 +431,8 @@ A date and time, represented in Python by a ``datetime.datetime`` instance.
 Takes the same extra arguments as :class:`DateField`.
 
 The default form widget for this field is a single
-:class:`~django.forms.TextInput`. The admin uses two separate
-:class:`~django.forms.TextInput` widgets with JavaScript shortcuts.
+:class:`~djangocg.forms.TextInput`. The admin uses two separate
+:class:`~djangocg.forms.TextInput` widgets with JavaScript shortcuts.
 
 ``DecimalField``
 ----------------
@@ -461,7 +461,7 @@ decimal places::
 
     models.DecimalField(..., max_digits=19, decimal_places=10)
 
-The default form widget for this field is a :class:`~django.forms.TextInput`.
+The default form widget for this field is a :class:`~djangocg.forms.TextInput`.
 
 .. note::
 
@@ -501,7 +501,7 @@ Has one **required** argument:
 .. attribute:: FileField.upload_to
 
     A local filesystem path that will be appended to your :setting:`MEDIA_ROOT`
-    setting to determine the value of the :attr:`~django.core.files.File.url`
+    setting to determine the value of the :attr:`~djangocg.core.files.File.url`
     attribute.
 
     This path may contain :func:`~time.strftime` formatting, which will be
@@ -540,7 +540,7 @@ Also has one optional argument:
     files. See :doc:`/topics/files` for details on how to provide this object.
 
 The default form widget for this field is a
-:class:`~django.forms.widgets.FileInput`.
+:class:`~djangocg.forms.widgets.FileInput`.
 
 Using a :class:`FileField` or an :class:`ImageField` (see below) in a model
 takes a few steps:
@@ -557,7 +557,7 @@ takes a few steps:
 
 3. All that will be stored in your database is a path to the file
    (relative to :setting:`MEDIA_ROOT`). You'll most likely want to use the
-   convenience :attr:`~django.core.files.File.url` function provided by
+   convenience :attr:`~djangocg.core.files.File.url` function provided by
    Django. For example, if your :class:`ImageField` is called ``mug_shot``,
    you can get the absolute path to your image in a template with
    ``{{ object.mug_shot.url }}``.
@@ -570,10 +570,10 @@ the two-digit day. If you upload a file on Jan. 15, 2007, it will be saved in
 the directory ``/home/media/photos/2007/01/15``.
 
 If you wanted to retrieve the uploaded file's on-disk filename, or the file's
-size, you could use the :attr:`~django.core.files.File.name` and
-:attr:`~django.core.files.File.size` attributes respectively; for more
+size, you could use the :attr:`~djangocg.core.files.File.name` and
+:attr:`~djangocg.core.files.File.size` attributes respectively; for more
 information on the available attributes and methods, see the
-:class:`~django.core.files.File` class reference and the :doc:`/topics/files`
+:class:`~djangocg.core.files.File` class reference and the :doc:`/topics/files`
 topic guide.
 
 .. note::
@@ -582,9 +582,9 @@ topic guide.
     saved.
 
 The uploaded file's relative URL can be obtained using the
-:attr:`~django.db.models.fields.FileField.url` attribute. Internally,
-this calls the :meth:`~django.core.files.storage.Storage.url` method of the
-underlying :class:`~django.core.files.storage.Storage` class.
+:attr:`~djangocg.db.models.fields.FileField.url` attribute. Internally,
+this calls the :meth:`~djangocg.core.files.storage.Storage.url` method of the
+underlying :class:`~djangocg.core.files.storage.Storage` class.
 
 .. _file-upload-security:
 
@@ -635,18 +635,18 @@ optional ``save`` argument controls whether or not the instance is
 saved after the file has been altered. Defaults to ``True``.
 
 Note that the ``content`` argument should be an instance of
-:class:`django.core.files.File`, not Python's built-in file object.
-You can construct a :class:`~django.core.files.File` from an existing
+:class:`djangocg.core.files.File`, not Python's built-in file object.
+You can construct a :class:`~djangocg.core.files.File` from an existing
 Python file object like this::
 
-    from django.core.files import File
+    from djangocg.core.files import File
     # Open an existing file using Python's built-in open()
     f = open('/tmp/hello.world')
     myfile = File(f)
 
 Or you can construct one from a Python string like this::
 
-    from django.core.files.base import ContentFile
+    from djangocg.core.files.base import ContentFile
     myfile = ContentFile("hello world")
 
 For more information, see :doc:`/topics/files`.
@@ -725,7 +725,7 @@ can change the maximum length using the :attr:`~CharField.max_length` argument.
 
 A floating-point number represented in Python by a ``float`` instance.
 
-The default form widget for this field is a :class:`~django.forms.TextInput`.
+The default form widget for this field is a :class:`~djangocg.forms.TextInput`.
 
 .. _floatfield_vs_decimalfield:
 
@@ -747,8 +747,8 @@ Inherits all attributes and methods from :class:`FileField`, but also
 validates that the uploaded object is a valid image.
 
 In addition to the special attributes that are available for :class:`FileField`,
-an :class:`ImageField` also has :attr:`~django.core.files.File.height` and
-:attr:`~django.core.files.File.width` attributes.
+an :class:`ImageField` also has :attr:`~djangocg.core.files.File.height` and
+:attr:`~djangocg.core.files.File.width` attributes.
 
 To facilitate querying on those attributes, :class:`ImageField` has two extra
 optional arguments:
@@ -777,7 +777,7 @@ length using the :attr:`~CharField.max_length` argument.
 .. class:: IntegerField([**options])
 
 An integer. The default form widget for this field is a
-:class:`~django.forms.TextInput`.
+:class:`~djangocg.forms.TextInput`.
 
 ``IPAddressField``
 ------------------
@@ -785,7 +785,7 @@ An integer. The default form widget for this field is a
 .. class:: IPAddressField([**options])
 
 An IP address, in string format (e.g. "192.0.2.30"). The default form widget
-for this field is a :class:`~django.forms.TextInput`.
+for this field is a :class:`~djangocg.forms.TextInput`.
 
 ``GenericIPAddressField``
 -------------------------
@@ -796,7 +796,7 @@ for this field is a :class:`~django.forms.TextInput`.
 
 An IPv4 or IPv6 address, in string format (e.g. ``192.0.2.30`` or
 ``2a02:42fe::4``). The default form widget for this field is a
-:class:`~django.forms.TextInput`.
+:class:`~djangocg.forms.TextInput`.
 
 The IPv6 address normalization follows :rfc:`4291#section-2.2` section 2.2,
 including using the IPv4 format suggested in paragraph 3 of that section, like
@@ -824,7 +824,7 @@ are converted to lowercase.
 
 Like a :class:`BooleanField`, but allows ``NULL`` as one of the options. Use
 this instead of a :class:`BooleanField` with ``null=True``. The default form
-widget for this field is a :class:`~django.forms.NullBooleanSelect`.
+widget for this field is a :class:`~djangocg.forms.NullBooleanSelect`.
 
 ``PositiveIntegerField``
 ------------------------
@@ -860,7 +860,7 @@ Implies setting :attr:`Field.db_index` to ``True``.
 
 It is often useful to automatically prepopulate a SlugField based on the value
 of some other value.  You can do this automatically in the admin using
-:attr:`~django.contrib.admin.ModelAdmin.prepopulated_fields`.
+:attr:`~djangocg.contrib.admin.ModelAdmin.prepopulated_fields`.
 
 ``SmallIntegerField``
 ---------------------
@@ -876,7 +876,7 @@ Like an :class:`IntegerField`, but only allows values under a certain
 .. class:: TextField([**options])
 
 A large text field. The default form widget for this field is a
-:class:`~django.forms.Textarea`.
+:class:`~djangocg.forms.Textarea`.
 
 .. admonition:: MySQL users
 
@@ -893,7 +893,7 @@ A large text field. The default form widget for this field is a
 A time, represented in Python by a ``datetime.time`` instance. Accepts the same
 auto-population options as :class:`DateField`.
 
-The default form widget for this field is a :class:`~django.forms.TextInput`.
+The default form widget for this field is a :class:`~djangocg.forms.TextInput`.
 The admin adds some JavaScript shortcuts.
 
 ``URLField``
@@ -903,7 +903,7 @@ The admin adds some JavaScript shortcuts.
 
 A :class:`CharField` for a URL.
 
-The default form widget for this field is a :class:`~django.forms.TextInput`.
+The default form widget for this field is a :class:`~djangocg.forms.TextInput`.
 
 Like all :class:`CharField` subclasses, :class:`URLField` takes the optional
 :attr:`~CharField.max_length`argument. If you don't specify
@@ -913,10 +913,10 @@ Like all :class:`CharField` subclasses, :class:`URLField` takes the optional
 Relationship fields
 ===================
 
-.. module:: django.db.models.fields.related
+.. module:: djangocg.db.models.fields.related
    :synopsis: Related field types
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 Django also defines a set of fields that represent relations.
 
@@ -988,9 +988,9 @@ define the details of how the relation works.
     only allows the choice of related objects with a ``pub_date`` before the
     current date/time to be chosen.
 
-    Instead of a dictionary this can also be a :class:`~django.db.models.Q`
+    Instead of a dictionary this can also be a :class:`~djangocg.db.models.Q`
     object for more :ref:`complex queries <complex-lookups-with-q>`. However,
-    if ``limit_choices_to`` is a :class:`~django.db.models.Q` object then it
+    if ``limit_choices_to`` is a :class:`~djangocg.db.models.Q` object then it
     will only have an effect on the choices available in the admin when the
     field is not listed in ``raw_id_fields`` in the ``ModelAdmin`` for the model.
 
@@ -1029,22 +1029,22 @@ define the details of how the relation works.
         user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
 
     The possible values for :attr:`on_delete` are found in
-    :mod:`django.db.models`:
+    :mod:`djangocg.db.models`:
 
-    * :attr:`~django.db.models.CASCADE`: Cascade deletes; the default.
+    * :attr:`~djangocg.db.models.CASCADE`: Cascade deletes; the default.
 
-    * :attr:`~django.db.models.PROTECT`: Prevent deletion of the referenced
-      object by raising :exc:`django.db.models.ProtectedError`, a subclass of
-      :exc:`django.db.IntegrityError`.
+    * :attr:`~djangocg.db.models.PROTECT`: Prevent deletion of the referenced
+      object by raising :exc:`djangocg.db.models.ProtectedError`, a subclass of
+      :exc:`djangocg.db.IntegrityError`.
 
-    * :attr:`~django.db.models.SET_NULL`: Set the :class:`ForeignKey` null;
+    * :attr:`~djangocg.db.models.SET_NULL`: Set the :class:`ForeignKey` null;
       this is only possible if :attr:`null` is ``True``.
 
-    * :attr:`~django.db.models.SET_DEFAULT`: Set the :class:`ForeignKey` to its
+    * :attr:`~djangocg.db.models.SET_DEFAULT`: Set the :class:`ForeignKey` to its
       default value; a default for the :class:`ForeignKey` must be set.
 
-    * :func:`~django.db.models.SET()`: Set the :class:`ForeignKey` to the value
-      passed to :func:`~django.db.models.SET()`, or if a callable is passed in,
+    * :func:`~djangocg.db.models.SET()`: Set the :class:`ForeignKey` to the value
+      passed to :func:`~djangocg.db.models.SET()`, or if a callable is passed in,
       the result of calling it. In most cases, passing a callable will be
       necessary to avoid executing queries at the time your models.py is
       imported::
@@ -1055,9 +1055,9 @@ define the details of how the relation works.
         class MyModel(models.Model):
             user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user))
 
-    * :attr:`~django.db.models.DO_NOTHING`: Take no action. If your database
+    * :attr:`~djangocg.db.models.DO_NOTHING`: Take no action. If your database
       backend enforces referential integrity, this will cause an
-      :exc:`~django.db.IntegrityError` unless you manually add a SQL ``ON
+      :exc:`~djangocg.db.IntegrityError` unless you manually add a SQL ``ON
       DELETE`` constraint to the database field (perhaps using
       :ref:`initial sql<initial-sql>`).
 

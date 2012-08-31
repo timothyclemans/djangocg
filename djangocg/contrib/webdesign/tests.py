@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 import unittest
 
-from django.contrib.webdesign.lorem_ipsum import *
-from django.template import loader, Context
+from djangocg.contrib.webdesign.lorem_ipsum import *
+from djangocg.template import loader, Context
 
 
 class WebdesignTest(unittest.TestCase):

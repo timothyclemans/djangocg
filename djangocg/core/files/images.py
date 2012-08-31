@@ -4,11 +4,11 @@ Utility functions for handling images.
 Requires PIL, as you might imagine.
 """
 
-from django.core.files import File
+from djangocg.core.files import File
 
 class ImageFile(File):
     """
-    A mixin for use alongside django.core.files.base.File, which provides
+    A mixin for use alongside djangocg.core.files.base.File, which provides
     additional features for dealing with images.
     """
     def _get_width(self):

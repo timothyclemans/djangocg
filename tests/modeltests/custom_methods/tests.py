@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from datetime import date
 
-from django.test import TestCase
+from djangocg.test import TestCase
 
 from .models import Article
 

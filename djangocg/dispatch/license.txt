@@ -1,4 +1,4 @@
-django.dispatch was originally forked from PyDispatcher.
+djangocg.dispatch was originally forked from PyDispatcher.
 
 PyDispatcher License:
 

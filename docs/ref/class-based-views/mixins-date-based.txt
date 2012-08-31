@@ -6,7 +6,7 @@ Date-based mixins
 YearMixin
 ---------
 
-.. class:: django.views.generic.dates.YearMixin
+.. class:: djangocg.views.generic.dates.YearMixin
 
     A mixin that can be used to retrieve and provide parsing information for a
     year component of a date.
@@ -42,7 +42,7 @@ YearMixin
 MonthMixin
 ----------
 
-.. class:: django.views.generic.dates.MonthMixin
+.. class:: djangocg.views.generic.dates.MonthMixin
 
     A mixin that can be used to retrieve and provide parsing information for a
     month component of a date.
@@ -91,7 +91,7 @@ MonthMixin
 DayMixin
 --------
 
-.. class:: django.views.generic.dates.DayMixin
+.. class:: djangocg.views.generic.dates.DayMixin
 
     A mixin that can be used to retrieve and provide parsing information for a
     day component of a date.
@@ -139,7 +139,7 @@ DayMixin
 WeekMixin
 ---------
 
-.. class:: django.views.generic.dates.WeekMixin
+.. class:: djangocg.views.generic.dates.WeekMixin
 
     A mixin that can be used to retrieve and provide parsing information for a
     week component of a date.
@@ -176,7 +176,7 @@ WeekMixin
 DateMixin
 ---------
 
-.. class:: django.views.generic.dates.DateMixin
+.. class:: djangocg.views.generic.dates.DateMixin
 
     A mixin class providing common behavior for all date-based views.
 
@@ -222,11 +222,11 @@ DateMixin
 BaseDateListView
 ----------------
 
-.. class:: django.views.generic.dates.BaseDateListView
+.. class:: djangocg.views.generic.dates.BaseDateListView
 
     A base class that provides common behavior for all date-based views. There
     won't normally be a reason to instantiate
-    :class:`~django.views.generic.dates.BaseDateListView`; instantiate one of
+    :class:`~djangocg.views.generic.dates.BaseDateListView`; instantiate one of
     the subclasses instead.
 
     While this view (and it's subclasses) are executing, ``self.object_list``
@@ -236,8 +236,8 @@ BaseDateListView
 
     **Mixins**
 
-    * :class:`~django.views.generic.dates.DateMixin`
-    * :class:`~django.views.generic.list.MultipleObjectMixin`
+    * :class:`~djangocg.views.generic.dates.DateMixin`
+    * :class:`~djangocg.views.generic.list.MultipleObjectMixin`
 
     **Methods and Attributes**
 
@@ -257,7 +257,7 @@ BaseDateListView
         ``object_list`` is the list of objects. ``extra_context`` is a
         dictionary of context data that will be added to any context data
         provided by the
-        :class:`~django.views.generic.list.MultipleObjectMixin`.
+        :class:`~djangocg.views.generic.list.MultipleObjectMixin`.
 
     .. method:: get_dated_queryset(**lookup)
 
@@ -270,5 +270,5 @@ BaseDateListView
         Returns the list of dates of type ``date_type`` for which
         ``queryset`` contains entries. For example, ``get_date_list(qs,
         'year')`` will return the list of years for which ``qs`` has entries.
-        See :meth:`~django.db.models.query.QuerySet.dates()` for the
+        See :meth:`~djangocg.db.models.query.QuerySet.dates()` for the
         ways that the ``date_type`` argument can be used.

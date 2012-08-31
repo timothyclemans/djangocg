@@ -4,7 +4,7 @@
 GeoDjango
 =========
 
-.. module:: django.contrib.gis
+.. module:: djangocg.contrib.gis
    :synopsis: Geographic Information System (GIS) extensions for Django
 
 GeoDjango intends to be a world-class geographic Web framework. Its goal is to

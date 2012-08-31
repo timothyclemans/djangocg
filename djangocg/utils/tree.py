@@ -29,7 +29,7 @@ class Node(object):
         self.subtree_parents = []
         self.negated = negated
 
-    # We need this because of django.db.models.query_utils.Q. Q. __init__() is
+    # We need this because of djangocg.db.models.query_utils.Q. Q. __init__() is
     # problematic, but it is a natural Node subclass in all other respects.
     def _new_instance(cls, children=None, connector=None, negated=False):
         """

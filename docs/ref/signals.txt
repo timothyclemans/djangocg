@@ -18,17 +18,17 @@ A list of all the signals that Django sends.
 Model signals
 =============
 
-.. module:: django.db.models.signals
+.. module:: djangocg.db.models.signals
    :synopsis: Signals sent by the model system.
 
-The :mod:`django.db.models.signals` module defines a set of signals sent by the
+The :mod:`djangocg.db.models.signals` module defines a set of signals sent by the
 module system.
 
 .. warning::
 
     Many of these signals are sent by various model methods like
-    :meth:`~django.db.models.Model.__init__` or
-    :meth:`~django.db.models.Model.save` that you can overwrite in your own
+    :meth:`~djangocg.db.models.Model.__init__` or
+    :meth:`~djangocg.db.models.Model.save` that you can overwrite in your own
     code.
 
     If you override these methods on your model, you must call the parent class'
@@ -36,18 +36,18 @@ module system.
 
     Note also that Django stores signal handlers as weak references by default,
     so if your handler is a local function, it may be garbage collected.  To
-    prevent this, pass ``weak=False`` when you call the signal's :meth:`~django.dispatch.Signal.connect`.
+    prevent this, pass ``weak=False`` when you call the signal's :meth:`~djangocg.dispatch.Signal.connect`.
 
 pre_init
 --------
 
-.. attribute:: django.db.models.signals.pre_init
+.. attribute:: djangocg.db.models.signals.pre_init
    :module:
 
 .. ^^^^^^^ this :module: hack keeps Sphinx from prepending the module.
 
 Whenever you instantiate a Django model,, this signal is sent at the beginning
-of the model's :meth:`~django.db.models.Model.__init__` method.
+of the model's :meth:`~djangocg.db.models.Model.__init__` method.
 
 Arguments sent with this signal:
 
@@ -56,11 +56,11 @@ Arguments sent with this signal:
 
 ``args``
     A list of positional arguments passed to
-    :meth:`~django.db.models.Model.__init__`:
+    :meth:`~djangocg.db.models.Model.__init__`:
 
 ``kwargs``
     A dictionary of keyword arguments passed to
-    :meth:`~django.db.models.Model.__init__`:.
+    :meth:`~djangocg.db.models.Model.__init__`:.
 
 For example, the :doc:`tutorial </intro/tutorial01>` has this line::
 
@@ -82,10 +82,10 @@ Argument    Value
 post_init
 ---------
 
-.. data:: django.db.models.signals.post_init
+.. data:: djangocg.db.models.signals.post_init
    :module:
 
-Like pre_init, but this one is sent when the :meth:`~django.db.models.Model.__init__`: method finishes.
+Like pre_init, but this one is sent when the :meth:`~djangocg.db.models.Model.__init__`: method finishes.
 
 Arguments sent with this signal:
 
@@ -98,10 +98,10 @@ Arguments sent with this signal:
 pre_save
 --------
 
-.. data:: django.db.models.signals.pre_save
+.. data:: djangocg.db.models.signals.pre_save
    :module:
 
-This is sent at the beginning of a model's :meth:`~django.db.models.Model.save`
+This is sent at the beginning of a model's :meth:`~djangocg.db.models.Model.save`
 method.
 
 Arguments sent with this signal:
@@ -132,11 +132,11 @@ Arguments sent with this signal:
 post_save
 ---------
 
-.. data:: django.db.models.signals.post_save
+.. data:: djangocg.db.models.signals.post_save
    :module:
 
 Like :data:`pre_save`, but sent at the end of the
-:meth:`~django.db.models.Model.save` method.
+:meth:`~djangocg.db.models.Model.save` method.
 
 Arguments sent with this signal:
 
@@ -169,11 +169,11 @@ Arguments sent with this signal:
 pre_delete
 ----------
 
-.. data:: django.db.models.signals.pre_delete
+.. data:: djangocg.db.models.signals.pre_delete
    :module:
 
-Sent at the beginning of a model's :meth:`~django.db.models.Model.delete`
-method and a queryset's :meth:`~django.db.models.query.QuerySet.delete` method.
+Sent at the beginning of a model's :meth:`~djangocg.db.models.Model.delete`
+method and a queryset's :meth:`~djangocg.db.models.query.QuerySet.delete` method.
 
 Arguments sent with this signal:
 
@@ -191,12 +191,12 @@ Arguments sent with this signal:
 post_delete
 -----------
 
-.. data:: django.db.models.signals.post_delete
+.. data:: djangocg.db.models.signals.post_delete
    :module:
 
 Like :data:`pre_delete`, but sent at the end of a model's
-:meth:`~django.db.models.Model.delete` method and a queryset's
-:meth:`~django.db.models.query.QuerySet.delete` method.
+:meth:`~djangocg.db.models.Model.delete` method and a queryset's
+:meth:`~djangocg.db.models.query.QuerySet.delete` method.
 
 Arguments sent with this signal:
 
@@ -217,7 +217,7 @@ Arguments sent with this signal:
 m2m_changed
 -----------
 
-.. data:: django.db.models.signals.m2m_changed
+.. data:: djangocg.db.models.signals.m2m_changed
    :module:
 
 Sent when a :class:`ManyToManyField` is changed on a model instance.
@@ -345,7 +345,7 @@ Argument        Value
 class_prepared
 --------------
 
-.. data:: django.db.models.signals.class_prepared
+.. data:: djangocg.db.models.signals.class_prepared
    :module:
 
 Sent whenever a model class has been "prepared" -- that is, once model has
@@ -365,7 +365,7 @@ Signals sent by :doc:`django-admin </ref/django-admin>`.
 post_syncdb
 -----------
 
-.. data:: django.db.models.signals.post_syncdb
+.. data:: djangocg.db.models.signals.post_syncdb
    :module:
 
 Sent by the :djadmin:`syncdb` command after it installs an application, and the
@@ -405,12 +405,12 @@ Arguments sent with this signal:
     things on the command line. If ``interactive`` is ``False``, functions
     which listen for this signal should not try to prompt for anything.
 
-    For example, the :mod:`django.contrib.auth` app only prompts to create a
+    For example, the :mod:`djangocg.contrib.auth` app only prompts to create a
     superuser when ``interactive`` is ``True``.
 
 For example, ``yourapp/management/__init__.py`` could be written like::
 
-    from django.db.models.signals import post_syncdb
+    from djangocg.db.models.signals import post_syncdb
     import yourapp.models
 
     def my_callback(sender, **kwargs):
@@ -422,7 +422,7 @@ For example, ``yourapp/management/__init__.py`` could be written like::
 Request/response signals
 ========================
 
-.. module:: django.core.signals
+.. module:: djangocg.core.signals
    :synopsis: Core signals sent by the request/response system.
 
 Signals sent by the core framework when processing a request.
@@ -430,7 +430,7 @@ Signals sent by the core framework when processing a request.
 request_started
 ---------------
 
-.. data:: django.core.signals.request_started
+.. data:: djangocg.core.signals.request_started
    :module:
 
 Sent when Django begins processing an HTTP request.
@@ -439,13 +439,13 @@ Arguments sent with this signal:
 
 ``sender``
     The handler class -- e.g.
-    :class:`django.core.handlers.wsgi.WsgiHandler` -- that handled
+    :class:`djangocg.core.handlers.wsgi.WsgiHandler` -- that handled
     the request.
 
 request_finished
 ----------------
 
-.. data:: django.core.signals.request_finished
+.. data:: djangocg.core.signals.request_finished
    :module:
 
 Sent when Django finishes processing an HTTP request.
@@ -458,7 +458,7 @@ Arguments sent with this signal:
 got_request_exception
 ---------------------
 
-.. data:: django.core.signals.got_request_exception
+.. data:: djangocg.core.signals.got_request_exception
    :module:
 
 This signal is sent whenever Django encounters an exception while processing an incoming HTTP request.
@@ -469,12 +469,12 @@ Arguments sent with this signal:
     The handler class, as above.
 
 ``request``
-    The :class:`~django.http.HttpRequest` object.
+    The :class:`~djangocg.http.HttpRequest` object.
 
 Test signals
 ============
 
-.. module:: django.test.signals
+.. module:: djangocg.test.signals
    :synopsis: Signals sent during testing.
 
 Signals only sent when :doc:`running tests </topics/testing>`.
@@ -484,12 +484,12 @@ setting_changed
 
 .. versionadded:: 1.4
 
-.. data:: django.test.signals.setting_changed
+.. data:: djangocg.test.signals.setting_changed
    :module:
 
 This signal is sent when the value of a setting is changed through the
-:meth:`django.test.TestCase.setting` context manager or the
-:func:`django.test.utils.override_settings` decorator/context manager.
+:meth:`djangocg.test.TestCase.setting` context manager or the
+:func:`djangocg.test.utils.override_settings` decorator/context manager.
 
 It's actually sent twice: when the new value is applied ("setup") and when the
 original value is restored ("teardown").
@@ -509,7 +509,7 @@ Arguments sent with this signal:
 template_rendered
 -----------------
 
-.. data:: django.test.signals.template_rendered
+.. data:: djangocg.test.signals.template_rendered
    :module:
 
 Sent when the test system renders a template. This signal is not emitted during
@@ -518,19 +518,19 @@ normal operation of a Django server -- it is only available during testing.
 Arguments sent with this signal:
 
 ``sender``
-    The :class:`~django.template.Template` object which was rendered.
+    The :class:`~djangocg.template.Template` object which was rendered.
 
 ``template``
     Same as sender
 
 ``context``
-    The :class:`~django.template.Context` with which the template was
+    The :class:`~djangocg.template.Context` with which the template was
     rendered.
 
 Database Wrappers
 =================
 
-.. module:: django.db.backends
+.. module:: djangocg.db.backends
    :synopsis: Core signals sent by the database wrapper.
 
 Signals sent by the database wrapper when a database connection is
@@ -539,7 +539,7 @@ initiated.
 connection_created
 ------------------
 
-.. data:: django.db.backends.signals.connection_created
+.. data:: djangocg.db.backends.signals.connection_created
    :module:
 
 Sent when the database wrapper makes the initial connection to the
@@ -550,8 +550,8 @@ Arguments sent with this signal:
 
 ``sender``
     The database wrapper class -- i.e.
-    :class:`django.db.backends.postgresql_psycopg2.DatabaseWrapper` or
-    :class:`django.db.backends.mysql.DatabaseWrapper`, etc.
+    :class:`djangocg.db.backends.postgresql_psycopg2.DatabaseWrapper` or
+    :class:`djangocg.db.backends.mysql.DatabaseWrapper`, etc.
 
 ``connection``
     The database connection that was opened. This can be used in a

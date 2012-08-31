@@ -1,20 +1,20 @@
 from __future__ import unicode_literals
 
 import os
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
     PasswordChangeForm, SetPasswordForm, UserChangeForm, PasswordResetForm)
-from django.core import mail
-from django.forms.fields import Field, EmailField
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils.encoding import force_text
-from django.utils import six
-from django.utils import translation
-from django.utils.translation import ugettext as _
+from djangocg.core import mail
+from djangocg.forms.fields import Field, EmailField
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
+from djangocg.utils import translation
+from djangocg.utils.translation import ugettext as _
 
 
-@override_settings(USE_TZ=False, PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(USE_TZ=False, PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class UserCreationFormTest(TestCase):
 
     fixtures = ['authtestdata.json']
@@ -81,7 +81,7 @@ class UserCreationFormTest(TestCase):
         self.assertEqual(repr(u), '<User: jsmith@example.com>')
 
 
-@override_settings(USE_TZ=False, PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(USE_TZ=False, PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class AuthenticationFormTest(TestCase):
 
     fixtures = ['authtestdata.json']
@@ -133,7 +133,7 @@ class AuthenticationFormTest(TestCase):
         self.assertEqual(form.non_field_errors(), [])
 
 
-@override_settings(USE_TZ=False, PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(USE_TZ=False, PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class SetPasswordFormTest(TestCase):
 
     fixtures = ['authtestdata.json']
@@ -160,7 +160,7 @@ class SetPasswordFormTest(TestCase):
         self.assertTrue(form.is_valid())
 
 
-@override_settings(USE_TZ=False, PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(USE_TZ=False, PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class PasswordChangeFormTest(TestCase):
 
     fixtures = ['authtestdata.json']
@@ -208,7 +208,7 @@ class PasswordChangeFormTest(TestCase):
                          ['old_password', 'new_password1', 'new_password2'])
 
 
-@override_settings(USE_TZ=False, PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(USE_TZ=False, PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class UserChangeFormTest(TestCase):
 
     fixtures = ['authtestdata.json']
@@ -255,7 +255,7 @@ class UserChangeFormTest(TestCase):
         form.as_table()
 
 
-@override_settings(USE_TZ=False, PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(USE_TZ=False, PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class PasswordResetFormTest(TestCase):
 
     fixtures = ['authtestdata.json']

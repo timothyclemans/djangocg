@@ -1,4 +1,4 @@
-from django.conf.urls import patterns
+from djangocg.conf.urls import patterns
 
 urlpatterns = patterns('',
     (r'^middleware/customurlconf/noslash$', 'view'),

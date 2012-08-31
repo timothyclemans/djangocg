@@ -37,16 +37,16 @@
 from ctypes import byref
 
 # The GDAL C library, OGR exceptions, and the Layer object.
-from django.contrib.gis.gdal.base import GDALBase
-from django.contrib.gis.gdal.driver import Driver
-from django.contrib.gis.gdal.error import OGRException, OGRIndexError
-from django.contrib.gis.gdal.layer import Layer
+from djangocg.contrib.gis.gdal.base import GDALBase
+from djangocg.contrib.gis.gdal.driver import Driver
+from djangocg.contrib.gis.gdal.error import OGRException, OGRIndexError
+from djangocg.contrib.gis.gdal.layer import Layer
 
 # Getting the ctypes prototypes for the DataSource.
-from django.contrib.gis.gdal.prototypes import ds as capi
+from djangocg.contrib.gis.gdal.prototypes import ds as capi
 
-from django.utils import six
-from django.utils.six.moves import xrange
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
 
 # For more information, see the OGR C API source code:
 #  http://www.gdal.org/ogr/ogr__api_8h.html

@@ -1,9 +1,9 @@
 import getpass
 from optparse import make_option
 
-from django.core.management.base import BaseCommand, CommandError
-from django.contrib.auth.models import User
-from django.db import DEFAULT_DB_ALIAS
+from djangocg.core.management.base import BaseCommand, CommandError
+from djangocg.contrib.auth.models import User
+from djangocg.db import DEFAULT_DB_ALIAS
 
 
 class Command(BaseCommand):
@@ -11,7 +11,7 @@ class Command(BaseCommand):
         make_option('--database', action='store', dest='database',
             default=DEFAULT_DB_ALIAS, help='Specifies the database to use. Default is "default".'),
     )
-    help = "Change a user's password for django.contrib.auth."
+    help = "Change a user's password for djangocg.contrib.auth."
 
     requires_model_validation = False
 

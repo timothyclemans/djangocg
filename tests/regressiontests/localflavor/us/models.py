@@ -1,5 +1,5 @@
-from django.contrib.localflavor.us.models import USStateField, USPostalCodeField
-from django.db import models
+from djangocg.contrib.localflavor.us.models import USStateField, USPostalCodeField
+from djangocg.db import models
 
 # When creating models you need to remember to add a app_label as
 # 'localflavor', so your model can be found

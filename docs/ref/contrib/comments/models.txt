@@ -2,7 +2,7 @@
 The built-in comment models
 ===========================
 
-.. module:: django.contrib.comments.models
+.. module:: djangocg.contrib.comments.models
    :synopsis: The built-in comment models
 
 .. class:: Comment
@@ -11,36 +11,36 @@ The built-in comment models
 
     .. attribute:: content_object
 
-        A :class:`~django.contrib.contettypes.generic.GenericForeignKey`
+        A :class:`~djangocg.contrib.contettypes.generic.GenericForeignKey`
         attribute pointing to the object the comment is attached to. You can use
         this to get at the related object (i.e. ``my_comment.content_object``).
 
         Since this field is a
-        :class:`~django.contrib.contettypes.generic.GenericForeignKey`, it's
+        :class:`~djangocg.contrib.contettypes.generic.GenericForeignKey`, it's
         actually syntactic sugar on top of two underlying attributes, described
         below.
 
     .. attribute:: content_type
 
-        A :class:`~django.db.models.ForeignKey` to
-        :class:`~django.contrib.contenttypes.models.ContentType`; this is the
+        A :class:`~djangocg.db.models.ForeignKey` to
+        :class:`~djangocg.contrib.contenttypes.models.ContentType`; this is the
         type of the object the comment is attached to.
 
     .. attribute:: object_pk
 
-        A :class:`~django.db.models.TextField` containing the primary
+        A :class:`~djangocg.db.models.TextField` containing the primary
         key of the object the comment is attached to.
 
     .. attribute:: site
 
-        A :class:`~django.db.models.ForeignKey` to the
-        :class:`~django.contrib.sites.models.Site` on which the comment was
+        A :class:`~djangocg.db.models.ForeignKey` to the
+        :class:`~djangocg.contrib.sites.models.Site` on which the comment was
         posted.
 
     .. attribute:: user
 
-        A :class:`~django.db.models.ForeignKey` to the
-        :class:`~django.contrib.auth.models.User` who posted the comment.
+        A :class:`~djangocg.db.models.ForeignKey` to the
+        :class:`~djangocg.contrib.auth.models.User` who posted the comment.
         May be blank if the comment was posted by an unauthenticated user.
 
     .. attribute:: user_name

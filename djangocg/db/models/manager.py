@@ -1,8 +1,8 @@
 import copy
-from django.db import router
-from django.db.models.query import QuerySet, EmptyQuerySet, insert_query, RawQuerySet
-from django.db.models import signals
-from django.db.models.fields import FieldDoesNotExist
+from djangocg.db import router
+from djangocg.db.models.query import QuerySet, EmptyQuerySet, insert_query, RawQuerySet
+from djangocg.db.models import signals
+from djangocg.db.models.fields import FieldDoesNotExist
 
 
 def ensure_default_manager(sender, **kwargs):

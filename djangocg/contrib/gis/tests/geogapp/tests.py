@@ -5,9 +5,9 @@ from __future__ import absolute_import
 
 import os
 
-from django.contrib.gis import gdal
-from django.contrib.gis.measure import D
-from django.test import TestCase
+from djangocg.contrib.gis import gdal
+from djangocg.contrib.gis.measure import D
+from djangocg.test import TestCase
 
 from .models import City, County, Zipcode
 
@@ -58,7 +58,7 @@ class GeographyTest(TestCase):
         # There is a similar test in `layermap` that uses the same data set,
         # but the County model here is a bit different.
         if not gdal.HAS_GDAL: return
-        from django.contrib.gis.utils import LayerMapping
+        from djangocg.contrib.gis.utils import LayerMapping
 
         # Getting the shapefile and mapping dictionary.
         shp_path = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'data'))

@@ -4,13 +4,13 @@ Iceland specific form helpers.
 
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.localflavor.is_.is_postalcodes import IS_POSTALCODES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import RegexField
-from django.forms.widgets import Select
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.is_.is_postalcodes import IS_POSTALCODES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import RegexField
+from djangocg.forms.widgets import Select
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class ISIdNumberField(RegexField):

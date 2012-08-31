@@ -1,6 +1,6 @@
 from django import template
-from django.conf import settings
-from django.contrib.flatpages.models import FlatPage
+from djangocg.conf import settings
+from djangocg.contrib.flatpages.models import FlatPage
 
 
 register = template.Library()

@@ -1,19 +1,19 @@
 from operator import attrgetter
 
-from django.db import connection, router
-from django.db.backends import util
-from django.db.models import signals, get_model
-from django.db.models.fields import (AutoField, Field, IntegerField,
+from djangocg.db import connection, router
+from djangocg.db.backends import util
+from djangocg.db.models import signals, get_model
+from djangocg.db.models.fields import (AutoField, Field, IntegerField,
     PositiveIntegerField, PositiveSmallIntegerField, FieldDoesNotExist)
-from django.db.models.related import RelatedObject
-from django.db.models.query import QuerySet
-from django.db.models.query_utils import QueryWrapper
-from django.db.models.deletion import CASCADE
-from django.utils.encoding import smart_text
-from django.utils import six
-from django.utils.translation import ugettext_lazy as _, string_concat
-from django.utils.functional import curry, cached_property
-from django.core import exceptions
+from djangocg.db.models.related import RelatedObject
+from djangocg.db.models.query import QuerySet
+from djangocg.db.models.query_utils import QueryWrapper
+from djangocg.db.models.deletion import CASCADE
+from djangocg.utils.encoding import smart_text
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext_lazy as _, string_concat
+from djangocg.utils.functional import curry, cached_property
+from djangocg.core import exceptions
 from django import forms
 
 
@@ -571,7 +571,7 @@ def create_many_related_manager(superclass, rel):
 
         def get_prefetch_query_set(self, instances):
             instance = instances[0]
-            from django.db import connections
+            from djangocg.db import connections
             db = self._db or router.db_for_read(instance.__class__, instance=instance)
             query = {'%s__pk__in' % self.query_field_name:
                          set(obj._get_pk_val() for obj in instances)}
@@ -654,7 +654,7 @@ def create_many_related_manager(superclass, rel):
             # *objs - objects to add. Either object instances, or primary keys of object instances.
 
             # If there aren't any objects, there is nothing to do.
-            from django.db.models import Model
+            from djangocg.db.models import Model
             if objs:
                 new_ids = set()
                 for obj in objs:
@@ -1078,7 +1078,7 @@ class OneToOneField(ForeignKey):
             setattr(instance, self.attname, data)
 
 def create_many_to_many_intermediary_model(field, klass):
-    from django.db import models
+    from djangocg.db import models
     managed = True
     if isinstance(field.rel.to, six.string_types) and field.rel.to != RECURSIVE_RELATIONSHIP_CONSTANT:
         to_model = field.rel.to

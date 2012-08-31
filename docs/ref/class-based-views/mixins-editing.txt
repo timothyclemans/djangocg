@@ -4,10 +4,10 @@ Editing mixins
 
 The following mixins are used to construct Django's editing views:
 
-* :class:`django.views.generic.edit.FormMixin`
-* :class:`django.views.generic.edit.ModelFormMixin`
-* :class:`django.views.generic.edit.ProcessFormView`
-* :class:`django.views.generic.edit.DeletionMixin`
+* :class:`djangocg.views.generic.edit.FormMixin`
+* :class:`djangocg.views.generic.edit.ModelFormMixin`
+* :class:`djangocg.views.generic.edit.ProcessFormView`
+* :class:`djangocg.views.generic.edit.DeletionMixin`
 
 .. note::
 
@@ -17,7 +17,7 @@ The following mixins are used to construct Django's editing views:
 FormMixin
 ---------
 
-.. class:: django.views.generic.edit.FormMixin
+.. class:: djangocg.views.generic.edit.FormMixin
 
     A mixin class that provides facilities for creating and displaying forms.
 
@@ -38,11 +38,11 @@ FormMixin
     .. method:: get_initial()
 
         Retrieve initial data for the form. By default, returns a copy of
-        :attr:`~django.views.generic.edit.FormMixin.initial`.
+        :attr:`~djangocg.views.generic.edit.FormMixin.initial`.
 
         .. versionchanged:: 1.4
             In Django 1.3, this method was returning the
-            :attr:`~django.views.generic.edit.FormMixin.initial` class variable
+            :attr:`~djangocg.views.generic.edit.FormMixin.initial` class variable
             itself.
 
     .. method:: get_form_class()
@@ -53,7 +53,7 @@ FormMixin
     .. method:: get_form(form_class)
 
         Instantiate an instance of ``form_class`` using
-        :meth:`~django.views.generic.edit.FormMixin.get_form_kwargs`.
+        :meth:`~djangocg.views.generic.edit.FormMixin.get_form_kwargs`.
 
     .. method:: get_form_kwargs()
 
@@ -67,12 +67,12 @@ FormMixin
 
         Determine the URL to redirect to when the form is successfully
         validated. Returns
-        :attr:`~django.views.generic.edit.FormMixin.success_url` by default.
+        :attr:`~djangocg.views.generic.edit.FormMixin.success_url` by default.
 
     .. method:: form_valid(form)
 
         Redirects to
-        :meth:`~django.views.generic.edit.FormMixin.get_success_url`.
+        :meth:`~djangocg.views.generic.edit.FormMixin.get_success_url`.
 
     .. method:: form_invalid(form)
 
@@ -89,19 +89,19 @@ FormMixin
     .. note::
 
         Views mixing :class:`FormMixin` must provide an implementation of
-        :meth:`~django.views.generic.FormMixin.form_valid` and
-        :meth:`~django.views.generic.FormMixin.form_invalid`.
+        :meth:`~djangocg.views.generic.FormMixin.form_valid` and
+        :meth:`~djangocg.views.generic.FormMixin.form_invalid`.
 
 
 ModelFormMixin
 --------------
 
-.. class:: django.views.generic.edit.ModelFormMixin
+.. class:: djangocg.views.generic.edit.ModelFormMixin
 
     A form mixin that works on ModelForms, rather than a standalone form.
 
     Since this is a subclass of
-    :class:`~django.views.generic.detail.SingleObjectMixin`, instances of this
+    :class:`~djangocg.views.generic.detail.SingleObjectMixin`, instances of this
     mixin have access to the :attr:`~SingleObjectMixin.model` and
     :attr:`~SingleObjectMixin.queryset` attributes, describing the type of
     object that the ModelForm is manipulating. The view also provides
@@ -110,8 +110,8 @@ ModelFormMixin
 
     **Mixins**
 
-    * :class:`django.views.generic.edit.FormMixin`
-    * :class:`django.views.generic.detail.SingleObjectMixin`
+    * :class:`djangocg.views.generic.edit.FormMixin`
+    * :class:`djangocg.views.generic.detail.SingleObjectMixin`
 
     **Methods and Attributes**
 
@@ -148,7 +148,7 @@ ModelFormMixin
 
         Saves the form instance, sets the current object for the view, and
         redirects to
-        :meth:`~django.views.generic.edit.FormMixin.get_success_url`.
+        :meth:`~djangocg.views.generic.edit.FormMixin.get_success_url`.
 
     .. method:: form_invalid()
 
@@ -158,19 +158,19 @@ ModelFormMixin
 ProcessFormView
 ---------------
 
-.. class:: django.views.generic.edit.ProcessFormView
+.. class:: djangocg.views.generic.edit.ProcessFormView
 
     A mixin that provides basic HTTP GET and POST workflow.
 
     .. note::
 
         This is named 'ProcessFormView' and inherits directly from
-        :class:`django.views.generic.base.View`, but breaks if used
+        :class:`djangocg.views.generic.base.View`, but breaks if used
         independently, so it is more of a mixin.
 
     **Extends**
 
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.base.View`
 
     **Methods and Attributes**
 
@@ -186,7 +186,7 @@ ProcessFormView
 
     The PUT action is also handled, as an analog of POST.
 
-.. class:: django.views.generic.edit.DeletionMixin
+.. class:: djangocg.views.generic.edit.DeletionMixin
 
     Enables handling of the ``DELETE`` http action.
 
@@ -201,5 +201,5 @@ ProcessFormView
 
         Returns the url to redirect to when the nominated object has been
         successfully deleted. Returns
-        :attr:`~django.views.generic.edit.DeletionMixin.success_url` by
+        :attr:`~djangocg.views.generic.edit.DeletionMixin.success_url` by
         default.

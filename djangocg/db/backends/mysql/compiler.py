@@ -3,7 +3,7 @@ try:
 except ImportError:
     from itertools import izip_longest as zip_longest
 
-from django.db.models.sql import compiler
+from djangocg.db.models.sql import compiler
 
 
 class SQLCompiler(compiler.SQLCompiler):

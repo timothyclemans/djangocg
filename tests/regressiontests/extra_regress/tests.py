@@ -2,9 +2,9 @@ from __future__ import absolute_import, unicode_literals
 
 import datetime
 
-from django.contrib.auth.models import User
-from django.test import TestCase
-from django.utils.datastructures import SortedDict
+from djangocg.contrib.auth.models import User
+from djangocg.test import TestCase
+from djangocg.utils.datastructures import SortedDict
 
 from .models import TestObject, Order, RevisionableModel
 

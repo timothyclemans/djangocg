@@ -4,7 +4,7 @@ Caching framework.
 This package defines set of cache backends that all conform to a simple API.
 In a nutshell, a cache is a set of values -- which can be any object that
 may be pickled -- identified by string keys.  For the complete API, see
-the abstract BaseCache class in django.core.cache.backends.base.
+the abstract BaseCache class in djangocg.core.cache.backends.base.
 
 Client code should not access a cache backend directly; instead it should
 either use the "cache" variable made available here, or it should use the
@@ -19,12 +19,12 @@ try:
 except ImportError:     # Python 2
     from urlparse import parse_qsl
 
-from django.conf import settings
-from django.core import signals
-from django.core.cache.backends.base import (
+from djangocg.conf import settings
+from djangocg.core import signals
+from djangocg.core.cache.backends.base import (
     InvalidCacheBackendError, CacheKeyWarning, BaseCache)
-from django.core.exceptions import ImproperlyConfigured
-from django.utils import importlib
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils import importlib
 
 __all__ = [
     'get_cache', 'cache', 'DEFAULT_CACHE_ALIAS'
@@ -112,7 +112,7 @@ def get_cache(backend, **kwargs):
     To load a backend with its dotted import path,
     including arbitrary options::
 
-        cache = get_cache('django.core.cache.backends.memcached.MemcachedCache', **{
+        cache = get_cache('djangocg.core.cache.backends.memcached.MemcachedCache', **{
             'LOCATION': '127.0.0.1:11211', 'TIMEOUT': 30,
         })
 
@@ -122,7 +122,7 @@ def get_cache(backend, **kwargs):
             # for backwards compatibility
             backend, location, params = parse_backend_uri(backend)
             if backend in BACKENDS:
-                backend = 'django.core.cache.backends.%s' % BACKENDS[backend]
+                backend = 'djangocg.core.cache.backends.%s' % BACKENDS[backend]
             params.update(kwargs)
             mod = importlib.import_module(backend)
             backend_cls = mod.CacheClass

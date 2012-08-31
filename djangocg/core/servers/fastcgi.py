@@ -14,7 +14,7 @@ pass to this server.
 
 import os
 import sys
-from django.utils import importlib
+from djangocg.utils import importlib
 
 __version__ = "0.1"
 __all__ = ["runfastcgi"]
@@ -140,7 +140,7 @@ def runfastcgi(argset=[], **kwargs):
         return False
 
     # Prep up and go
-    from django.core.servers.basehttp import get_internal_wsgi_application
+    from djangocg.core.servers.basehttp import get_internal_wsgi_application
 
     if options["host"] and options["port"] and not options["socket"]:
         wsgi_opts['bindAddress'] = (options["host"], int(options["port"]))
@@ -172,7 +172,7 @@ def runfastcgi(argset=[], **kwargs):
         daemon_kwargs['umask'] = int(options['umask'], 8)
 
     if daemonize:
-        from django.utils.daemonize import become_daemon
+        from djangocg.utils.daemonize import become_daemon
         become_daemon(our_home_dir=options["workdir"], **daemon_kwargs)
 
     if options["pidfile"]:

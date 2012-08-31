@@ -1,13 +1,13 @@
 ========================
-django.contrib.webdesign
+djangocg.contrib.webdesign
 ========================
 
-.. module:: django.contrib.webdesign
+.. module:: djangocg.contrib.webdesign
    :synopsis: Helpers and utilities targeted primarily at Web *designers*
               rather than Web *developers*.
 
-The ``django.contrib.webdesign`` package, part of the
-:doc:`"django.contrib" add-ons </ref/contrib/index>`, provides various Django
+The ``djangocg.contrib.webdesign`` package, part of the
+:doc:`"djangocg.contrib" add-ons </ref/contrib/index>`, provides various Django
 helpers that are particularly useful to Web *designers* (as opposed to
 developers).
 
@@ -18,7 +18,7 @@ for Web-designer-friendly functionality in Django, please
 Template tags
 =============
 
-To use these template tags, add ``'django.contrib.webdesign'`` to your
+To use these template tags, add ``'djangocg.contrib.webdesign'`` to your
 :setting:`INSTALLED_APPS` setting. Once you've done that, use
 ``{% load webdesign %}`` in a template to give your template access to the tags.
 

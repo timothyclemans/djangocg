@@ -1,11 +1,11 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.admin.tests import AdminSeleniumWebDriverTestCase
-from django.contrib.admin.helpers import InlineAdminForm
-from django.contrib.auth.models import User, Permission
-from django.contrib.contenttypes.models import ContentType
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.contrib.admin.tests import AdminSeleniumWebDriverTestCase
+from djangocg.contrib.admin.helpers import InlineAdminForm
+from djangocg.contrib.auth.models import User, Permission
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 # local test models
 from .admin import InnerInline
@@ -14,7 +14,7 @@ from .models import (Holder, Inner, Holder2, Inner2, Holder3, Inner3, Person,
     ProfileCollection, ParentModelWithCustomPk, ChildModel1, ChildModel2)
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class TestInline(TestCase):
     urls = "regressiontests.admin_inlines.urls"
     fixtures = ['admin-views-users.xml']
@@ -162,7 +162,7 @@ class TestInline(TestCase):
         self.assertContains(response, child2_shortcut)
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class TestInlineMedia(TestCase):
     urls = "regressiontests.admin_inlines.urls"
     fixtures = ['admin-views-users.xml']
@@ -402,7 +402,7 @@ class TestInlinePermissions(TestCase):
         self.assertContains(response, 'id="id_inner2_set-0-DELETE"')
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class SeleniumFirefoxTests(AdminSeleniumWebDriverTestCase):
     webdriver_class = 'selenium.webdriver.firefox.webdriver.WebDriver'
     fixtures = ['admin-views-users.xml']

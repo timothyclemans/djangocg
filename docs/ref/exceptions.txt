@@ -9,7 +9,7 @@ Python exceptions.
 Django-specific Exceptions
 ==========================
 
-.. module:: django.core.exceptions
+.. module:: djangocg.core.exceptions
     :synopsis: Django specific exceptions
 
 ObjectDoesNotExist and DoesNotExist
@@ -20,12 +20,12 @@ ObjectDoesNotExist and DoesNotExist
     The :exc:`DoesNotExist` exception is raised when an object is not found
     for the given parameters of a query.
 
-    :exc:`ObjectDoesNotExist` is defined in :mod:`django.core.exceptions`.
+    :exc:`ObjectDoesNotExist` is defined in :mod:`djangocg.core.exceptions`.
     :exc:`DoesNotExist` is a subclass of the base :exc:`ObjectDoesNotExist`
     exception that is provided on every model class as a way of
     identifying the specific type of object that could not be found.
 
-    See :meth:`~django.db.models.query.QuerySet.get()` for further information
+    See :meth:`~djangocg.db.models.query.QuerySet.get()` for further information
     on :exc:`ObjectDoesNotExist` and :exc:`DoesNotExist`.
 
 MultipleObjectsReturned
@@ -34,11 +34,11 @@ MultipleObjectsReturned
 
     The :exc:`MultipleObjectsReturned` exception is raised by a query if only
     one object is expected, but multiple objects are returned. A base version
-    of this exception is provided in :mod:`django.core.exceptions`; each model
+    of this exception is provided in :mod:`djangocg.core.exceptions`; each model
     class contains a subclassed version that can be used to identify the
     specific object type that has returned multiple objects.
 
-    See :meth:`~django.db.models.query.QuerySet.get()` for further information.
+    See :meth:`~djangocg.db.models.query.QuerySet.get()` for further information.
 
 SuspiciousOperation
 -------------------
@@ -60,7 +60,7 @@ ViewDoesNotExist
 .. exception:: ViewDoesNotExist
 
     The :exc:`ViewDoesNotExist` exception is raised by
-    :mod:`django.core.urlresolvers` when a requested view does not exist.
+    :mod:`djangocg.core.urlresolvers` when a requested view does not exist.
 
 MiddlewareNotUsed
 -----------------
@@ -104,17 +104,17 @@ ValidationError
     :ref:`Model Field Validation <validating-objects>` and the
     :doc:`Validator Reference </ref/validators>`.
 
-.. currentmodule:: django.core.urlresolvers
+.. currentmodule:: djangocg.core.urlresolvers
 
 NoReverseMatch
 --------------
 .. exception:: NoReverseMatch
 
     The :exc:`NoReverseMatch` exception is raised by
-    :mod:`django.core.urlresolvers` when a matching URL in your URLconf
+    :mod:`djangocg.core.urlresolvers` when a matching URL in your URLconf
     cannot be identified based on the parameters supplied.
 
-.. currentmodule:: django.db
+.. currentmodule:: djangocg.db
 
 Database Exceptions
 ===================
@@ -122,7 +122,7 @@ Database Exceptions
 Django wraps the standard database exceptions :exc:`DatabaseError` and
 :exc:`IntegrityError` so that your Django code has a guaranteed common
 implementation of these classes. These database exceptions are
-provided in :mod:`django.db`.
+provided in :mod:`djangocg.db`.
 
 .. exception:: DatabaseError
 .. exception:: IntegrityError
@@ -131,7 +131,7 @@ The Django wrappers for database exceptions behave exactly the same as
 the underlying database exceptions. See :pep:`249`, the Python Database API
 Specification v2.0, for further information.
 
-.. currentmodule:: django.db.transaction
+.. currentmodule:: djangocg.db.transaction
 
 Transaction Exceptions
 ======================
@@ -140,7 +140,7 @@ Transaction Exceptions
 
     The :exc:`TransactionManagementError` is raised for any and all problems
     related to database transactions. It is available from
-    :mod:`django.db.transaction`.
+    :mod:`djangocg.db.transaction`.
 
 Python Exceptions
 =================

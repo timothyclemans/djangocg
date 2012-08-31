@@ -1,6 +1,6 @@
 from django import http
-from django.contrib.messages.middleware import MessageMiddleware
-from django.utils import unittest
+from djangocg.contrib.messages.middleware import MessageMiddleware
+from djangocg.utils import unittest
 
 
 class MiddlewareTest(unittest.TestCase):

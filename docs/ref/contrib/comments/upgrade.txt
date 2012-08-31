@@ -27,11 +27,11 @@ The main changes from the old system are:
 * The way comments are include in your URLconf have changed; you'll need to
   replace::
 
-        (r'^comments/', include('django.contrib.comments.urls.comments')),
+        (r'^comments/', include('djangocg.contrib.comments.urls.comments')),
 
   with::
 
-        (r'^comments/', include('django.contrib.comments.urls')),
+        (r'^comments/', include('djangocg.contrib.comments.urls')),
 
 Upgrading data
 --------------

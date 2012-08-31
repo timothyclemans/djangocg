@@ -1,7 +1,7 @@
-from django.test import LiveServerTestCase
-from django.utils.importlib import import_module
-from django.utils.unittest import SkipTest
-from django.utils.translation import ugettext as _
+from djangocg.test import LiveServerTestCase
+from djangocg.utils.importlib import import_module
+from djangocg.utils.unittest import SkipTest
+from djangocg.utils.translation import ugettext as _
 
 class AdminSeleniumWebDriverTestCase(LiveServerTestCase):
     webdriver_class = 'selenium.webdriver.firefox.webdriver.WebDriver'
@@ -67,7 +67,7 @@ class AdminSeleniumWebDriverTestCase(LiveServerTestCase):
         with Django.
         """
         return self.selenium.execute_script(
-            'return django.jQuery("%s").css("%s")' % (selector, attribute))
+            'return djangocg.jQuery("%s").css("%s")' % (selector, attribute))
 
     def get_select_option(self, selector, value):
         """

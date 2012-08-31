@@ -1,8 +1,8 @@
 from datetime import date
-from django.conf import settings
-from django.utils.http import int_to_base36, base36_to_int
-from django.utils.crypto import constant_time_compare, salted_hmac
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.utils.http import int_to_base36, base36_to_int
+from djangocg.utils.crypto import constant_time_compare, salted_hmac
+from djangocg.utils import six
 
 class PasswordResetTokenGenerator(object):
     """
@@ -52,7 +52,7 @@ class PasswordResetTokenGenerator(object):
         # last_login will also change), we produce a hash that will be
         # invalid as soon as it is used.
         # We limit the hash to 20 chars to keep URL short
-        key_salt = "django.contrib.auth.tokens.PasswordResetTokenGenerator"
+        key_salt = "djangocg.contrib.auth.tokens.PasswordResetTokenGenerator"
 
         # Ensure results are consistent across DB backends
         login_timestamp = user.last_login.replace(microsecond=0, tzinfo=None)

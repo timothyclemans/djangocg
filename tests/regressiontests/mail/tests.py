@@ -10,15 +10,15 @@ import sys
 import tempfile
 import threading
 
-from django.core import mail
-from django.core.mail import (EmailMessage, mail_admins, mail_managers,
+from djangocg.core import mail
+from djangocg.core.mail import (EmailMessage, mail_admins, mail_managers,
         EmailMultiAlternatives, send_mail, send_mass_mail)
-from django.core.mail.backends import console, dummy, locmem, filebased, smtp
-from django.core.mail.message import BadHeaderError
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils.six import PY3, StringIO
-from django.utils.translation import ugettext_lazy
+from djangocg.core.mail.backends import console, dummy, locmem, filebased, smtp
+from djangocg.core.mail.message import BadHeaderError
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils.six import PY3, StringIO
+from djangocg.utils.translation import ugettext_lazy
 
 
 class MailTests(TestCase):
@@ -240,19 +240,19 @@ class MailTests(TestCase):
 
     def test_backend_arg(self):
         """Test backend argument of mail.get_connection()"""
-        self.assertTrue(isinstance(mail.get_connection('django.core.mail.backends.smtp.EmailBackend'), smtp.EmailBackend))
-        self.assertTrue(isinstance(mail.get_connection('django.core.mail.backends.locmem.EmailBackend'), locmem.EmailBackend))
-        self.assertTrue(isinstance(mail.get_connection('django.core.mail.backends.dummy.EmailBackend'), dummy.EmailBackend))
-        self.assertTrue(isinstance(mail.get_connection('django.core.mail.backends.console.EmailBackend'), console.EmailBackend))
+        self.assertTrue(isinstance(mail.get_connection('djangocg.core.mail.backends.smtp.EmailBackend'), smtp.EmailBackend))
+        self.assertTrue(isinstance(mail.get_connection('djangocg.core.mail.backends.locmem.EmailBackend'), locmem.EmailBackend))
+        self.assertTrue(isinstance(mail.get_connection('djangocg.core.mail.backends.dummy.EmailBackend'), dummy.EmailBackend))
+        self.assertTrue(isinstance(mail.get_connection('djangocg.core.mail.backends.console.EmailBackend'), console.EmailBackend))
         tmp_dir = tempfile.mkdtemp()
         try:
-            self.assertTrue(isinstance(mail.get_connection('django.core.mail.backends.filebased.EmailBackend', file_path=tmp_dir), filebased.EmailBackend))
+            self.assertTrue(isinstance(mail.get_connection('djangocg.core.mail.backends.filebased.EmailBackend', file_path=tmp_dir), filebased.EmailBackend))
         finally:
             shutil.rmtree(tmp_dir)
         self.assertTrue(isinstance(mail.get_connection(), locmem.EmailBackend))
 
     @override_settings(
-        EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend',
+        EMAIL_BACKEND='djangocg.core.mail.backends.locmem.EmailBackend',
         ADMINS=[('nobody', 'nobody@example.com')],
         MANAGERS=[('nobody', 'nobody@example.com')])
     def test_connection_arg(self):
@@ -475,7 +475,7 @@ class BaseEmailBackendTests(object):
 
 
 class LocmemBackendTests(BaseEmailBackendTests, TestCase):
-    email_backend = 'django.core.mail.backends.locmem.EmailBackend'
+    email_backend = 'djangocg.core.mail.backends.locmem.EmailBackend'
 
     def get_mailbox_content(self):
         return [m.message() for m in mail.outbox]
@@ -500,7 +500,7 @@ class LocmemBackendTests(BaseEmailBackendTests, TestCase):
 
 
 class FileBackendTests(BaseEmailBackendTests, TestCase):
-    email_backend = 'django.core.mail.backends.filebased.EmailBackend'
+    email_backend = 'djangocg.core.mail.backends.filebased.EmailBackend'
 
     def setUp(self):
         super(FileBackendTests, self).setUp()
@@ -557,7 +557,7 @@ class FileBackendTests(BaseEmailBackendTests, TestCase):
 
 
 class ConsoleBackendTests(BaseEmailBackendTests, TestCase):
-    email_backend = 'django.core.mail.backends.console.EmailBackend'
+    email_backend = 'djangocg.core.mail.backends.console.EmailBackend'
 
     def setUp(self):
         super(ConsoleBackendTests, self).setUp()
@@ -582,7 +582,7 @@ class ConsoleBackendTests(BaseEmailBackendTests, TestCase):
         Test that the console backend can be pointed at an arbitrary stream.
         """
         s = StringIO()
-        connection = mail.get_connection('django.core.mail.backends.console.EmailBackend', stream=s)
+        connection = mail.get_connection('djangocg.core.mail.backends.console.EmailBackend', stream=s)
         send_mail('Subject', 'Content', 'from@example.com', ['to@example.com'], connection=connection)
         self.assertTrue(s.getvalue().startswith('Content-Type: text/plain; charset="utf-8"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nSubject: Subject\nFrom: from@example.com\nTo: to@example.com\nDate: '))
 
@@ -641,7 +641,7 @@ class FakeSMTPServer(smtpd.SMTPServer, threading.Thread):
 
 
 class SMTPBackendTests(BaseEmailBackendTests, TestCase):
-    email_backend = 'django.core.mail.backends.smtp.EmailBackend'
+    email_backend = 'djangocg.core.mail.backends.smtp.EmailBackend'
 
     @classmethod
     def setUpClass(cls):

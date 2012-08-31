@@ -1,8 +1,8 @@
-from django.db import connection
-from django.contrib.gis.gdal import HAS_GDAL
-from django.contrib.gis.tests.utils import (no_mysql, oracle, postgis,
+from djangocg.db import connection
+from djangocg.contrib.gis.gdal import HAS_GDAL
+from djangocg.contrib.gis.tests.utils import (no_mysql, oracle, postgis,
     spatialite, HAS_SPATIALREFSYS, SpatialRefSys)
-from django.utils import unittest
+from djangocg.utils import unittest
 
 
 test_srs = ({'srid' : 4326,
@@ -61,7 +61,7 @@ class SpatialRefSysTest(unittest.TestCase):
     @no_mysql
     def test02_osr(self):
         "Testing getting OSR objects from SpatialRefSys model objects."
-        from django.contrib.gis.gdal import GDAL_VERSION
+        from djangocg.contrib.gis.gdal import GDAL_VERSION
         for sd in test_srs:
             sr = SpatialRefSys.objects.get(srid=sd['srid'])
             self.assertEqual(True, sr.spheroid.startswith(sd['spheroid']))

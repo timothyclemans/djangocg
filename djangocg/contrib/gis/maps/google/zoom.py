@@ -1,6 +1,6 @@
-from django.contrib.gis.geos import GEOSGeometry, LinearRing, Polygon, Point
-from django.contrib.gis.maps.google.gmap import GoogleMapException
-from django.utils.six.moves import xrange
+from djangocg.contrib.gis.geos import GEOSGeometry, LinearRing, Polygon, Point
+from djangocg.contrib.gis.maps.google.gmap import GoogleMapException
+from djangocg.utils.six.moves import xrange
 from math import pi, sin, log, exp, atan
 
 # Constants used for degree to radian conversion, and vice-versa.

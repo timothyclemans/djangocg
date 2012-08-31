@@ -2,10 +2,10 @@
 Wrapper for loading templates from the filesystem.
 """
 
-from django.conf import settings
-from django.template.base import TemplateDoesNotExist
-from django.template.loader import BaseLoader
-from django.utils._os import safe_join
+from djangocg.conf import settings
+from djangocg.template.base import TemplateDoesNotExist
+from djangocg.template.loader import BaseLoader
+from djangocg.utils._os import safe_join
 
 class Loader(BaseLoader):
     is_usable = True

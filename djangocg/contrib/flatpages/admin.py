@@ -1,7 +1,7 @@
-from django.contrib import admin
-from django.contrib.flatpages.models import FlatPage
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.flatpages.forms import FlatpageForm
+from djangocg.contrib import admin
+from djangocg.contrib.flatpages.models import FlatPage
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.contrib.flatpages.forms import FlatpageForm
 
 class FlatPageAdmin(admin.ModelAdmin):
     form = FlatpageForm

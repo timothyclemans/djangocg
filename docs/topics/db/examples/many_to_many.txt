@@ -11,7 +11,7 @@ objects, and a ``Publication`` has multiple ``Article`` objects:
 
 .. code-block:: python
 
-    from django.db import models
+    from djangocg.db import models
 
     class Publication(models.Model):
         title = models.CharField(max_length=30)

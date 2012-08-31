@@ -3,7 +3,7 @@ from __future__ import absolute_import
 
 from os import path
 
-from django.conf.urls import patterns, url, include
+from djangocg.conf.urls import patterns, url, include
 
 from . import views
 
@@ -36,9 +36,9 @@ urlpatterns = patterns('',
     (r'^$', views.index_page),
 
     # Default views
-    (r'^shortcut/(\d+)/(.*)/$', 'django.views.defaults.shortcut'),
-    (r'^non_existing_url/', 'django.views.defaults.page_not_found'),
-    (r'^server_error/', 'django.views.defaults.server_error'),
+    (r'^shortcut/(\d+)/(.*)/$', 'djangocg.views.defaults.shortcut'),
+    (r'^non_existing_url/', 'djangocg.views.defaults.page_not_found'),
+    (r'^server_error/', 'djangocg.views.defaults.server_error'),
 
     # a view that raises an exception for the debug view
     (r'raises/$', views.raises),
@@ -46,14 +46,14 @@ urlpatterns = patterns('',
     (r'raises403/$', views.raises403),
 
     # i18n views
-    (r'^i18n/', include('django.conf.urls.i18n')),
-    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
-    (r'^jsi18n_english_translation/$', 'django.views.i18n.javascript_catalog', js_info_dict_english_translation),
-    (r'^jsi18n_multi_packages1/$', 'django.views.i18n.javascript_catalog', js_info_dict_multi_packages1),
-    (r'^jsi18n_multi_packages2/$', 'django.views.i18n.javascript_catalog', js_info_dict_multi_packages2),
+    (r'^i18n/', include('djangocg.conf.urls.i18n')),
+    (r'^jsi18n/$', 'djangocg.views.i18n.javascript_catalog', js_info_dict),
+    (r'^jsi18n_english_translation/$', 'djangocg.views.i18n.javascript_catalog', js_info_dict_english_translation),
+    (r'^jsi18n_multi_packages1/$', 'djangocg.views.i18n.javascript_catalog', js_info_dict_multi_packages1),
+    (r'^jsi18n_multi_packages2/$', 'djangocg.views.i18n.javascript_catalog', js_info_dict_multi_packages2),
 
     # Static views
-    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': media_dir}),
+    (r'^site_media/(?P<path>.*)$', 'djangocg.views.static.serve', {'document_root': media_dir}),
 )
 
 urlpatterns += patterns('regressiontests.views.views',

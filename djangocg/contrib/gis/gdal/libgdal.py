@@ -2,11 +2,11 @@ import os
 import re
 from ctypes import c_char_p, CDLL
 from ctypes.util import find_library
-from django.contrib.gis.gdal.error import OGRException
+from djangocg.contrib.gis.gdal.error import OGRException
 
 # Custom library path set?
 try:
-    from django.conf import settings
+    from djangocg.conf import settings
     lib_path = settings.GDAL_LIBRARY_PATH
 except (AttributeError, EnvironmentError, ImportError):
     lib_path = None

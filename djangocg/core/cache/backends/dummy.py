@@ -1,6 +1,6 @@
 "Dummy cache backend"
 
-from django.core.cache.backends.base import BaseCache
+from djangocg.core.cache.backends.base import BaseCache
 
 class DummyCache(BaseCache):
     def __init__(self, host, *args, **kwargs):

@@ -1,12 +1,12 @@
 import threading
 from ctypes import byref, c_char_p, c_int, c_char, c_size_t, Structure, POINTER
-from django.contrib.gis.geos.base import GEOSBase
-from django.contrib.gis.geos.libgeos import GEOM_PTR
-from django.contrib.gis.geos.prototypes.errcheck import check_geom, check_string, check_sized_string
-from django.contrib.gis.geos.prototypes.geom import c_uchar_p, geos_char_p
-from django.contrib.gis.geos.prototypes.threadsafe import GEOSFunc
+from djangocg.contrib.gis.geos.base import GEOSBase
+from djangocg.contrib.gis.geos.libgeos import GEOM_PTR
+from djangocg.contrib.gis.geos.prototypes.errcheck import check_geom, check_string, check_sized_string
+from djangocg.contrib.gis.geos.prototypes.geom import c_uchar_p, geos_char_p
+from djangocg.contrib.gis.geos.prototypes.threadsafe import GEOSFunc
 
-from django.utils import six
+from djangocg.utils import six
 
 ### The WKB/WKT Reader/Writer structures and pointers ###
 class WKTReader_st(Structure): pass

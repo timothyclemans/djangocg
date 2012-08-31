@@ -4,11 +4,11 @@ import os
 from copy import copy
 from decimal import Decimal
 
-from django.contrib.gis.gdal import DataSource
-from django.contrib.gis.tests.utils import mysql
-from django.contrib.gis.utils.layermapping import (LayerMapping, LayerMapError,
+from djangocg.contrib.gis.gdal import DataSource
+from djangocg.contrib.gis.tests.utils import mysql
+from djangocg.contrib.gis.utils.layermapping import (LayerMapping, LayerMapError,
     InvalidDecimal, MissingForeignKey)
-from django.test import TestCase
+from djangocg.test import TestCase
 
 from .models import (
     City, County, CountyFeat, Interstate, ICity1, ICity2, Invalid, State,

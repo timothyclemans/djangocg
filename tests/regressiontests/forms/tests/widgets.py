@@ -4,16 +4,16 @@ from __future__ import unicode_literals
 import copy
 import datetime
 
-from django.conf import settings
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.forms import *
-from django.forms.widgets import RadioFieldRenderer
-from django.utils import formats
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.translation import activate, deactivate
-from django.test import TestCase
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.conf import settings
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.forms import *
+from djangocg.forms.widgets import RadioFieldRenderer
+from djangocg.utils import formats
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.translation import activate, deactivate
+from djangocg.test import TestCase
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class FormsWidgetTestCase(TestCase):
@@ -978,7 +978,7 @@ beatle J R Ringo False""")
         self.assertFalse(w._has_changed(formats.localize_input(data), data.strftime(custom_format)))
 
     def test_splithiddendatetime(self):
-        from django.forms.widgets import SplitHiddenDateTimeWidget
+        from djangocg.forms.widgets import SplitHiddenDateTimeWidget
 
         w = SplitHiddenDateTimeWidget()
         self.assertHTMLEqual(w.render('date', ''), '<input type="hidden" name="date_0" /><input type="hidden" name="date_1" />')
@@ -1028,7 +1028,7 @@ class FormsI18NWidgetsTestCase(TestCase):
         self.assertHTMLEqual(w.render('time', t), '<input type="text" name="time" value="12:51:34" />')
 
     def test_splithiddendatetime(self):
-        from django.forms.widgets import SplitHiddenDateTimeWidget
+        from djangocg.forms.widgets import SplitHiddenDateTimeWidget
 
         w = SplitHiddenDateTimeWidget()
         w.is_localized = True

@@ -1,6 +1,6 @@
-from django.http import HttpResponse
-from django.template import loader, Context, RequestContext
-from django.utils import six
+from djangocg.http import HttpResponse
+from djangocg.template import loader, Context, RequestContext
+from djangocg.utils import six
 
 
 class ContentNotRenderedError(Exception):
@@ -140,7 +140,7 @@ class TemplateResponse(SimpleTemplateResponse):
 
     def __init__(self, request, template, context=None, content_type=None,
             status=None, mimetype=None, current_app=None):
-        # self.request gets over-written by django.test.client.Client - and
+        # self.request gets over-written by djangocg.test.client.Client - and
         # unlike context_data and template_name the _request should not
         # be considered part of the public API.
         self._request = request

@@ -1,7 +1,7 @@
-from django.contrib import databrowse
-from django.db import models
-from django.test import TestCase
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib import databrowse
+from djangocg.db import models
+from djangocg.test import TestCase
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible

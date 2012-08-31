@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from django.db import models
+from djangocg.db import models
 
 from ..admin import foo
 

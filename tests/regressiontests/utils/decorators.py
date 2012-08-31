@@ -1,8 +1,8 @@
-from django.http import HttpResponse
-from django.template import Template, Context
-from django.template.response import TemplateResponse
-from django.test import TestCase, RequestFactory
-from django.utils.decorators import decorator_from_middleware
+from djangocg.http import HttpResponse
+from djangocg.template import Template, Context
+from djangocg.template.response import TemplateResponse
+from djangocg.test import TestCase, RequestFactory
+from djangocg.utils.decorators import decorator_from_middleware
 
 
 class ProcessViewMiddleware(object):
@@ -46,7 +46,7 @@ full_dec = decorator_from_middleware(FullMiddleware)
 class DecoratorFromMiddlewareTests(TestCase):
     """
     Tests for view decorators created using
-    ``django.utils.decorators.decorator_from_middleware``.
+    ``djangocg.utils.decorators.decorator_from_middleware``.
     """
     rf = RequestFactory()
 

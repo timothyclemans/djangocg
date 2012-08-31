@@ -5,11 +5,11 @@ from decimal import Decimal
 
 from django import test
 from django import forms
-from django.core.exceptions import ValidationError
-from django.db import models
-from django.db.models.fields.files import FieldFile
-from django.utils import six
-from django.utils import unittest
+from djangocg.core.exceptions import ValidationError
+from djangocg.db import models
+from djangocg.db.models.fields.files import FieldFile
+from djangocg.utils import six
+from djangocg.utils import unittest
 
 from .models import (Foo, Bar, Whiz, BigD, BigS, Image, BigInt, Post,
     NullBooleanModel, BooleanModel, Document, RenamedField)
@@ -51,9 +51,9 @@ class BasicFieldTests(test.TestCase):
         Regression test for #5931: __repr__ of a field also displays its name
         """
         f = Foo._meta.get_field('a')
-        self.assertEqual(repr(f), '<django.db.models.fields.CharField: a>')
+        self.assertEqual(repr(f), '<djangocg.db.models.fields.CharField: a>')
         f = models.fields.CharField()
-        self.assertEqual(repr(f), '<django.db.models.fields.CharField>')
+        self.assertEqual(repr(f), '<djangocg.db.models.fields.CharField>')
 
     def test_field_name(self):
         """
@@ -82,7 +82,7 @@ class DecimalFieldTests(test.TestCase):
         self.assertEqual(f._format(None), None)
 
     def test_get_db_prep_lookup(self):
-        from django.db import connection
+        from djangocg.db import connection
         f = models.DecimalField(max_digits=5, decimal_places=1)
         self.assertEqual(f.get_db_prep_lookup('exact', None, connection=connection), [None])
 
@@ -137,7 +137,7 @@ class DateTimeFieldTests(unittest.TestCase):
 
 class BooleanFieldTests(unittest.TestCase):
     def _test_get_db_prep_lookup(self, f):
-        from django.db import connection
+        from djangocg.db import connection
         self.assertEqual(f.get_db_prep_lookup('exact', True, connection=connection), [True])
         self.assertEqual(f.get_db_prep_lookup('exact', '1', connection=connection), [True])
         self.assertEqual(f.get_db_prep_lookup('exact', 1, connection=connection), [True])

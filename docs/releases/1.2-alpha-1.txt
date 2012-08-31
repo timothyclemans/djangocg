@@ -215,15 +215,15 @@ The ``SMTPConnection`` class has been deprecated in favor of a generic
 Email backend API. Old code that explicitly instantiated an instance
 of an SMTPConnection::
 
-    from django.core.mail import SMTPConnection
+    from djangocg.core.mail import SMTPConnection
     connection = SMTPConnection()
     messages = get_notification_email()
     connection.send_messages(messages)
 
-should now call :meth:`~django.core.mail.get_connection()` to
+should now call :meth:`~djangocg.core.mail.get_connection()` to
 instantiate a generic email connection::
 
-    from django.core.mail import get_connection
+    from djangocg.core.mail import get_connection
     connection = get_connection()
     messages = get_notification_email()
     connection.send_messages(messages)
@@ -233,16 +233,16 @@ may not return an SMTP connection. If you explicitly require an SMTP
 connection with which to send email, you can explicitly request an
 SMTP connection::
 
-    from django.core.mail import get_connection
-    connection = get_connection('django.core.mail.backends.smtp.EmailBackend')
+    from djangocg.core.mail import get_connection
+    connection = get_connection('djangocg.core.mail.backends.smtp.EmailBackend')
     messages = get_notification_email()
     connection.send_messages(messages)
 
 If your call to construct an instance of ``SMTPConnection`` required
 additional arguments, those arguments can be passed to the
-:meth:`~django.core.mail.get_connection()` call::
+:meth:`~djangocg.core.mail.get_connection()` call::
 
-    connection = get_connection('django.core.mail.backends.smtp.EmailBackend', hostname='localhost', port=1234)
+    connection = get_connection('djangocg.core.mail.backends.smtp.EmailBackend', hostname='localhost', port=1234)
 
 Specifying databases
 --------------------
@@ -274,7 +274,7 @@ The sample settings given previously would now be stored using::
     DATABASES = {
         'default': {
             'NAME': 'test_db',
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'djangocg.db.backends.postgresql_psycopg2',
             'USER': 'myusername',
             'PASSWORD': 's3krit',
         }
@@ -303,7 +303,7 @@ connection using ``DatabaseWrapper()`` from your database backend of choice.
 In addition to the change in structure, Django 1.2 removes the special
 handling for the built-in database backends. All database backends
 must now be specified by a fully qualified module name (i.e.,
-``django.db.backends.postgresql_psycopg2``, rather than just
+``djangocg.db.backends.postgresql_psycopg2``, rather than just
 ``postgresql_psycopg2``).
 
 User Messages API
@@ -319,7 +319,7 @@ To upgrade your code, you need to replace any instances of::
 
 with the following::
 
-    from django.contrib import messages
+    from djangocg.contrib import messages
     messages.add_message(request, messages.INFO, 'a message')
 
 Additionally, if you make use of the method, you need to replace the
@@ -330,7 +330,7 @@ following::
 
 with::
 
-    from django.contrib import messages
+    from djangocg.contrib import messages
     for message in messages.get_messages(request):
         ...
 
@@ -341,20 +341,20 @@ update your code to use the new API immediately.
 Date format helper functions
 ----------------------------
 
-``django.utils.translation.get_date_formats()`` and
-``django.utils.translation.get_partial_date_formats()`` have been deprecated
-in favor of the appropriate calls to ``django.utils.formats.get_format()``
+``djangocg.utils.translation.get_date_formats()`` and
+``djangocg.utils.translation.get_partial_date_formats()`` have been deprecated
+in favor of the appropriate calls to ``djangocg.utils.formats.get_format()``
 which is locale aware when :setting:`USE_L10N` is set to ``True``, and falls
 back to default settings if set to ``False``.
 
 To get the different date formats, instead of writing::
 
-    from django.utils.translation import get_date_formats
+    from djangocg.utils.translation import get_date_formats
     date_format, datetime_format, time_format = get_date_formats()
 
 use::
 
-    from django.utils import formats
+    from djangocg.utils import formats
 
     date_format = formats.get_format('DATE_FORMAT')
     datetime_format = formats.get_format('DATETIME_FORMAT')
@@ -362,16 +362,16 @@ use::
 
 or, when directly formatting a date value::
 
-    from django.utils import formats
+    from djangocg.utils import formats
     value_formatted = formats.date_format(value, 'DATETIME_FORMAT')
 
-The same applies to the globals found in ``django.forms.fields``:
+The same applies to the globals found in ``djangocg.forms.fields``:
 
 * ``DEFAULT_DATE_INPUT_FORMATS``
 * ``DEFAULT_TIME_INPUT_FORMATS``
 * ``DEFAULT_DATETIME_INPUT_FORMATS``
 
-Use ``django.utils.formats.get_format()`` to get the appropriate formats.
+Use ``djangocg.utils.formats.get_format()`` to get the appropriate formats.
 
 
 What's new in Django 1.2 alpha 1
@@ -493,7 +493,7 @@ objects whose primary key value may not be predictable or known.
 ``BigIntegerField``
 -------------------
 
-Models can now use a 64 bit :class:`~django.db.models.BigIntegerField` type.
+Models can now use a 64 bit :class:`~djangocg.db.models.BigIntegerField` type.
 
 Fast Failure for Tests
 ----------------------
@@ -518,7 +518,7 @@ See :ref:`Format localization <format-localization>` for more details.
 Added ``readonly_fields`` to ``ModelAdmin``
 -------------------------------------------
 
-:attr:`django.contrib.admin.ModelAdmin.readonly_fields` has been added to
+:attr:`djangocg.contrib.admin.ModelAdmin.readonly_fields` has been added to
 enable non-editable fields in add/change pages for models and inlines. Field
 and calculated values can be displayed along side editable fields.
 

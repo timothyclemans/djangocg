@@ -3,16 +3,16 @@ Unit tests for reverse URL lookups.
 """
 from __future__ import absolute_import, unicode_literals
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured, ViewDoesNotExist
-from django.core.urlresolvers import (reverse, resolve, get_callable,
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured, ViewDoesNotExist
+from djangocg.core.urlresolvers import (reverse, resolve, get_callable,
     NoReverseMatch, Resolver404, ResolverMatch, RegexURLResolver,
     RegexURLPattern)
-from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
-from django.shortcuts import redirect
-from django.test import TestCase
-from django.utils import unittest
-from django.contrib.auth.models import User
+from djangocg.http import HttpResponseRedirect, HttpResponsePermanentRedirect
+from djangocg.shortcuts import redirect
+from djangocg.test import TestCase
+from djangocg.utils import unittest
+from djangocg.contrib.auth.models import User
 
 from . import urlconf_outer, urlconf_inner, middleware, views
 
@@ -435,7 +435,7 @@ class ErrorHandlerResolutionTests(TestCase):
     """Tests for handler404 and handler500"""
 
     def setUp(self):
-        from django.core.urlresolvers import RegexURLResolver
+        from djangocg.core.urlresolvers import RegexURLResolver
         urlconf = 'regressiontests.urlpatterns_reverse.urls_error_handlers'
         urlconf_callables = 'regressiontests.urlpatterns_reverse.urls_error_handlers_callables'
         self.resolver = RegexURLResolver(r'^$', urlconf)

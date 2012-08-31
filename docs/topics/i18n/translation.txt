@@ -2,7 +2,7 @@
 Translation
 ===========
 
-.. module:: django.utils.translation
+.. module:: djangocg.utils.translation
 
 Overview
 ========
@@ -28,7 +28,7 @@ bit of i18n-related overhead in certain places of the framework. If you don't
 use internationalization, you should take the two seconds to set
 :setting:`USE_I18N = False <USE_I18N>` in your settings file. Then Django will
 make some optimizations so as not to load the internationalization machinery.
-You'll probably also want to remove ``'django.core.context_processors.i18n'``
+You'll probably also want to remove ``'djangocg.core.context_processors.i18n'``
 from your :setting:`TEMPLATE_CONTEXT_PROCESSORS` setting.
 
 .. note::
@@ -41,7 +41,7 @@ from your :setting:`TEMPLATE_CONTEXT_PROCESSORS` setting.
 
     Make sure you've activated translation for your project (the fastest way is
     to check if :setting:`MIDDLEWARE_CLASSES` includes
-    :mod:`django.middleware.locale.LocaleMiddleware`). If you haven't yet,
+    :mod:`djangocg.middleware.locale.LocaleMiddleware`). If you haven't yet,
     see :ref:`how-django-discovers-language-preference`.
 
 Internationalization: in Python code
@@ -51,7 +51,7 @@ Standard translation
 --------------------
 
 Specify a translation string by using the function
-:func:`~django.utils.translation.ugettext`. It's convention to import this
+:func:`~djangocg.utils.translation.ugettext`. It's convention to import this
 as a shorter alias, ``_``, to save typing.
 
 .. note::
@@ -60,9 +60,9 @@ as a shorter alias, ``_``, to save typing.
     not to follow this practice, for a couple of reasons:
 
     1. For international character set (Unicode) support,
-       :func:`~django.utils.translation.ugettext` is more useful than
+       :func:`~djangocg.utils.translation.ugettext` is more useful than
        ``gettext()``. Sometimes, you should be using
-       :func:`~django.utils.translation.ugettext_lazy` as the default
+       :func:`~djangocg.utils.translation.ugettext_lazy` as the default
        translation method for a particular file. Without ``_()`` in the
        global namespace, the developer has to think about which is the
        most appropriate translation function.
@@ -77,7 +77,7 @@ as a shorter alias, ``_``, to save typing.
 In this example, the text ``"Welcome to my site."`` is marked as a translation
 string::
 
-    from django.utils.translation import ugettext as _
+    from djangocg.utils.translation import ugettext as _
 
     def my_view(request):
         output = _("Welcome to my site.")
@@ -86,7 +86,7 @@ string::
 Obviously, you could code this without using the alias. This example is
 identical to the previous one::
 
-    from django.utils.translation import ugettext
+    from djangocg.utils.translation import ugettext
 
     def my_view(request):
         output = ugettext("Welcome to my site.")
@@ -156,7 +156,7 @@ displayed by most translation tools.
 Marking strings as no-op
 ------------------------
 
-Use the function :func:`django.utils.translation.ugettext_noop()` to mark a
+Use the function :func:`djangocg.utils.translation.ugettext_noop()` to mark a
 string as a translation string without translating it. The string is later
 translated from a variable.
 
@@ -168,7 +168,7 @@ such as when the string is presented to the user.
 Pluralization
 -------------
 
-Use the function :func:`django.utils.translation.ungettext()` to specify
+Use the function :func:`djangocg.utils.translation.ungettext()` to specify
 pluralized messages.
 
 ``ungettext`` takes three arguments: the singular translation string, the plural
@@ -183,7 +183,7 @@ of its value.)
 
 For example::
 
-    from django.utils.translation import ungettext
+    from djangocg.utils.translation import ungettext
 
     def hello_world(request, count):
         page = ungettext(
@@ -199,7 +199,7 @@ languages as the ``count`` variable.
 
 Lets see a slightly more complex usage example::
 
-    from django.utils.translation import ungettext
+    from djangocg.utils.translation import ungettext
 
     count = Report.objects.count()
     if count == 1:
@@ -230,7 +230,7 @@ cardinality of the elements at play.
     we used the ``name`` Python variable in both translation strings. This
     example would fail::
 
-        from django.utils.translation import ungettext
+        from djangocg.utils.translation import ungettext
         from myapp.models import Report
 
         count = Report.objects.count()
@@ -260,8 +260,8 @@ Contextual markers
 Sometimes words have several meanings, such as ``"May"`` in English, which
 refers to a month name and to a verb. To enable translators to translate
 these words correctly in different contexts, you can use the
-:func:`django.utils.translation.pgettext()` function, or the
-:func:`django.utils.translation.npgettext()` function if the string needs
+:func:`djangocg.utils.translation.pgettext()` function, or the
+:func:`djangocg.utils.translation.npgettext()` function if the string needs
 pluralization. Both take a context string as the first variable.
 
 In the resulting ``.po`` file, the string will then appear as often as there are
@@ -271,13 +271,13 @@ each of them.
 
 For example::
 
-    from django.utils.translation import pgettext
+    from djangocg.utils.translation import pgettext
 
     month = pgettext("month name", "May")
 
 or::
 
-    from django.utils.translation import pgettext_lazy
+    from djangocg.utils.translation import pgettext_lazy
 
     class MyThing(models.Model):
         name = models.CharField(help_text=pgettext_lazy(
@@ -302,7 +302,7 @@ Lazy translation
 ----------------
 
 Use the lazy versions of translation functions in
-:mod:`django.utils.translation` (easily recognizable by the ``lazy`` suffix in
+:mod:`djangocg.utils.translation` (easily recognizable by the ``lazy`` suffix in
 their names) to translate strings lazily -- when the value is accessed rather
 than when they're called.
 
@@ -324,7 +324,7 @@ Model fields and relationships ``verbose_name`` and ``help_text`` option values
 For example, to translate the help text of the *name* field in the following
 model, do the following::
 
-    from django.utils.translation import ugettext_lazy as _
+    from djangocg.utils.translation import ugettext_lazy as _
 
     class MyThing(models.Model):
         name = models.CharField(help_text=_('This is the help text'))
@@ -332,13 +332,13 @@ model, do the following::
 You can mark names of ``ForeignKey``, ``ManyTomanyField`` or ``OneToOneField``
 relationship as translatable by using their ``verbose_name`` options::
 
-    from django.utils.translation import ugettext_lazy as _
+    from djangocg.utils.translation import ugettext_lazy as _
 
     class MyThing(models.Model):
         kind = models.ForeignKey(ThingKind, related_name='kinds',
                                  verbose_name=_('kind'))
 
-Just like you would do in :attr:`~django.db.models.Options.verbose_name` you
+Just like you would do in :attr:`~djangocg.db.models.Options.verbose_name` you
 should provide a lowercase verbose name text for the relation as Django will
 automatically titlecase it when required.
 
@@ -346,12 +346,12 @@ Model verbose names values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is recommended to always provide explicit
-:attr:`~django.db.models.Options.verbose_name` and
-:attr:`~django.db.models.Options.verbose_name_plural` options rather than
+:attr:`~djangocg.db.models.Options.verbose_name` and
+:attr:`~djangocg.db.models.Options.verbose_name_plural` options rather than
 relying on the fallback English-centric and somewhat naïve determination of
 verbose names Django performs bu looking at the model's class name::
 
-    from django.utils.translation import ugettext_lazy as _
+    from djangocg.utils.translation import ugettext_lazy as _
 
     class MyThing(models.Model):
         name = models.CharField(_('name'), help_text=_('This is the help text'))
@@ -366,7 +366,7 @@ Model methods ``short_description`` attribute values
 For model methods, you can provide translations to Django and the admin site
 with the ``short_description`` attribute::
 
-    from django.utils.translation import ugettext_lazy as _
+    from djangocg.utils.translation import ugettext_lazy as _
 
     class MyThing(models.Model):
         kind = models.ForeignKey(ThingKind, related_name='kinds',
@@ -394,13 +394,13 @@ either, so this is consistent with normal Python behavior. For example::
     "Hello %s" % ugettext_lazy("people")
 
 If you ever see output that looks like ``"hello
-<django.utils.functional...>"``, you have tried to insert the result of
+<djangocg.utils.functional...>"``, you have tried to insert the result of
 ``ugettext_lazy()`` into a bytestring. That's a bug in your code.
 
 If you don't like the long ``ugettext_lazy`` name, you can just alias it as
 ``_`` (underscore), like so::
 
-    from django.utils.translation import ugettext_lazy as _
+    from djangocg.utils.translation import ugettext_lazy as _
 
     class MyThing(models.Model):
         name = models.CharField(help_text=_('This is the help text'))
@@ -417,11 +417,11 @@ Joining strings: string_concat()
 
 Standard Python string joins (``''.join([...])``) will not work on lists
 containing lazy translation objects. Instead, you can use
-:func:`django.utils.translation.string_concat()`, which creates a lazy object
+:func:`djangocg.utils.translation.string_concat()`, which creates a lazy object
 that concatenates its contents *and* converts them to strings only when the
 result is included in a string. For example::
 
-    from django.utils.translation import string_concat
+    from djangocg.utils.translation import string_concat
     ...
     name = ugettext_lazy('John Lennon')
     instrument = ugettext_lazy('guitar')
@@ -441,7 +441,7 @@ Localized names of languages
 The ``get_language_info()`` function provides detailed information about
 languages::
 
-    >>> from django.utils.translation import get_language_info
+    >>> from djangocg.utils.translation import get_language_info
     >>> li = get_language_info('de')
     >>> print(li['name'], li['name_local'], li['bidi'])
     German Deutsch False
@@ -450,7 +450,7 @@ The ``name`` and ``name_local`` attributes of the dictionary contain the name of
 the language in English and in the language itself, respectively.  The ``bidi``
 attribute is True only for bi-directional languages.
 
-The source of the language information is the ``django.conf.locale`` module.
+The source of the language information is the ``djangocg.conf.locale`` module.
 Similar access to this information is available for template code. See below.
 
 .. _specifying-translation-strings-in-template-code:
@@ -485,7 +485,7 @@ require translation in the future::
     <title>{% trans "myvar" noop %}</title>
 
 Internally, inline translations use an
-:func:`~django.utils.translation.ugettext` call.
+:func:`~djangocg.utils.translation.ugettext` call.
 
 In case a template var (``myvar`` above) is passed to the tag, the tag will
 first resolve such variable to a string at run-time and then look up that
@@ -569,7 +569,7 @@ You can use multiple expressions inside a single ``blocktrans`` tag::
 
 If resolving one of the block arguments fails, blocktrans will fall back to
 the default language by deactivating the currently active language
-temporarily with the :func:`~django.utils.translation.deactivate_all`
+temporarily with the :func:`~djangocg.utils.translation.deactivate_all`
 function.
 
 This tag also provides for pluralization. To use it:
@@ -733,12 +733,12 @@ JavaScript.
 The ``javascript_catalog`` view
 -------------------------------
 
-.. module:: django.views.i18n
+.. module:: djangocg.views.i18n
 
 .. function:: javascript_catalog(request, domain='djangojs', packages=None)
 
 The main solution to these problems is the
-:meth:`django.views.i18n.javascript_catalog` view, which sends out a JavaScript
+:meth:`djangocg.views.i18n.javascript_catalog` view, which sends out a JavaScript
 code library with functions that mimic the ``gettext`` interface, plus an array
 of translation strings. Those translation strings are taken from applications or
 Django core, according to what you specify in either the ``info_dict`` or the
@@ -751,7 +751,7 @@ You hook it up like this::
     }
 
     urlpatterns = patterns('',
-        (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
+        (r'^jsi18n/$', 'djangocg.views.i18n.javascript_catalog', js_info_dict),
     )
 
 Each string in ``packages`` should be in Python dotted-package syntax (the
@@ -771,14 +771,14 @@ changed by altering the ``domain`` argument.
 You can make the view dynamic by putting the packages into the URL pattern::
 
     urlpatterns = patterns('',
-        (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
+        (r'^jsi18n/(?P<packages>\S+?)/$', 'djangocg.views.i18n.javascript_catalog'),
     )
 
 With this, you specify the packages as a list of package names delimited by '+'
 signs in the URL. This is especially useful if your pages use code from
 different apps and this changes often and you don't want to pull in one big
 catalog file. As a security measure, these values can only be either
-``django.conf`` or any package from the :setting:`INSTALLED_APPS` setting.
+``djangocg.conf`` or any package from the :setting:`INSTALLED_APPS` setting.
 
 The JavaScript translations found in the paths listed in the
 :setting:`LOCALE_PATHS` setting are also always included. To keep consistency
@@ -800,7 +800,7 @@ To use the catalog, just pull in the dynamically generated script like this:
 
 .. code-block:: html+django
 
-    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+    <script type="text/javascript" src="{% url 'djangocg.views.i18n.javascript_catalog' %}"></script>
 
 This uses reverse URL lookup to find the URL of the JavaScript catalog view.
 When the catalog is loaded, your JavaScript code can use the standard
@@ -857,22 +857,22 @@ Internationalization: in URL patterns
 
 ..  versionadded:: 1.4
 
-.. module:: django.conf.urls.i18n
+.. module:: djangocg.conf.urls.i18n
 
 Django provides two mechanisms to internationalize URL patterns:
 
 * Adding the language prefix to the root of the URL patterns to make it
-  possible for :class:`~django.middleware.locale.LocaleMiddleware` to detect
+  possible for :class:`~djangocg.middleware.locale.LocaleMiddleware` to detect
   the language to activate from the requested URL.
 
 * Making URL patterns themselves translatable via the
-  :func:`django.utils.translation.ugettext_lazy()` function.
+  :func:`djangocg.utils.translation.ugettext_lazy()` function.
 
 .. warning::
 
     Using either one of these features requires that an active language be set
     for each request; in other words, you need to have
-    :class:`django.middleware.locale.LocaleMiddleware` in your
+    :class:`djangocg.middleware.locale.LocaleMiddleware` in your
     :setting:`MIDDLEWARE_CLASSES` setting.
 
 Language prefix in URL patterns
@@ -881,12 +881,12 @@ Language prefix in URL patterns
 .. function:: i18n_patterns(prefix, pattern_description, ...)
 
 This function can be used in your root URLconf as a replacement for the normal
-:func:`django.conf.urls.patterns` function. Django will automatically
+:func:`djangocg.conf.urls.patterns` function. Django will automatically
 prepend the current active language code to all url patterns defined within
-:func:`~django.conf.urls.i18n.i18n_patterns`. Example URL patterns::
+:func:`~djangocg.conf.urls.i18n.i18n_patterns`. Example URL patterns::
 
-    from django.conf.urls import patterns, include, url
-    from django.conf.urls.i18n import i18n_patterns
+    from djangocg.conf.urls import patterns, include, url
+    from djangocg.conf.urls.i18n import i18n_patterns
 
     urlpatterns = patterns(''
         url(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
@@ -908,8 +908,8 @@ After defining these URL patterns, Django will automatically add the
 language prefix to the URL patterns that were added by the ``i18n_patterns``
 function. Example::
 
-    from django.core.urlresolvers import reverse
-    from django.utils.translation import activate
+    from djangocg.core.urlresolvers import reverse
+    from djangocg.utils.translation import activate
 
     >>> activate('en')
     >>> reverse('sitemap_xml')
@@ -923,7 +923,7 @@ function. Example::
 
 .. warning::
 
-    :func:`~django.conf.urls.i18n.i18n_patterns` is only allowed in your root
+    :func:`~djangocg.conf.urls.i18n.i18n_patterns` is only allowed in your root
     URLconf. Using it within an included URLconf will throw an
     :exc:`ImproperlyConfigured` exception.
 
@@ -937,11 +937,11 @@ Translating URL patterns
 ------------------------
 
 URL patterns can also be marked translatable using the
-:func:`~django.utils.translation.ugettext_lazy` function. Example::
+:func:`~djangocg.utils.translation.ugettext_lazy` function. Example::
 
-    from django.conf.urls import patterns, include, url
-    from django.conf.urls.i18n import i18n_patterns
-    from django.utils.translation import ugettext_lazy as _
+    from djangocg.conf.urls import patterns, include, url
+    from djangocg.conf.urls.i18n import i18n_patterns
+    from djangocg.utils.translation import ugettext_lazy as _
 
     urlpatterns = patterns(''
         url(r'^sitemap\.xml$', 'sitemap.view', name='sitemap_xml'),
@@ -960,11 +960,11 @@ URL patterns can also be marked translatable using the
 
 
 After you've created the translations, the
-:func:`~django.core.urlresolvers.reverse` function will return the URL in the
+:func:`~djangocg.core.urlresolvers.reverse` function will return the URL in the
 active language. Example::
 
-    from django.core.urlresolvers import reverse
-    from django.utils.translation import activate
+    from djangocg.core.urlresolvers import reverse
+    from djangocg.utils.translation import activate
 
     >>> activate('en')
     >>> reverse('news:category', kwargs={'slug': 'recent'})
@@ -978,7 +978,7 @@ active language. Example::
 
     In most cases, it's best to use translated URLs only within a
     language-code-prefixed block of patterns (using
-    :func:`~django.conf.urls.i18n.i18n_patterns`), to avoid the possibility
+    :func:`~djangocg.conf.urls.i18n.i18n_patterns`), to avoid the possibility
     that a carelessly translated URL causes a collision with a non-translated
     URL pattern.
 
@@ -1068,7 +1068,7 @@ The script should be run from one of two places:
 The script runs over your project source tree or your application source tree
 and pulls out all strings marked for translation. It creates (or updates) a
 message file in the directory ``locale/LANG/LC_MESSAGES``. In the ``de``
-example, the file will be ``locale/de/LC_MESSAGES/django.po``.
+example, the file will be ``locale/de/LC_MESSAGES/djangocg.po``.
 
 By default :djadmin:`django-admin.py makemessages <makemessages>` examines every
 file that has the ``.html`` or ``.txt`` file extension. In case you want to
@@ -1093,7 +1093,7 @@ multiple times::
     If you don't have the ``gettext`` utilities installed,
     :djadmin:`makemessages` will create empty files. If that's the case, either
     install the ``gettext`` utilities or just copy the English message file
-    (``locale/en/LC_MESSAGES/django.po``) if available and use it as a starting
+    (``locale/en/LC_MESSAGES/djangocg.po``) if available and use it as a starting
     point; it's just an empty translation file.
 
 .. admonition:: Working on Windows?
@@ -1247,20 +1247,20 @@ The ``set_language`` redirect view
 
 .. function:: set_language(request)
 
-As a convenience, Django comes with a view, :func:`django.views.i18n.set_language`,
+As a convenience, Django comes with a view, :func:`djangocg.views.i18n.set_language`,
 that sets a user's language preference and redirects to a given URL or, by default,
 back to the previous page.
 
 Activate this view by adding the following line to your URLconf::
 
-    (r'^i18n/', include('django.conf.urls.i18n')),
+    (r'^i18n/', include('djangocg.conf.urls.i18n')),
 
 (Note that this example makes the view available at ``/i18n/setlang/``.)
 
 .. warning::
 
     Make sure that you don't include the above URL within
-    :func:`~django.conf.urls.i18n.i18n_patterns` - it needs to be
+    :func:`~djangocg.conf.urls.i18n.i18n_patterns` - it needs to be
     language-independent itself to work correctly.
 
 The view expects to be called via the ``POST`` method, with a ``language``
@@ -1311,7 +1311,7 @@ will affect code running in the same thread.
 
 For example::
 
-    from django.utils import translation
+    from djangocg.utils import translation
     def welcome_translated(language):
         cur_language = translation.get_language()
         try:
@@ -1324,10 +1324,10 @@ For example::
 Calling this function with the value 'de' will give you ``"Willkommen"``,
 regardless of :setting:`LANGUAGE_CODE` and language set by middleware.
 
-Functions of particular interest are ``django.utils.translation.get_language()``
+Functions of particular interest are ``djangocg.utils.translation.get_language()``
 which returns the language used in the current thread,
-``django.utils.translation.activate()`` which activates a translation catalog
-for the current thread, and ``django.utils.translation.check_for_language()``
+``djangocg.utils.translation.activate()`` which activates a translation catalog
+for the current thread, and ``djangocg.utils.translation.check_for_language()``
 which checks if the given language is supported by Django.
 
 Implementation notes
@@ -1375,7 +1375,7 @@ If you want to let each individual user specify which language he or she
 prefers, use ``LocaleMiddleware``. ``LocaleMiddleware`` enables language
 selection based on data from the request. It customizes content for each user.
 
-To use ``LocaleMiddleware``, add ``'django.middleware.locale.LocaleMiddleware'``
+To use ``LocaleMiddleware``, add ``'djangocg.middleware.locale.LocaleMiddleware'``
 to your :setting:`MIDDLEWARE_CLASSES` setting. Because middleware order
 matters, you should follow these guidelines:
 
@@ -1389,9 +1389,9 @@ matters, you should follow these guidelines:
 For example, your :setting:`MIDDLEWARE_CLASSES` might look like this::
 
     MIDDLEWARE_CLASSES = (
-       'django.contrib.sessions.middleware.SessionMiddleware',
-       'django.middleware.locale.LocaleMiddleware',
-       'django.middleware.common.CommonMiddleware',
+       'djangocg.contrib.sessions.middleware.SessionMiddleware',
+       'djangocg.middleware.locale.LocaleMiddleware',
+       'djangocg.middleware.common.CommonMiddleware',
     )
 
 (For more on middleware, see the :doc:`middleware documentation
@@ -1452,8 +1452,8 @@ Notes:
 * If you define a custom :setting:`LANGUAGES` setting, as explained in the
   previous bullet, it's OK to mark the languages as translation strings
   -- but use a "dummy" ``ugettext()`` function, not the one in
-  ``django.utils.translation``. You should *never* import
-  ``django.utils.translation`` from within your settings file, because that
+  ``djangocg.utils.translation``. You should *never* import
+  ``djangocg.utils.translation`` from within your settings file, because that
   module in itself depends on the settings, and that would cause a circular
   import.
 
@@ -1482,7 +1482,7 @@ Notes:
 
 Once ``LocaleMiddleware`` determines the user's preference, it makes this
 preference available as ``request.LANGUAGE_CODE`` for each
-:class:`~django.http.HttpRequest`. Feel free to read this value in your view
+:class:`~djangocg.http.HttpRequest`. Feel free to read this value in your view
 code. Here's a simple example::
 
     def hello_world(request, count):
@@ -1539,9 +1539,9 @@ message file specific to the project you are composing. The choice is yours.
 All message file repositories are structured the same way. They are:
 
 * All paths listed in :setting:`LOCALE_PATHS` in your settings file are
-  searched for ``<language>/LC_MESSAGES/django.(po|mo)``
-* ``$APPPATH/locale/<language>/LC_MESSAGES/django.(po|mo)``
-* ``$PYTHONPATH/django/conf/locale/<language>/LC_MESSAGES/django.(po|mo)``
+  searched for ``<language>/LC_MESSAGES/djangocg.(po|mo)``
+* ``$APPPATH/locale/<language>/LC_MESSAGES/djangocg.(po|mo)``
+* ``$PYTHONPATH/django/conf/locale/<language>/LC_MESSAGES/djangocg.(po|mo)``
 
 To create message files, you use the :djadmin:`django-admin.py makemessages <makemessages>`
 tool. You only need to be in the same directory where the ``locale/`` directory

@@ -1,5 +1,5 @@
-from django.utils.encoding import smart_text
-from django.db.models.fields import BLANK_CHOICE_DASH
+from djangocg.utils.encoding import smart_text
+from djangocg.db.models.fields import BLANK_CHOICE_DASH
 
 class BoundRelatedObject(object):
     def __init__(self, related_object, field_mapping, original):
@@ -26,7 +26,7 @@ class RelatedObject(object):
         """Returns choices with a default blank choices included, for use
         as SelectField choices for this field.
 
-        Analogue of django.db.models.fields.Field.get_choices, provided
+        Analogue of djangocg.db.models.fields.Field.get_choices, provided
         initially for utilisation by RelatedFieldListFilter.
         """
         first_choice = include_blank and blank_choice or []

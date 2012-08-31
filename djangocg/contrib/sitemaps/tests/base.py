@@ -1,12 +1,12 @@
-from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
-from django.test import TestCase
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.sites.models import Site
+from djangocg.test import TestCase
 
 
 class SitemapTestsBase(TestCase):
     protocol = 'http'
     domain = 'example.com' if Site._meta.installed else 'testserver'
-    urls = 'django.contrib.sitemaps.tests.urls.http'
+    urls = 'djangocg.contrib.sitemaps.tests.urls.http'
 
     def setUp(self):
         self.base_url = '%s://%s' % (self.protocol, self.domain)

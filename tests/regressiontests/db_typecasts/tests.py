@@ -1,10 +1,10 @@
-# Unit tests for typecast functions in django.db.backends.util
+# Unit tests for typecast functions in djangocg.db.backends.util
 
 import datetime
 
-from django.db.backends import util as typecasts
-from django.utils import six
-from django.utils import unittest
+from djangocg.db.backends import util as typecasts
+from djangocg.utils import six
+from djangocg.utils import unittest
 
 
 TEST_CASES = {

@@ -1,6 +1,6 @@
 import os
 import sys
-from django.utils.unittest.loader import defaultTestLoader
+from djangocg.utils.unittest.loader import defaultTestLoader
 
 def collector():
     # import __main__ triggers code re-execution

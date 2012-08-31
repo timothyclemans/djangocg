@@ -2,9 +2,9 @@ from __future__ import absolute_import
 
 import time
 
-from django.conf import settings
-from django.contrib.comments.forms import CommentForm
-from django.contrib.comments.models import Comment
+from djangocg.conf import settings
+from djangocg.contrib.comments.forms import CommentForm
+from djangocg.contrib.comments.models import Comment
 
 from . import CommentTestCase
 from ..models import Article

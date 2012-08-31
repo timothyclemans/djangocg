@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 
 from django import http
-from django.db import models
-from django.contrib.databrowse.datastructures import EasyModel
-from django.shortcuts import render_to_response
-from django.utils.safestring import mark_safe
+from djangocg.db import models
+from djangocg.contrib.databrowse.datastructures import EasyModel
+from djangocg.shortcuts import render_to_response
+from djangocg.utils.safestring import mark_safe
 
 class AlreadyRegistered(Exception):
     pass
@@ -139,9 +139,9 @@ class DatabrowseSite(object):
 
 site = DatabrowseSite()
 
-from django.contrib.databrowse.plugins.calendars import CalendarPlugin
-from django.contrib.databrowse.plugins.objects import ObjectDetailPlugin
-from django.contrib.databrowse.plugins.fieldchoices import FieldChoicePlugin
+from djangocg.contrib.databrowse.plugins.calendars import CalendarPlugin
+from djangocg.contrib.databrowse.plugins.objects import ObjectDetailPlugin
+from djangocg.contrib.databrowse.plugins.fieldchoices import FieldChoicePlugin
 
 class DefaultModelDatabrowse(ModelDatabrowse):
     plugins = {'objects': ObjectDetailPlugin(), 'calendars': CalendarPlugin(), 'fields': FieldChoicePlugin()}

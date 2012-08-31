@@ -17,34 +17,34 @@ import socket
 import threading
 import errno
 
-from django.conf import settings
-from django.contrib.staticfiles.handlers import StaticFilesHandler
-from django.core import mail
-from django.core.exceptions import ValidationError, ImproperlyConfigured
-from django.core.handlers.wsgi import WSGIHandler
-from django.core.management import call_command
-from django.core.management.color import no_style
-from django.core.signals import request_started
-from django.core.servers.basehttp import (WSGIRequestHandler, WSGIServer,
+from djangocg.conf import settings
+from djangocg.contrib.staticfiles.handlers import StaticFilesHandler
+from djangocg.core import mail
+from djangocg.core.exceptions import ValidationError, ImproperlyConfigured
+from djangocg.core.handlers.wsgi import WSGIHandler
+from djangocg.core.management import call_command
+from djangocg.core.management.color import no_style
+from djangocg.core.signals import request_started
+from djangocg.core.servers.basehttp import (WSGIRequestHandler, WSGIServer,
     WSGIServerException)
-from django.core.urlresolvers import clear_url_caches
-from django.core.validators import EMPTY_VALUES
-from django.db import (transaction, connection, connections, DEFAULT_DB_ALIAS,
+from djangocg.core.urlresolvers import clear_url_caches
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.db import (transaction, connection, connections, DEFAULT_DB_ALIAS,
     reset_queries)
-from django.forms.fields import CharField
-from django.http import QueryDict
-from django.test import _doctest as doctest
-from django.test.client import Client
-from django.test.html import HTMLParseError, parse_html
-from django.test.signals import template_rendered
-from django.test.utils import (get_warnings_state, restore_warnings_state,
+from djangocg.forms.fields import CharField
+from djangocg.http import QueryDict
+from djangocg.test import _doctest as doctest
+from djangocg.test.client import Client
+from djangocg.test.html import HTMLParseError, parse_html
+from djangocg.test.signals import template_rendered
+from djangocg.test.utils import (get_warnings_state, restore_warnings_state,
     override_settings)
-from django.test.utils import ContextList
-from django.utils import unittest as ut2
-from django.utils.encoding import force_text
-from django.utils import six
-from django.utils.unittest.util import safe_repr
-from django.views.static import serve
+from djangocg.test.utils import ContextList
+from djangocg.utils import unittest as ut2
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
+from djangocg.utils.unittest.util import safe_repr
+from djangocg.views.static import serve
 
 __all__ = ('DocTestRunner', 'OutputChecker', 'TestCase', 'TransactionTestCase',
            'SimpleTestCase', 'skipIfDBFeature', 'skipUnlessDBFeature')
@@ -843,7 +843,7 @@ class TestCase(TransactionTestCase):
             transaction.managed(True, using=db_name)
         disable_transaction_methods()
 
-        from django.contrib.sites.models import Site
+        from djangocg.contrib.sites.models import Site
         Site.objects.clear_cache()
 
         for db in db_names:
@@ -1050,7 +1050,7 @@ class LiveServerThread(threading.Thread):
         http requests.
         """
         if self.connections_override:
-            from django.db import connections
+            from djangocg.db import connections
             # Override this thread's database connections with the ones
             # provided by the main thread.
             for alias, conn in self.connections_override.items():
@@ -1119,7 +1119,7 @@ class LiveServerTestCase(TransactionTestCase):
         for conn in connections.all():
             # If using in-memory sqlite databases, pass the connections to
             # the server thread.
-            if (conn.settings_dict['ENGINE'] == 'django.db.backends.sqlite3'
+            if (conn.settings_dict['ENGINE'] == 'djangocg.db.backends.sqlite3'
                 and conn.settings_dict['NAME'] == ':memory:'):
                 # Explicitly enable thread-shareability for this connection
                 conn.allow_thread_sharing = True
@@ -1171,7 +1171,7 @@ class LiveServerTestCase(TransactionTestCase):
 
         # Restore sqlite connections' non-sharability
         for conn in connections.all():
-            if (conn.settings_dict['ENGINE'] == 'django.db.backends.sqlite3'
+            if (conn.settings_dict['ENGINE'] == 'djangocg.db.backends.sqlite3'
                 and conn.settings_dict['NAME'] == ':memory:'):
                 conn.allow_thread_sharing = False
 

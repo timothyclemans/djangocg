@@ -17,12 +17,12 @@ Serializing data
 
 At the highest level, serializing data is a very simple operation::
 
-    from django.core import serializers
+    from djangocg.core import serializers
     data = serializers.serialize("xml", SomeModel.objects.all())
 
 The arguments to the ``serialize`` function are the format to serialize the data
 to (see `Serialization formats`_) and a
-:class:`~django.db.models.query.QuerySet` to serialize. (Actually, the second
+:class:`~djangocg.db.models.query.QuerySet` to serialize. (Actually, the second
 argument can be any iterator that yields Django model instances, but it'll
 almost always be a QuerySet).
 
@@ -34,16 +34,16 @@ You can also use a serializer object directly::
     data = xml_serializer.getvalue()
 
 This is useful if you want to serialize data directly to a file-like object
-(which includes an :class:`~django.http.HttpResponse`)::
+(which includes an :class:`~djangocg.http.HttpResponse`)::
 
     with open("file.xml", "w") as out:
         xml_serializer.serialize(SomeModel.objects.all(), stream=out)
 
 .. note::
 
-    Calling :func:`~django.core.serializers.get_serializer` with an unknown
+    Calling :func:`~djangocg.core.serializers.get_serializer` with an unknown
     :ref:`format <serialization-formats>` will raise a
-    :class:`~django.core.serializers.SerializerDoesNotExist` exception.
+    :class:`~djangocg.core.serializers.SerializerDoesNotExist` exception.
 
 Subset of fields
 ~~~~~~~~~~~~~~~~
@@ -51,7 +51,7 @@ Subset of fields
 If you only want a subset of fields to be serialized, you can
 specify a ``fields`` argument to the serializer::
 
-    from django.core import serializers
+    from djangocg.core import serializers
     data = serializers.serialize('xml', SomeModel.objects.all(), fields=('name','size'))
 
 In this example, only the ``name`` and ``size`` attributes of each model will
@@ -172,8 +172,8 @@ In particular, :ref:`lazy translation objects <lazy-translations>` need a
 `special encoder`_ written for them. Something like this will work::
 
     import json
-    from django.utils.functional import Promise
-    from django.utils.encoding import force_text
+    from djangocg.utils.functional import Promise
+    from djangocg.utils.encoding import force_text
 
     class LazyEncoder(json.JSONEncoder):
         def default(self, obj):
@@ -194,16 +194,16 @@ This strategy works well for most objects, but it can cause difficulty in some
 circumstances.
 
 Consider the case of a list of objects that have a foreign key referencing
-:class:`~django.contrib.conttenttypes.models.ContentType`. If you're going to
+:class:`~djangocg.contrib.conttenttypes.models.ContentType`. If you're going to
 serialize an object that refers to a content type, then you need to have a way
 to refer to that content type to begin with. Since ``ContentType`` objects are
 automatically created by Django during the database synchronization process,
 the primary key of a given content type isn't easy to predict; it will
 depend on how and when :djadmin:`syncdb` was executed. This is true for all
 models which automatically generate objects, notably including
-:class:`~django.contrib.auth.models.Permission`,
-:class:`~django.contrib.auth.models.Group`, and
-:class:`~django.contrib.auth.models.User`.
+:class:`~djangocg.contrib.auth.models.Permission`,
+:class:`~djangocg.contrib.auth.models.Group`, and
+:class:`~djangocg.contrib.auth.models.User`.
 
 .. warning::
 
@@ -211,7 +211,7 @@ models which automatically generate objects, notably including
     other serialized data. By chance, the primary keys in the fixture
     may match those in the database and loading the fixture will
     have no effect. In the more likely case that they don't match, the fixture
-    loading will fail with an :class:`~django.db.IntegrityError`.
+    loading will fail with an :class:`~djangocg.db.IntegrityError`.
 
 There is also the matter of convenience. An integer id isn't always
 the most convenient way to refer to an object; sometimes, a
@@ -226,7 +226,7 @@ Deserialization of natural keys
 
 Consider the following two models::
 
-    from django.db import models
+    from djangocg.db import models
 
     class Person(models.Model):
         first_name = models.CharField(max_length=100)
@@ -265,7 +265,7 @@ Manager for Person with a ``get_by_natural_key()`` method. In the case
 of a Person, a good natural key might be the pair of first and last
 name::
 
-    from django.db import models
+    from djangocg.db import models
 
     class PersonManager(models.Manager):
         def get_by_natural_key(self, first_name, last_name):

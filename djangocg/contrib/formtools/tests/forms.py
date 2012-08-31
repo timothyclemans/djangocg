@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.formtools.wizard import FormWizard
-from django.http import HttpResponse
+from djangocg.contrib.formtools.wizard import FormWizard
+from djangocg.http import HttpResponse
 
 class Page1(forms.Form):
     name = forms.CharField(max_length=100)

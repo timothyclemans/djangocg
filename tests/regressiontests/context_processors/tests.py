@@ -1,12 +1,12 @@
 """
 Tests for Django's bundled context processors.
 """
-from django.test import TestCase
+from djangocg.test import TestCase
 
 
 class RequestContextProcessorTests(TestCase):
     """
-    Tests for the ``django.core.context_processors.request`` processor.
+    Tests for the ``djangocg.core.context_processors.request`` processor.
     """
 
     urls = 'regressiontests.context_processors.urls'

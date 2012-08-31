@@ -6,12 +6,12 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.contrib.localflavor.nl.nl_provinces import PROVINCE_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Field, Select
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.nl.nl_provinces import PROVINCE_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Field, Select
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 pc_re = re.compile('^\d{4}[A-Z]{2}$')

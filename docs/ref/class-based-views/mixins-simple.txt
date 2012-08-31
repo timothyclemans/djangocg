@@ -5,13 +5,13 @@ Simple mixins
 ContextMixin
 ------------
 
-.. class:: django.views.generic.base.ContextMixin
+.. class:: djangocg.views.generic.base.ContextMixin
 
     .. versionadded:: 1.5
 
     **classpath**
 
-    ``django.views.generic.base.ContextMixin``
+    ``djangocg.views.generic.base.ContextMixin``
 
     **Methods**
 
@@ -35,10 +35,10 @@ ContextMixin
 TemplateResponseMixin
 ---------------------
 
-.. class:: django.views.generic.base.TemplateResponseMixin
+.. class:: djangocg.views.generic.base.TemplateResponseMixin
 
     Provides a mechanism to construct a
-    :class:`~django.template.response.TemplateResponse`, given
+    :class:`~djangocg.template.response.TemplateResponse`, given
     suitable context. The template to use is configurable and can be
     further customized by subclasses.
 
@@ -48,7 +48,7 @@ TemplateResponseMixin
 
         The response class to be returned by ``render_to_response`` method.
         Default is
-        :class:`TemplateResponse <django.template.response.TemplateResponse>`.
+        :class:`TemplateResponse <djangocg.template.response.TemplateResponse>`.
         The template and context of ``TemplateResponse`` instances can be
         altered later (e.g. in
         :ref:`template response middleware <template-response-middleware>`).

@@ -1,7 +1,7 @@
 import re
 
-from django.utils.text import compress_string
-from django.utils.cache import patch_vary_headers
+from djangocg.utils.text import compress_string
+from djangocg.utils.cache import patch_vary_headers
 
 re_accepts_gzip = re.compile(r'\bgzip\b')
 

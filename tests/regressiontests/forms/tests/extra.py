@@ -3,14 +3,14 @@ from __future__ import absolute_import, unicode_literals
 
 import datetime
 
-from django.conf import settings
-from django.forms import *
-from django.forms.extras import SelectDateWidget
-from django.forms.util import ErrorList
-from django.test import TestCase
-from django.utils import six
-from django.utils import translation
-from django.utils.encoding import force_text, smart_text, python_2_unicode_compatible
+from djangocg.conf import settings
+from djangocg.forms import *
+from djangocg.forms.extras import SelectDateWidget
+from djangocg.forms.util import ErrorList
+from djangocg.test import TestCase
+from djangocg.utils import six
+from djangocg.utils import translation
+from djangocg.utils.encoding import force_text, smart_text, python_2_unicode_compatible
 
 from .error_messages import AssertFormErrorsMixin
 
@@ -478,7 +478,7 @@ class FormsExtraTestCase(TestCase, AssertFormErrorsMixin):
 
     def test_generic_ipaddress_as_generic(self):
         # The edge cases of the IPv6 validation code are not deeply tested
-        # here, they are covered in the tests for django.utils.ipv6
+        # here, they are covered in the tests for djangocg.utils.ipv6
         f = GenericIPAddressField()
         self.assertFormErrors(['This field is required.'], f.clean, '')
         self.assertFormErrors(['This field is required.'], f.clean, None)

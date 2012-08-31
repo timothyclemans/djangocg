@@ -3,29 +3,29 @@ from __future__ import unicode_literals
 import copy
 import sys
 from functools import update_wrapper
-from django.utils.six.moves import zip
+from djangocg.utils.six.moves import zip
 
-import django.db.models.manager     # Imported to register signal handler.
-from django.conf import settings
-from django.core.exceptions import (ObjectDoesNotExist,
+import djangocg.db.models.manager     # Imported to register signal handler.
+from djangocg.conf import settings
+from djangocg.core.exceptions import (ObjectDoesNotExist,
     MultipleObjectsReturned, FieldError, ValidationError, NON_FIELD_ERRORS)
-from django.core import validators
-from django.db.models.fields import AutoField, FieldDoesNotExist
-from django.db.models.fields.related import (ManyToOneRel,
+from djangocg.core import validators
+from djangocg.db.models.fields import AutoField, FieldDoesNotExist
+from djangocg.db.models.fields.related import (ManyToOneRel,
     OneToOneField, add_lazy_relation)
-from django.db import (router, transaction, DatabaseError,
+from djangocg.db import (router, transaction, DatabaseError,
     DEFAULT_DB_ALIAS)
-from django.db.models.query import Q
-from django.db.models.query_utils import DeferredAttribute, deferred_class_factory
-from django.db.models.deletion import Collector
-from django.db.models.options import Options
-from django.db.models import signals
-from django.db.models.loading import register_models, get_model
-from django.utils.translation import ugettext_lazy as _
-from django.utils.functional import curry
-from django.utils.encoding import force_str, force_text
-from django.utils import six
-from django.utils.text import get_text_list, capfirst
+from djangocg.db.models.query import Q
+from djangocg.db.models.query_utils import DeferredAttribute, deferred_class_factory
+from djangocg.db.models.deletion import Collector
+from djangocg.db.models.options import Options
+from djangocg.db.models import signals
+from djangocg.db.models.loading import register_models, get_model
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.functional import curry
+from djangocg.utils.encoding import force_str, force_text
+from djangocg.utils import six
+from djangocg.utils.text import get_text_list, capfirst
 
 
 def subclass_exception(name, parents, module, attached_to=None):
@@ -79,7 +79,7 @@ class ModelBase(type):
 
         if getattr(meta, 'app_label', None) is None:
             # Figure out the app_label by looking one level up.
-            # For 'django.contrib.sites.models', this would be 'sites'.
+            # For 'djangocg.contrib.sites.models', this would be 'sites'.
             model_module = sys.modules[new_class.__module__]
             kwargs = {"app_label": model_module.__name__.split('.')[-2]}
         else:

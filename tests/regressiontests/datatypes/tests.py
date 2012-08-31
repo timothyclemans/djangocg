@@ -2,9 +2,9 @@ from __future__ import absolute_import, unicode_literals
 
 import datetime
 
-from django.test import TestCase, skipIfDBFeature
-from django.utils import six
-from django.utils.timezone import utc
+from djangocg.test import TestCase, skipIfDBFeature
+from djangocg.utils import six
+from djangocg.utils.timezone import utc
 
 from .models import Donut, RumBaba
 

@@ -1,10 +1,10 @@
 import os
 
-from django.core.management import call_command, CommandError
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils import translation
-from django.utils.six import StringIO
+from djangocg.core.management import call_command, CommandError
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils import translation
+from djangocg.utils.six import StringIO
 
 test_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -20,7 +20,7 @@ class MessageCompilationTests(TestCase):
 class PoFileTests(MessageCompilationTests):
 
     LOCALE='es_AR'
-    MO_FILE='locale/%s/LC_MESSAGES/django.mo' % LOCALE
+    MO_FILE='locale/%s/LC_MESSAGES/djangocg.mo' % LOCALE
 
     def test_bom_rejection(self):
         os.chdir(test_dir)
@@ -34,7 +34,7 @@ class PoFileContentsTests(MessageCompilationTests):
     # Ticket #11240
 
     LOCALE='fr'
-    MO_FILE='locale/%s/LC_MESSAGES/django.mo' % LOCALE
+    MO_FILE='locale/%s/LC_MESSAGES/djangocg.mo' % LOCALE
 
     def setUp(self):
         super(PoFileContentsTests, self).setUp()
@@ -51,11 +51,11 @@ class PercentRenderingTests(MessageCompilationTests):
     # to keep tests for all the stack together
 
     LOCALE='it'
-    MO_FILE='locale/%s/LC_MESSAGES/django.mo' % LOCALE
+    MO_FILE='locale/%s/LC_MESSAGES/djangocg.mo' % LOCALE
 
     @override_settings(LOCALE_PATHS=(os.path.join(test_dir, 'locale'),))
     def test_percent_symbol_escaping(self):
-        from django.template import Template, Context
+        from djangocg.template import Template, Context
         os.chdir(test_dir)
         call_command('compilemessages', locale=self.LOCALE, stderr=StringIO())
         with translation.override(self.LOCALE):

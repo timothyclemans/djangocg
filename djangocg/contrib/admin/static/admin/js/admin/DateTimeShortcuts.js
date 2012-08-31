@@ -90,7 +90,7 @@ var DateTimeShortcuts = {
         var cancel_p = quickElement('p', clock_box, '');
         cancel_p.className = 'calendar-cancel';
         quickElement('a', cancel_p, gettext('Cancel'), 'href', 'javascript:DateTimeShortcuts.dismissClock(' + num + ');');
-        django.jQuery(document).bind('keyup', function(event) {
+        djangocg.jQuery(document).bind('keyup', function(event) {
             if (event.which == 27) {
                 // ESC key closes popup
                 DateTimeShortcuts.dismissClock(num);
@@ -202,7 +202,7 @@ var DateTimeShortcuts = {
         var cancel_p = quickElement('p', cal_box, '');
         cancel_p.className = 'calendar-cancel';
         quickElement('a', cancel_p, gettext('Cancel'), 'href', 'javascript:DateTimeShortcuts.dismissCalendar(' + num + ');');
-        django.jQuery(document).bind('keyup', function(event) {
+        djangocg.jQuery(document).bind('keyup', function(event) {
             if (event.which == 27) {
                 // ESC key closes popup
                 DateTimeShortcuts.dismissCalendar(num);

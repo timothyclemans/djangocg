@@ -2,8 +2,8 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.test import SimpleTestCase
-from django.contrib.localflavor.au.forms import (AUPostCodeField,
+from djangocg.test import SimpleTestCase
+from djangocg.contrib.localflavor.au.forms import (AUPostCodeField,
     AUPhoneNumberField, AUStateSelect)
 
 from .forms import AustralianPlaceForm

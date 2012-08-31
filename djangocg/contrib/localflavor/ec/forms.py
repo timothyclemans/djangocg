@@ -4,8 +4,8 @@ Ecuador-specific form helpers.
 
 from __future__ import absolute_import
 
-from django.contrib.localflavor.ec.ec_provinces import PROVINCE_CHOICES
-from django.forms.fields import Select
+from djangocg.contrib.localflavor.ec.ec_provinces import PROVINCE_CHOICES
+from djangocg.forms.fields import Select
 
 class ECProvinceSelect(Select):
     """

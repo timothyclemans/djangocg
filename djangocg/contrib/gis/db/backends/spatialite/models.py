@@ -1,9 +1,9 @@
 """
  The GeometryColumns and SpatialRefSys models for the SpatiaLite backend.
 """
-from django.db import models
-from django.contrib.gis.db.backends.base import SpatialRefSysMixin
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.contrib.gis.db.backends.base import SpatialRefSysMixin
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class GeometryColumns(models.Model):
@@ -54,7 +54,7 @@ class SpatialRefSys(models.Model, SpatialRefSysMixin):
 
     @property
     def wkt(self):
-        from django.contrib.gis.gdal import SpatialReference
+        from djangocg.contrib.gis.gdal import SpatialReference
         return SpatialReference(self.proj4text).wkt
 
     class Meta:

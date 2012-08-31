@@ -12,8 +12,8 @@ TODO:
 
 from __future__ import absolute_import
 
-from django.core.exceptions import ValidationError
-from django.forms.fields import *
-from django.forms.forms import *
-from django.forms.models import *
-from django.forms.widgets import *
+from djangocg.core.exceptions import ValidationError
+from djangocg.forms.fields import *
+from djangocg.forms.forms import *
+from djangocg.forms.models import *
+from djangocg.forms.widgets import *

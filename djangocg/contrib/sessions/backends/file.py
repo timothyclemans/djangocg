@@ -2,9 +2,9 @@ import errno
 import os
 import tempfile
 
-from django.conf import settings
-from django.contrib.sessions.backends.base import SessionBase, CreateError
-from django.core.exceptions import SuspiciousOperation, ImproperlyConfigured
+from djangocg.conf import settings
+from djangocg.contrib.sessions.backends.base import SessionBase, CreateError
+from djangocg.core.exceptions import SuspiciousOperation, ImproperlyConfigured
 
 
 class SessionStore(SessionBase):

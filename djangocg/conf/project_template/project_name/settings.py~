@@ -15,14 +15,14 @@ MANAGERS = ADMINS
 if DEBUG:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'djangocg.db.backends.sqlite3',
             'NAME': 'debug.db',
         }
     }
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'ENGINE': 'djangocg.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
             'NAME': '',                      # Or path to database file if using sqlite3.
             'USER': '',                      # Not used with sqlite3.
             'PASSWORD': '',                  # Not used with sqlite3.
@@ -83,9 +83,9 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'djangocg.contrib.staticfiles.finders.FileSystemFinder',
+    'djangocg.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'djangocg.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -93,19 +93,19 @@ SECRET_KEY = '{{ secret_key }}'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'djangocg.template.loaders.filesystem.Loader',
+    'djangocg.template.loaders.app_directories.Loader',
+#     'djangocg.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'djangocg.middleware.common.CommonMiddleware',
+    'djangocg.contrib.sessions.middleware.SessionMiddleware',
+    'djangocg.middleware.csrf.CsrfViewMiddleware',
+    'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+    'djangocg.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'djangocg.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = '{{ project_name }}.urls'
@@ -118,14 +118,14 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.admin',
-    'django.contrib.admindocs',
+    'djangocg.contrib.auth',
+    'djangocg.contrib.contenttypes',
+    'djangocg.contrib.sessions',
+    'djangocg.contrib.sites',
+    'djangocg.contrib.messages',
+    'djangocg.contrib.staticfiles',
+    'djangocg.contrib.admin',
+    'djangocg.contrib.admindocs',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -138,18 +138,18 @@ LOGGING = {
     'disable_existing_loggers': False,
     'filters': {
         'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
+            '()': 'djangocg.utils.log.RequireDebugFalse'
         }
     },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'djangocg.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
-        'django.request': {
+        'djangocg.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,

@@ -2,7 +2,7 @@
 Upload handlers to test the upload API.
 """
 
-from django.core.files.uploadhandler import FileUploadHandler, StopUpload
+from djangocg.core.files.uploadhandler import FileUploadHandler, StopUpload
 
 
 class QuotaUploadHandler(FileUploadHandler):

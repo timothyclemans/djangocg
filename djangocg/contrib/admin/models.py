@@ -1,12 +1,12 @@
 from __future__ import unicode_literals
 
-from django.db import models
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import User
-from django.contrib.admin.util import quote
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import smart_text
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.admin.util import quote
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 ADDITION = 1
 CHANGE = 2

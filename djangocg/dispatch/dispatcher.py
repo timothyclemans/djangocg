@@ -1,8 +1,8 @@
 import weakref
 import threading
 
-from django.dispatch import saferef
-from django.utils.six.moves import xrange
+from djangocg.dispatch import saferef
+from djangocg.utils.six.moves import xrange
 
 WEAKREF_TYPES = (weakref.ReferenceType, saferef.BoundMethodWeakref)
 
@@ -69,7 +69,7 @@ class Signal(object):
                 a receiver. This will usually be a string, though it may be
                 anything hashable.
         """
-        from django.conf import settings
+        from djangocg.conf import settings
 
         # If DEBUG is on, check that we got a good receiver
         if settings.DEBUG:

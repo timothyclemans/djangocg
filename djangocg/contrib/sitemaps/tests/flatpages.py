@@ -1,22 +1,22 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.utils.unittest import skipUnless
+from djangocg.conf import settings
+from djangocg.utils.unittest import skipUnless
 
 from .base import SitemapTestsBase
 
 class FlatpagesSitemapTests(SitemapTestsBase):
 
-    @skipUnless("django.contrib.flatpages" in settings.INSTALLED_APPS,
-                "django.contrib.flatpages app not installed.")
+    @skipUnless("djangocg.contrib.flatpages" in settings.INSTALLED_APPS,
+                "djangocg.contrib.flatpages app not installed.")
     def test_flatpage_sitemap(self):
         "Basic FlatPage sitemap test"
 
-        # Import FlatPage inside the test so that when django.contrib.flatpages
+        # Import FlatPage inside the test so that when djangocg.contrib.flatpages
         # is not installed we don't get problems trying to delete Site
         # objects (FlatPage has an M2M to Site, Site.delete() tries to
         # delete related objects, but the M2M table doesn't exist.
-        from django.contrib.flatpages.models import FlatPage
+        from djangocg.contrib.flatpages.models import FlatPage
 
         public = FlatPage.objects.create(
             url='/public/',

@@ -19,7 +19,7 @@ Fixes and improvements in Django 1.0.2
 The primary reason behind this release is to remedy an issue in the
 recently-released Django 1.0.1; the packaging scripts used for Django
 1.0.1 omitted some directories from the final release package,
-including one directory required by ``django.contrib.gis`` and part of
+including one directory required by ``djangocg.contrib.gis`` and part of
 Django's unit-test suite.
 
 Django 1.0.2 contains updated packaging scripts, and the release

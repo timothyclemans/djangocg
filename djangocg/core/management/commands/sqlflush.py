@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 from optparse import make_option
 
-from django.core.management.base import NoArgsCommand
-from django.core.management.sql import sql_flush
-from django.db import connections, DEFAULT_DB_ALIAS
+from djangocg.core.management.base import NoArgsCommand
+from djangocg.core.management.sql import sql_flush
+from djangocg.db import connections, DEFAULT_DB_ALIAS
 
 class Command(NoArgsCommand):
     help = "Returns a list of the SQL statements required to return all tables in the database to the state they were in just after they were installed."

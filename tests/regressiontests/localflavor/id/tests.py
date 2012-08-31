@@ -2,11 +2,11 @@ from __future__ import unicode_literals
 
 import warnings
 
-from django.contrib.localflavor.id.forms import (IDPhoneNumberField,
+from djangocg.contrib.localflavor.id.forms import (IDPhoneNumberField,
     IDPostCodeField, IDNationalIdentityNumberField, IDLicensePlateField,
     IDProvinceSelect, IDLicensePlatePrefixSelect)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class IDLocalFlavorTests(SimpleTestCase):
@@ -15,7 +15,7 @@ class IDLocalFlavorTests(SimpleTestCase):
         warnings.filterwarnings(
             "ignore",
             category=RuntimeWarning,
-            module='django.contrib.localflavor.id.id_choices'
+            module='djangocg.contrib.localflavor.id.id_choices'
         )
 
     def tearDown(self):

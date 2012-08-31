@@ -2,7 +2,7 @@ import os
 import re
 from subprocess import Popen, PIPE
 
-from django.utils import six
+from djangocg.utils import six
 
 can_run_extraction_tests = False
 can_run_compilation_tests = False

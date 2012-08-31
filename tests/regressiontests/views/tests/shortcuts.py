@@ -1,9 +1,9 @@
-from django.conf import settings
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 @override_settings(
-    TEMPLATE_CONTEXT_PROCESSORS=('django.core.context_processors.static',),
+    TEMPLATE_CONTEXT_PROCESSORS=('djangocg.core.context_processors.static',),
     STATIC_URL='/path/to/static/media/',
 )
 class ShortcutTests(TestCase):

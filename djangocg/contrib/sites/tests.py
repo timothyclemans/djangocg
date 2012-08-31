@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.contrib.sites.models import Site, RequestSite, get_current_site
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpRequest
-from django.test import TestCase
+from djangocg.conf import settings
+from djangocg.contrib.sites.models import Site, RequestSite, get_current_site
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.http import HttpRequest
+from djangocg.test import TestCase
 
 
 class SitesFrameworkTests(TestCase):

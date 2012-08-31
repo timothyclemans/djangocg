@@ -3,12 +3,12 @@ from __future__ import absolute_import
 import sys
 import time
 
-from django.conf import settings
-from django.db import transaction, connection
-from django.db.utils import ConnectionHandler, DEFAULT_DB_ALIAS, DatabaseError
-from django.test import (TransactionTestCase, skipIfDBFeature,
+from djangocg.conf import settings
+from djangocg.db import transaction, connection
+from djangocg.db.utils import ConnectionHandler, DEFAULT_DB_ALIAS, DatabaseError
+from djangocg.test import (TransactionTestCase, skipIfDBFeature,
     skipUnlessDBFeature)
-from django.utils import unittest
+from djangocg.utils import unittest
 
 from .models import Person
 

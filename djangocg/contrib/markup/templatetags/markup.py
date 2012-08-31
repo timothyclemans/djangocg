@@ -12,9 +12,9 @@ markup syntaxes to HTML; currently there is support for:
 """
 
 from django import template
-from django.conf import settings
-from django.utils.encoding import force_bytes, force_text
-from django.utils.safestring import mark_safe
+from djangocg.conf import settings
+from djangocg.utils.encoding import force_bytes, force_text
+from djangocg.utils.safestring import mark_safe
 
 register = template.Library()
 

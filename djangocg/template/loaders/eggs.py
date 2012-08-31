@@ -6,10 +6,10 @@ try:
 except ImportError:
     resource_string = None
 
-from django.conf import settings
-from django.template.base import TemplateDoesNotExist
-from django.template.loader import BaseLoader
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.template.base import TemplateDoesNotExist
+from djangocg.template.loader import BaseLoader
+from djangocg.utils import six
 
 class Loader(BaseLoader):
     is_usable = resource_string is not None

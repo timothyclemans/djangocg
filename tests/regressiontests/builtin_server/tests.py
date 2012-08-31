@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 
 from io import BytesIO
 
-from django.core.servers.basehttp import ServerHandler
-from django.utils.unittest import TestCase
+from djangocg.core.servers.basehttp import ServerHandler
+from djangocg.utils.unittest import TestCase
 
 #
 # Tests for #9659: wsgi.file_wrapper in the builtin server.

@@ -1,9 +1,9 @@
-from django.contrib.messages.storage.base import BaseStorage
+from djangocg.contrib.messages.storage.base import BaseStorage
 
 
 class SessionStorage(BaseStorage):
     """
-    Stores messages in the session (that is, django.contrib.sessions).
+    Stores messages in the session (that is, djangocg.contrib.sessions).
     """
     session_key = '_messages'
 

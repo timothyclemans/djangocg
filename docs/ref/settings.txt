@@ -96,7 +96,7 @@ same URL with a slash appended. Note that the redirect may cause any data
 submitted in a POST request to be lost.
 
 The :setting:`APPEND_SLASH` setting is only used if
-:class:`~django.middleware.common.CommonMiddleware` is installed
+:class:`~djangocg.middleware.common.CommonMiddleware` is installed
 (see :doc:`/topics/http/middleware`). See also :setting:`PREPEND_WWW`.
 
 .. setting:: AUTHENTICATION_BACKENDS
@@ -104,7 +104,7 @@ The :setting:`APPEND_SLASH` setting is only used if
 AUTHENTICATION_BACKENDS
 -----------------------
 
-Default: ``('django.contrib.auth.backends.ModelBackend',)``
+Default: ``('djangocg.contrib.auth.backends.ModelBackend',)``
 
 A tuple of authentication backend classes (as strings) to use when attempting to
 authenticate a user. See the :doc:`authentication backends documentation
@@ -131,7 +131,7 @@ Default::
 
     {
         'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
         }
     }
 
@@ -154,12 +154,12 @@ Default: ``''`` (Empty string)
 
 The cache backend to use. The built-in cache backends are:
 
-* ``'django.core.cache.backends.db.DatabaseCache'``
-* ``'django.core.cache.backends.dummy.DummyCache'``
-* ``'django.core.cache.backends.filebased.FileBasedCache'``
-* ``'django.core.cache.backends.locmem.LocMemCache'``
-* ``'django.core.cache.backends.memcached.MemcachedCache'``
-* ``'django.core.cache.backends.memcached.PyLibMCCache'``
+* ``'djangocg.core.cache.backends.db.DatabaseCache'``
+* ``'djangocg.core.cache.backends.dummy.DummyCache'``
+* ``'djangocg.core.cache.backends.filebased.FileBasedCache'``
+* ``'djangocg.core.cache.backends.locmem.LocMemCache'``
+* ``'djangocg.core.cache.backends.memcached.MemcachedCache'``
+* ``'djangocg.core.cache.backends.memcached.PyLibMCCache'``
 
 You can use a cache backend that doesn't ship with Django by setting
 :setting:`BACKEND <CACHE-BACKEND>` to a fully-qualified path of a cache
@@ -215,7 +215,7 @@ identifying name for a local memory cache. e.g.::
 
     CACHES = {
         'default': {
-            'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+            'BACKEND': 'djangocg.core.cache.backends.filebased.FileBasedCache',
             'LOCATION': '/var/tmp/django_cache',
         }
     }
@@ -363,7 +363,7 @@ cookie is only sent under an HTTPS connection.
 CSRF_FAILURE_VIEW
 -----------------
 
-Default: ``'django.views.csrf.csrf_failure'``
+Default: ``'djangocg.views.csrf.csrf_failure'``
 
 A dotted path to the view function to be used when an incoming request
 is rejected by the CSRF protection.  The function should have this signature::
@@ -394,7 +394,7 @@ SQLite. This can be configured using the following::
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'djangocg.db.backends.sqlite3',
             'NAME': 'mydatabase'
         }
     }
@@ -411,10 +411,10 @@ Default: ``''`` (Empty string)
 
 The database backend to use. The built-in database backends are:
 
-* ``'django.db.backends.postgresql_psycopg2'``
-* ``'django.db.backends.mysql'``
-* ``'django.db.backends.sqlite3'``
-* ``'django.db.backends.oracle'``
+* ``'djangocg.db.backends.postgresql_psycopg2'``
+* ``'djangocg.db.backends.mysql'``
+* ``'djangocg.db.backends.sqlite3'``
+* ``'djangocg.db.backends.oracle'``
 
 You can use a database backend that doesn't ship with Django by setting
 ``ENGINE`` to a fully-qualified path (i.e.
@@ -836,7 +836,7 @@ the ``Content-Type`` header.
 DEFAULT_EXCEPTION_REPORTER_FILTER
 ---------------------------------
 
-Default: :class:`django.views.debug.SafeExceptionReporterFilter`
+Default: :class:`djangocg.views.debug.SafeExceptionReporterFilter`
 
 Default exception reporter filter class to be used if none has been assigned to
 the :class:`HttpRequest` instance yet.
@@ -847,7 +847,7 @@ See :ref:`Filtering error reports<filtering-error-reports>`.
 DEFAULT_FILE_STORAGE
 --------------------
 
-Default: :class:`django.core.files.storage.FileSystemStorage`
+Default: :class:`djangocg.core.files.storage.FileSystemStorage`
 
 Default file storage class to be used for any file-related operations that don't
 specify a particular storage system. See :doc:`/topics/files`.
@@ -899,7 +899,7 @@ This is only used if ``CommonMiddleware`` is installed (see
 EMAIL_BACKEND
 -------------
 
-Default: ``'django.core.mail.backends.smtp.EmailBackend'``
+Default: ``'djangocg.core.mail.backends.smtp.EmailBackend'``
 
 The backend to use for sending emails. For the list of available backends see
 :doc:`/topics/email`.
@@ -966,8 +966,8 @@ EMAIL_SUBJECT_PREFIX
 
 Default: ``'[Django] '``
 
-Subject-line prefix for email messages sent with ``django.core.mail.mail_admins``
-or ``django.core.mail.mail_managers``. You'll probably want to include the
+Subject-line prefix for email messages sent with ``djangocg.core.mail.mail_admins``
+or ``djangocg.core.mail.mail_managers``. You'll probably want to include the
 trailing space.
 
 .. setting:: EMAIL_USE_TLS
@@ -996,8 +996,8 @@ FILE_UPLOAD_HANDLERS
 
 Default::
 
-    ("django.core.files.uploadhandler.MemoryFileUploadHandler",
-     "django.core.files.uploadhandler.TemporaryFileUploadHandler",)
+    ("djangocg.core.files.uploadhandler.MemoryFileUploadHandler",
+     "djangocg.core.files.uploadhandler.TemporaryFileUploadHandler",)
 
 A tuple of handlers to use for uploading. See :doc:`/topics/files` for details.
 
@@ -1154,7 +1154,7 @@ contains a Django application, as created by :djadmin:`django-admin.py startapp
     The application names (that is, the final dotted part of the
     path to the module containing ``models.py``) defined in
     :setting:`INSTALLED_APPS` *must* be unique. For example, you can't
-    include both ``django.contrib.auth`` and ``myproject.auth`` in
+    include both ``djangocg.contrib.auth`` and ``myproject.auth`` in
     INSTALLED_APPS.
 
 .. setting:: INTERNAL_IPS
@@ -1216,8 +1216,8 @@ to restrict language selection to a subset of the Django-provided languages.
 If you define a custom :setting:`LANGUAGES` setting, it's OK to mark the
 languages as translation strings (as in the default value referred to above)
 -- but use a "dummy" ``gettext()`` function, not the one in
-``django.utils.translation``. You should *never* import
-``django.utils.translation`` from within your settings file, because that
+``djangocg.utils.translation``. You should *never* import
+``djangocg.utils.translation`` from within your settings file, because that
 module in itself depends on the settings, and that would cause a circular
 import.
 
@@ -1280,7 +1280,7 @@ LOGGING_CONFIG
 
 .. versionadded:: 1.3
 
-Default: ``'django.utils.log.dictConfig'``
+Default: ``'djangocg.utils.log.dictConfig'``
 
 A path to a callable that will be used to configure logging in the
 Django project. Points at a instance of Python's `dictConfig`_
@@ -1301,13 +1301,13 @@ Default: ``'/accounts/profile/'``
 The URL where requests are redirected after login when the
 ``contrib.auth.login`` view gets no ``next`` parameter.
 
-This is used by the :func:`~django.contrib.auth.decorators.login_required`
+This is used by the :func:`~djangocg.contrib.auth.decorators.login_required`
 decorator, for example.
 
 .. _`note on LOGIN_REDIRECT_URL setting`:
 
 .. note::
-    You can use :func:`~django.core.urlresolvers.reverse_lazy` to reference
+    You can use :func:`~djangocg.core.urlresolvers.reverse_lazy` to reference
     URLs by their name instead of providing a hardcoded value. Assuming a
     ``urls.py`` with an URLpattern named ``home``::
 
@@ -1315,14 +1315,14 @@ decorator, for example.
             url('^welcome/$', 'test_app.views.home', name='home'),
         )
 
-    You can use :func:`~django.core.urlresolvers.reverse_lazy` like this::
+    You can use :func:`~djangocg.core.urlresolvers.reverse_lazy` like this::
 
-        from django.core.urlresolvers import reverse_lazy
+        from djangocg.core.urlresolvers import reverse_lazy
 
         LOGIN_REDIRECT_URL = reverse_lazy('home')
 
     This also works fine with localized URLs using
-    :func:`~django.conf.urls.i18n.i18n_patterns`.
+    :func:`~djangocg.conf.urls.i18n.i18n_patterns`.
 
 .. setting:: LOGIN_URL
 
@@ -1332,7 +1332,7 @@ LOGIN_URL
 Default: ``'/accounts/login/'``
 
 The URL where requests are redirected for login, especially when using the
-:func:`~django.contrib.auth.decorators.login_required` decorator.
+:func:`~djangocg.contrib.auth.decorators.login_required` decorator.
 
 .. note::
     See the `note on LOGIN_REDIRECT_URL setting`_
@@ -1400,7 +1400,7 @@ more details.
 MESSAGE_STORAGE
 ---------------
 
-Default: ``'django.contrib.messages.storage.user_messages.LegacyFallbackStorage'``
+Default: ``'djangocg.contrib.messages.storage.user_messages.LegacyFallbackStorage'``
 
 Controls where Django stores message data.  See the
 :doc:`messages documentation </ref/contrib/messages>` for more details.
@@ -1426,11 +1426,11 @@ MIDDLEWARE_CLASSES
 
 Default::
 
-    ('django.middleware.common.CommonMiddleware',
-     'django.contrib.sessions.middleware.SessionMiddleware',
-     'django.middleware.csrf.CsrfViewMiddleware',
-     'django.contrib.auth.middleware.AuthenticationMiddleware',
-     'django.contrib.messages.middleware.MessageMiddleware',)
+    ('djangocg.middleware.common.CommonMiddleware',
+     'djangocg.contrib.sessions.middleware.SessionMiddleware',
+     'djangocg.middleware.csrf.CsrfViewMiddleware',
+     'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+     'djangocg.contrib.messages.middleware.MessageMiddleware',)
 
 A tuple of middleware classes to use. See :doc:`/topics/http/middleware`.
 
@@ -1482,7 +1482,7 @@ PASSWORD_RESET_TIMEOUT_DAYS
 Default: ``3``
 
 The number of days a password reset link is valid for. Used by the
-:mod:`django.contrib.auth` password reset mechanism.
+:mod:`djangocg.contrib.auth` password reset mechanism.
 
 .. setting:: PREPEND_WWW
 
@@ -1492,7 +1492,7 @@ PREPEND_WWW
 Default: ``False``
 
 Whether to prepend the "www." subdomain to URLs that don't have it. This is only
-used if :class:`~django.middleware.common.CommonMiddleware` is installed
+used if :class:`~djangocg.middleware.common.CommonMiddleware` is installed
 (see :doc:`/topics/http/middleware`). See also :setting:`APPEND_SLASH`.
 
 .. setting:: PROFANITIES_LIST
@@ -1513,7 +1513,7 @@ RESTRUCTUREDTEXT_FILTER_SETTINGS
 Default: ``{}``
 
 A dictionary containing settings for the ``restructuredtext`` markup filter from
-the :doc:`django.contrib.markup application </ref/contrib/markup>`. They override
+the :doc:`djangocg.contrib.markup application </ref/contrib/markup>`. They override
 the default writer settings. See the Docutils restructuredtext `writer settings
 docs`_ for details.
 
@@ -1737,15 +1737,15 @@ See the :doc:`/topics/http/sessions`.
 SESSION_ENGINE
 --------------
 
-Default: ``django.contrib.sessions.backends.db``
+Default: ``djangocg.contrib.sessions.backends.db``
 
 Controls where Django stores session data. Valid values are:
 
-* ``'django.contrib.sessions.backends.db'``
-* ``'django.contrib.sessions.backends.file'``
-* ``'django.contrib.sessions.backends.cache'``
-* ``'django.contrib.sessions.backends.cached_db'``
-* ``'django.contrib.sessions.backends.signed_cookies'``
+* ``'djangocg.contrib.sessions.backends.db'``
+* ``'djangocg.contrib.sessions.backends.file'``
+* ``'djangocg.contrib.sessions.backends.cache'``
+* ``'djangocg.contrib.sessions.backends.cached_db'``
+* ``'djangocg.contrib.sessions.backends.signed_cookies'``
 
 See :doc:`/topics/http/sessions`.
 
@@ -1816,7 +1816,7 @@ SIGNING_BACKEND
 
 .. versionadded:: 1.4
 
-Default: 'django.core.signing.TimestampSigner'
+Default: 'djangocg.core.signing.TimestampSigner'
 
 The backend used for signing cookies and other data.
 
@@ -1894,24 +1894,24 @@ TEMPLATE_CONTEXT_PROCESSORS
 
 Default::
 
-    ("django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages")
+    ("djangocg.contrib.auth.context_processors.auth",
+    "djangocg.core.context_processors.debug",
+    "djangocg.core.context_processors.i18n",
+    "djangocg.core.context_processors.media",
+    "djangocg.core.context_processors.static",
+    "djangocg.core.context_processors.tz",
+    "djangocg.contrib.messages.context_processors.messages")
 
 A tuple of callables that are used to populate the context in ``RequestContext``.
 These callables take a request object as their argument and return a dictionary
 of items to be merged into the context.
 
 .. versionadded:: 1.3
-    The ``django.core.context_processors.static`` context processor
+    The ``djangocg.core.context_processors.static`` context processor
     was added in this release.
 
 .. versionadded:: 1.4
-    The ``django.core.context_processors.tz`` context processor
+    The ``djangocg.core.context_processors.tz`` context processor
     was added in this release.
 
 .. setting:: TEMPLATE_DEBUG
@@ -1939,7 +1939,7 @@ TEMPLATE_DIRS
 Default: ``()`` (Empty tuple)
 
 List of locations of the template source files searched by
-:class:`django.template.loaders.filesystem.Loader`, in search order.
+:class:`djangocg.template.loaders.filesystem.Loader`, in search order.
 
 Note that these paths should use Unix-style forward slashes, even on Windows.
 
@@ -1952,8 +1952,8 @@ TEMPLATE_LOADERS
 
 Default::
 
-     ('django.template.loaders.filesystem.Loader',
-      'django.template.loaders.app_directories.Loader')
+     ('djangocg.template.loaders.filesystem.Loader',
+      'djangocg.template.loaders.app_directories.Loader')
 
 A tuple of template loader classes, specified as strings. Each ``Loader`` class
 knows how to import templates from a particular source. Optionally, a tuple can be
@@ -1976,7 +1976,7 @@ misspelled) variables. See :ref:`invalid-template-variables`..
 TEST_RUNNER
 -----------
 
-Default: ``'django.test.simple.DjangoTestSuiteRunner'``
+Default: ``'djangocg.test.simple.DjangoTestSuiteRunner'``
 
 The name of the class to use for starting the test suite. See
 :doc:`/topics/testing`.
@@ -2193,7 +2193,7 @@ startproject <startproject>` management command will create a simple
 ``wsgi.py`` file with an ``application`` callable in it, and point this setting
 to that ``application``.
 
-If not set, the return value of :func:`django.core.wsgi.get_wsgi_application`
+If not set, the return value of :func:`djangocg.core.wsgi.get_wsgi_application`
 will be used. In this case, the behavior of :djadmin:`runserver` will be
 identical to previous Django versions.
 
@@ -2225,7 +2225,7 @@ X_FRAME_OPTIONS
 Default: ``'SAMEORIGIN'``
 
 The default value for the X-Frame-Options header used by
-:class:`~django.middleware.clickjacking.XFrameOptionsMiddleware`. See the
+:class:`~djangocg.middleware.clickjacking.XFrameOptionsMiddleware`. See the
 :doc:`clickjacking protection </ref/clickjacking/>` documentation.
 
 Deprecated settings
@@ -2237,7 +2237,7 @@ ADMIN_MEDIA_PREFIX
 ------------------
 
 .. deprecated:: 1.4
-   This setting has been obsoleted by the ``django.contrib.staticfiles`` app
+   This setting has been obsoleted by the ``djangocg.contrib.staticfiles`` app
    integration. See the :doc:`Django 1.4 release notes</releases/1.4>` for
    more information.
 

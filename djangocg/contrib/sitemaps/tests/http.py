@@ -3,15 +3,15 @@ from __future__ import unicode_literals
 import os
 from datetime import date
 
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.contrib.sitemaps import Sitemap, GenericSitemap
-from django.contrib.sites.models import Site
-from django.core.exceptions import ImproperlyConfigured
-from django.test.utils import override_settings
-from django.utils.unittest import skipUnless
-from django.utils.formats import localize
-from django.utils.translation import activate, deactivate
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.sitemaps import Sitemap, GenericSitemap
+from djangocg.contrib.sites.models import Site
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test.utils import override_settings
+from djangocg.utils.unittest import skipUnless
+from djangocg.utils.formats import localize
+from djangocg.utils.translation import activate, deactivate
 
 from .base import SitemapTestsBase
 
@@ -103,8 +103,8 @@ class HTTPSitemapTests(SitemapTestsBase):
 """ % date.today()
         self.assertEqual(response.content, expected_content.encode('utf-8'))
 
-    @skipUnless("django.contrib.sites" in settings.INSTALLED_APPS,
-                "django.contrib.sites app not installed.")
+    @skipUnless("djangocg.contrib.sites" in settings.INSTALLED_APPS,
+                "djangocg.contrib.sites app not installed.")
     def test_sitemap_get_urls_no_site_1(self):
         """
         Check we get ImproperlyConfigured if we don't pass a site object to

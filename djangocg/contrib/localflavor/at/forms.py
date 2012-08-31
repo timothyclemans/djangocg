@@ -4,10 +4,10 @@ AT-specific Form helpers
 from __future__ import unicode_literals
 import re
 
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Field, RegexField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Field, RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
 re_ssn = re.compile(r'^\d{4} \d{6}')
 
@@ -30,7 +30,7 @@ class ATStateSelect(Select):
     A Select widget that uses a list of AT states as its choices.
     """
     def __init__(self, attrs=None):
-        from django.contrib.localflavor.at.at_states import STATE_CHOICES
+        from djangocg.contrib.localflavor.at.at_states import STATE_CHOICES
         super(ATStateSelect, self).__init__(attrs, choices=STATE_CHOICES)
 
 class ATSocialSecurityNumberField(Field):

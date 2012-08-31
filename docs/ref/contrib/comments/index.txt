@@ -2,7 +2,7 @@
 Django's comments framework
 ===========================
 
-.. module:: django.contrib.comments
+.. module:: djangocg.contrib.comments
    :synopsis: Django's comment framework
 
 .. highlightlang:: html+django
@@ -22,7 +22,7 @@ Quick start guide
 
 To get started using the ``comments`` app, follow these steps:
 
-#. Install the comments framework by adding ``'django.contrib.comments'`` to
+#. Install the comments framework by adding ``'djangocg.contrib.comments'`` to
    :setting:`INSTALLED_APPS`.
 
 #. Run ``manage.py syncdb`` so that Django will create the comment tables.
@@ -33,7 +33,7 @@ To get started using the ``comments`` app, follow these steps:
 
         urlpatterns = patterns('',
             ...
-            (r'^comments/', include('django.contrib.comments.urls')),
+            (r'^comments/', include('djangocg.contrib.comments.urls')),
             ...
         )
 
@@ -121,7 +121,7 @@ For example::
         ...
     {% endfor %}
 
-This returns a list of :class:`~django.contrib.comments.models.Comment` objects;
+This returns a list of :class:`~djangocg.contrib.comments.models.Comment` objects;
 see :doc:`the comment model documentation </ref/contrib/comments/models>` for
 details.
 

@@ -1,7 +1,7 @@
 import os
 from optparse import make_option
-from django.contrib.gis import gdal
-from django.core.management.base import LabelCommand, CommandError
+from djangocg.contrib.gis import gdal
+from djangocg.core.management.base import LabelCommand, CommandError
 
 def layer_option(option, opt, value, parser):
     """
@@ -56,7 +56,7 @@ class Command(LabelCommand):
         make_option('--name-field', dest='name_field',
                     help='Specifies a field name to return for the `__unicode__` function.'),
         make_option('--no-imports', action='store_false', dest='imports', default=True,
-                    help='Do not include `from django.contrib.gis.db import models` '
+                    help='Do not include `from djangocg.contrib.gis.db import models` '
                     'statement.'),
         make_option('--null', dest='null', type='string', action='callback',
                     callback=list_option, default=False,
@@ -99,7 +99,7 @@ class Command(LabelCommand):
 
         # Returning the output of ogrinspect with the given arguments
         # and options.
-        from django.contrib.gis.utils.ogrinspect import _ogrinspect, mapping
+        from djangocg.contrib.gis.utils.ogrinspect import _ogrinspect, mapping
         output = [s for s in _ogrinspect(ds, model_name, **options)]
         if show_mapping:
             # Constructing the keyword arguments for `mapping`, and

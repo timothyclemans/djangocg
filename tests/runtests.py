@@ -7,13 +7,13 @@ import tempfile
 import warnings
 
 from django import contrib
-from django.utils import six
+from djangocg.utils import six
 
 # databrowse is deprecated, but we still want to run its tests
 warnings.filterwarnings('ignore', "The Databrowse contrib app is deprecated",
-                        DeprecationWarning, 'django.contrib.databrowse')
+                        DeprecationWarning, 'djangocg.contrib.databrowse')
 
-CONTRIB_DIR_NAME = 'django.contrib'
+CONTRIB_DIR_NAME = 'djangocg.contrib'
 MODEL_TESTS_DIR_NAME = 'modeltests'
 REGRESSION_TESTS_DIR_NAME = 'regressiontests'
 
@@ -29,19 +29,19 @@ os.environ['DJANGO_TEST_TEMP_DIR'] = TEMP_DIR
 REGRESSION_SUBDIRS_TO_SKIP = []
 
 ALWAYS_INSTALLED_APPS = [
-    'django.contrib.contenttypes',
-    'django.contrib.auth',
-    'django.contrib.sites',
-    'django.contrib.flatpages',
-    'django.contrib.redirects',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.comments',
-    'django.contrib.admin',
-    'django.contrib.admindocs',
-    'django.contrib.databrowse',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
+    'djangocg.contrib.contenttypes',
+    'djangocg.contrib.auth',
+    'djangocg.contrib.sites',
+    'djangocg.contrib.flatpages',
+    'djangocg.contrib.redirects',
+    'djangocg.contrib.sessions',
+    'djangocg.contrib.messages',
+    'djangocg.contrib.comments',
+    'djangocg.contrib.admin',
+    'djangocg.contrib.admindocs',
+    'djangocg.contrib.databrowse',
+    'djangocg.contrib.staticfiles',
+    'djangocg.contrib.humanize',
     'regressiontests.staticfiles_tests',
     'regressiontests.staticfiles_tests.apps.test',
     'regressiontests.staticfiles_tests.apps.no_label',
@@ -50,7 +50,7 @@ ALWAYS_INSTALLED_APPS = [
 def geodjango(settings):
     # All databases must have spatial backends to run GeoDjango tests.
     spatial_dbs = [name for name, db_dict in settings.DATABASES.items()
-                   if db_dict['ENGINE'].startswith('django.contrib.gis')]
+                   if db_dict['ENGINE'].startswith('djangocg.contrib.gis')]
     return len(spatial_dbs) == len(settings.DATABASES)
 
 def get_test_modules():
@@ -71,7 +71,7 @@ def get_test_modules():
     return modules
 
 def setup(verbosity, test_labels):
-    from django.conf import settings
+    from djangocg.conf import settings
     state = {
         'INSTALLED_APPS': settings.INSTALLED_APPS,
         'ROOT_URLCONF': getattr(settings, "ROOT_URLCONF", ""),
@@ -94,10 +94,10 @@ def setup(verbosity, test_labels):
     settings.LANGUAGE_CODE = 'en'
     settings.LOGIN_URL = '/accounts/login/'
     settings.MIDDLEWARE_CLASSES = (
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        'django.middleware.common.CommonMiddleware',
+        'djangocg.contrib.sessions.middleware.SessionMiddleware',
+        'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+        'djangocg.contrib.messages.middleware.MessageMiddleware',
+        'djangocg.middleware.common.CommonMiddleware',
     )
     settings.SITE_ID = 1
     # For testing comment-utils, we require the MANAGERS attribute
@@ -108,7 +108,7 @@ def setup(verbosity, test_labels):
     # Load all the ALWAYS_INSTALLED_APPS.
     # (This import statement is intentionally delayed until after we
     # access settings because of the USE_I18N dependency.)
-    from django.db.models.loading import get_apps, load_app
+    from djangocg.db.models.loading import get_apps, load_app
     get_apps()
 
     # Load all the test model apps.
@@ -118,9 +118,9 @@ def setup(verbosity, test_labels):
     # If GeoDjango, then we'll want to add in the test applications
     # that are a part of its test suite.
     if geodjango(settings):
-        from django.contrib.gis.tests import geo_apps
+        from djangocg.contrib.gis.tests import geo_apps
         test_modules.extend(geo_apps(runtests=True))
-        settings.INSTALLED_APPS.extend(['django.contrib.gis', 'django.contrib.sitemaps'])
+        settings.INSTALLED_APPS.extend(['djangocg.contrib.gis', 'djangocg.contrib.sitemaps'])
 
     for module_dir, module_name in test_modules:
         module_label = '.'.join([module_dir, module_name])
@@ -138,7 +138,7 @@ def setup(verbosity, test_labels):
     return state
 
 def teardown(state):
-    from django.conf import settings
+    from djangocg.conf import settings
     # Removing the temporary TEMP_DIR. Ensure we pass in unicode
     # so that it will successfully remove temp trees containing
     # non-ASCII filenames on Windows. (We're assuming the temp dir
@@ -149,20 +149,20 @@ def teardown(state):
         setattr(settings, key, value)
 
 def django_tests(verbosity, interactive, failfast, test_labels):
-    from django.conf import settings
+    from djangocg.conf import settings
     state = setup(verbosity, test_labels)
     extra_tests = []
 
     # If GeoDjango is used, add it's tests that aren't a part of
     # an application (e.g., GEOS, GDAL, Distance objects).
     if geodjango(settings) and (not test_labels or 'gis' in test_labels):
-        from django.contrib.gis.tests import geodjango_suite
+        from djangocg.contrib.gis.tests import geodjango_suite
         extra_tests.append(geodjango_suite(apps=False))
 
     # Run the test suite, including the extra validation tests.
-    from django.test.utils import get_runner
+    from djangocg.test.utils import get_runner
     if not hasattr(settings, 'TEST_RUNNER'):
-        settings.TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
+        settings.TEST_RUNNER = 'djangocg.test.simple.DjangoTestSuiteRunner'
     TestRunner = get_runner(settings)
 
     test_runner = TestRunner(verbosity=verbosity, interactive=interactive,
@@ -178,7 +178,7 @@ def bisect_tests(bisection_label, options, test_labels):
 
     if not test_labels:
         # Get the full list of test labels to use for bisection
-        from django.db.models.loading import get_apps
+        from djangocg.db.models.loading import get_apps
         test_labels = [app.__name__.split('.')[-2] for app in get_apps()]
 
     print('***** Bisecting test suite: %s' % ' '.join(test_labels))
@@ -239,7 +239,7 @@ def paired_tests(paired_test, options, test_labels):
     if not test_labels:
         print("")
         # Get the full list of test labels to use for bisection
-        from django.db.models.loading import get_apps
+        from djangocg.db.models.loading import get_apps
         test_labels = [app.__name__.split('.')[-2] for app in get_apps()]
 
     print('***** Trying paired execution')

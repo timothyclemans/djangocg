@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.db.backends import BaseDatabaseIntrospection
+from djangocg.db.backends import BaseDatabaseIntrospection
 
 
 class DatabaseIntrospection(BaseDatabaseIntrospection):

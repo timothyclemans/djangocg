@@ -4,11 +4,11 @@ Israeli-specific form helpers
 from __future__ import unicode_literals
 import re
 
-from django.core.exceptions import ValidationError
-from django.core.validators import EMPTY_VALUES
-from django.forms.fields import RegexField, Field, EMPTY_VALUES
-from django.utils.checksums import luhn
-from django.utils.translation import ugettext_lazy as _
+from djangocg.core.exceptions import ValidationError
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms.fields import RegexField, Field, EMPTY_VALUES
+from djangocg.utils.checksums import luhn
+from djangocg.utils.translation import ugettext_lazy as _
 
 # Israeli ID numbers consist of up to 8 digits followed by a checksum digit.
 # Numbers which are shorter than 8 digits are effectively left-zero-padded.

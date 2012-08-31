@@ -3,11 +3,11 @@ A second, custom AdminSite -- see tests.CustomAdminSiteTests.
 """
 from __future__ import absolute_import
 
-from django.conf.urls import patterns
-from django.contrib import admin
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth.admin import UserAdmin
+from djangocg.conf.urls import patterns
+from djangocg.contrib import admin
+from djangocg.http import HttpResponse
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.auth.admin import UserAdmin
 
 from . import models, forms, admin as base_admin
 

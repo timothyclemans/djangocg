@@ -2,7 +2,7 @@
 Models
 ======
 
-.. module:: django.db.models
+.. module:: djangocg.db.models
 
 A model is the single, definitive source of data about your data. It contains
 the essential fields and behaviors of the data you're storing. Generally, each
@@ -11,7 +11,7 @@ model maps to a single database table.
 The basics:
 
 * Each model is a Python class that subclasses
-  :class:`django.db.models.Model`.
+  :class:`djangocg.db.models.Model`.
 
 * Each attribute of the model represents a database field.
 
@@ -25,7 +25,7 @@ Quick example
 This example model defines a ``Person``, which has a ``first_name`` and
 ``last_name``::
 
-    from django.db import models
+    from djangocg.db import models
 
     class Person(models.Model):
         first_name = models.CharField(max_length=30)
@@ -103,7 +103,7 @@ Field types
 -----------
 
 Each field in your model should be an instance of the appropriate
-:class:`~django.db.models.Field` class. Django uses the field class types to
+:class:`~djangocg.db.models.Field` class. Django uses the field class types to
 determine a few things:
 
 * The database column type (e.g. ``INTEGER``, ``VARCHAR``).
@@ -124,8 +124,8 @@ Field options
 
 Each field takes a certain set of field-specific arguments (documented in the
 :ref:`model field reference <model-field-types>`). For example,
-:class:`~django.db.models.CharField` (and its subclasses) require a
-:attr:`~django.db.models.CharField.max_length` argument which specifies the size
+:class:`~djangocg.db.models.CharField` (and its subclasses) require a
+:attr:`~djangocg.db.models.CharField.max_length` argument which specifies the size
 of the ``VARCHAR`` database field used to store the data.
 
 There's also a set of common arguments available to all field types. All are
@@ -169,7 +169,7 @@ ones:
     display value for a choices field can be accessed using the
     ``get_FOO_display`` method. For example::
 
-        from django.db import models
+        from djangocg.db import models
 
         class Person(models.Model):
             SHIRT_SIZES = (
@@ -239,9 +239,9 @@ Each model requires exactly one field to have :attr:`primary_key=True
 Verbose field names
 -------------------
 
-Each field type, except for :class:`~django.db.models.ForeignKey`,
-:class:`~django.db.models.ManyToManyField` and
-:class:`~django.db.models.OneToOneField`, takes an optional first positional
+Each field type, except for :class:`~djangocg.db.models.ForeignKey`,
+:class:`~djangocg.db.models.ManyToManyField` and
+:class:`~djangocg.db.models.OneToOneField`, takes an optional first positional
 argument -- a verbose name. If the verbose name isn't given, Django will
 automatically create it using the field's attribute name, converting underscores
 to spaces.
@@ -254,9 +254,9 @@ In this example, the verbose name is ``"first name"``::
 
     first_name = models.CharField(max_length=30)
 
-:class:`~django.db.models.ForeignKey`,
-:class:`~django.db.models.ManyToManyField` and
-:class:`~django.db.models.OneToOneField` require the first argument to be a
+:class:`~djangocg.db.models.ForeignKey`,
+:class:`~djangocg.db.models.ManyToManyField` and
+:class:`~djangocg.db.models.OneToOneField` require the first argument to be a
 model class, so use the :attr:`~Field.verbose_name` keyword argument::
 
     poll = models.ForeignKey(Poll, verbose_name="the related poll")
@@ -277,11 +277,11 @@ relationships: many-to-one, many-to-many and one-to-one.
 Many-to-one relationships
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To define a many-to-one relationship, use :class:`django.db.models.ForeignKey`.
-You use it just like any other :class:`~django.db.models.Field` type: by
+To define a many-to-one relationship, use :class:`djangocg.db.models.ForeignKey`.
+You use it just like any other :class:`~djangocg.db.models.Field` type: by
 including it as a class attribute of your model.
 
-:class:`~django.db.models.ForeignKey` requires a positional argument: the class
+:class:`~djangocg.db.models.ForeignKey` requires a positional argument: the class
 to which the model is related.
 
 For example, if a ``Car`` model has a ``Manufacturer`` -- that is, a
@@ -301,7 +301,7 @@ models not yet defined <lazy-relationships>`; see :ref:`the model field
 reference <ref-foreignkey>` for details.
 
 It's suggested, but not required, that the name of a
-:class:`~django.db.models.ForeignKey` field (``manufacturer`` in the example
+:class:`~djangocg.db.models.ForeignKey` field (``manufacturer`` in the example
 above) be the name of the model, lowercase. You can, of course, call the field
 whatever you want. For example::
 
@@ -311,7 +311,7 @@ whatever you want. For example::
 
 .. seealso::
 
-    :class:`~django.db.models.ForeignKey` fields accept a number of extra
+    :class:`~djangocg.db.models.ForeignKey` fields accept a number of extra
     arguments which are explained in :ref:`the model field reference
     <foreign-key-arguments>`. These options help define how the relationship
     should work; all are optional.
@@ -327,11 +327,11 @@ Many-to-many relationships
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To define a many-to-many relationship, use
-:class:`~django.db.models.ManyToManyField`. You use it just like any other
-:class:`~django.db.models.Field` type: by including it as a class attribute of
+:class:`~djangocg.db.models.ManyToManyField`. You use it just like any other
+:class:`~djangocg.db.models.Field` type: by including it as a class attribute of
 your model.
 
-:class:`~django.db.models.ManyToManyField` requires a positional argument: the
+:class:`~djangocg.db.models.ManyToManyField` requires a positional argument: the
 class to which the model is related.
 
 For example, if a ``Pizza`` has multiple ``Topping`` objects -- that is, a
@@ -345,24 +345,24 @@ For example, if a ``Pizza`` has multiple ``Topping`` objects -- that is, a
         # ...
         toppings = models.ManyToManyField(Topping)
 
-As with :class:`~django.db.models.ForeignKey`, you can also create
+As with :class:`~djangocg.db.models.ForeignKey`, you can also create
 :ref:`recursive relationships <recursive-relationships>` (an object with a
 many-to-many relationship to itself) and :ref:`relationships to models not yet
 defined <lazy-relationships>`; see :ref:`the model field reference
 <ref-manytomany>` for details.
 
 It's suggested, but not required, that the name of a
-:class:`~django.db.models.ManyToManyField` (``toppings`` in the example above)
+:class:`~djangocg.db.models.ManyToManyField` (``toppings`` in the example above)
 be a plural describing the set of related model objects.
 
 It doesn't matter which model has the
-:class:`~django.db.models.ManyToManyField`, but you should only put it in one
+:class:`~djangocg.db.models.ManyToManyField`, but you should only put it in one
 of the models -- not both.
 
-Generally, :class:`~django.db.models.ManyToManyField` instances should go in
+Generally, :class:`~djangocg.db.models.ManyToManyField` instances should go in
 the object that's going to be edited on a form. In the above example,
 ``toppings`` is in ``Pizza`` (rather than ``Topping`` having a ``pizzas``
-:class:`~django.db.models.ManyToManyField` ) because it's more natural to think
+:class:`~djangocg.db.models.ManyToManyField` ) because it's more natural to think
 about a pizza having toppings than a topping being on multiple pizzas. The way
 it's set up above, the ``Pizza`` form would let users select the toppings.
 
@@ -371,7 +371,7 @@ it's set up above, the ``Pizza`` form would let users select the toppings.
     See the :doc:`Many-to-many relationship model example
     </topics/db/examples/many_to_many>` for a full example.
 
-:class:`~django.db.models.ManyToManyField` fields also accept a number of
+:class:`~djangocg.db.models.ManyToManyField` fields also accept a number of
 extra arguments which are explained in :ref:`the model field reference
 <manytomany-arguments>`. These options help define how the relationship
 should work; all are optional.
@@ -383,20 +383,20 @@ Extra fields on many-to-many relationships
 
 When you're only dealing with simple many-to-many relationships such as
 mixing and matching pizzas and toppings, a standard
-:class:`~django.db.models.ManyToManyField` is all you need. However, sometimes
+:class:`~djangocg.db.models.ManyToManyField` is all you need. However, sometimes
 you may need to associate data with the relationship between two models.
 
 For example, consider the case of an application tracking the musical groups
 which musicians belong to. There is a many-to-many relationship between a person
 and the groups of which they are a member, so you could use a
-:class:`~django.db.models.ManyToManyField` to represent this relationship.
+:class:`~djangocg.db.models.ManyToManyField` to represent this relationship.
 However, there is a lot of detail about the membership that you might want to
 collect, such as the date at which the person joined the group.
 
 For these situations, Django allows you to specify the model that will be used
 to govern the many-to-many relationship. You can then put extra fields on the
 intermediate model. The intermediate model is associated with the
-:class:`~django.db.models.ManyToManyField` using the
+:class:`~djangocg.db.models.ManyToManyField` using the
 :attr:`through <ManyToManyField.through>` argument to point to the model
 that will act as an intermediary. For our musician example, the code would look
 something like this::
@@ -445,7 +445,7 @@ There are a few restrictions on the intermediate model:
   :attr:`symmetrical=False <ManyToManyField.symmetrical>` (see
   :ref:`the model field reference <manytomany-arguments>`).
 
-Now that you have set up your :class:`~django.db.models.ManyToManyField` to use
+Now that you have set up your :class:`~djangocg.db.models.ManyToManyField` to use
 your intermediary model (``Membership``, in this case), you're ready to start
 creating some many-to-many relationships. You do this by creating instances of
 the intermediate model::
@@ -485,9 +485,9 @@ disabled for many-to-many relationships that use an intermediate model.
 The only way to create this type of relationship is to create instances of the
 intermediate model.
 
-The :meth:`~django.db.models.fields.related.RelatedManager.remove` method is
+The :meth:`~djangocg.db.models.fields.related.RelatedManager.remove` method is
 disabled for similar reasons. However, the
-:meth:`~django.db.models.fields.related.RelatedManager.clear` method can be
+:meth:`~djangocg.db.models.fields.related.RelatedManager.clear` method can be
 used to remove all many-to-many relationships for an instance::
 
     # Beatles have broken up
@@ -534,13 +534,13 @@ One-to-one relationships
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 To define a one-to-one relationship, use
-:class:`~django.db.models.OneToOneField`. You use it just like any other
+:class:`~djangocg.db.models.OneToOneField`. You use it just like any other
 ``Field`` type: by including it as a class attribute of your model.
 
 This is most useful on the primary key of an object when that object "extends"
 another object in some way.
 
-:class:`~django.db.models.OneToOneField` requires a positional argument: the
+:class:`~djangocg.db.models.OneToOneField` requires a positional argument: the
 class to which the model is related.
 
 For example, if you were building a database of "places", you would
@@ -548,12 +548,12 @@ build pretty standard stuff such as address, phone number, etc. in the
 database. Then, if you wanted to build a database of restaurants on
 top of the places, instead of repeating yourself and replicating those
 fields in the ``Restaurant`` model, you could make ``Restaurant`` have
-a :class:`~django.db.models.OneToOneField` to ``Place`` (because a
+a :class:`~djangocg.db.models.OneToOneField` to ``Place`` (because a
 restaurant "is a" place; in fact, to handle this you'd typically use
 :ref:`inheritance <model-inheritance>`, which involves an implicit
 one-to-one relation).
 
-As with :class:`~django.db.models.ForeignKey`, a
+As with :class:`~djangocg.db.models.ForeignKey`, a
 :ref:`recursive relationship <recursive-relationships>`
 can be defined and
 :ref:`references to as-yet undefined models <lazy-relationships>`
@@ -564,15 +564,15 @@ can be made; see :ref:`the model field reference <ref-onetoone>` for details.
     See the :doc:`One-to-one relationship model example
     </topics/db/examples/one_to_one>` for a full example.
 
-:class:`~django.db.models.OneToOneField` fields also accept one specific,
+:class:`~djangocg.db.models.OneToOneField` fields also accept one specific,
 optional ``parent_link`` argument described in the :ref:`model field
 reference <ref-onetoone>`.
 
-:class:`~django.db.models.OneToOneField` classes used to automatically become
+:class:`~djangocg.db.models.OneToOneField` classes used to automatically become
 the primary key on a model. This is no longer true (although you can manually
-pass in the :attr:`~django.db.models.Field.primary_key` argument if you like).
+pass in the :attr:`~djangocg.db.models.Field.primary_key` argument if you like).
 Thus, it's now possible to have multiple fields of type
-:class:`~django.db.models.OneToOneField` on a single model.
+:class:`~djangocg.db.models.OneToOneField` on a single model.
 
 Models across files
 -------------------
@@ -650,7 +650,7 @@ Model methods
 =============
 
 Define custom methods on a model to add custom "row-level" functionality to your
-objects. Whereas :class:`~django.db.models.Manager` methods are intended to do
+objects. Whereas :class:`~djangocg.db.models.Manager` methods are intended to do
 "table-wide" things, model methods should act on a particular model instance.
 
 This is a valuable technique for keeping business logic in one place -- the
@@ -658,7 +658,7 @@ model.
 
 For example, this model has a few custom methods::
 
-    from django.contrib.localflavor.us.models import USStateField
+    from djangocg.contrib.localflavor.us.models import USStateField
 
     class Person(models.Model):
         first_name = models.CharField(max_length=50)
@@ -767,8 +767,8 @@ code will automatically support those arguments when they are added.
     Note that the :meth:`~Model.delete()` method for an object is not
     necessarily called when :ref:`deleting objects in bulk using a
     QuerySet<topics-db-queries-delete>`. To ensure customized delete logic
-    gets executed, you can use :data:`~django.db.models.signals.pre_delete`
-    and/or :data:`~django.db.models.signals.post_delete` signals.
+    gets executed, you can use :data:`~djangocg.db.models.signals.pre_delete`
+    and/or :data:`~djangocg.db.models.signals.post_delete` signals.
 
 Executing custom SQL
 --------------------
@@ -874,13 +874,13 @@ the same database table, which is almost certainly not what you want.
 Be careful with ``related_name``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you are using the :attr:`~django.db.models.ForeignKey.related_name` attribute on a ``ForeignKey`` or
+If you are using the :attr:`~djangocg.db.models.ForeignKey.related_name` attribute on a ``ForeignKey`` or
 ``ManyToManyField``, you must always specify a *unique* reverse name for the
 field. This would normally cause a problem in abstract base classes, since the
 fields on this class are included into each of the child classes, with exactly
-the same values for the attributes (including :attr:`~django.db.models.ForeignKey.related_name`) each time.
+the same values for the attributes (including :attr:`~djangocg.db.models.ForeignKey.related_name`) each time.
 
-To work around this problem, when you are using :attr:`~django.db.models.ForeignKey.related_name` in an
+To work around this problem, when you are using :attr:`~djangocg.db.models.ForeignKey.related_name` in an
 abstract base class (only), part of the name should contain
 ``'%(app_label)s'`` and ``'%(class)s'``.
 
@@ -920,11 +920,11 @@ It is up to you how you use the ``'%(class)s'`` and ``'%(app_label)s`` portion
 to construct your related name, but if you forget to use it, Django will raise
 errors when you validate your models (or run :djadmin:`syncdb`).
 
-If you don't specify a :attr:`~django.db.models.ForeignKey.related_name`
+If you don't specify a :attr:`~djangocg.db.models.ForeignKey.related_name`
 attribute for a field in an abstract base class, the default reverse name will
 be the name of the child class followed by ``'_set'``, just as it normally
 would be if you'd declared the field directly on the child class. For example,
-in the above code, if the :attr:`~django.db.models.ForeignKey.related_name`
+in the above code, if the :attr:`~djangocg.db.models.ForeignKey.related_name`
 attribute was omitted, the reverse name for the ``m2m`` field would be
 ``childa_set`` in the ``ChildA`` case and ``childb_set`` for the ``ChildB``
 field.
@@ -938,7 +938,7 @@ The second type of model inheritance supported by Django is when each model in
 the hierarchy is a model all by itself. Each model corresponds to its own
 database table and can be queried and created individually. The inheritance
 relationship introduces links between the child model and each of its parents
-(via an automatically-created :class:`~django.db.models.OneToOneField`).
+(via an automatically-created :class:`~djangocg.db.models.OneToOneField`).
 For example::
 
     class Place(models.Model):
@@ -982,8 +982,8 @@ right).
 So a child model does not have access to its parent's :ref:`Meta
 <meta-options>` class. However, there are a few limited cases where the child
 inherits behavior from the parent: if the child does not specify an
-:attr:`~django.db.models.Options.ordering` attribute or a
-:attr:`~django.db.models.Options.get_latest_by` attribute, it will inherit
+:attr:`~djangocg.db.models.Options.ordering` attribute or a
+:attr:`~djangocg.db.models.Options.get_latest_by` attribute, it will inherit
 these from its parent.
 
 If the parent has an ordering and you don't want the child to have any natural
@@ -999,20 +999,20 @@ Inheritance and reverse relations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Because multi-table inheritance uses an implicit
-:class:`~django.db.models.OneToOneField` to link the child and
+:class:`~djangocg.db.models.OneToOneField` to link the child and
 the parent, it's possible to move from the parent down to the child,
 as in the above example. However, this uses up the name that is the
-default :attr:`~django.db.models.ForeignKey.related_name` value for
-:class:`~django.db.models.ForeignKey` and
-:class:`~django.db.models.ManyToManyField` relations.  If you
+default :attr:`~djangocg.db.models.ForeignKey.related_name` value for
+:class:`~djangocg.db.models.ForeignKey` and
+:class:`~djangocg.db.models.ManyToManyField` relations.  If you
 are putting those types of relations on a subclass of another model,
 you **must** specify the
-:attr:`~django.db.models.ForeignKey.related_name` attribute on each
+:attr:`~djangocg.db.models.ForeignKey.related_name` attribute on each
 such field. If you forget, Django will raise an error when you run
 :djadmin:`validate` or :djadmin:`syncdb`.
 
 For example, using the above ``Place`` class again, let's create another
-subclass with a :class:`~django.db.models.ManyToManyField`::
+subclass with a :class:`~djangocg.db.models.ManyToManyField`::
 
     class Supplier(Place):
         # Must specify related_name on all relations.
@@ -1023,11 +1023,11 @@ Specifying the parent link field
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As mentioned, Django will automatically create a
-:class:`~django.db.models.OneToOneField` linking your child
+:class:`~djangocg.db.models.OneToOneField` linking your child
 class back any non-abstract parent models. If you want to control the
 name of the attribute linking back to the parent, you can create your
-own :class:`~django.db.models.OneToOneField` and set
-:attr:`parent_link=True <django.db.models.OneToOneField.parent_link>`
+own :class:`~djangocg.db.models.OneToOneField` and set
+:attr:`parent_link=True <djangocg.db.models.OneToOneField.parent_link>`
 to indicate that your field is the link back to the parent class.
 
 .. _proxy-models:
@@ -1050,14 +1050,14 @@ ordering or the default manager in the proxy, without having to alter the
 original.
 
 Proxy models are declared like normal models. You tell Django that it's a
-proxy model by setting the :attr:`~django.db.models.Options.proxy` attribute of
+proxy model by setting the :attr:`~djangocg.db.models.Options.proxy` attribute of
 the ``Meta`` class to ``True``.
 
 For example, suppose you want to add a method to the standard
-:class:`~django.contrib.auth.models.User` model that will be used in your
+:class:`~djangocg.contrib.auth.models.User` model that will be used in your
 templates. You can do it like this::
 
-    from django.contrib.auth.models import User
+    from djangocg.contrib.auth.models import User
 
     class MyUser(User):
         class Meta:
@@ -1067,8 +1067,8 @@ templates. You can do it like this::
             ...
 
 The ``MyUser`` class operates on the same database table as its parent
-:class:`~django.contrib.auth.models.User` class. In particular, any new
-instances of :class:`~django.contrib.auth.models.User` will also be accessible
+:class:`~djangocg.contrib.auth.models.User` class. In particular, any new
+instances of :class:`~djangocg.contrib.auth.models.User` will also be accessible
 through ``MyUser``, and vice-versa::
 
     >>> u = User.objects.create(username="foobar")
@@ -1076,7 +1076,7 @@ through ``MyUser``, and vice-versa::
     <MyUser: foobar>
 
 You could also use a proxy model to define a different default ordering on a
-model. The standard :class:`~django.contrib.auth.models.User` model has no
+model. The standard :class:`~djangocg.contrib.auth.models.User` model has no
 ordering defined on it (intentionally; sorting is expensive and we don't want
 to do it all the time when we fetch users). You might want to regularly order
 by the ``username`` attribute when you use the proxy. This is easy::
@@ -1086,14 +1086,14 @@ by the ``username`` attribute when you use the proxy. This is easy::
             ordering = ["username"]
             proxy = True
 
-Now normal :class:`~django.contrib.auth.models.User` queries will be unordered
+Now normal :class:`~djangocg.contrib.auth.models.User` queries will be unordered
 and ``OrderedUser`` queries will be ordered by ``username``.
 
 QuerySets still return the model that was requested
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There is no way to have Django return, say, a ``MyUser`` object whenever you
-query for :class:`~django.contrib.auth.models.User` objects. A queryset for
+query for :class:`~djangocg.contrib.auth.models.User` objects. A queryset for
 ``User`` objects will return those types of objects. The whole point of proxy
 objects is that code relying on the original ``User`` will use those and your
 own code can use the extensions you included (that no other code is relying on
@@ -1157,14 +1157,14 @@ Differences between proxy inheritance and  unmanaged models
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Proxy model inheritance might look fairly similar to creating an unmanaged
-model, using the :attr:`~django.db.models.Options.managed` attribute on a
+model, using the :attr:`~djangocg.db.models.Options.managed` attribute on a
 model's ``Meta`` class. The two alternatives are not quite the same and it's
 worth considering which one you should use.
 
 One difference is that you can (and, in fact, must unless you want an empty
 model) specify model fields on models with ``Meta.managed=False``. You could,
 with careful setting of :attr:`Meta.db_table
-<django.db.models.Options.db_table>` create an unmanaged model that shadowed
+<djangocg.db.models.Options.db_table>` create an unmanaged model that shadowed
 an existing model and add Python methods to it. However, that would be very
 repetitive and fragile as you need to keep both copies synchronized if you
 make any changes.
@@ -1217,7 +1217,7 @@ Field name "hiding" is not permitted
 
 In normal Python class inheritance, it is permissible for a child class to
 override any attribute from the parent class. In Django, this is not permitted
-for attributes that are :class:`~django.db.models.Field` instances (at
+for attributes that are :class:`~djangocg.db.models.Field` instances (at
 least, not at the moment). If a base class has a field called ``author``, you
 cannot create another model field called ``author`` in any class that inherits
 from that base class.
@@ -1230,12 +1230,12 @@ difference between Django model inheritance and Python class inheritance isn't
 arbitrary.
 
 This restriction only applies to attributes which are
-:class:`~django.db.models.Field` instances. Normal Python attributes
+:class:`~djangocg.db.models.Field` instances. Normal Python attributes
 can be overridden if you wish. It also only applies to the name of the
 attribute as Python sees it: if you are manually specifying the database
 column name, you can have the same column name appearing in both a child and
 an ancestor model for multi-table inheritance (they are columns in two
 different database tables).
 
-Django will raise a :exc:`~django.core.exceptions.FieldError` if you override
+Django will raise a :exc:`~djangocg.core.exceptions.FieldError` if you override
 any model field in any ancestor model.

@@ -1,6 +1,6 @@
-from django.contrib.gis.db import models
-from django.contrib.localflavor.us.models import USStateField
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.gis.db import models
+from djangocg.contrib.localflavor.us.models import USStateField
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class Location(models.Model):

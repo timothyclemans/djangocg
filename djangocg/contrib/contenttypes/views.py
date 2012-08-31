@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 
 from django import http
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.sites.models import Site, get_current_site
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils.translation import ugettext as _
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib.sites.models import Site, get_current_site
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.utils.translation import ugettext as _
 
 def shortcut(request, content_type_id, object_id):
     """

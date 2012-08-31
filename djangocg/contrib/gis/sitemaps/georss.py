@@ -1,5 +1,5 @@
-from django.core import urlresolvers
-from django.contrib.sitemaps import Sitemap
+from djangocg.core import urlresolvers
+from djangocg.contrib.sitemaps import Sitemap
 
 class GeoRSSSitemap(Sitemap):
     """
@@ -8,7 +8,7 @@ class GeoRSSSitemap(Sitemap):
     def __init__(self, feed_dict, slug_dict=None):
         """
         This sitemap object initializes on a feed dictionary (as would be passed
-        to `django.contrib.gis.views.feed`) and a slug dictionary.
+        to `djangocg.contrib.gis.views.feed`) and a slug dictionary.
         If the slug dictionary is not defined, then it's assumed the keys provide
         the URL parameter to the feed.  However, if you have a complex feed (e.g.,
         you override `get_object`, then you'll need to provide a slug dictionary.
@@ -49,5 +49,5 @@ class GeoRSSSitemap(Sitemap):
         return self.locations
 
     def location(self, obj):
-        return urlresolvers.reverse('django.contrib.gis.views.feed', args=(obj,))
+        return urlresolvers.reverse('djangocg.contrib.gis.views.feed', args=(obj,))
 

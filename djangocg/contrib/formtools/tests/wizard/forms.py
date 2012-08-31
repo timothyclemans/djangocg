@@ -1,14 +1,14 @@
 from __future__ import unicode_literals
 
 from django import forms, http
-from django.conf import settings
-from django.test import TestCase
-from django.template.response import TemplateResponse
-from django.utils.importlib import import_module
+from djangocg.conf import settings
+from djangocg.test import TestCase
+from djangocg.template.response import TemplateResponse
+from djangocg.utils.importlib import import_module
 
-from django.contrib.auth.models import User
+from djangocg.contrib.auth.models import User
 
-from django.contrib.formtools.wizard.views import (WizardView,
+from djangocg.contrib.formtools.wizard.views import (WizardView,
                                                    SessionWizardView,
                                                    CookieWizardView)
 
@@ -51,7 +51,7 @@ class UserForm(forms.ModelForm):
 UserFormSet = forms.models.modelformset_factory(User, form=UserForm, extra=2)
 
 class TestWizard(WizardView):
-    storage_name = 'django.contrib.formtools.wizard.storage.session.SessionStorage'
+    storage_name = 'djangocg.contrib.formtools.wizard.storage.session.SessionStorage'
 
     def dispatch(self, request, *args, **kwargs):
         response = super(TestWizard, self).dispatch(request, *args, **kwargs)

@@ -1,10 +1,10 @@
 The ``File`` object
 ===================
 
-The :mod:`django.core.files` module and its submodules contain built-in classes
+The :mod:`djangocg.core.files` module and its submodules contain built-in classes
 for basic file handling in Django.
 
-.. currentmodule:: django.core.files
+.. currentmodule:: djangocg.core.files
 
 The ``File`` Class
 ------------------
@@ -29,7 +29,7 @@ The ``File`` Class
     .. attribute:: file
 
         The underlying Python ``file`` object passed to
-        :class:`~django.core.files.File`.
+        :class:`~djangocg.core.files.File`.
 
     .. attribute:: mode
 
@@ -77,25 +77,25 @@ The ``File`` Class
 
         Close the file.
 
-    In addition to the listed methods, :class:`~django.core.files.File` exposes
+    In addition to the listed methods, :class:`~djangocg.core.files.File` exposes
     the following attributes and methods of the underlying ``file`` object:
     ``encoding``, ``fileno``, ``flush``, ``isatty``, ``newlines``,
     ``read``, ``readinto``, ``readlines``, ``seek``, ``softspace``, ``tell``,
     ``truncate``, ``writelines``, ``xreadlines``.
 
-.. currentmodule:: django.core.files.base
+.. currentmodule:: djangocg.core.files.base
 
 The ``ContentFile`` Class
 -------------------------
 
 .. class:: ContentFile(File)
 
-    The ``ContentFile`` class inherits from :class:`~django.core.files.File`,
-    but unlike :class:`~django.core.files.File` it operates on string content
+    The ``ContentFile`` class inherits from :class:`~djangocg.core.files.File`,
+    but unlike :class:`~djangocg.core.files.File` it operates on string content
     (bytes also supported), rather than an actual file. For example::
 
         from __future__ import unicode_literals
-        from django.core.files.base import ContentFile
+        from djangocg.core.files.base import ContentFile
 
         f1 = ContentFile("esta sentencia está en español")
         f2 = ContentFile(b"these are bytes")
@@ -104,7 +104,7 @@ The ``ContentFile`` Class
 
         ContentFile also accepts Unicode strings.
 
-.. currentmodule:: django.core.files.images
+.. currentmodule:: djangocg.core.files.images
 
 The ``ImageFile`` Class
 -----------------------
@@ -112,8 +112,8 @@ The ``ImageFile`` Class
 .. class:: ImageFile(file_object)
 
     Django provides a built-in class specifically for images.
-    :class:`django.core.files.images.ImageFile` inherits all the attributes
-    and methods of :class:`~django.core.files.File`, and additionally
+    :class:`djangocg.core.files.images.ImageFile` inherits all the attributes
+    and methods of :class:`~djangocg.core.files.File`, and additionally
     provides the following:
 
     .. attribute:: width
@@ -124,7 +124,7 @@ The ``ImageFile`` Class
 
         Height of the image in pixels.
 
-.. currentmodule:: django.core.files
+.. currentmodule:: djangocg.core.files
 
 Additional methods on files attached to objects
 -----------------------------------------------

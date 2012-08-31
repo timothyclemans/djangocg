@@ -1,7 +1,7 @@
 from ctypes import c_char
-from django.contrib.gis.geos.libgeos import GEOM_PTR, PREPGEOM_PTR
-from django.contrib.gis.geos.prototypes.errcheck import check_predicate
-from django.contrib.gis.geos.prototypes.threadsafe import GEOSFunc
+from djangocg.contrib.gis.geos.libgeos import GEOM_PTR, PREPGEOM_PTR
+from djangocg.contrib.gis.geos.prototypes.errcheck import check_predicate
+from djangocg.contrib.gis.geos.prototypes.threadsafe import GEOSFunc
 
 # Prepared geometry constructor and destructors.
 geos_prepare = GEOSFunc('GEOSPrepare')

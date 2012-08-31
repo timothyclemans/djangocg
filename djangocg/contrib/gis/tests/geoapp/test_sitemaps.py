@@ -4,16 +4,16 @@ from io import BytesIO
 from xml.dom import minidom
 import zipfile
 
-from django.conf import settings
-from django.contrib.sites.models import Site
-from django.test import TestCase
+from djangocg.conf import settings
+from djangocg.contrib.sites.models import Site
+from djangocg.test import TestCase
 
 from .models import City, Country
 
 
 class GeoSitemapTest(TestCase):
 
-    urls = 'django.contrib.gis.tests.geoapp.urls'
+    urls = 'djangocg.contrib.gis.tests.geoapp.urls'
 
     def setUp(self):
         Site(id=settings.SITE_ID, domain="example.com", name="example.com").save()

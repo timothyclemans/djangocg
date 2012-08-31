@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 
 import datetime
 
-from django.utils.timezone import is_aware, utc
-from django.utils.translation import ungettext, ugettext
+from djangocg.utils.timezone import is_aware, utc
+from djangocg.utils.translation import ungettext, ugettext
 
 def timesince(d, now=None, reversed=False):
     """

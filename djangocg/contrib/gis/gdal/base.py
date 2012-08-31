@@ -1,7 +1,7 @@
 from ctypes import c_void_p
 
-from django.contrib.gis.gdal.error import GDALException
-from django.utils import six
+from djangocg.contrib.gis.gdal.error import GDALException
+from djangocg.utils import six
 
 class GDALBase(object):
     """

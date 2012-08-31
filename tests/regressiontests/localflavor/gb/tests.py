@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.gb.forms import GBPostcodeField
+from djangocg.contrib.localflavor.gb.forms import GBPostcodeField
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class GBLocalFlavorTests(SimpleTestCase):

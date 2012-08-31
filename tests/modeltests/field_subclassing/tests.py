@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.core import serializers
-from django.test import TestCase
+from djangocg.core import serializers
+from djangocg.test import TestCase
 
 from .fields import Small
 from .models import DataModel, MyModel, OtherModel

@@ -6,17 +6,17 @@ from __future__ import unicode_literals
 
 import os
 
-from django.conf import settings
-from django.core.exceptions import SuspiciousOperation
-from django.core.urlresolvers import reverse
-from django.template import (TemplateDoesNotExist, TemplateSyntaxError,
+from djangocg.conf import settings
+from djangocg.core.exceptions import SuspiciousOperation
+from djangocg.core.urlresolvers import reverse
+from djangocg.template import (TemplateDoesNotExist, TemplateSyntaxError,
     Context, Template, loader)
-import django.template.context
-from django.test import Client, TestCase
-from django.test.client import encode_file, RequestFactory
-from django.test.utils import ContextList, override_settings, str_prefix
-from django.template.response import SimpleTemplateResponse
-from django.http import HttpResponse
+import djangocg.template.context
+from djangocg.test import Client, TestCase
+from djangocg.test.client import encode_file, RequestFactory
+from djangocg.test.utils import ContextList, override_settings, str_prefix
+from djangocg.template.response import SimpleTemplateResponse
+from djangocg.http import HttpResponse
 
 
 @override_settings(
@@ -161,7 +161,7 @@ class AssertContainsTests(TestCase):
         response = HttpResponse('Hello')
         self.assertNotContains(response, 'Bye')
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class AssertTemplateUsedTests(TestCase):
     fixtures = ['testdata.json']
 
@@ -521,7 +521,7 @@ class AssertFormErrorTests(TestCase):
         except AssertionError as e:
             self.assertIn("abc: The form 'form' in context 0 does not contain the non-field error 'Some error.' (actual errors: )", str(e))
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class LoginTests(TestCase):
     fixtures = ['testdata']
 
@@ -543,7 +543,7 @@ class LoginTests(TestCase):
 
 
 @override_settings(
-    PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',),
+    PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',),
     SESSION_ENGINE='regressiontests.test_client_regress.session'
 )
 class SessionEngineTests(TestCase):
@@ -585,7 +585,7 @@ class URLEscapingTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, b'Hi, Arthur')
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class ExceptionTests(TestCase):
     fixtures = ['testdata.json']
 
@@ -658,7 +658,7 @@ class zzUrlconfSubstitutionTests(TestCase):
         url = reverse('arg_view', args=['somename'])
         self.assertEqual(url, '/test_client_regress/arg_view/somename/')
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class ContextTests(TestCase):
     fixtures = ['testdata']
 
@@ -698,14 +698,14 @@ class ContextTests(TestCase):
         # the request instance. This triggers a bug caused by some ways of
         # copying RequestContext.
         try:
-            django.template.context._standard_context_processors = (lambda request: {'path': request.special_path},)
+            djangocg.template.context._standard_context_processors = (lambda request: {'path': request.special_path},)
             response = self.client.get("/test_client_regress/request_context_view/")
             self.assertContains(response, 'Path: /test_client_regress/request_context_view/')
         finally:
-            django.template.context._standard_context_processors = None
+            djangocg.template.context._standard_context_processors = None
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class SessionTests(TestCase):
     fixtures = ['testdata.json']
 

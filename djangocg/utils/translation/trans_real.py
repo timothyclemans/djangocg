@@ -8,11 +8,11 @@ import sys
 import gettext as gettext_module
 from threading import local
 
-from django.utils.importlib import import_module
-from django.utils.encoding import force_str, force_text
-from django.utils.safestring import mark_safe, SafeData
-from django.utils import six
-from django.utils.six import StringIO
+from djangocg.utils.importlib import import_module
+from djangocg.utils.encoding import force_str, force_text
+from djangocg.utils.safestring import mark_safe, SafeData
+from djangocg.utils import six
+from djangocg.utils.six import StringIO
 
 
 # Translations are cached in a dictionary for every language+app tuple.
@@ -106,7 +106,7 @@ def translation(language):
     if t is not None:
         return t
 
-    from django.conf import settings
+    from djangocg.conf import settings
 
     globalpath = os.path.join(os.path.dirname(sys.modules[settings.__module__].__file__), 'locale')
 
@@ -205,7 +205,7 @@ def get_language():
         except AttributeError:
             pass
     # If we don't have a real translation object, assume it's the default language.
-    from django.conf import settings
+    from djangocg.conf import settings
     return settings.LANGUAGE_CODE
 
 def get_language_bidi():
@@ -215,7 +215,7 @@ def get_language_bidi():
     * False = left-to-right layout
     * True = right-to-left layout
     """
-    from django.conf import settings
+    from djangocg.conf import settings
 
     base_lang = get_language().split('-')[0]
     return base_lang in settings.LANGUAGES_BIDI
@@ -232,7 +232,7 @@ def catalog():
     if t is not None:
         return t
     if _default is None:
-        from django.conf import settings
+        from djangocg.conf import settings
         _default = translation(settings.LANGUAGE_CODE)
     return _default
 
@@ -251,7 +251,7 @@ def do_translate(message, translation_function):
         result = getattr(t, translation_function)(eol_message)
     else:
         if _default is None:
-            from django.conf import settings
+            from djangocg.conf import settings
             _default = translation(settings.LANGUAGE_CODE)
         result = getattr(_default, translation_function)(eol_message)
     if isinstance(message, SafeData):
@@ -295,7 +295,7 @@ def do_ntranslate(singular, plural, number, translation_function):
     if t is not None:
         return getattr(t, translation_function)(singular, plural, number)
     if _default is None:
-        from django.conf import settings
+        from djangocg.conf import settings
         _default = translation(settings.LANGUAGE_CODE)
     return getattr(_default, translation_function)(singular, plural, number)
 
@@ -331,7 +331,7 @@ def all_locale_paths():
     """
     Returns a list of paths to user-provides languages files.
     """
-    from django.conf import settings
+    from djangocg.conf import settings
     globalpath = os.path.join(
         os.path.dirname(sys.modules[settings.__module__].__file__), 'locale')
     return [globalpath] + list(settings.LOCALE_PATHS)
@@ -354,7 +354,7 @@ def get_language_from_path(path, supported=None):
     found in the `path`.
     """
     if supported is None:
-        from django.conf import settings
+        from djangocg.conf import settings
         supported = dict(settings.LANGUAGES)
     regex_match = language_code_prefix_re.match(path)
     if regex_match:
@@ -373,7 +373,7 @@ def get_language_from_request(request, check_path=False):
     code, otherwise this is skipped for backwards compatibility.
     """
     global _accepted
-    from django.conf import settings
+    from djangocg.conf import settings
     supported = dict(settings.LANGUAGES)
 
     if check_path:
@@ -422,7 +422,7 @@ def get_language_from_request(request, check_path=False):
             if lang.lower() not in supported:
                 continue
             for path in all_locale_paths():
-                if os.path.exists(os.path.join(path, dirname, 'LC_MESSAGES', 'django.mo')):
+                if os.path.exists(os.path.join(path, dirname, 'LC_MESSAGES', 'djangocg.mo')):
                     _accepted[normalized] = lang
                     return lang
 
@@ -451,8 +451,8 @@ def templatize(src, origin=None):
     does so by translating the Django translation tags into standard gettext
     function invocations.
     """
-    from django.conf import settings
-    from django.template import (Lexer, TOKEN_TEXT, TOKEN_VAR, TOKEN_BLOCK,
+    from djangocg.conf import settings
+    from djangocg.template import (Lexer, TOKEN_TEXT, TOKEN_VAR, TOKEN_BLOCK,
             TOKEN_COMMENT, TRANSLATOR_COMMENT_MARK)
     src = force_text(src, settings.FILE_CHARSET)
     out = StringIO()

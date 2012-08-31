@@ -4,17 +4,17 @@ of MVC. In other words, these functions/classes introduce controlled coupling
 for convenience's sake.
 """
 
-from django.template import loader, RequestContext
-from django.http import HttpResponse, Http404
-from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
-from django.db.models.manager import Manager
-from django.db.models.query import QuerySet
-from django.core import urlresolvers
+from djangocg.template import loader, RequestContext
+from djangocg.http import HttpResponse, Http404
+from djangocg.http import HttpResponseRedirect, HttpResponsePermanentRedirect
+from djangocg.db.models.manager import Manager
+from djangocg.db.models.query import QuerySet
+from djangocg.core import urlresolvers
 
 def render_to_response(*args, **kwargs):
     """
     Returns a HttpResponse whose content is filled with the result of calling
-    django.template.loader.render_to_string() with the passed arguments.
+    djangocg.template.loader.render_to_string() with the passed arguments.
     """
     httpresponse_kwargs = {'content_type': kwargs.pop('mimetype', None)}
     return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
@@ -22,7 +22,7 @@ def render_to_response(*args, **kwargs):
 def render(request, *args, **kwargs):
     """
     Returns a HttpResponse whose content is filled with the result of calling
-    django.template.loader.render_to_string() with the passed arguments.
+    djangocg.template.loader.render_to_string() with the passed arguments.
     Uses a RequestContext by default.
     """
     httpresponse_kwargs = {

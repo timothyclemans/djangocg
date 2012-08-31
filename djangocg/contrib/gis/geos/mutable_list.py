@@ -8,9 +8,9 @@ See also http://www.aryehleib.com/MutableLists.html
 
 Author: Aryeh Leib Taurog.
 """
-from django.utils.functional import total_ordering
-from django.utils import six
-from django.utils.six.moves import xrange
+from djangocg.utils.functional import total_ordering
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
 
 @total_ordering
 class ListMixin(object):

@@ -2,7 +2,7 @@
 Czech regions, translations get from http://www.crwflags.com/fotw/Flags/cz-re.html
 """
 
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 REGION_CHOICES = (
     ('PR', _('Prague')),

@@ -27,7 +27,7 @@ encouraged to use the same porting strategy as Django itself.
 
 Writing compatible code is much easier if you target Python ≥ 2.6. You will
 most likely take advantage of the compatibility functions introduced in Django
-1.5, like :mod:`django.utils.six`, so your application will also require
+1.5, like :mod:`djangocg.utils.six`, so your application will also require
 Django ≥ 1.5.
 
 Obviously, writing compatible source code adds some overhead, and that can
@@ -83,13 +83,13 @@ six_ provides :ref:`tools <string-handling-with-six>` to deal with these
 changes.
 
 Django also contains several string related classes and functions in the
-:mod:`django.utils.encoding` and :mod:`django.utils.safestring` modules. Their
+:mod:`djangocg.utils.encoding` and :mod:`djangocg.utils.safestring` modules. Their
 names used the words ``str``, which doesn't mean the same thing in Python 2
 and Python 3, and ``unicode``, which doesn't exist in Python 3. In order to
 avoid ambiguity and confusion these concepts were renamed ``bytes`` and
 ``text``.
 
-Here are the name changes in :mod:`django.utils.encoding`:
+Here are the name changes in :mod:`djangocg.utils.encoding`:
 
 ==================  ==================
 Old name            New name
@@ -104,13 +104,13 @@ Python 3, ``smart_str`` is an alias for ``smart_text``.
 
 .. note::
 
-    :mod:`django.utils.encoding` was deeply refactored in Django 1.5 to
+    :mod:`djangocg.utils.encoding` was deeply refactored in Django 1.5 to
     provide a more consistent API. Check its documentation for more
     information.
 
-:mod:`django.utils.safestring` is mostly used via the
-:func:`~django.utils.safestring.mark_safe` and
-:func:`~django.utils.safestring.mark_for_escaping` functions, which didn't
+:mod:`djangocg.utils.safestring` is mostly used via the
+:func:`~djangocg.utils.safestring.mark_safe` and
+:func:`~djangocg.utils.safestring.mark_for_escaping` functions, which didn't
 change. In case you're using the internals, here are the name changes:
 
 ==================  ==================
@@ -137,7 +137,7 @@ The ``print`` statement and the :func:`str` built-in call :meth:`__str__` to
 determine the human-readable representation of an object. The :func:`unicode`
 built-in calls :meth:`__unicode__` if it exists, and otherwise falls back to
 :meth:`__str__` and decodes the result with the system encoding. Conversely,
-the :class:`~django.db.models.Model` base class automatically derives
+the :class:`~djangocg.db.models.Model` base class automatically derives
 :meth:`__str__` from :meth:`__unicode__` by encoding to UTF-8.
 
 In Python 3, there's simply :meth:`__str__`, which must return :class:`str`
@@ -150,14 +150,14 @@ little use for that method, because they hardly ever deal with
 Django provides a simple way to define :meth:`__str__` and :meth:`__unicode__`
 methods that work on Python 2 and 3: you must define a :meth:`__str__` method
 returning text and to apply the
-:func:`~django.utils.encoding.python_2_unicode_compatible` decorator.
+:func:`~djangocg.utils.encoding.python_2_unicode_compatible` decorator.
 
 On Python 3, the decorator is a no-op. On Python 2, it defines appropriate
 :meth:`__unicode__` and :meth:`__str__` methods (replacing the original
 :meth:`__str__` method in the process). Here's an example::
 
     from __future__ import unicode_literals
-    from django.utils.encoding import python_2_unicode_compatible
+    from djangocg.utils.encoding import python_2_unicode_compatible
 
     @python_2_unicode_compatible
     class MyClass(object):
@@ -173,16 +173,16 @@ of Python.
 --------------------------------------------
 
 :meth:`dict.keys`, :meth:`dict.items` and :meth:`dict.values` return lists in
-Python 2 and iterators in Python 3. :class:`~django.http.QueryDict` and the
-:class:`dict`-like classes defined in :mod:`django.utils.datastructures`
+Python 2 and iterators in Python 3. :class:`~djangocg.http.QueryDict` and the
+:class:`dict`-like classes defined in :mod:`djangocg.utils.datastructures`
 behave likewise in Python 3.
 
 six_ provides compatibility functions to work around this change:
 :func:`~six.iterkeys`, :func:`~six.iteritems`, and :func:`~six.itervalues`.
-Django's bundled version adds :func:`~django.utils.six.iterlists` for
-:class:`~django.utils.datastructures.MultiValueDict` and its subclasses.
+Django's bundled version adds :func:`~djangocg.utils.six.iterlists` for
+:class:`~djangocg.utils.datastructures.MultiValueDict` and its subclasses.
 
-:class:`~django.http.HttpRequest` and :class:`~django.http.HttpResponse` objects
+:class:`~djangocg.http.HttpRequest` and :class:`~djangocg.http.HttpResponse` objects
 --------------------------------------------------------------------------------
 
 According to :pep:`3333`:
@@ -190,11 +190,11 @@ According to :pep:`3333`:
 - headers are always :class:`str` objects,
 - input and output streams are always :class:`bytes` objects.
 
-Specifically, :attr:`HttpResponse.content <django.http.HttpResponse.content>`
+Specifically, :attr:`HttpResponse.content <djangocg.http.HttpResponse.content>`
 contains :class:`bytes`, which may become an issue if you compare it with a
 :class:`str` in your tests. The preferred solution is to rely on
-:meth:`~django.test.TestCase.assertContains` and
-:meth:`~django.test.TestCase.assertNotContains`. These methods accept a
+:meth:`~djangocg.test.TestCase.assertContains` and
+:meth:`~djangocg.test.TestCase.assertNotContains`. These methods accept a
 response and a unicode string as arguments.
 
 Coding guidelines
@@ -309,7 +309,7 @@ Division
 
         __idiv__ = __itruediv__         # Python 2 compatibility
 
-.. module: django.utils.six
+.. module: djangocg.utils.six
 
 Writing compatible code with six
 --------------------------------
@@ -317,7 +317,7 @@ Writing compatible code with six
 six_ is the canonical compatibility library for supporting Python 2 and 3 in
 a single codebase. Read its documentation!
 
-:mod:`six` is bundled with Django: you can import it as :mod:`django.utils.six`.
+:mod:`six` is bundled with Django: you can import it as :mod:`djangocg.utils.six`.
 
 Here are the most common changes required to write compatible code.
 
@@ -352,11 +352,11 @@ Import :func:`six.moves.xrange` wherever you use ``xrange``.
 Moved modules
 ~~~~~~~~~~~~~
 
-Some modules were renamed in Python 3. The :mod:`django.utils.six.moves
+Some modules were renamed in Python 3. The :mod:`djangocg.utils.six.moves
 <six.moves>` module provides a compatible location to import them.
 
 The ``urllib``, ``urllib2`` and ``urlparse`` modules were reworked in depth
-and :mod:`django.utils.six.moves <six.moves>` doesn't handle them. Django
+and :mod:`djangocg.utils.six.moves <six.moves>` doesn't handle them. Django
 explicitly tries both locations, as follows::
 
     try:
@@ -377,7 +377,7 @@ If you need different code in Python 2 and Python 3, check :data:`six.PY3`::
 This is a last resort solution when :mod:`six` doesn't provide an appropriate
 function.
 
-.. module:: django.utils.six
+.. module:: djangocg.utils.six
 
 Customizations of six
 ---------------------
@@ -387,9 +387,9 @@ The version of six bundled with Django includes one extra function:
 .. function:: iterlists(MultiValueDict)
 
     Returns an iterator over the lists of values of a
-    :class:`~django.utils.datastructures.MultiValueDict`. This replaces
-    :meth:`~django.utils.datastructures.MultiValueDict.iterlists()` on Python
-    2 and :meth:`~django.utils.datastructures.MultiValueDict.lists()` on
+    :class:`~djangocg.utils.datastructures.MultiValueDict`. This replaces
+    :meth:`~djangocg.utils.datastructures.MultiValueDict.iterlists()` on Python
+    2 and :meth:`~djangocg.utils.datastructures.MultiValueDict.lists()` on
     Python 3.
 
 In addition to six' defaults moves, Django's version provides ``thread`` as

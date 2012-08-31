@@ -4,12 +4,12 @@ from __future__ import unicode_literals
 import datetime
 import decimal
 
-from django.template.defaultfilters import *
-from django.test import TestCase
-from django.utils import six
-from django.utils import unittest, translation
-from django.utils.safestring import SafeData
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.template.defaultfilters import *
+from djangocg.test import TestCase
+from djangocg.utils import six
+from djangocg.utils import unittest, translation
+from djangocg.utils.safestring import SafeData
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class DefaultFiltersTests(TestCase):

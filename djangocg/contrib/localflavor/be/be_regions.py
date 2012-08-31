@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 # ISO codes
 REGION_CHOICES = (

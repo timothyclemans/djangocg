@@ -4,15 +4,15 @@ from __future__ import unicode_literals
 import copy
 import pickle
 
-from django.core.exceptions import SuspiciousOperation
-from django.http import (QueryDict, HttpResponse, HttpResponseRedirect,
+from djangocg.core.exceptions import SuspiciousOperation
+from djangocg.http import (QueryDict, HttpResponse, HttpResponseRedirect,
                          HttpResponsePermanentRedirect, HttpResponseNotAllowed,
                          HttpResponseNotModified,
                          SimpleCookie, BadHeaderError,
                          parse_cookie)
-from django.test import TestCase
-from django.utils import six
-from django.utils import unittest
+from djangocg.test import TestCase
+from djangocg.utils import six
+from djangocg.utils import unittest
 
 
 class QueryDictTests(unittest.TestCase):

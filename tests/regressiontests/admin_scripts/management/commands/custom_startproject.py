@@ -1,6 +1,6 @@
 from optparse import make_option
 
-from django.core.management.commands.startproject import Command as BaseCommand
+from djangocg.core.management.commands.startproject import Command as BaseCommand
 
 
 class Command(BaseCommand):

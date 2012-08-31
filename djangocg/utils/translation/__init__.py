@@ -3,9 +3,9 @@ Internationalization support.
 """
 from __future__ import unicode_literals
 
-from django.utils.encoding import force_text
-from django.utils.functional import lazy
-from django.utils import six
+from djangocg.utils.encoding import force_text
+from djangocg.utils.functional import lazy
+from djangocg.utils import six
 
 
 __all__ = [
@@ -43,11 +43,11 @@ class Trans(object):
     """
 
     def __getattr__(self, real_name):
-        from django.conf import settings
+        from djangocg.conf import settings
         if settings.USE_I18N:
-            from django.utils.translation import trans_real as trans
+            from djangocg.utils.translation import trans_real as trans
         else:
-            from django.utils.translation import trans_null as trans
+            from djangocg.utils.translation import trans_null as trans
         setattr(self, real_name, getattr(trans, real_name))
         return getattr(trans, real_name)
 
@@ -143,7 +143,7 @@ def _string_concat(*strings):
 string_concat = lazy(_string_concat, six.text_type)
 
 def get_language_info(lang_code):
-    from django.conf.locale import LANG_INFO
+    from djangocg.conf.locale import LANG_INFO
     try:
         return LANG_INFO[lang_code]
     except KeyError:

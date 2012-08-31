@@ -1,1 +1,1 @@
-from django.core.files.base import File
+from djangocg.core.files.base import File

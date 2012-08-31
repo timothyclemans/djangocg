@@ -1,9 +1,9 @@
 import time
 
-from django.conf import settings
-from django.utils.cache import patch_vary_headers
-from django.utils.http import cookie_date
-from django.utils.importlib import import_module
+from djangocg.conf import settings
+from djangocg.utils.cache import patch_vary_headers
+from djangocg.utils.http import cookie_date
+from djangocg.utils.importlib import import_module
 
 class SessionMiddleware(object):
     def process_request(self, request):

@@ -1,4 +1,4 @@
-from django.core.exceptions import ImproperlyConfigured
+from djangocg.core.exceptions import ImproperlyConfigured
 
 class MissingStorageModule(ImproperlyConfigured):
     pass

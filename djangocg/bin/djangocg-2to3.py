@@ -6,5 +6,5 @@
 import sys
 from lib2to3.main import main
 
-sys.exit(main("django.utils.2to3_fixes"))
+sys.exit(main("djangocg.utils.2to3_fixes"))
 

@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 
-from django.contrib import admin
-from django.contrib.comments.models import Comment
-from django.utils.translation import ugettext_lazy as _, ungettext
-from django.contrib.comments import get_model
-from django.contrib.comments.views.moderation import perform_flag, perform_approve, perform_delete
+from djangocg.contrib import admin
+from djangocg.contrib.comments.models import Comment
+from djangocg.utils.translation import ugettext_lazy as _, ungettext
+from djangocg.contrib.comments import get_model
+from djangocg.contrib.comments.views.moderation import perform_flag, perform_approve, perform_delete
 
 class CommentsAdmin(admin.ModelAdmin):
     fieldsets = (

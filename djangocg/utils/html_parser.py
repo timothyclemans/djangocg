@@ -1,4 +1,4 @@
-from django.utils.six.moves import html_parser as _html_parser
+from djangocg.utils.six.moves import html_parser as _html_parser
 import re
 import sys
 

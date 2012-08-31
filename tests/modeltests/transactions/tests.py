@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.db import connection, transaction, IntegrityError
-from django.test import TransactionTestCase, skipUnlessDBFeature
+from djangocg.db import connection, transaction, IntegrityError
+from djangocg.test import TransactionTestCase, skipUnlessDBFeature
 
 from .models import Reporter
 

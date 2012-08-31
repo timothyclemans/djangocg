@@ -6,17 +6,17 @@ import warnings
 from gzip import GzipFile
 from io import BytesIO
 
-from django.utils.encoding import force_text
-from django.utils.functional import allow_lazy, SimpleLazyObject
-from django.utils import six
-from django.utils.six.moves import html_entities
-from django.utils.translation import ugettext_lazy, ugettext as _, pgettext
-from django.utils.safestring import mark_safe
+from djangocg.utils.encoding import force_text
+from djangocg.utils.functional import allow_lazy, SimpleLazyObject
+from djangocg.utils import six
+from djangocg.utils.six.moves import html_entities
+from djangocg.utils.translation import ugettext_lazy, ugettext as _, pgettext
+from djangocg.utils.safestring import mark_safe
 
 if not six.PY3:
     # Import force_unicode even though this module doesn't use it, because some
     # people rely on it being here.
-    from django.utils.encoding import force_unicode
+    from djangocg.utils.encoding import force_unicode
 
 # Capitalizes the first letter of a string.
 capfirst = lambda x: x and force_text(x)[0].upper() + force_text(x)[1:]
@@ -211,14 +211,14 @@ class Truncator(SimpleLazyObject):
 
 def truncate_words(s, num, end_text='...'):
     warnings.warn('This function has been deprecated. Use the Truncator class '
-        'in django.utils.text instead.', category=DeprecationWarning)
+        'in djangocg.utils.text instead.', category=DeprecationWarning)
     truncate = end_text and ' %s' % end_text or ''
     return Truncator(s).words(num, truncate=truncate)
 truncate_words = allow_lazy(truncate_words, six.text_type)
 
 def truncate_html_words(s, num, end_text='...'):
     warnings.warn('This function has been deprecated. Use the Truncator class '
-        'in django.utils.text instead.', category=DeprecationWarning)
+        'in djangocg.utils.text instead.', category=DeprecationWarning)
     truncate = end_text and ' %s' % end_text or ''
     return Truncator(s).words(num, truncate=truncate, html=True)
 truncate_html_words = allow_lazy(truncate_html_words, six.text_type)

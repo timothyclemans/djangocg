@@ -5,11 +5,11 @@ UY-specific form helpers.
 
 from __future__ import absolute_import, unicode_literals
 
-from django.core.validators import EMPTY_VALUES
-from django.forms.fields import Select, RegexField
-from django.forms import ValidationError
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.localflavor.uy.util import get_validation_digit
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms.fields import Select, RegexField
+from djangocg.forms import ValidationError
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.uy.util import get_validation_digit
 
 
 class UYDepartamentSelect(Select):
@@ -17,7 +17,7 @@ class UYDepartamentSelect(Select):
     A Select widget that uses a list of Uruguayan departaments as its choices.
     """
     def __init__(self, attrs=None):
-        from django.contrib.localflavor.uy.uy_departaments import DEPARTAMENT_CHOICES
+        from djangocg.contrib.localflavor.uy.uy_departaments import DEPARTAMENT_CHOICES
         super(UYDepartamentSelect, self).__init__(attrs, choices=DEPARTAMENT_CHOICES)
 
 

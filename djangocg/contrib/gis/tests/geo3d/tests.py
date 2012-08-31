@@ -3,10 +3,10 @@ from __future__ import absolute_import
 import os
 import re
 
-from django.utils.unittest import TestCase
-from django.contrib.gis.db.models import Union, Extent3D
-from django.contrib.gis.geos import GEOSGeometry, Point, Polygon
-from django.contrib.gis.utils import LayerMapping, LayerMapError
+from djangocg.utils.unittest import TestCase
+from djangocg.contrib.gis.db.models import Union, Extent3D
+from djangocg.contrib.gis.geos import GEOSGeometry, Point, Polygon
+from djangocg.contrib.gis.utils import LayerMapping, LayerMapError
 
 from .models import (City3D, Interstate2D, Interstate3D, InterstateProj2D,
     InterstateProj3D, Point2D, Point3D, MultiPoint3D, Polygon2D, Polygon3D)

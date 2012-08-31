@@ -1,6 +1,6 @@
-from django.contrib.auth import models as auth
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.auth import models as auth
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 # No related name is needed here, since symmetrical relations are not
 # explicitly reversible.

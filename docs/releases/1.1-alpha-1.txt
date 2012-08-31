@@ -27,7 +27,7 @@ Two major enhancements have been added to Django's object-relational mapper
 Aggregate support
 ~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 It's now possible to run SQL aggregate queries (i.e. ``COUNT()``, ``MAX()``,
 ``MIN()``, etc.) from within Django's ORM. You can choose to either return the
@@ -49,13 +49,13 @@ new :class:`F` object; for full details, including examples, consult the
 Performance improvements
 ------------------------
 
-.. currentmodule:: django.test
+.. currentmodule:: djangocg.test
 
 Tests written using Django's :doc:`testing framework </topics/testing>` now run
 dramatically faster (as much as 10 times faster in many cases).
 
 This was accomplished through the introduction of transaction-based tests: when
-using :class:`django.test.TestCase`, your tests will now be run in a transaction
+using :class:`djangocg.test.TestCase`, your tests will now be run in a transaction
 which is rolled back when finished, instead of by flushing and re-populating the
 database. This results in an immense speedup for most types of unit tests. See
 the documentation for :class:`TestCase` and :class:`TransactionTestCase` for a
@@ -74,7 +74,7 @@ Other new features and changes introduced since Django 1.0 include:
   order to allow fine-grained control of when and where the CSRF processing
   takes place.
 
-* :func:`~django.core.urlresolvers.reverse` and code which uses it (e.g., the
+* :func:`~djangocg.core.urlresolvers.reverse` and code which uses it (e.g., the
   ``{% url %}`` template tag) now works with URLs in Django's administrative
   site, provided that the admin URLs are set up via ``include(admin.site.urls)``
   (sending admin requests to the ``admin.site.root`` view still works, but URLs

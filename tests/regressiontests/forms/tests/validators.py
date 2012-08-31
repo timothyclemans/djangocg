@@ -1,7 +1,7 @@
 from django import forms
-from django.core import validators
-from django.core.exceptions import ValidationError
-from django.utils.unittest import TestCase
+from djangocg.core import validators
+from djangocg.core.exceptions import ValidationError
+from djangocg.utils.unittest import TestCase
 
 
 class TestFieldWithValidators(TestCase):

@@ -1,5 +1,5 @@
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 class Event(models.Model):
     # Oracle can have problems with a column named "date"

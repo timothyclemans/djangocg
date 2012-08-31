@@ -1,8 +1,8 @@
 # This code was mostly based on ipaddr-py
 # Copyright 2007 Google Inc. http://code.google.com/p/ipaddr-py/
 # Licensed under the Apache License, Version 2.0 (the "License").
-from django.core.exceptions import ValidationError
-from django.utils.six.moves import xrange
+from djangocg.core.exceptions import ValidationError
+from djangocg.utils.six.moves import xrange
 
 def clean_ipv6_address(ip_str, unpack_ipv4=False,
         error_message="This is not a valid IPv6 address"):
@@ -152,7 +152,7 @@ def is_valid_ipv6_address(ip_str):
         A boolean, True if this is a valid IPv6 address.
 
     """
-    from django.core.validators import validate_ipv4_address
+    from djangocg.core.validators import validate_ipv4_address
 
     # We need to have at least one ':'.
     if ':' not in ip_str:

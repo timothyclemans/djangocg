@@ -17,12 +17,12 @@ import time
 import calendar
 import datetime
 
-from django.utils.dates import MONTHS, MONTHS_3, MONTHS_ALT, MONTHS_AP, WEEKDAYS, WEEKDAYS_ABBR
-from django.utils.tzinfo import LocalTimezone
-from django.utils.translation import ugettext as _
-from django.utils.encoding import force_text
-from django.utils import six
-from django.utils.timezone import is_aware, is_naive
+from djangocg.utils.dates import MONTHS, MONTHS_3, MONTHS_ALT, MONTHS_AP, WEEKDAYS, WEEKDAYS_ABBR
+from djangocg.utils.tzinfo import LocalTimezone
+from djangocg.utils.translation import ugettext as _
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
+from djangocg.utils.timezone import is_aware, is_naive
 
 re_formatchars = re.compile(r'(?<!\\)([aAbBcdDeEfFgGhHiIjlLmMnNoOPrsStTUuwWyYzZ])')
 re_escaped = re.compile(r'\\(.)')

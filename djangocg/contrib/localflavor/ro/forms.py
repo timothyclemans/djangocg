@@ -4,10 +4,10 @@ Romanian specific form helpers.
 """
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.localflavor.ro.ro_counties import COUNTIES_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError, Field, RegexField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.ro.ro_counties import COUNTIES_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError, Field, RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class ROCIFField(RegexField):

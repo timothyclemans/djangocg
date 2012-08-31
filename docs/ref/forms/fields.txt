@@ -2,10 +2,10 @@
 Form fields
 ===========
 
-.. module:: django.forms.fields
+.. module:: djangocg.forms.fields
    :synopsis: Django's built-in form fields.
 
-.. currentmodule:: django.forms
+.. currentmodule:: djangocg.forms
 
 .. class:: Field(**kwargs)
 
@@ -18,7 +18,7 @@ other hooks.
 Although the primary way you'll use ``Field`` classes is in ``Form`` classes,
 you can also instantiate them and use them directly to get a better idea of
 how they work. Each ``Field`` instance has a ``clean()`` method, which takes
-a single argument and either raises a ``django.forms.ValidationError``
+a single argument and either raises a ``djangocg.forms.ValidationError``
 exception or returns the clean value::
 
     >>> from django import forms
@@ -764,7 +764,7 @@ For each field, we describe the default widget used if you don't specify
    * Error messages: ``required``, ``invalid``
 
    This field is intended for use in representing a model
-   :class:`~django.db.models.SlugField` in forms.
+   :class:`~djangocg.db.models.SlugField` in forms.
 
 ``TimeField``
 ~~~~~~~~~~~~~
@@ -995,7 +995,7 @@ Creating custom fields
 
 If the built-in ``Field`` classes don't meet your needs, you can easily create
 custom ``Field`` classes. To do this, just create a subclass of
-``django.forms.Field``. Its only requirements are that it implement a
+``djangocg.forms.Field``. Its only requirements are that it implement a
 ``clean()`` method and that its ``__init__()`` method accept the core arguments
 mentioned above (``required``, ``label``, ``initial``, ``widget``,
 ``help_text``).

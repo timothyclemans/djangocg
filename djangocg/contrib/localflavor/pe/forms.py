@@ -5,11 +5,11 @@ PE-specific Form helpers.
 
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.localflavor.pe.pe_region import REGION_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import RegexField, CharField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.pe.pe_region import REGION_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import RegexField, CharField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class PERegionSelect(Select):

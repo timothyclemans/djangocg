@@ -4,10 +4,10 @@
 ``LayerMapping`` data import utility
 ====================================
 
-.. module:: django.contrib.gis.utils.layermapping
+.. module:: djangocg.contrib.gis.utils.layermapping
    :synopsis: Spatial data import utility for GeoDjango models.
 
-.. currentmodule:: django.contrib.gis.utils
+.. currentmodule:: djangocg.contrib.gis.utils
 
 The :class:`LayerMapping` class provides a way to map the contents of
 vector spatial data files (e.g. shapefiles) into GeoDjango models.
@@ -36,7 +36,7 @@ Example
 1. You need a GDAL-supported data source, like a shapefile (here we're using
    a simple polygon shapefile, ``test_poly.shp``, with three features)::
 
-    >>> from django.contrib.gis.gdal import DataSource
+    >>> from djangocg.contrib.gis.gdal import DataSource
     >>> ds = DataSource('test_poly.shp')
     >>> layer = ds[0]
     >>> print(layer.fields) # Exploring the fields in the layer, we only want the 'str' field.
@@ -54,7 +54,7 @@ Example
 
 2. Now we define our corresponding Django model (make sure to use ``syncdb``)::
 
-    from django.contrib.gis.db import models
+    from djangocg.contrib.gis.db import models
 
     class TestGeo(models.Model):
         name = models.CharField(max_length=25) # corresponds to the 'str' field
@@ -66,7 +66,7 @@ Example
 3. Use :class:`LayerMapping` to extract all the features and place them in the
    database::
 
-    >>> from django.contrib.gis.utils import LayerMapping
+    >>> from djangocg.contrib.gis.utils import LayerMapping
     >>> from geoapp.models import TestGeo
     >>> mapping = {'name' : 'str', # The 'name' model field maps to the 'str' layer field.
                    'poly' : 'POLYGON', # For geometry fields use OGC name.
@@ -81,7 +81,7 @@ Here, :class:`LayerMapping` just transformed the three geometries from the
 shapefile in their original spatial reference system (WGS84) to the spatial
 reference system of the GeoDjango model (NAD83).  If no spatial reference
 system is defined for the layer, use the ``source_srs`` keyword with a
-:class:`~django.contrib.gis.gdal.SpatialReference` object to specify one.
+:class:`~djangocg.contrib.gis.gdal.SpatialReference` object to specify one.
 
 ``LayerMapping`` API
 ====================
@@ -98,7 +98,7 @@ Argument           Description
 
 ``data_source``    The path to the OGR-supported data source file
                    (e.g., a shapefile).  Also accepts
-                   :class:`django.contrib.gis.gdal.DataSource` instances.
+                   :class:`djangocg.contrib.gis.gdal.DataSource` instances.
 
 ``mapping``        A dictionary: keys are strings corresponding to
                    the model field, and values correspond to
@@ -117,7 +117,7 @@ Keyword Arguments
 ``source_srs``         Use this to specify the source SRS manually (for
                        example, some shapefiles don't come with a '.prj'
                        file).  An integer SRID, WKT or PROJ.4 strings, and
-                       :class:`django.contrib.gis.gdal.SpatialReference`
+                       :class:`djangocg.contrib.gis.gdal.SpatialReference`
                        objects are accepted.
 
 ``encoding``           Specifies the character set encoding of the strings

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.forms import *
-from django.test import TestCase
-from django.utils.safestring import mark_safe
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.forms import *
+from djangocg.test import TestCase
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class AssertFormErrorsMixin(object):

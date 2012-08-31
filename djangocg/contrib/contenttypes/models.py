@@ -1,7 +1,7 @@
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import smart_text, force_text
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import smart_text, force_text
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 class ContentTypeManager(models.Manager):
 
@@ -40,7 +40,7 @@ class ContentTypeManager(models.Manager):
         except KeyError:
             # Load or create the ContentType entry. The smart_text() is
             # needed around opts.verbose_name_raw because name_raw might be a
-            # django.utils.functional.__proxy__ object.
+            # djangocg.utils.functional.__proxy__ object.
             ct, created = self.get_or_create(
                 app_label = opts.app_label,
                 model = opts.object_name.lower(),
@@ -111,7 +111,7 @@ class ContentTypeManager(models.Manager):
         """
         Clear out the content-type cache. This needs to happen during database
         flushes to prevent caching of "stale" content type IDs (see
-        django.contrib.contenttypes.management.update_contenttypes for where
+        djangocg.contrib.contenttypes.management.update_contenttypes for where
         this gets called).
         """
         self.__class__._cache.clear()
@@ -153,7 +153,7 @@ class ContentType(models.Model):
 
     def model_class(self):
         "Returns the Python model class for this type of content."
-        from django.db import models
+        from djangocg.db import models
         return models.get_model(self.app_label, self.model,
                                 only_installed=False)
 

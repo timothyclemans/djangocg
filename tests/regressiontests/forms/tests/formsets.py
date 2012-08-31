@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.forms import Form, CharField, IntegerField, ValidationError, DateField
-from django.forms.formsets import formset_factory, BaseFormSet
-from django.test import TestCase
+from djangocg.forms import Form, CharField, IntegerField, ValidationError, DateField
+from djangocg.forms.formsets import formset_factory, BaseFormSet
+from djangocg.test import TestCase
 
 
 class Choice(Form):

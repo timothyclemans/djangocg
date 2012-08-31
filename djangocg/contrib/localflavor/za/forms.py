@@ -3,11 +3,11 @@ South Africa-specific Form helpers
 """
 from __future__ import unicode_literals
 
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import CharField, RegexField
-from django.utils.checksums import luhn
-from django.utils.translation import gettext as _
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import CharField, RegexField
+from djangocg.utils.checksums import luhn
+from djangocg.utils.translation import gettext as _
 import re
 from datetime import date
 

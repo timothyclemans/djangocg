@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from django.conf import settings
-from django.contrib.sites.models import Site
-from django.test import TestCase
+from djangocg.conf import settings
+from djangocg.contrib.sites.models import Site
+from djangocg.test import TestCase
 
 from .models import (SyndicatedArticle, ExclusiveArticle, CustomArticle,
     InvalidArticle, ConfusedArticle)

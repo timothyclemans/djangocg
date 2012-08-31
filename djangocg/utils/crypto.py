@@ -22,10 +22,10 @@ except NotImplementedError:
                   'on your system. Falling back to Mersenne Twister.')
     using_sysrandom = False
 
-from django.conf import settings
-from django.utils.encoding import force_bytes
-from django.utils import six
-from django.utils.six.moves import xrange
+from djangocg.conf import settings
+from djangocg.utils.encoding import force_bytes
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
 
 
 _trans_5c = bytearray([(x ^ 0x5C) for x in xrange(256)])

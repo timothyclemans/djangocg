@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy
+from djangocg.utils.translation import ugettext_lazy
 
 JP_PREFECTURES = (
     ('hokkaido', ugettext_lazy('Hokkaido'),),

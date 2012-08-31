@@ -1,15 +1,15 @@
 """
-Tests for stuff in django.utils.datastructures.
+Tests for stuff in djangocg.utils.datastructures.
 """
 
 import copy
 import pickle
 import warnings
 
-from django.test import SimpleTestCase
-from django.utils.datastructures import (DictWrapper, ImmutableList,
+from djangocg.test import SimpleTestCase
+from djangocg.utils.datastructures import (DictWrapper, ImmutableList,
     MultiValueDict, MultiValueDictKeyError, MergeDict, SortedDict)
-from django.utils import six
+from djangocg.utils import six
 
 
 class SortedDictTests(SimpleTestCase):

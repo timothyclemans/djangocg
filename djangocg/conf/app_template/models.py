@@ -1,3 +1,3 @@
-from django.db import models
+from djangocg.db import models
 
 # Create your models here.

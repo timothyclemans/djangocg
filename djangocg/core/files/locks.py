@@ -8,7 +8,7 @@ Cookbook, licensed under the Python Software License.
 
 Example Usage::
 
-    >>> from django.core.files import locks
+    >>> from djangocg.core.files import locks
     >>> with open('./file', 'wb') as f:
     ...     locks.lock(f, locks.LOCK_EX)
     ...     f.write('Django')

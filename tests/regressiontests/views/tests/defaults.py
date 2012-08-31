@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.test import TestCase
-from django.contrib.contenttypes.models import ContentType
+from djangocg.test import TestCase
+from djangocg.contrib.contenttypes.models import ContentType
 
 from ..models import Author, Article, UrlArticle
 

@@ -2,8 +2,8 @@
 # encoding: utf-8
 # originally from https://bitbucket.org/ned/jslex
 
-from django.test import TestCase
-from django.utils.jslex import JsLexer, prepare_js_for_gettext
+from djangocg.test import TestCase
+from djangocg.utils.jslex import JsLexer, prepare_js_for_gettext
 
 class JsTokensTest(TestCase):
     LEX_CASES = [

@@ -14,10 +14,10 @@ except ImportError:     # Python 2
 
 from email.utils import formatdate
 
-from django.utils.datastructures import MultiValueDict
-from django.utils.encoding import force_str, force_text
-from django.utils.functional import allow_lazy
-from django.utils import six
+from djangocg.utils.datastructures import MultiValueDict
+from djangocg.utils.encoding import force_str, force_text
+from djangocg.utils.functional import allow_lazy
+from djangocg.utils import six
 
 ETAG_MATCH = re.compile(r'(?:W/)?"((?:\\.|[^"])*)"')
 
@@ -55,7 +55,7 @@ urlquote_plus = allow_lazy(urlquote_plus, six.text_type)
 def urlunquote(quoted_url):
     """
     A wrapper for Python's urllib.unquote() function that can operate on
-    the result of django.utils.http.urlquote().
+    the result of djangocg.utils.http.urlquote().
     """
     return force_text(urllib_parse.unquote(force_str(quoted_url)))
 urlunquote = allow_lazy(urlunquote, six.text_type)
@@ -63,7 +63,7 @@ urlunquote = allow_lazy(urlunquote, six.text_type)
 def urlunquote_plus(quoted_url):
     """
     A wrapper for Python's urllib.unquote_plus() function that can operate on
-    the result of django.utils.http.urlquote_plus().
+    the result of djangocg.utils.http.urlquote_plus().
     """
     return force_text(urllib_parse.unquote_plus(force_str(quoted_url)))
 urlunquote_plus = allow_lazy(urlunquote_plus, six.text_type)

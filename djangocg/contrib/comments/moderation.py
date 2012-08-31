@@ -18,7 +18,7 @@ Example
 First, we define a simple model class which might represent entries in
 a Weblog::
 
-    from django.db import models
+    from djangocg.db import models
 
     class Entry(models.Model):
         title = models.CharField(maxlength=250)
@@ -29,7 +29,7 @@ a Weblog::
 Then we create a ``CommentModerator`` subclass specifying some
 moderation options::
 
-    from django.contrib.comments.moderation import CommentModerator, moderator
+    from djangocg.contrib.comments.moderation import CommentModerator, moderator
 
     class EntryModerator(CommentModerator):
         email_notification = True
@@ -56,14 +56,14 @@ class.
 
 import datetime
 
-from django.conf import settings
-from django.core.mail import send_mail
-from django.contrib.comments import signals
-from django.db.models.base import ModelBase
-from django.template import Context, loader
-from django.contrib import comments
-from django.contrib.sites.models import Site
-from django.utils import timezone
+from djangocg.conf import settings
+from djangocg.core.mail import send_mail
+from djangocg.contrib.comments import signals
+from djangocg.db.models.base import ModelBase
+from djangocg.template import Context, loader
+from djangocg.contrib import comments
+from djangocg.contrib.sites.models import Site
+from djangocg.utils import timezone
 
 class AlreadyModerated(Exception):
     """

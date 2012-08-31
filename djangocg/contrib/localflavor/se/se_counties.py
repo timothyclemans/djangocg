@@ -10,7 +10,7 @@ when explicitly needed.
 """
 from __future__ import unicode_literals
 
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 COUNTY_CHOICES = (
     ('AB', _('Stockholm')),

@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 import os
 
-from django.core.exceptions import ValidationError
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.core.exceptions import ValidationError
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class Person(models.Model):

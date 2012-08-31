@@ -1,7 +1,7 @@
-from django.contrib.sessions.backends.base import SessionBase, CreateError
-from django.core.exceptions import SuspiciousOperation
-from django.db import IntegrityError, transaction, router
-from django.utils import timezone
+from djangocg.contrib.sessions.backends.base import SessionBase, CreateError
+from djangocg.core.exceptions import SuspiciousOperation
+from djangocg.db import IntegrityError, transaction, router
+from djangocg.utils import timezone
 
 
 class SessionStore(SessionBase):
@@ -73,4 +73,4 @@ class SessionStore(SessionBase):
 
 
 # At bottom to avoid circular import
-from django.contrib.sessions.models import Session
+from djangocg.contrib.sessions.models import Session

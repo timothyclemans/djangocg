@@ -1,5 +1,5 @@
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from djangocg.db import models
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class SessionManager(models.Manager):
@@ -51,4 +51,4 @@ class Session(models.Model):
 
 
 # At bottom to avoid circular import
-from django.contrib.sessions.backends.db import SessionStore
+from djangocg.contrib.sessions.backends.db import SessionStore

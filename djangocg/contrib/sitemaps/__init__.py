@@ -1,6 +1,6 @@
-from django.contrib.sites.models import Site
-from django.core import urlresolvers, paginator
-from django.core.exceptions import ImproperlyConfigured
+from djangocg.contrib.sites.models import Site
+from djangocg.core import urlresolvers, paginator
+from djangocg.core.exceptions import ImproperlyConfigured
 try:
     from urllib.parse import urlencode
     from urllib.request import urlopen
@@ -22,18 +22,18 @@ def ping_google(sitemap_url=None, ping_url=PING_URL):
     if sitemap_url is None:
         try:
             # First, try to get the "index" sitemap URL.
-            sitemap_url = urlresolvers.reverse('django.contrib.sitemaps.views.index')
+            sitemap_url = urlresolvers.reverse('djangocg.contrib.sitemaps.views.index')
         except urlresolvers.NoReverseMatch:
             try:
                 # Next, try for the "global" sitemap URL.
-                sitemap_url = urlresolvers.reverse('django.contrib.sitemaps.views.sitemap')
+                sitemap_url = urlresolvers.reverse('djangocg.contrib.sitemaps.views.sitemap')
             except urlresolvers.NoReverseMatch:
                 pass
 
     if sitemap_url is None:
         raise SitemapNotFound("You didn't provide a sitemap_url, and the sitemap URL couldn't be auto-detected.")
 
-    from django.contrib.sites.models import Site
+    from djangocg.contrib.sites.models import Site
     current_site = Site.objects.get_current()
     url = "http://%s%s" % (current_site.domain, sitemap_url)
     params = urlencode({'sitemap':url})

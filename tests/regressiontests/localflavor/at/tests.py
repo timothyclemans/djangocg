@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.at.forms import (ATZipCodeField, ATStateSelect,
+from djangocg.contrib.localflavor.at.forms import (ATZipCodeField, ATStateSelect,
     ATSocialSecurityNumberField)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class ATLocalFlavorTests(SimpleTestCase):

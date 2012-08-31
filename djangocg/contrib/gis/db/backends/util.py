@@ -3,7 +3,7 @@ A collection of utility routines and classes used by the spatial
 backends.
 """
 
-from django.utils import six
+from djangocg.utils import six
 
 def gqn(val):
     """

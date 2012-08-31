@@ -1,17 +1,17 @@
 # coding: utf-8
 from __future__ import unicode_literals
 
-from django.test import TestCase
-from django.utils.encoding import iri_to_uri
-from django.utils.http import (cookie_date, http_date,
+from djangocg.test import TestCase
+from djangocg.utils.encoding import iri_to_uri
+from djangocg.utils.http import (cookie_date, http_date,
     urlquote, urlquote_plus, urlunquote, urlunquote_plus)
-from django.utils.text import get_text_list, smart_split
-from django.utils.translation import override
+from djangocg.utils.text import get_text_list, smart_split
+from djangocg.utils.translation import override
 
 
 class TextTests(TestCase):
     """
-    Tests for stuff in django.utils.text and other text munging util functions.
+    Tests for stuff in djangocg.utils.text and other text munging util functions.
     """
 
     def test_get_text_list(self):

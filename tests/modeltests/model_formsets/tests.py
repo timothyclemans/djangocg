@@ -6,11 +6,11 @@ from datetime import date
 from decimal import Decimal
 
 from django import forms
-from django.db import models
-from django.forms.models import (_get_foreign_key, inlineformset_factory,
+from djangocg.db import models
+from djangocg.forms.models import (_get_foreign_key, inlineformset_factory,
     modelformset_factory)
-from django.test import TestCase, skipUnlessDBFeature
-from django.utils import six
+from djangocg.test import TestCase, skipUnlessDBFeature
+from djangocg.utils import six
 
 from .models import (Author, BetterAuthor, Book, BookWithCustomPK,
     BookWithOptionalAltEditor, AlternateBook, AuthorMeeting, CustomPrimaryKey,

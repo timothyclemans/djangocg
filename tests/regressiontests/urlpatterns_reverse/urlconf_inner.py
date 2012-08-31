@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, url
-from django.template import Template, Context
-from django.http import HttpResponse
+from djangocg.conf.urls import patterns, url
+from djangocg.template import Template, Context
+from djangocg.http import HttpResponse
 
 def inner_view(request):
     content = Template('{% url "outer" as outer_url %}outer:{{ outer_url }},'

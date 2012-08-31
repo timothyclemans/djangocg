@@ -1,6 +1,6 @@
-from django.contrib import auth
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.functional import SimpleLazyObject
+from djangocg.contrib import auth
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.functional import SimpleLazyObject
 
 
 def get_user(request):
@@ -11,7 +11,7 @@ def get_user(request):
 
 class AuthenticationMiddleware(object):
     def process_request(self, request):
-        assert hasattr(request, 'session'), "The Django authentication middleware requires session middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'django.contrib.sessions.middleware.SessionMiddleware'."
+        assert hasattr(request, 'session'), "The Django authentication middleware requires session middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'djangocg.contrib.sessions.middleware.SessionMiddleware'."
 
         request.user = SimpleLazyObject(lambda: get_user(request))
 
@@ -42,7 +42,7 @@ class RemoteUserMiddleware(object):
                 "The Django remote user auth middleware requires the"
                 " authentication middleware to be installed.  Edit your"
                 " MIDDLEWARE_CLASSES setting to insert"
-                " 'django.contrib.auth.middleware.AuthenticationMiddleware'"
+                " 'djangocg.contrib.auth.middleware.AuthenticationMiddleware'"
                 " before the RemoteUserMiddleware class.")
         try:
             username = request.META[self.header]

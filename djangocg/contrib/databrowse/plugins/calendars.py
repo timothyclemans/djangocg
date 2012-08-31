@@ -1,15 +1,15 @@
 from __future__ import unicode_literals
 
 from django import http
-from django.db import models
-from django.contrib.databrowse.datastructures import EasyModel
-from django.contrib.databrowse.sites import DatabrowsePlugin
-from django.shortcuts import render_to_response
-from django.utils.html import format_html, format_html_join
-from django.utils.text import capfirst
-from django.utils.encoding import force_text
-from django.views.generic import dates
-from django.utils import datetime_safe
+from djangocg.db import models
+from djangocg.contrib.databrowse.datastructures import EasyModel
+from djangocg.contrib.databrowse.sites import DatabrowsePlugin
+from djangocg.shortcuts import render_to_response
+from djangocg.utils.html import format_html, format_html_join
+from djangocg.utils.text import capfirst
+from djangocg.utils.encoding import force_text
+from djangocg.views.generic import dates
+from djangocg.utils import datetime_safe
 
 
 class DateViewMixin(object):

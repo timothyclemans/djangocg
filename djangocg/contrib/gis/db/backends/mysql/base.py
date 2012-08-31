@@ -1,8 +1,8 @@
-from django.db.backends.mysql.base import *
-from django.db.backends.mysql.base import DatabaseWrapper as MySQLDatabaseWrapper
-from django.contrib.gis.db.backends.mysql.creation import MySQLCreation
-from django.contrib.gis.db.backends.mysql.introspection import MySQLIntrospection
-from django.contrib.gis.db.backends.mysql.operations import MySQLOperations
+from djangocg.db.backends.mysql.base import *
+from djangocg.db.backends.mysql.base import DatabaseWrapper as MySQLDatabaseWrapper
+from djangocg.contrib.gis.db.backends.mysql.creation import MySQLCreation
+from djangocg.contrib.gis.db.backends.mysql.introspection import MySQLIntrospection
+from djangocg.contrib.gis.db.backends.mysql.operations import MySQLOperations
 
 class DatabaseWrapper(MySQLDatabaseWrapper):
 

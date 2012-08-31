@@ -1,15 +1,15 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.utils.html import format_html, format_html_join
-from django.utils.encoding import force_text, python_2_unicode_compatible
-from django.utils.safestring import mark_safe
-from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from djangocg.conf import settings
+from djangocg.utils.html import format_html, format_html_join
+from djangocg.utils.encoding import force_text, python_2_unicode_compatible
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import timezone
+from djangocg.utils.translation import ugettext_lazy as _
 
 # Import ValidationError so that it can be imported from this
 # module to maintain backwards compatibility.
-from django.core.exceptions import ValidationError
+from djangocg.core.exceptions import ValidationError
 
 def flatatt(attrs):
     """

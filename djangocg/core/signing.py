@@ -40,12 +40,12 @@ import json
 import time
 import zlib
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.utils import baseconv
-from django.utils.crypto import constant_time_compare, salted_hmac
-from django.utils.encoding import force_bytes, force_str, force_text
-from django.utils.importlib import import_module
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils import baseconv
+from djangocg.utils.crypto import constant_time_compare, salted_hmac
+from djangocg.utils.encoding import force_bytes, force_str, force_text
+from djangocg.utils.importlib import import_module
 
 
 class BadSignature(Exception):
@@ -75,7 +75,7 @@ def base64_hmac(salt, value, key):
     return b64_encode(salted_hmac(salt, value, key).digest())
 
 
-def get_cookie_signer(salt='django.core.signing.get_cookie_signer'):
+def get_cookie_signer(salt='djangocg.core.signing.get_cookie_signer'):
     modpath = settings.SIGNING_BACKEND
     module, attr = modpath.rsplit('.', 1)
     try:
@@ -88,7 +88,7 @@ def get_cookie_signer(salt='django.core.signing.get_cookie_signer'):
     except AttributeError as e:
         raise ImproperlyConfigured(
             'Error importing cookie signer %s: "%s"' % (modpath, e))
-    return Signer('django.http.cookies' + settings.SECRET_KEY, salt=salt)
+    return Signer('djangocg.http.cookies' + settings.SECRET_KEY, salt=salt)
 
 
 class JSONSerializer(object):
@@ -103,7 +103,7 @@ class JSONSerializer(object):
         return json.loads(data)
 
 
-def dumps(obj, key=None, salt='django.core.signing', serializer=JSONSerializer, compress=False):
+def dumps(obj, key=None, salt='djangocg.core.signing', serializer=JSONSerializer, compress=False):
     """
     Returns URL-safe, sha1 signed base64 compressed JSON string. If key is
     None, settings.SECRET_KEY is used instead.
@@ -134,7 +134,7 @@ def dumps(obj, key=None, salt='django.core.signing', serializer=JSONSerializer, 
     return TimestampSigner(key, salt=salt).sign(base64d)
 
 
-def loads(s, key=None, salt='django.core.signing', serializer=JSONSerializer, max_age=None):
+def loads(s, key=None, salt='djangocg.core.signing', serializer=JSONSerializer, max_age=None):
     """
     Reverse of dumps(), raises BadSignature if signature fails
     """

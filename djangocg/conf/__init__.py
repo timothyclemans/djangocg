@@ -2,7 +2,7 @@
 Settings and configuration for Django.
 
 Values will be read from the module specified by the DJANGO_SETTINGS_MODULE environment
-variable, and then from django.conf.global_settings; see the global settings file for
+variable, and then from djangocg.conf.global_settings; see the global settings file for
 a list of all possible variables.
 """
 
@@ -11,11 +11,11 @@ import re
 import time     # Needed for Windows
 import warnings
 
-from django.conf import global_settings
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.functional import LazyObject, empty
-from django.utils import importlib
-from django.utils import six
+from djangocg.conf import global_settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.functional import LazyObject, empty
+from djangocg.utils import importlib
+from djangocg.utils import six
 
 ENVIRONMENT_VARIABLE = "DJANGO_SETTINGS_MODULE"
 
@@ -191,7 +191,7 @@ def compat_patch_logging_config(logging_config):
             filter_name = filter_name + "_"
 
         filters[filter_name] = {
-            "()": "django.utils.log.RequireDebugFalse",
+            "()": "djangocg.utils.log.RequireDebugFalse",
         }
 
         logging_config["handlers"]["mail_admins"]["filters"] = [filter_name]

@@ -1,11 +1,11 @@
 import json
 
-from django.contrib.messages import constants
-from django.contrib.messages.tests.base import BaseTest
-from django.contrib.messages.storage.cookie import (CookieStorage,
+from djangocg.contrib.messages import constants
+from djangocg.contrib.messages.tests.base import BaseTest
+from djangocg.contrib.messages.storage.cookie import (CookieStorage,
     MessageEncoder, MessageDecoder)
-from django.contrib.messages.storage.base import Message
-from django.test.utils import override_settings
+from djangocg.contrib.messages.storage.base import Message
+from djangocg.test.utils import override_settings
 
 
 def set_cookie_data(storage, messages, invalid=False, encode_empty=False):

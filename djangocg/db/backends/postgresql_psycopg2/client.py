@@ -1,7 +1,7 @@
 import os
 import sys
 
-from django.db.backends import BaseDatabaseClient
+from djangocg.db.backends import BaseDatabaseClient
 
 class DatabaseClient(BaseDatabaseClient):
     executable_name = 'psql'

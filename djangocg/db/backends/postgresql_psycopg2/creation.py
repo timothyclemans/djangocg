@@ -1,7 +1,7 @@
 import psycopg2.extensions
 
-from django.db.backends.creation import BaseDatabaseCreation
-from django.db.backends.util import truncate_name
+from djangocg.db.backends.creation import BaseDatabaseCreation
+from djangocg.db.backends.util import truncate_name
 
 
 class DatabaseCreation(BaseDatabaseCreation):

@@ -2,7 +2,7 @@
 Performing raw SQL queries
 ==========================
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 When the :doc:`model query APIs </topics/db/queries>` don't go far enough, you
 can fall back to writing raw SQL. Django gives you two ways of performing raw
@@ -24,8 +24,8 @@ return model instances:
 .. method:: Manager.raw(raw_query, params=None, translations=None)
 
 This method method takes a raw SQL query, executes it, and returns a
-:class:`~django.db.models.query.RawQuerySet` instance. This
-:class:`~django.db.models.query.RawQuerySet` instance can be iterated
+:class:`~djangocg.db.models.query.RawQuerySet` instance. This
+:class:`~djangocg.db.models.query.RawQuerySet` instance can be iterated
 over just like an normal QuerySet to provide object instances.
 
 This is best illustrated with an example. Suppose you've got the following model::
@@ -122,7 +122,7 @@ Fields may also be left out::
     >>> people = Person.objects.raw('SELECT id, first_name FROM myapp_person')
 
 The ``Person`` objects returned by this query will be deferred model instances
-(see :meth:`~django.db.models.query.QuerySet.defer()`). This means that the
+(see :meth:`~djangocg.db.models.query.QuerySet.defer()`). This means that the
 fields that are omitted from the query will be loaded on demand. For example::
 
     >>> for p in Person.objects.raw('SELECT id, first_name FROM myapp_person'):
@@ -202,8 +202,8 @@ perform queries that don't map cleanly to models, or directly execute
 In these cases, you can always access the database directly, routing around
 the model layer entirely.
 
-The object ``django.db.connection`` represents the
-default database connection, and ``django.db.transaction`` represents the
+The object ``djangocg.db.connection`` represents the
+default database connection, and ``djangocg.db.transaction`` represents the
 default database transaction. To use the database connection, call
 ``connection.cursor()`` to get a cursor object. Then, call
 ``cursor.execute(sql, [params])`` to execute the SQL and ``cursor.fetchone()``
@@ -214,7 +214,7 @@ to the database. If your query is purely a data retrieval operation, no commit
 is required. For example::
 
     def my_custom_sql():
-        from django.db import connection, transaction
+        from djangocg.db import connection, transaction
         cursor = connection.cursor()
 
         # Data modifying operation - commit required
@@ -228,12 +228,12 @@ is required. For example::
         return row
 
 If you are using :doc:`more than one database </topics/db/multi-db>`, you can
-use ``django.db.connections`` to obtain the connection (and cursor) for a
-specific database. ``django.db.connections`` is a dictionary-like
+use ``djangocg.db.connections`` to obtain the connection (and cursor) for a
+specific database. ``djangocg.db.connections`` is a dictionary-like
 object that allows you to retrieve a specific connection using its
 alias::
 
-    from django.db import connections
+    from djangocg.db import connections
     cursor = connections['my_db_alias'].cursor()
     # Your code here...
     transaction.commit_unless_managed(using='my_db_alias')

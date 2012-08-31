@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.in_.forms import (INZipCodeField,
+from djangocg.contrib.localflavor.in_.forms import (INZipCodeField,
     INStateField, INStateSelect, INPhoneNumberField)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 

@@ -1,8 +1,8 @@
 import tempfile
 import os
 
-from django.core.files.storage import FileSystemStorage
-from django.db import models
+from djangocg.core.files.storage import FileSystemStorage
+from djangocg.db import models
 
 
 temp_storage = FileSystemStorage(tempfile.mkdtemp())

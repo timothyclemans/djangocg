@@ -9,7 +9,7 @@ This document explains all the possible :ref:`metadata options
 Available ``Meta`` options
 ==========================
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 ``abstract``
 ------------
@@ -91,7 +91,7 @@ Django quotes column and table names behind the scenes.
 
         get_latest_by = "order_date"
 
-    See the docs for :meth:`~django.db.models.query.QuerySet.latest` for more.
+    See the docs for :meth:`~djangocg.db.models.query.QuerySet.latest` for more.
 
 ``managed``
 -----------
@@ -115,7 +115,7 @@ Django quotes column and table names behind the scenes.
        are modeling when using unmanaged models.
 
     2. If a model with ``managed=False`` contains a
-       :class:`~django.db.models.ManyToManyField` that points to another
+       :class:`~djangocg.db.models.ManyToManyField` that points to another
        unmanaged model, then the intermediate table for the many-to-many
        join will also not be created. However, the intermediary table
        between one managed and one unmanaged model *will* be created.
@@ -254,10 +254,10 @@ Django quotes column and table names behind the scenes.
 
         unique_together = ("driver", "restaurant")
 
-    A :class:`~django.db.models.ManyToManyField` cannot be included in
+    A :class:`~djangocg.db.models.ManyToManyField` cannot be included in
     unique_together. (It's not clear what that would even mean!) If you
     need to validate uniqueness related to a
-    :class:`~django.db.models.ManyToManyField`, try using a signal or
+    :class:`~djangocg.db.models.ManyToManyField`, try using a signal or
     an explicit :attr:`through <ManyToManyField.through>` model.
 
 ``verbose_name``

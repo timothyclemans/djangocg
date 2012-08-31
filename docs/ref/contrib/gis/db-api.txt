@@ -4,7 +4,7 @@
 GeoDjango Database API
 ======================
 
-.. module:: django.contrib.gis.db.models
+.. module:: djangocg.contrib.gis.db.models
    :synopsis: GeoDjango's database API.
 
 .. _spatial-backends:
@@ -14,10 +14,10 @@ Spatial Backends
 
 GeoDjango currently provides the following spatial database backends:
 
-* :mod:`django.contrib.gis.db.backends.postgis`
-* :mod:`django.contrib.gis.db.backends.mysql`
-* :mod:`django.contrib.gis.db.backends.oracle`
-* :mod:`django.contrib.gis.db.backends.spatialite`
+* :mod:`djangocg.contrib.gis.db.backends.postgis`
+* :mod:`djangocg.contrib.gis.db.backends.mysql`
+* :mod:`djangocg.contrib.gis.db.backends.oracle`
+* :mod:`djangocg.contrib.gis.db.backends.spatialite`
 
 .. _mysql-spatial-limitations:
 
@@ -56,9 +56,9 @@ model)::
     >>> z = Zipcode(code=77096, poly='POLYGON(( 10 10, 10 20, 20 20, 20 15, 10 10))')
     >>> z.save()
 
-:class:`~django.contrib.gis.geos.GEOSGeometry` objects may also be used to save geometric models::
+:class:`~djangocg.contrib.gis.geos.GEOSGeometry` objects may also be used to save geometric models::
 
-    >>> from django.contrib.gis.geos import GEOSGeometry
+    >>> from djangocg.contrib.gis.geos import GEOSGeometry
     >>> poly = GEOSGeometry('POLYGON(( 10 10, 10 20, 20 20, 20 15, 10 10))')
     >>> z = Zipcode(code=77096, poly=poly)
     >>> z.save()
@@ -71,7 +71,7 @@ transform procedure::
     >>> poly_3084 = GEOSGeometry('POLYGON(( 10 10, 10 20, 20 20, 20 15, 10 10))', srid=3084)  # SRID 3084 is 'NAD83(HARN) / Texas Centric Lambert Conformal'
     >>> z = Zipcode(code=78212, poly=poly_3084)
     >>> z.save()
-    >>> from django.db import connection
+    >>> from djangocg.db import connection
     >>> print(connection.queries[-1]['sql']) # printing the last SQL statement executed (requires DEBUG=True)
     INSERT INTO "geoapp_zipcode" ("code", "poly") VALUES (78212, ST_Transform(ST_GeomFromWKB('\\001 ... ', 3084), 4326))
 
@@ -81,7 +81,7 @@ hexadecimal [#fnewkb]_), and GeoJSON [#fngeojson]_ (requires GDAL). Essentially,
 if the input is not a ``GEOSGeometry`` object, the geometry field will attempt to
 create a ``GEOSGeometry`` instance from the input.
 
-For more information creating :class:`~django.contrib.gis.geos.GEOSGeometry`
+For more information creating :class:`~djangocg.contrib.gis.geos.GEOSGeometry`
 objects, refer to the :ref:`GEOS tutorial <geos-tutorial>`.
 
 .. _spatial-lookups-intro:
@@ -92,7 +92,7 @@ Spatial Lookups
 GeoDjango's lookup types may be used with any manager method like
 ``filter()``, ``exclude()``, etc.  However, the lookup types unique to
 GeoDjango are only available on geometry fields.
-Filters on 'normal' fields (e.g. :class:`~django.db.models.CharField`)
+Filters on 'normal' fields (e.g. :class:`~djangocg.db.models.CharField`)
 may be chained with those on geographic fields.  Thus, geographic queries
 take the following general form (assuming  the ``Zipcode`` model used in the
 :ref:`ref-gis-model-api`)::
@@ -106,7 +106,7 @@ For example::
 
 In this case, ``poly`` is the geographic field, :lookup:`contains <gis-contains>`
 is the spatial lookup type, and ``pnt`` is the parameter (which may be a
-:class:`~django.contrib.gis.geos.GEOSGeometry` object or a string of
+:class:`~djangocg.contrib.gis.geos.GEOSGeometry` object or a string of
 GeoJSON , WKT, or HEXEWKB).
 
 A complete reference can be found in the :ref:`spatial lookup reference
@@ -115,7 +115,7 @@ A complete reference can be found in the :ref:`spatial lookup reference
 .. note::
 
     GeoDjango constructs spatial SQL with the :class:`GeoQuerySet`, a
-    subclass of :class:`~django.db.models.query.QuerySet`.  The
+    subclass of :class:`~djangocg.db.models.query.QuerySet`.  The
     :class:`GeoManager` instance attached to your model is what
     enables use of :class:`GeoQuerySet`.
 
@@ -154,9 +154,9 @@ The following distance lookups are available:
 Distance lookups take a tuple parameter comprising:
 
 #. A geometry to base calculations from; and
-#. A number or :class:`~django.contrib.gis.measure.Distance` object containing the distance.
+#. A number or :class:`~djangocg.contrib.gis.measure.Distance` object containing the distance.
 
-If a :class:`~django.contrib.gis.measure.Distance` object is used,
+If a :class:`~djangocg.contrib.gis.measure.Distance` object is used,
 it may be expressed in any units (the SQL generated will use units
 converted to those of the field); otherwise, numeric parameters are assumed
 to be in the units of the field.
@@ -188,7 +188,7 @@ For example, let's say we have a ``SouthTexasCity`` model (from the
 `GeoDjango distance tests`__ ) on a *projected* coordinate system valid for cities
 in southern Texas::
 
-    from django.contrib.gis.db import models
+    from djangocg.contrib.gis.db import models
 
     class SouthTexasCity(models.Model):
         name = models.CharField(max_length=30)
@@ -199,8 +199,8 @@ in southern Texas::
 
 Then distance queries may be performed as follows::
 
-    >>> from django.contrib.gis.geos import *
-    >>> from django.contrib.gis.measure import D # ``D`` is a shortcut for ``Distance``
+    >>> from djangocg.contrib.gis.geos import *
+    >>> from djangocg.contrib.gis.measure import D # ``D`` is a shortcut for ``Distance``
     >>> from geoapp import SouthTexasCity
     # Distances will be calculated from this point, which does not have to be projected.
     >>> pnt = fromstr('POINT(-96.876369 29.905320)', srid=4326)

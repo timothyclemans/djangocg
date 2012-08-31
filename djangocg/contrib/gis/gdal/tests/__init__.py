@@ -4,7 +4,7 @@ of these tests require the use of the database.
 """
 from __future__ import absolute_import
 
-from django.utils.unittest import TestSuite, TextTestRunner
+from djangocg.utils.unittest import TestSuite, TextTestRunner
 
 # Importing the GDAL test modules.
 from . import test_driver, test_ds, test_envelope, test_geom, test_srs

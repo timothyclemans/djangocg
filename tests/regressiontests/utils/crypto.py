@@ -5,8 +5,8 @@ import math
 import timeit
 import hashlib
 
-from django.utils import unittest
-from django.utils.crypto import constant_time_compare, pbkdf2
+from djangocg.utils import unittest
+from djangocg.utils.crypto import constant_time_compare, pbkdf2
 
 
 class TestUtilsCryptoMisc(unittest.TestCase):
@@ -155,7 +155,7 @@ class TestUtilsCryptoPBKDF2(unittest.TestCase):
         # measurement.
         n1, n2 = 200000, 800000
         elapsed = lambda f: timeit.Timer(f,
-                    'from django.utils.crypto import pbkdf2').timeit(number=1)
+                    'from djangocg.utils.crypto import pbkdf2').timeit(number=1)
         t1 = elapsed('pbkdf2("password", "salt", iterations=%d)' % n1)
         t2 = elapsed('pbkdf2("password", "salt", iterations=%d)' % n2)
         measured_scale_exponent = math.log(t2 / t1, n2 / n1)

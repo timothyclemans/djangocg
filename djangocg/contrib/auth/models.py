@@ -1,22 +1,22 @@
 from __future__ import unicode_literals
 
-from django.core.exceptions import ImproperlyConfigured
-from django.core.mail import send_mail
-from django.db import models
-from django.db.models.manager import EmptyManager
-from django.utils.crypto import get_random_string
-from django.utils.http import urlquote
-from django.utils import six
-from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.mail import send_mail
+from djangocg.db import models
+from djangocg.db.models.manager import EmptyManager
+from djangocg.utils.crypto import get_random_string
+from djangocg.utils.http import urlquote
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils import timezone
 
-from django.contrib import auth
+from djangocg.contrib import auth
 # UNUSABLE_PASSWORD is still imported here for backwards compatibility
-from django.contrib.auth.hashers import (
+from djangocg.contrib.auth.hashers import (
     check_password, make_password, is_password_usable, UNUSABLE_PASSWORD)
-from django.contrib.auth.signals import user_logged_in
-from django.contrib.contenttypes.models import ContentType
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.auth.signals import user_logged_in
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 def update_last_login(sender, user, **kwargs):
@@ -382,7 +382,7 @@ class User(models.Model):
         SiteProfileNotAvailable if this site does not allow profiles.
         """
         if not hasattr(self, '_profile_cache'):
-            from django.conf import settings
+            from djangocg.conf import settings
             if not getattr(settings, 'AUTH_PROFILE_MODULE', False):
                 raise SiteProfileNotAvailable(
                     'You need to set AUTH_PROFILE_MODULE in your project '

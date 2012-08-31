@@ -1,6 +1,6 @@
-from django.conf import settings
-from django.test.simple import build_suite, DjangoTestSuiteRunner
-from django.utils import unittest
+from djangocg.conf import settings
+from djangocg.test.simple import build_suite, DjangoTestSuiteRunner
+from djangocg.utils import unittest
 
 from .test_geoforms import GeometryFieldTest
 from .test_measure import DistanceTest, AreaTest
@@ -10,12 +10,12 @@ from .test_spatialrefsys import SpatialRefSysTest
 def geo_apps(namespace=True, runtests=False):
     """
     Returns a list of GeoDjango test applications that reside in
-    `django.contrib.gis.tests` that can be used with the current
+    `djangocg.contrib.gis.tests` that can be used with the current
     database and the spatial libraries that are installed.
     """
-    from django.db import connection
-    from django.contrib.gis.geos import GEOS_PREPARE
-    from django.contrib.gis.gdal import HAS_GDAL
+    from djangocg.db import connection
+    from djangocg.contrib.gis.geos import GEOS_PREPARE
+    from djangocg.contrib.gis.gdal import HAS_GDAL
 
     apps = ['geoapp', 'relatedapp']
 
@@ -37,9 +37,9 @@ def geo_apps(namespace=True, runtests=False):
         if connection.ops.postgis and GEOS_PREPARE:
             apps.append('geo3d')
     if runtests:
-        return [('django.contrib.gis.tests', app) for app in apps]
+        return [('djangocg.contrib.gis.tests', app) for app in apps]
     elif namespace:
-        return ['django.contrib.gis.tests.%s' % app
+        return ['djangocg.contrib.gis.tests.%s' % app
                 for app in apps]
     else:
         return apps
@@ -50,27 +50,27 @@ def geodjango_suite(apps=True):
     Returns a TestSuite consisting only of GeoDjango tests that can be run.
     """
     import sys
-    from django.db.models import get_app
+    from djangocg.db.models import get_app
 
     suite = unittest.TestSuite()
 
     # Adding the GEOS tests.
-    from django.contrib.gis.geos import tests as geos_tests
+    from djangocg.contrib.gis.geos import tests as geos_tests
     suite.addTest(geos_tests.suite())
 
     # Adding GDAL tests, and any test suite that depends on GDAL, to the
     # suite if GDAL is available.
-    from django.contrib.gis.gdal import HAS_GDAL
+    from djangocg.contrib.gis.gdal import HAS_GDAL
     if HAS_GDAL:
-        from django.contrib.gis.gdal import tests as gdal_tests
+        from djangocg.contrib.gis.gdal import tests as gdal_tests
         suite.addTest(gdal_tests.suite())
     else:
         sys.stderr.write('GDAL not available - no tests requiring GDAL will be run.\n')
 
     # Add GeoIP tests to the suite, if the library and data is available.
-    from django.contrib.gis.geoip import HAS_GEOIP
+    from djangocg.contrib.gis.geoip import HAS_GEOIP
     if HAS_GEOIP and hasattr(settings, 'GEOIP_PATH'):
-        from django.contrib.gis.geoip import tests as geoip_tests
+        from djangocg.contrib.gis.geoip import tests as geoip_tests
         suite.addTest(geoip_tests.suite())
 
     # Finally, adding the suites for each of the GeoDjango test apps.
@@ -94,9 +94,9 @@ class GeoDjangoTestSuiteRunner(DjangoTestSuiteRunner):
         # Constructing the new INSTALLED_APPS, and including applications
         # within the GeoDjango test namespace.
         new_installed =  [
-            'django.contrib.sites',
-            'django.contrib.sitemaps',
-            'django.contrib.gis',
+            'djangocg.contrib.sites',
+            'djangocg.contrib.sitemaps',
+            'djangocg.contrib.gis',
         ]
 
         # Calling out to `geo_apps` to get GeoDjango applications supported

@@ -1,12 +1,12 @@
 from __future__ import unicode_literals
 import re
 
-from django.template import (Node, Variable, TemplateSyntaxError,
+from djangocg.template import (Node, Variable, TemplateSyntaxError,
     TokenParser, Library, TOKEN_TEXT, TOKEN_VAR)
-from django.template.base import _render_value_in_context
-from django.template.defaulttags import token_kwargs
-from django.utils import six
-from django.utils import translation
+from djangocg.template.base import _render_value_in_context
+from djangocg.template.defaulttags import token_kwargs
+from djangocg.utils import six
+from djangocg.utils import translation
 
 
 register = Library()
@@ -17,7 +17,7 @@ class GetAvailableLanguagesNode(Node):
         self.variable = variable
 
     def render(self, context):
-        from django.conf import settings
+        from djangocg.conf import settings
         context[self.variable] = [(k, translation.ugettext(v)) for k, v in settings.LANGUAGES]
         return ''
 

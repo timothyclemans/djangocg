@@ -1,14 +1,14 @@
 from __future__ import absolute_import
 
-from django.test import TestCase
-from django.contrib.gis import admin
-from django.contrib.gis.geos import GEOSGeometry, Point
+from djangocg.test import TestCase
+from djangocg.contrib.gis import admin
+from djangocg.contrib.gis.geos import GEOSGeometry, Point
 
 from .models import City
 
 
 class GeoAdminTest(TestCase):
-    urls = 'django.contrib.gis.tests.geoadmin.urls'
+    urls = 'djangocg.contrib.gis.tests.geoadmin.urls'
 
     def test_ensure_geographic_media(self):
         geoadmin = admin.site._registry[City]

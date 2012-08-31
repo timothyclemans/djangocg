@@ -1,15 +1,15 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.core.exceptions import ValidationError
-from django.forms import Form
-from django.forms.fields import IntegerField, BooleanField
-from django.forms.util import ErrorList
-from django.forms.widgets import Media, HiddenInput
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.six.moves import xrange
-from django.utils.translation import ugettext as _
+from djangocg.core.exceptions import ValidationError
+from djangocg.forms import Form
+from djangocg.forms.fields import IntegerField, BooleanField
+from djangocg.forms.util import ErrorList
+from djangocg.forms.widgets import Media, HiddenInput
+from djangocg.utils.encoding import python_2_unicode_compatible
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
+from djangocg.utils.translation import ugettext as _
 
 
 __all__ = ('BaseFormSet', 'all_valid')

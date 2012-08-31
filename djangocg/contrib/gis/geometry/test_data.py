@@ -6,8 +6,8 @@ import gzip
 import json
 import os
 
-from django.contrib import gis
-from django.utils import six
+from djangocg.contrib import gis
+from djangocg.utils import six
 
 
 # This global used to store reference geometry data.

@@ -1,6 +1,6 @@
-from django.core.exceptions import FieldError
-from django.db.models.fields import FieldDoesNotExist
-from django.db.models.sql.constants import LOOKUP_SEP
+from djangocg.core.exceptions import FieldError
+from djangocg.db.models.fields import FieldDoesNotExist
+from djangocg.db.models.sql.constants import LOOKUP_SEP
 
 class SQLEvaluator(object):
     def __init__(self, expression, query, allow_joins=True):

@@ -1,4 +1,4 @@
-from django.utils.translation import gettext_lazy as _
+from djangocg.utils.translation import gettext_lazy as _
 
 PROVINCE_CHOICES = (
     ('EC', _('Eastern Cape')),

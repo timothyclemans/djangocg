@@ -1,4 +1,4 @@
-from django.core import urlresolvers
+from djangocg.core import urlresolvers
 from regressiontests.comment_tests.custom_comments.models import CustomComment 
 from regressiontests.comment_tests.custom_comments.forms import CustomCommentForm
 

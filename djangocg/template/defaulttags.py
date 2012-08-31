@@ -6,19 +6,19 @@ import re
 from datetime import datetime
 from itertools import groupby, cycle as itertools_cycle
 
-from django.conf import settings
-from django.template.base import (Node, NodeList, Template, Context, Library,
+from djangocg.conf import settings
+from djangocg.template.base import (Node, NodeList, Template, Context, Library,
     TemplateSyntaxError, VariableDoesNotExist, InvalidTemplateLibrary,
     BLOCK_TAG_START, BLOCK_TAG_END, VARIABLE_TAG_START, VARIABLE_TAG_END,
     SINGLE_BRACE_START, SINGLE_BRACE_END, COMMENT_TAG_START, COMMENT_TAG_END,
     VARIABLE_ATTRIBUTE_SEPARATOR, get_library, token_kwargs, kwarg_re)
-from django.template.smartif import IfParser, Literal
-from django.template.defaultfilters import date
-from django.utils.encoding import smart_text
-from django.utils.safestring import mark_safe
-from django.utils.html import format_html
-from django.utils import six
-from django.utils import timezone
+from djangocg.template.smartif import IfParser, Literal
+from djangocg.template.defaultfilters import date
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils.html import format_html
+from djangocg.utils import six
+from djangocg.utils import timezone
 
 register = Library()
 
@@ -52,7 +52,7 @@ class CsrfTokenNode(Node):
         else:
             # It's very probable that the token is missing because of
             # misconfiguration, so we raise a warning
-            from django.conf import settings
+            from djangocg.conf import settings
             if settings.DEBUG:
                 import warnings
                 warnings.warn("A {% csrf_token %} was used in a template, but the context did not provide the value.  This is usually caused by not using RequestContext.")
@@ -363,7 +363,7 @@ class SpacelessNode(Node):
         self.nodelist = nodelist
 
     def render(self, context):
-        from django.utils.html import strip_spaces_between_tags
+        from djangocg.utils.html import strip_spaces_between_tags
         return strip_spaces_between_tags(self.nodelist.render(context).strip())
 
 class TemplateTagNode(Node):
@@ -391,7 +391,7 @@ class URLNode(Node):
         self.asvar = asvar
 
     def render(self, context):
-        from django.core.urlresolvers import reverse, NoReverseMatch
+        from djangocg.core.urlresolvers import reverse, NoReverseMatch
         args = [arg.resolve(context) for arg in self.args]
         kwargs = dict([(smart_text(k, 'ascii'), v.resolve(context))
                        for k, v in self.kwargs.items()])

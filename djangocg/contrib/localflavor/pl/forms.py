@@ -6,12 +6,12 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.contrib.localflavor.pl.pl_administrativeunits import ADMINISTRATIVE_UNIT_CHOICES
-from django.contrib.localflavor.pl.pl_voivodeships import VOIVODESHIP_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Select, RegexField
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.pl.pl_administrativeunits import ADMINISTRATIVE_UNIT_CHOICES
+from djangocg.contrib.localflavor.pl.pl_voivodeships import VOIVODESHIP_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Select, RegexField
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class PLProvinceSelect(Select):

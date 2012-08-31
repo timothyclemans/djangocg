@@ -7,10 +7,10 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.contrib.localflavor.cn.cn_provinces import CN_PROVINCE_CHOICES
-from django.forms import ValidationError
-from django.forms.fields import CharField, RegexField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.cn.cn_provinces import CN_PROVINCE_CHOICES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import CharField, RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 __all__ = (

@@ -81,7 +81,7 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
     for file_info in data_files:
         file_info[0] = '\\PURELIB\\%s' % file_info[0]
 
-# Dynamically calculate the version based on django.VERSION.
+# Dynamically calculate the version based on djangocg.VERSION.
 version = __import__('django').get_version()
 
 setup(

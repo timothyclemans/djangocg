@@ -1,6 +1,6 @@
-from django.core import context_processors
-from django.shortcuts import render_to_response
-from django.template.context import RequestContext
+from djangocg.core import context_processors
+from djangocg.shortcuts import render_to_response
+from djangocg.template.context import RequestContext
 
 
 def request_processor(request):

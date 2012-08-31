@@ -23,7 +23,7 @@ import re
 import sys
 import types
 
-from django.utils import six
+from djangocg.utils import six
 
 IDENTIFIER = re.compile('^[a-z_][a-z0-9_]*$', re.I)
 

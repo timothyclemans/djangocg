@@ -1,4 +1,4 @@
-from django.db.backends import BaseDatabaseValidation
+from djangocg.db.backends import BaseDatabaseValidation
 
 class DatabaseValidation(BaseDatabaseValidation):
     def validate_field(self, errors, opts, f):
@@ -7,7 +7,7 @@ class DatabaseValidation(BaseDatabaseValidation):
         No character (varchar) fields can have a length exceeding 255
         characters if they have a unique index on them.
         """
-        from django.db import models
+        from djangocg.db import models
         varchar_fields = (models.CharField, models.CommaSeparatedIntegerField,
                 models.SlugField)
         if isinstance(f, varchar_fields) and f.max_length > 255 and f.unique:

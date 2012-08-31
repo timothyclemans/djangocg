@@ -9,18 +9,18 @@ except ImportError:     # Python 2
     from urllib import unquote
     from urlparse import urlsplit, urlunsplit, urldefrag
 
-from django.conf import settings
-from django.core.cache import (get_cache, InvalidCacheBackendError,
+from djangocg.conf import settings
+from djangocg.core.cache import (get_cache, InvalidCacheBackendError,
                                cache as default_cache)
-from django.core.exceptions import ImproperlyConfigured
-from django.core.files.base import ContentFile
-from django.core.files.storage import FileSystemStorage, get_storage_class
-from django.utils.datastructures import SortedDict
-from django.utils.encoding import force_bytes, force_text
-from django.utils.functional import LazyObject
-from django.utils.importlib import import_module
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.files.base import ContentFile
+from djangocg.core.files.storage import FileSystemStorage, get_storage_class
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.encoding import force_bytes, force_text
+from djangocg.utils.functional import LazyObject
+from djangocg.utils.importlib import import_module
 
-from django.contrib.staticfiles.utils import check_settings, matches_patterns
+from djangocg.contrib.staticfiles.utils import check_settings, matches_patterns
 
 
 class StaticFilesStorage(FileSystemStorage):

@@ -1,14 +1,14 @@
 from binascii import b2a_hex
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from djangocg.utils.six.moves import cPickle as pickle
 except ImportError:
     import pickle
 
-from django.contrib.gis.gdal import (OGRGeometry, OGRGeomType, OGRException,
+from djangocg.contrib.gis.gdal import (OGRGeometry, OGRGeomType, OGRException,
     OGRIndexError, SpatialReference, CoordTransform, GDAL_VERSION)
-from django.contrib.gis.geometry.test_data import TestDataMixin
-from django.utils.six.moves import xrange
-from django.utils import unittest
+from djangocg.contrib.gis.geometry.test_data import TestDataMixin
+from djangocg.utils.six.moves import xrange
+from djangocg.utils import unittest
 
 class OGRGeomTest(unittest.TestCase, TestDataMixin):
     "This tests the OGR Geometry."

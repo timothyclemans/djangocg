@@ -10,8 +10,8 @@ except ImportError:     # Python 2
     from urllib import quote
 import warnings
 
-from django.utils.functional import Promise
-from django.utils import six
+from djangocg.utils.functional import Promise
+from djangocg.utils import six
 
 class DjangoUnicodeDecodeError(UnicodeDecodeError):
     def __init__(self, obj, *args):

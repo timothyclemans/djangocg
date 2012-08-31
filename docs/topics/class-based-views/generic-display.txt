@@ -67,7 +67,7 @@ or you could write your own as needed.
 Generic views of objects
 ========================
 
-:class:`~django.views.generic.base.TemplateView` certainly is useful, but
+:class:`~djangocg.views.generic.base.TemplateView` certainly is useful, but
 Django's generic views really shine when it comes to presenting views of your
 database content. Because it's such a common task, Django comes with a handful
 of built-in generic views that make generating list and detail views of objects
@@ -81,7 +81,7 @@ individual object.
 We'll be using these models::
 
     # models.py
-    from django.db import models
+    from djangocg.db import models
 
     class Publisher(models.Model):
         name = models.CharField(max_length=30)
@@ -106,7 +106,7 @@ We'll be using these models::
 Now we need to define a view::
 
     # views.py
-    from django.views.generic import ListView
+    from djangocg.views.generic import ListView
     from books.models import Publisher
 
     class PublisherList(ListView):
@@ -115,7 +115,7 @@ Now we need to define a view::
 Finally hook that view into your urls::
 
     # urls.py
-    from django.conf.urls import patterns, url, include
+    from djangocg.conf.urls import patterns, url, include
     from books.views import PublisherList
 
     urlpatterns = patterns('',
@@ -133,7 +133,7 @@ bit is just the lowercased version of the model's name.
 .. note::
 
     Thus, when (for example) the
-    :class:`django.template.loaders.app_directories.Loader` template loader is
+    :class:`djangocg.template.loaders.app_directories.Loader` template loader is
     enabled in :setting:`TEMPLATE_LOADERS`, a template location could be:
     /path/to/project/books/templates/books/publisher_list.html
 
@@ -182,7 +182,7 @@ context variable. The ``context_object_name`` attribute on a generic view
 specifies the context variable to use::
 
     # views.py
-    from django.views.generic import ListView
+    from djangocg.views.generic import ListView
     from books.models import Publisher
 
     class PublisherList(ListView):
@@ -199,19 +199,19 @@ Adding extra context
 Often you simply need to present some extra information beyond that
 provided by the generic view. For example, think of showing a list of
 all the books on each publisher detail page. The
-:class:`~django.views.generic.detail.DetailView` generic view provides
+:class:`~djangocg.views.generic.detail.DetailView` generic view provides
 the publisher to the context, but how do we get additional information
 in that template.
 
 However, there is; you can subclass
-:class:`~django.views.generic.detail.DetailView` and provide your own
+:class:`~djangocg.views.generic.detail.DetailView` and provide your own
 implementation of the ``get_context_data`` method. The default
 implementation of this that comes with
-:class:`~django.views.generic.detail.DetailView` simply adds in the
+:class:`~djangocg.views.generic.detail.DetailView` simply adds in the
 object being displayed to the template, but you can override it to send
 more::
 
-    from django.views.generic import DetailView
+    from djangocg.views.generic import DetailView
     from books.models import Publisher, Book
 
     class PublisherDetail(DetailView):
@@ -250,7 +250,7 @@ objects. However, the ``model`` argument is not the only way to
 specify the objects that the view will operate upon -- you can also
 specify the list of objects using the ``queryset`` argument::
 
-    from django.views.generic import DetailView
+    from djangocg.views.generic import DetailView
     from books.models import Publisher, Book
 
     class PublisherDetail(DetailView):
@@ -269,7 +269,7 @@ complete details).
 To pick a simple example, we might want to order a list of books by
 publication date, with the most recent first::
 
-    from django.views.generic import ListView
+    from djangocg.views.generic import ListView
     from books.models import Book
 
     class BookList(ListView):
@@ -281,7 +281,7 @@ you'll usually want to do more than just reorder objects. If you want to
 present a list of books by a particular publisher, you can use the same
 technique::
 
-    from django.views.generic import ListView
+    from djangocg.views.generic import ListView
     from books.models import Book
 
     class AcmeBookList(ListView):
@@ -317,7 +317,7 @@ what if we wanted to write a view that displayed all the books by some arbitrary
 publisher?
 
 Handily, the ``ListView`` has a
-:meth:`~django.views.generic.detail.ListView.get_queryset` method we can
+:meth:`~djangocg.views.generic.detail.ListView.get_queryset` method we can
 override. Previously, it has just been returning the value of the ``queryset``
 attribute, but now we can add more logic.
 
@@ -338,8 +338,8 @@ Here, we have a URLconf with a single captured group::
 Next, we'll write the ``PublisherBookList`` view itself::
 
     # views.py
-    from django.shortcuts import get_object_or_404
-    from django.views.generic import ListView
+    from djangocg.shortcuts import get_object_or_404
+    from djangocg.views.generic import ListView
     from books.models import Book, Publisher
 
     class PublisherBookList(ListView):
@@ -403,9 +403,9 @@ custom view::
 Then we'd write our new view -- ``get_object`` is the method that retrieves the
 object -- so we simply override it and wrap the call::
 
-    from django.views.generic import DetailView
-    from django.shortcuts import get_object_or_404
-    from django.utils import timezone
+    from djangocg.views.generic import DetailView
+    from djangocg.shortcuts import get_object_or_404
+    from djangocg.utils import timezone
     from books.models import Author
 
     class AuthorDetailView(DetailView):
@@ -429,4 +429,4 @@ object -- so we simply override it and wrap the call::
 
     If you want to call the group something else, you can set ``pk_url_kwarg``
     on the view. More details can be found in the reference for
-    :class:`~django.views.generic.detail.DetailView`
+    :class:`~djangocg.views.generic.detail.DetailView`

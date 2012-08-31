@@ -1,4 +1,4 @@
-from django.utils.http import http_date, parse_http_date_safe
+from djangocg.utils.http import http_date, parse_http_date_safe
 
 class ConditionalGetMiddleware(object):
     """

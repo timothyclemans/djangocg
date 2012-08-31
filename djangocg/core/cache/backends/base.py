@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 import warnings
 
-from django.core.exceptions import ImproperlyConfigured, DjangoRuntimeWarning
-from django.utils.importlib import import_module
+from djangocg.core.exceptions import ImproperlyConfigured, DjangoRuntimeWarning
+from djangocg.utils.importlib import import_module
 
 class InvalidCacheBackendError(ImproperlyConfigured):
     pass

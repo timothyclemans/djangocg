@@ -1,8 +1,8 @@
 import os
 import stat
 from os.path import join, normcase, normpath, abspath, isabs, sep
-from django.utils.encoding import force_text
-from django.utils import six
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
 
 try:
     WindowsError = WindowsError

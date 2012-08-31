@@ -2,11 +2,11 @@ from __future__ import absolute_import, unicode_literals
 
 from xml.dom import minidom
 
-from django.contrib.syndication import views
-from django.core.exceptions import ImproperlyConfigured
-from django.test import TestCase
-from django.utils import tzinfo
-from django.utils.feedgenerator import rfc2822_date, rfc3339_date
+from djangocg.contrib.syndication import views
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test import TestCase
+from djangocg.utils import tzinfo
+from djangocg.utils.feedgenerator import rfc2822_date, rfc3339_date
 
 from .models import Entry
 

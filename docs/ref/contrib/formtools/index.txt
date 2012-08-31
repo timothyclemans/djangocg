@@ -1,7 +1,7 @@
-django.contrib.formtools
+djangocg.contrib.formtools
 ========================
 
-A set of high-level abstractions for Django forms (:mod:`django.forms`).
+A set of high-level abstractions for Django forms (:mod:`djangocg.forms`).
 
 .. toctree::
    :maxdepth: 1

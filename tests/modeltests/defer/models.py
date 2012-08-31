@@ -2,8 +2,8 @@
 Tests for defer() and only().
 """
 
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class Secondary(models.Model):

@@ -5,7 +5,7 @@ Multiple object mixins
 MultipleObjectMixin
 -------------------
 
-.. class:: django.views.generic.list.MultipleObjectMixin
+.. class:: djangocg.views.generic.list.MultipleObjectMixin
 
     A mixin that can be used to display a list of objects.
 
@@ -41,7 +41,7 @@ MultipleObjectMixin
 
     **Extends**
 
-    * :class:`django.views.generic.base.ContextMixin`
+    * :class:`djangocg.views.generic.base.ContextMixin`
 
     **Methods and Attributes**
 
@@ -75,9 +75,9 @@ MultipleObjectMixin
     .. attribute:: paginator_class
 
        The paginator class to be used for pagination. By default,
-       :class:`django.core.paginator.Paginator` is used. If the custom paginator
+       :class:`djangocg.core.paginator.Paginator` is used. If the custom paginator
        class doesn't have the same constructor interface as
-       :class:`django.core.paginator.Paginator`, you will also need to
+       :class:`djangocg.core.paginator.Paginator`, you will also need to
        provide an implementation for :meth:`MultipleObjectMixin.get_paginator`.
 
     .. attribute:: context_object_name
@@ -143,28 +143,28 @@ MultipleObjectMixin
       pages.
 
     * ``paginator``: An instance of
-      :class:`django.core.paginator.Paginator`. If the page is not
+      :class:`djangocg.core.paginator.Paginator`. If the page is not
       paginated, this context variable will be ``None``.
 
     * ``page_obj``: An instance of
-      :class:`django.core.paginator.Page`. If the page is not paginated,
+      :class:`djangocg.core.paginator.Page`. If the page is not paginated,
       this context variable will be ``None``.
 
 
 MultipleObjectTemplateResponseMixin
 -----------------------------------
 
-.. class:: django.views.generic.list.MultipleObjectTemplateResponseMixin
+.. class:: djangocg.views.generic.list.MultipleObjectTemplateResponseMixin
 
     A mixin class that performs template-based response rendering for views
     that operate upon a list of object instances. Requires that the view it is
     mixed with provides ``self.object_list``, the list of object instances that
     the view is operating on. ``self.object_list`` may be, but is not required
-    to be, a :class:`~django.db.models.query.QuerySet`.
+    to be, a :class:`~djangocg.db.models.query.QuerySet`.
 
     **Extends**
 
-    * :class:`~django.views.generic.base.TemplateResponseMixin`
+    * :class:`~djangocg.views.generic.base.TemplateResponseMixin`
 
     **Methods and Attributes**
 

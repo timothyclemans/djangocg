@@ -1,9 +1,9 @@
-from django.utils.six.moves import zip
+from djangocg.utils.six.moves import zip
 
-from django.db.backends.util import truncate_name, typecast_timestamp
-from django.db.models.sql import compiler
-from django.db.models.sql.constants import MULTI
-from django.utils import six
+from djangocg.db.backends.util import truncate_name, typecast_timestamp
+from djangocg.db.models.sql import compiler
+from djangocg.db.models.sql.constants import MULTI
+from djangocg.utils import six
 
 SQLCompiler = compiler.SQLCompiler
 
@@ -279,7 +279,7 @@ class SQLDateCompiler(compiler.SQLDateCompiler, GeoSQLCompiler):
     """
     def results_iter(self):
         if self.connection.ops.oracle:
-            from django.db.models.fields import DateTimeField
+            from djangocg.db.models.fields import DateTimeField
             fields = [DateTimeField()]
         else:
             needs_string_cast = self.connection.features.needs_datetime_string_cast

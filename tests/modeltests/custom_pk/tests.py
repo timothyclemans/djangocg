@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from django.db import transaction, IntegrityError
-from django.test import TestCase, skipIfDBFeature
-from django.utils import six
+from djangocg.db import transaction, IntegrityError
+from djangocg.test import TestCase, skipIfDBFeature
+from djangocg.utils import six
 
 from .models import Employee, Business, Bar, Foo
 

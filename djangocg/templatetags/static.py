@@ -4,8 +4,8 @@ except ImportError:     # Python 2
     from urlparse import urljoin
 
 from django import template
-from django.template.base import Node
-from django.utils.encoding import iri_to_uri
+from djangocg.template.base import Node
+from djangocg.utils.encoding import iri_to_uri
 
 register = template.Library()
 
@@ -40,7 +40,7 @@ class PrefixNode(template.Node):
     @classmethod
     def handle_simple(cls, name):
         try:
-            from django.conf import settings
+            from djangocg.conf import settings
         except ImportError:
             prefix = ''
         else:

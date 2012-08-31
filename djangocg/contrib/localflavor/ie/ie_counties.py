@@ -2,7 +2,7 @@
 Sources:
     Irish Counties: http://en.wikipedia.org/wiki/Counties_of_Ireland    
 """
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 IE_COUNTY_CHOICES = (
     ('antrim', _('Antrim')),

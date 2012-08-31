@@ -38,7 +38,7 @@ Use standard DB optimization techniques
 
 * Indexes. This is a number one priority, *after* you have determined from
   profiling what indexes should be added. Use
-  :attr:`django.db.models.Field.db_index` to add these from Django.
+  :attr:`djangocg.db.models.Field.db_index` to add these from Django.
 
 * Appropriate use of field types.
 
@@ -101,7 +101,7 @@ Use ``iterator()``
 
 When you have a lot of objects, the caching behavior of the ``QuerySet`` can
 cause a large amount of memory to be used. In this case,
-:meth:`~django.db.models.query.QuerySet.iterator()` may help.
+:meth:`~djangocg.db.models.query.QuerySet.iterator()` may help.
 
 Do database work in the database rather than in Python
 ======================================================
@@ -122,14 +122,14 @@ Use ``QuerySet.extra()``
 ------------------------
 
 A less portable but more powerful method is
-:meth:`~django.db.models.query.QuerySet.extra()`, which allows some SQL to be
+:meth:`~djangocg.db.models.query.QuerySet.extra()`, which allows some SQL to be
 explicitly added to the query. If that still isn't powerful enough:
 
 Use raw SQL
 -----------
 
 Write your own :doc:`custom SQL to retrieve data or populate models
-</topics/db/sql>`. Use ``django.db.connection.queries`` to find out what Django
+</topics/db/sql>`. Use ``djangocg.db.connection.queries`` to find out what Django
 is writing for you and start from there.
 
 Retrieve everything at once if you know you will need it
@@ -144,8 +144,8 @@ queries, when only one was needed. So:
 Use ``QuerySet.select_related()`` and ``prefetch_related()``
 ------------------------------------------------------------
 
-Understand :meth:`~django.db.models.query.QuerySet.select_related` and
-:meth:`~django.db.models.query.QuerySet.prefetch_related` thoroughly, and use
+Understand :meth:`~djangocg.db.models.query.QuerySet.select_related` and
+:meth:`~djangocg.db.models.query.QuerySet.prefetch_related` thoroughly, and use
 them:
 
 * in view code,
@@ -162,7 +162,7 @@ Use ``QuerySet.values()`` and ``values_list()``
 
 When you just want a ``dict`` or ``list`` of values, and don't need ORM model
 objects, make appropriate usage of
-:meth:`~django.db.models.query.QuerySet.values()`.
+:meth:`~djangocg.db.models.query.QuerySet.values()`.
 These can be useful for replacing model objects in template code - as long as
 the dicts you supply have the same attributes as those used in the template,
 you are fine.
@@ -170,8 +170,8 @@ you are fine.
 Use ``QuerySet.defer()`` and ``only()``
 ---------------------------------------
 
-Use :meth:`~django.db.models.query.QuerySet.defer()` and
-:meth:`~django.db.models.query.QuerySet.only()` if there are database columns
+Use :meth:`~djangocg.db.models.query.QuerySet.defer()` and
+:meth:`~djangocg.db.models.query.QuerySet.only()` if there are database columns
 you know that you won't need (or won't need in most cases) to avoid loading
 them. Note that if you *do* use them, the ORM will have to go and get them in
 a separate query, making this a pessimization if you use it inappropriately.
@@ -275,7 +275,7 @@ Insert in bulk
 ==============
 
 When creating objects, where possible, use the
-:meth:`~django.db.models.query.QuerySet.bulk_create()` method to reduce the
+:meth:`~djangocg.db.models.query.QuerySet.bulk_create()` method to reduce the
 number of SQL queries. For example::
 
     Entry.objects.bulk_create([
@@ -289,11 +289,11 @@ number of SQL queries. For example::
     Entry.objects.create(headline="Python 3.1 Planned")
 
 Note that there are a number of :meth:`caveats to this method
-<django.db.models.query.QuerySet.bulk_create>`, so make sure it's appropriate
+<djangocg.db.models.query.QuerySet.bulk_create>`, so make sure it's appropriate
 for your use case.
 
 This also applies to :class:`ManyToManyFields
-<django.db.models.ManyToManyField>`, so doing::
+<djangocg.db.models.ManyToManyField>`, so doing::
 
     my_band.members.add(me, my_friend)
 

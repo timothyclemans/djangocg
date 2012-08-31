@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from datetime import datetime
 from operator import attrgetter
 
-from django.test import TestCase
+from djangocg.test import TestCase
 
 from .models import (Person, Group, Membership, CustomMembership,
     PersonSelfRefM2M, Friendship)

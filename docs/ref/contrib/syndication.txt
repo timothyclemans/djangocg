@@ -2,7 +2,7 @@
 The syndication feed framework
 ==============================
 
-.. module:: django.contrib.syndication
+.. module:: djangocg.contrib.syndication
    :synopsis: A framework for generating syndication feeds, in RSS and Atom,
               quite easily.
 
@@ -26,24 +26,24 @@ Overview
 --------
 
 The high-level feed-generating framework is supplied by the
-:class:`~django.contrib.syndication.views.Feed` class. To create a
-feed, write a :class:`~django.contrib.syndication.views.Feed` class
+:class:`~djangocg.contrib.syndication.views.Feed` class. To create a
+feed, write a :class:`~djangocg.contrib.syndication.views.Feed` class
 and point to an instance of it in your :doc:`URLconf
 </topics/http/urls>`.
 
 Feed classes
 ------------
 
-A :class:`~django.contrib.syndication.views.Feed` class is a Python
+A :class:`~djangocg.contrib.syndication.views.Feed` class is a Python
 class that represents a syndication feed. A feed can be simple (e.g.,
 a "site news" feed, or a basic feed displaying the latest entries of a
 blog) or more complex (e.g., a feed displaying all the blog entries in
 a particular category, where the category is variable).
 
-Feed classes subclass :class:`django.contrib.syndication.views.Feed`.
+Feed classes subclass :class:`djangocg.contrib.syndication.views.Feed`.
 They can live anywhere in your codebase.
 
-Instances of :class:`~django.contrib.syndication.views.Feed` classes
+Instances of :class:`~djangocg.contrib.syndication.views.Feed` classes
 are views which can be used in your :doc:`URLconf </topics/http/urls>`.
 
 A simple example
@@ -52,7 +52,7 @@ A simple example
 This simple example, taken from `chicagocrime.org`_, describes a feed of the
 latest five news items::
 
-    from django.contrib.syndication.views import Feed
+    from djangocg.contrib.syndication.views import Feed
     from chicagocrime.models import NewsItem
 
     class LatestEntriesFeed(Feed):
@@ -72,7 +72,7 @@ latest five news items::
 To connect a URL to this feed, put an instance of the Feed object in
 your :doc:`URLconf </topics/http/urls>`. For example::
 
-    from django.conf.urls import patterns, url, include
+    from djangocg.conf.urls import patterns, url, include
     from myproject.feeds import LatestEntriesFeed
 
     urlpatterns = patterns('',
@@ -83,7 +83,7 @@ your :doc:`URLconf </topics/http/urls>`. For example::
 
 Note:
 
-* The Feed class subclasses :class:`django.contrib.syndication.views.Feed`.
+* The Feed class subclasses :class:`djangocg.contrib.syndication.views.Feed`.
 
 * ``title``, ``link`` and ``description`` correspond to the
   standard RSS ``<title>``, ``<link>`` and ``<description>`` elements,
@@ -107,7 +107,7 @@ into those elements.
 
 * For the contents of ``<title>`` and ``<description>``, Django tries
   calling the methods ``item_title()`` and ``item_description()`` on
-  the :class:`~django.contrib.syndication.views.Feed` class. They are passed
+  the :class:`~djangocg.contrib.syndication.views.Feed` class. They are passed
   a single parameter, ``item``, which is the object itself. These are
   optional; by default, the unicode representation of the object is used for
   both.
@@ -116,17 +116,17 @@ into those elements.
   description, :doc:`Django templates </topics/templates>` can be used
   instead. Their paths can be specified with the ``title_template`` and
   ``description_template`` attributes on the
-  :class:`~django.contrib.syndication.views.Feed` class. The templates are
+  :class:`~djangocg.contrib.syndication.views.Feed` class. The templates are
   rendered for each item and are passed two template context variables:
 
   * ``{{ obj }}`` -- The current object (one of whichever objects you
     returned in ``items()``).
 
-  * ``{{ site }}`` -- A :class:`django.contrib.sites.models.Site` object
+  * ``{{ site }}`` -- A :class:`djangocg.contrib.sites.models.Site` object
     representing the current site. This is useful for ``{{ site.domain
     }}`` or ``{{ site.name }}``. If you do *not* have the Django sites
     framework installed, this will be set to a
-    :class:`django.contrib.sites.models.RequestSite` object. See the
+    :class:`djangocg.contrib.sites.models.RequestSite` object. See the
     :ref:`RequestSite section of the sites framework documentation
     <requestsite-objects>` for more.
 
@@ -135,7 +135,7 @@ into those elements.
 * To specify the contents of ``<link>``, you have two options. For each item
   in ``items()``, Django first tries calling the
   ``item_link()`` method on the
-  :class:`~django.contrib.syndication.views.Feed` class. In a similar way to
+  :class:`~djangocg.contrib.syndication.views.Feed` class. In a similar way to
   the title and description, it is passed it a single parameter,
   ``item``. If that method doesn't exist, Django tries executing a
   ``get_absolute_url()`` method on that object. Both
@@ -154,7 +154,7 @@ The framework also supports more complex feeds, via arguments.
 
 For example, `chicagocrime.org`_ offers an RSS feed of recent crimes for every
 police beat in Chicago. It'd be silly to create a separate
-:class:`~django.contrib.syndication.views.Feed` class for each police beat; that
+:class:`~djangocg.contrib.syndication.views.Feed` class for each police beat; that
 would violate the :ref:`DRY principle <dry>` and would couple data to
 programming logic. Instead, the syndication framework lets you access the
 arguments passed from your :doc:`URLconf </topics/http/urls>` so feeds can output
@@ -174,8 +174,8 @@ method along with the request object.
 
 Here's the code for these beat-specific feeds::
 
-    from django.contrib.syndication.views import FeedDoesNotExist
-    from django.shortcuts import get_object_or_404
+    from djangocg.contrib.syndication.views import FeedDoesNotExist
+    from djangocg.shortcuts import get_object_or_404
 
     class BeatFeed(Feed):
         description_template = 'feeds/beat_description.html'
@@ -222,7 +222,7 @@ We are using a template for the item descriptions. It can be very simple:
 However, you are free to add formatting as desired.
 
 The ``ExampleFeed`` class below gives full documentation on methods and
-attributes of :class:`~django.contrib.syndication.views.Feed` classes.
+attributes of :class:`~djangocg.contrib.syndication.views.Feed` classes.
 
 Specifying the type of feed
 ---------------------------
@@ -230,9 +230,9 @@ Specifying the type of feed
 By default, feeds produced in this framework use RSS 2.0.
 
 To change that, add a ``feed_type`` attribute to your
-:class:`~django.contrib.syndication.views.Feed` class, like so::
+:class:`~djangocg.contrib.syndication.views.Feed` class, like so::
 
-    from django.utils.feedgenerator import Atom1Feed
+    from djangocg.utils.feedgenerator import Atom1Feed
 
     class MyFeed(Feed):
         feed_type = Atom1Feed
@@ -241,9 +241,9 @@ Note that you set ``feed_type`` to a class object, not an instance.
 
 Currently available feed types are:
 
-* :class:`django.utils.feedgenerator.Rss201rev2Feed` (RSS 2.01. Default.)
-* :class:`django.utils.feedgenerator.RssUserland091Feed` (RSS 0.91.)
-* :class:`django.utils.feedgenerator.Atom1Feed` (Atom 1.0.)
+* :class:`djangocg.utils.feedgenerator.Rss201rev2Feed` (RSS 2.01. Default.)
+* :class:`djangocg.utils.feedgenerator.RssUserland091Feed` (RSS 0.91.)
+* :class:`djangocg.utils.feedgenerator.Atom1Feed` (Atom 1.0.)
 
 Enclosures
 ----------
@@ -278,15 +278,15 @@ Publishing Atom and RSS feeds in tandem
 
 Some developers like to make available both Atom *and* RSS versions of their
 feeds. That's easy to do with Django: Just create a subclass of your
-:class:`~django.contrib.syndication.views.Feed`
+:class:`~djangocg.contrib.syndication.views.Feed`
 class and set the ``feed_type`` to something different. Then update your
 URLconf to add the extra versions.
 
 Here's a full example::
 
-    from django.contrib.syndication.views import Feed
+    from djangocg.contrib.syndication.views import Feed
     from chicagocrime.models import NewsItem
-    from django.utils.feedgenerator import Atom1Feed
+    from djangocg.utils.feedgenerator import Atom1Feed
 
     class RssSiteNewsFeed(Feed):
         title = "Chicagocrime.org site news"
@@ -306,7 +306,7 @@ Here's a full example::
     a feed-level "description," but they *do* provide for a "subtitle."
 
     If you provide a ``description`` in your
-    :class:`~django.contrib.syndication.views.Feed` class, Django will *not*
+    :class:`~djangocg.contrib.syndication.views.Feed` class, Django will *not*
     automatically put that into the ``subtitle`` element, because a
     subtitle and description are not necessarily the same thing. Instead, you
     should define a ``subtitle`` attribute.
@@ -316,7 +316,7 @@ Here's a full example::
 
 And the accompanying URLconf::
 
-    from django.conf.urls import patterns, url, include
+    from djangocg.conf.urls import patterns, url, include
     from myproject.feeds import RssSiteNewsFeed, AtomSiteNewsFeed
 
     urlpatterns = patterns('',
@@ -329,18 +329,18 @@ And the accompanying URLconf::
 Feed class reference
 --------------------
 
-.. class:: django.contrib.syndication.views.Feed
+.. class:: djangocg.contrib.syndication.views.Feed
 
 This example illustrates all possible attributes and methods for a
-:class:`~django.contrib.syndication.views.Feed` class::
+:class:`~djangocg.contrib.syndication.views.Feed` class::
 
-    from django.contrib.syndication.views import Feed
-    from django.utils import feedgenerator
+    from djangocg.contrib.syndication.views import Feed
+    from djangocg.utils import feedgenerator
 
     class ExampleFeed(Feed):
 
         # FEED TYPE -- Optional. This should be a class that subclasses
-        # django.utils.feedgenerator.SyndicationFeed. This designates
+        # djangocg.utils.feedgenerator.SyndicationFeed. This designates
         # which type of feed this should be: RSS 2.0, Atom 1.0, etc. If
         # you don't specify feed_type, your feed will be RSS 2.0. This
         # should be a class, not an instance of the class.
@@ -560,7 +560,7 @@ This example illustrates all possible attributes and methods for a
             """
             Takes the current request and the arguments from the URL, and
             returns an object represented by this feed. Raises
-            django.core.exceptions.ObjectDoesNotExist on error.
+            djangocg.core.exceptions.ObjectDoesNotExist on error.
             """
 
         # ITEM TITLE AND DESCRIPTION -- If title_template or
@@ -787,20 +787,20 @@ You use this framework on your own, for lower-level feed generation. You can
 also create custom feed generator subclasses for use with the ``feed_type``
 ``Feed`` option.
 
-.. currentmodule:: django.utils.feedgenerator
+.. currentmodule:: djangocg.utils.feedgenerator
 
 ``SyndicationFeed`` classes
 ---------------------------
 
-The :mod:`~django.utils.feedgenerator` module contains a base class:
+The :mod:`~djangocg.utils.feedgenerator` module contains a base class:
 
-* :class:`django.utils.feedgenerator.SyndicationFeed`
+* :class:`djangocg.utils.feedgenerator.SyndicationFeed`
 
 and several subclasses:
 
-* :class:`django.utils.feedgenerator.RssUserland091Feed`
-* :class:`django.utils.feedgenerator.Rss201rev2Feed`
-* :class:`django.utils.feedgenerator.Atom1Feed`
+* :class:`djangocg.utils.feedgenerator.RssUserland091Feed`
+* :class:`djangocg.utils.feedgenerator.Rss201rev2Feed`
+* :class:`djangocg.utils.feedgenerator.Atom1Feed`
 
 Each of these three classes knows how to render a certain type of feed as XML.
 They share this interface:
@@ -860,7 +860,7 @@ They share this interface:
 
     * ``pubdate`` should be a Python  :class:`~datetime.datetime` object.
     * ``enclosure`` should be an instance of
-      :class:`django.utils.feedgenerator.Enclosure`.
+      :class:`djangocg.utils.feedgenerator.Enclosure`.
     * ``categories`` should be a sequence of Unicode objects.
 
 :meth:`.SyndicationFeed.write`
@@ -871,7 +871,7 @@ They share this interface:
 
 For example, to create an Atom 1.0 feed and print it to standard output::
 
-    >>> from django.utils import feedgenerator
+    >>> from djangocg.utils import feedgenerator
     >>> from datetime import datetime
     >>> f = feedgenerator.Atom1Feed(
     ...     title=u"My Weblog",
@@ -892,7 +892,7 @@ For example, to create an Atom 1.0 feed and print it to standard output::
 
 .. _django/utils/feedgenerator.py: https://github.com/django/django/blob/master/django/utils/feedgenerator.py
 
-.. currentmodule:: django.contrib.syndication
+.. currentmodule:: djangocg.contrib.syndication
 
 Custom feed generators
 ----------------------

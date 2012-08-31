@@ -1,11 +1,11 @@
 from ctypes import c_void_p
 
-from django.contrib.gis.geos.error import GEOSException
+from djangocg.contrib.gis.geos.error import GEOSException
 
 # Trying to import GDAL libraries, if available.  Have to place in
 # try/except since this package may be used outside GeoDjango.
 try:
-    from django.contrib.gis import gdal
+    from djangocg.contrib.gis import gdal
 except ImportError:
     # A 'dummy' gdal module.
     class GDALInfo(object):

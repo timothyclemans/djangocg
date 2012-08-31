@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
-from django.contrib.syndication.views import Feed as BaseFeed
-from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
+from djangocg.contrib.syndication.views import Feed as BaseFeed
+from djangocg.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
 
 class GeoFeedMixin(object):
     """
@@ -123,7 +123,7 @@ class W3CGeoFeed(Rss201rev2Feed, GeoFeedMixin):
 ### Feed subclass ###
 class Feed(BaseFeed):
     """
-    This is a subclass of the `Feed` from `django.contrib.syndication`.
+    This is a subclass of the `Feed` from `djangocg.contrib.syndication`.
     This allows users to define a `geometry(obj)` and/or `item_geometry(item)`
     methods on their own subclasses so that geo-referenced information may
     placed in the feed.

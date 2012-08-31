@@ -1,5 +1,5 @@
 
-from django.db import models
+from djangocg.db import models
 
 
 class ConcreteModel(models.Model):

@@ -12,10 +12,10 @@ from email.mime.base import MIMEBase
 from email.header import Header
 from email.utils import formatdate, getaddresses, formataddr, parseaddr
 
-from django.conf import settings
-from django.core.mail.utils import DNS_NAME
-from django.utils.encoding import force_text
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.core.mail.utils import DNS_NAME
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
 
 
 # Don't BASE64-encode UTF-8 messages so that we avoid unwanted attention from
@@ -207,7 +207,7 @@ class EmailMessage(object):
         self.connection = connection
 
     def get_connection(self, fail_silently=False):
-        from django.core.mail import get_connection
+        from djangocg.core.mail import get_connection
         if not self.connection:
             self.connection = get_connection(fail_silently=fail_silently)
         return self.connection

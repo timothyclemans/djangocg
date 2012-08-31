@@ -5,13 +5,13 @@ import decimal
 import hashlib
 from time import time
 
-from django.conf import settings
-from django.utils.encoding import force_bytes
-from django.utils.log import getLogger
-from django.utils.timezone import utc
+from djangocg.conf import settings
+from djangocg.utils.encoding import force_bytes
+from djangocg.utils.log import getLogger
+from djangocg.utils.timezone import utc
 
 
-logger = getLogger('django.db.backends')
+logger = getLogger('djangocg.db.backends')
 
 
 class CursorWrapper(object):

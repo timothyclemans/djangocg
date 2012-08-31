@@ -1,6 +1,6 @@
 # coding: utf-8
-from django.template import Context
-from django.utils.unittest import TestCase
+from djangocg.template import Context
+from djangocg.utils.unittest import TestCase
 
 
 class ContextTests(TestCase):

@@ -1,5 +1,5 @@
-from django.core.management.base import BaseCommand
-from django.contrib.sitemaps import ping_google
+from djangocg.core.management.base import BaseCommand
+from djangocg.contrib.sitemaps import ping_google
 
 
 class Command(BaseCommand):

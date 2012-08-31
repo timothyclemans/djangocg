@@ -1,5 +1,5 @@
 """
-Tests for django.utils.
+Tests for djangocg.utils.
 """
 from __future__ import absolute_import
 

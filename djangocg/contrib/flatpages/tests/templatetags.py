@@ -1,19 +1,19 @@
 import os
-from django.conf import settings
-from django.contrib.auth.models import AnonymousUser, User
-from django.template import Template, Context, TemplateSyntaxError
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import AnonymousUser, User
+from djangocg.template import Template, Context, TemplateSyntaxError
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 
 @override_settings(
     MIDDLEWARE_CLASSES=(
-        'django.middleware.common.CommonMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+        'djangocg.middleware.common.CommonMiddleware',
+        'djangocg.contrib.sessions.middleware.SessionMiddleware',
+        'djangocg.middleware.csrf.CsrfViewMiddleware',
+        'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+        'djangocg.contrib.messages.middleware.MessageMiddleware',
+        'djangocg.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     ),
     TEMPLATE_DIRS=(
         os.path.join(os.path.dirname(__file__), 'templates'),
@@ -22,7 +22,7 @@ from django.test.utils import override_settings
 )
 class FlatpageTemplateTagTests(TestCase):
     fixtures = ['sample_flatpages']
-    urls = 'django.contrib.flatpages.tests.urls'
+    urls = 'djangocg.contrib.flatpages.tests.urls'
 
     def setUp(self):
         self.me = User.objects.create_user('testuser', 'test@example.com', 's3krit')

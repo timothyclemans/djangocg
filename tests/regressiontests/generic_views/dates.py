@@ -3,11 +3,11 @@ from __future__ import absolute_import
 import time
 import datetime
 
-from django.core.exceptions import ImproperlyConfigured
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils import timezone
-from django.utils.unittest import skipUnless
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils import timezone
+from djangocg.utils.unittest import skipUnless
 
 from .models import Book, BookSigning
 

@@ -5,9 +5,9 @@ import os
 import sys
 import time
 
-from django.conf import Settings
-from django.db.models.loading import cache, load_app, get_model, get_models
-from django.utils.unittest import TestCase
+from djangocg.conf import Settings
+from djangocg.db.models.loading import cache, load_app, get_model, get_models
+from djangocg.utils.unittest import TestCase
 
 class EggLoadingTest(TestCase):
 

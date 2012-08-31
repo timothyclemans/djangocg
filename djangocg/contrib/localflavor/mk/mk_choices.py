@@ -4,7 +4,7 @@ Macedonian municipalities per the reorganization from 2004.
 """
 from __future__ import unicode_literals
 
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 MK_MUNICIPALITIES = (
     ('AD', _('Aerodrom')),

@@ -1,5 +1,5 @@
-from django.conf.urls import patterns, url
-from django.contrib.admindocs import views
+from djangocg.conf.urls import patterns, url
+from djangocg.contrib.admindocs import views
 
 urlpatterns = patterns('',
     url('^$',

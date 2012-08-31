@@ -5,11 +5,11 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.core.validators import EMPTY_VALUES
-from django.forms import CharField
-from django.forms import ValidationError
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import CharField
+from djangocg.forms import ValidationError
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 hk_phone_digits_re = re.compile(r'^(?:852-?)?(\d{4})[-\.]?(\d{4})$')

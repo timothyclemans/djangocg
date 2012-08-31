@@ -13,9 +13,9 @@ except ImportError:
     except ImportError:
         Image = None
 
-from django.core.files.storage import FileSystemStorage
-from django.db import models
-from django.db.models.fields.files import ImageFieldFile, ImageField
+from djangocg.core.files.storage import FileSystemStorage
+from djangocg.db import models
+from djangocg.db.models.fields.files import ImageFieldFile, ImageField
 
 
 class Foo(models.Model):

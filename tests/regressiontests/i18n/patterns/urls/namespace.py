@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, url
-from django.utils.translation import ugettext_lazy as _
-from django.views.generic import TemplateView
+from djangocg.conf.urls import patterns, url
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.views.generic import TemplateView
 
 
 view = TemplateView.as_view(template_name='dummy.html')

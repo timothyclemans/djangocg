@@ -2,7 +2,7 @@
 The Django admin site
 =====================
 
-.. module:: django.contrib.admin
+.. module:: djangocg.contrib.admin
    :synopsis: Django's admin site.
 
 One of the most powerful parts of Django is the automatic admin interface. It
@@ -16,18 +16,18 @@ Overview
 
 There are seven steps in activating the Django admin site:
 
-1. Add ``'django.contrib.admin'`` to your :setting:`INSTALLED_APPS`
+1. Add ``'djangocg.contrib.admin'`` to your :setting:`INSTALLED_APPS`
    setting.
 
-2. The admin has four dependencies - :mod:`django.contrib.auth`,
-   :mod:`django.contrib.contenttypes`,
-   :mod:`django.contrib.messages` and
-   :mod:`django.contrib.sessions`.  If these applications are not
+2. The admin has four dependencies - :mod:`djangocg.contrib.auth`,
+   :mod:`djangocg.contrib.contenttypes`,
+   :mod:`djangocg.contrib.messages` and
+   :mod:`djangocg.contrib.sessions`.  If these applications are not
    in your :setting:`INSTALLED_APPS` list, add them.
 
-3. Add ``django.contrib.messages.context_processors.messages`` to
+3. Add ``djangocg.contrib.messages.context_processors.messages`` to
    :setting:`TEMPLATE_CONTEXT_PROCESSORS` and
-   :class:`~django.contrib.messages.middleware.MessageMiddleware` to
+   :class:`~djangocg.contrib.messages.middleware.MessageMiddleware` to
    :setting:`MIDDLEWARE_CLASSES`. (These are both active by default, so
    you only need to do this if you've manually tweaked the settings.)
 
@@ -70,7 +70,7 @@ Other topics
     application. Let's take a look at a very simple example of
     the ``ModelAdmin``::
 
-        from django.contrib import admin
+        from djangocg.contrib import admin
         from myproject.myapp.models import Author
 
         class AuthorAdmin(admin.ModelAdmin):
@@ -86,7 +86,7 @@ Other topics
         model class without providing a ``ModelAdmin`` description. The
         preceding example could be simplified to::
 
-            from django.contrib import admin
+            from djangocg.contrib import admin
             from myproject.myapp.models import Author
 
             admin.site.register(Author)
@@ -169,7 +169,7 @@ subclass::
     ``fields`` option (for more complex layout needs see the
     :attr:`~ModelAdmin.fieldsets` option described in the next section). For
     example, you could define a simpler version of the admin form for the
-    ``django.contrib.flatpages.FlatPage`` model as follows::
+    ``djangocg.contrib.flatpages.FlatPage`` model as follows::
 
         class FlatPageAdmin(admin.ModelAdmin):
             fields = ('url', 'title', 'content')
@@ -213,7 +213,7 @@ subclass::
     a dictionary of information about the fieldset, including a list of fields
     to be displayed in it.
 
-    A full example, taken from the :class:`django.contrib.flatpages.FlatPage`
+    A full example, taken from the :class:`djangocg.contrib.flatpages.FlatPage`
     model::
 
         class FlatPageAdmin(admin.ModelAdmin):
@@ -282,15 +282,15 @@ subclass::
         Note that this value is *not* HTML-escaped when it's displayed in
         the admin interface. This lets you include HTML if you so desire.
         Alternatively you can use plain text and
-        ``django.utils.html.escape()`` to escape any HTML special
+        ``djangocg.utils.html.escape()`` to escape any HTML special
         characters.
 
 .. attribute:: ModelAdmin.filter_horizontal
 
-    By default, a :class:`~django.db.models.ManyToManyField` is displayed in
+    By default, a :class:`~djangocg.db.models.ManyToManyField` is displayed in
     the admin site with a ``<select multiple>``. However, multiple-select boxes
     can be difficult to use when selecting many items. Adding a
-    :class:`~django.db.models.ManyToManyField` to this list will instead use
+    :class:`~djangocg.db.models.ManyToManyField` to this list will instead use
     a nifty unobtrusive JavaScript "filter" interface that allows searching
     within the options. The unselected and selected options appear in two boxes
     side by side. See :attr:`~ModelAdmin.filter_vertical` to use a vertical
@@ -332,7 +332,7 @@ subclass::
 .. attribute:: ModelAdmin.formfield_overrides
 
     This provides a quick-and-dirty way to override some of the
-    :class:`~django.forms.Field` options for use in the admin.
+    :class:`~djangocg.forms.Field` options for use in the admin.
     ``formfield_overrides`` is a dictionary mapping a field class to a dict of
     arguments to pass to the field at construction time.
 
@@ -342,8 +342,8 @@ subclass::
     that we'd like to use for large text fields instead of the default
     ``<textarea>``. Here's how we'd do that::
 
-        from django.db import models
-        from django.contrib import admin
+        from djangocg.db import models
+        from djangocg.contrib import admin
 
         # Import our custom widget and our model from where they're defined
         from myapp.widgets import RichTextEditorWidget
@@ -356,14 +356,14 @@ subclass::
 
     Note that the key in the dictionary is the actual field class, *not* a
     string. The value is another dictionary; these arguments will be passed to
-    :meth:`~django.forms.Field.__init__`. See :doc:`/ref/forms/api` for
+    :meth:`~djangocg.forms.Field.__init__`. See :doc:`/ref/forms/api` for
     details.
 
     .. warning::
 
         If you want to use a custom widget with a relation field (i.e.
-        :class:`~django.db.models.ForeignKey` or
-        :class:`~django.db.models.ManyToManyField`), make sure you haven't
+        :class:`~djangocg.db.models.ForeignKey` or
+        :class:`~djangocg.db.models.ManyToManyField`), make sure you haven't
         included that field's name in ``raw_id_fields`` or ``radio_fields``.
 
         ``formfield_overrides`` won't let you change the widget on relation
@@ -586,15 +586,15 @@ subclass::
           class PersonAdmin(UserAdmin):
               list_filter = ('company__name',)
 
-    * a class inheriting from :mod:`django.contrib.admin.SimpleListFilter`,
+    * a class inheriting from :mod:`djangocg.contrib.admin.SimpleListFilter`,
       which you need to provide the ``title`` and ``parameter_name``
       attributes to and override the ``lookups`` and ``queryset`` methods,
       e.g.::
 
            from datetime import date
 
-           from django.utils.translation import ugettext_lazy as _
-           from django.contrib.admin import SimpleListFilter
+           from djangocg.utils.translation import ugettext_lazy as _
+           from djangocg.contrib.admin import SimpleListFilter
 
            class DecadeBornListFilter(SimpleListFilter):
                # Human-readable title which will be displayed in the
@@ -673,9 +673,9 @@ subclass::
 
     * a tuple, where the first element is a field name and the second
       element is a class inheriting from
-      :mod:`django.contrib.admin.FieldListFilter`, for example::
+      :mod:`djangocg.contrib.admin.FieldListFilter`, for example::
 
-          from django.contrib.admin import BooleanFieldListFilter
+          from djangocg.contrib.admin import BooleanFieldListFilter
 
           class PersonAdmin(ModelAdmin):
               list_filter = (
@@ -714,14 +714,14 @@ subclass::
 .. attribute:: ModelAdmin.list_select_related
 
     Set ``list_select_related`` to tell Django to use
-    :meth:`~django.db.models.query.QuerySet.select_related` in retrieving
+    :meth:`~djangocg.db.models.query.QuerySet.select_related` in retrieving
     the list of objects on the admin change list page. This can save you a
     bunch of database queries.
 
     The value should be either ``True`` or ``False``. Default is ``False``.
 
     Note that Django will use
-    :meth:`~django.db.models.query.QuerySet.select_related`,
+    :meth:`~djangocg.db.models.query.QuerySet.select_related`,
     regardless of this setting if one of the ``list_display`` fields is a
     ``ForeignKey``.
 
@@ -729,7 +729,7 @@ subclass::
 
     Set ``ordering`` to specify how lists of objects should be ordered in the
     Django admin views. This should be a list or tuple in the same format as a
-    model's :attr:`~django.db.models.Options.ordering` parameter.
+    model's :attr:`~djangocg.db.models.Options.ordering` parameter.
 
     If this isn't provided, the Django admin will use the model's default
     ordering.
@@ -749,9 +749,9 @@ subclass::
     .. versionadded:: 1.3
 
     The paginator class to be used for pagination. By default,
-    :class:`django.core.paginator.Paginator` is used. If the custom paginator
+    :class:`djangocg.core.paginator.Paginator` is used. If the custom paginator
     class doesn't have the same constructor interface as
-    :class:`django.core.paginator.Paginator`, you will also need to
+    :class:`djangocg.core.paginator.Paginator`, you will also need to
     provide an implementation for :meth:`ModelAdmin.get_paginator`.
 
 .. attribute:: ModelAdmin.prepopulated_fields
@@ -783,7 +783,7 @@ subclass::
             radio_fields = {"group": admin.VERTICAL}
 
     You have the choice of using ``HORIZONTAL`` or ``VERTICAL`` from the
-    ``django.contrib.admin`` module.
+    ``djangocg.contrib.admin`` module.
 
     Don't include a field in ``radio_fields`` unless it's a ``ForeignKey`` or has
     ``choices`` set.
@@ -1104,7 +1104,7 @@ templates used by the :class:`ModelAdmin` views:
         (r'^my_view/$', self.admin_site.admin_view(self.my_view))
 
     This wrapping will protect ``self.my_view`` from unauthorized access and
-    will apply the ``django.views.decorators.cache.never_cache`` decorator to
+    will apply the ``djangocg.views.decorators.cache.never_cache`` decorator to
     make sure it is not cached if the cache middleware is active.
 
     If the page is cacheable, but you still want the permission check to be
@@ -1165,7 +1165,7 @@ templates used by the :class:`ModelAdmin` views:
 .. method:: ModelAdmin.get_changelist(self, request, **kwargs)
 
     Returns the Changelist class to be used for listing. By default,
-    ``django.contrib.admin.views.main.ChangeList`` is used. By inheriting this
+    ``djangocg.contrib.admin.views.main.ChangeList`` is used. By inheriting this
     class you can change the behavior of the listing.
 
 .. method:: ModelAdmin.has_add_permission(self, request)
@@ -1192,7 +1192,7 @@ templates used by the :class:`ModelAdmin` views:
 .. method:: ModelAdmin.queryset(self, request)
 
     The ``queryset`` method on a ``ModelAdmin`` returns a
-    :class:`~django.db.models.query.QuerySet` of all model instances that
+    :class:`~djangocg.db.models.query.QuerySet` of all model instances that
     can be edited by the admin site. One use case for overriding this method
     is to show objects owned by the logged-in user::
 
@@ -1206,7 +1206,7 @@ templates used by the :class:`ModelAdmin` views:
 .. method:: ModelAdmin.message_user(request, message)
 
     Sends a message to the user. The default implementation creates a message
-    using the :mod:`django.contrib.messages` backend. See the
+    using the :mod:`djangocg.contrib.messages` backend. See the
     :ref:`custom ModelAdmin example <custom-admin-action>`.
 
 .. method:: ModelAdmin.get_paginator(queryset, per_page, orphans=0, allow_empty_first_page=True)
@@ -1274,7 +1274,7 @@ provided some extra mapping data that would not otherwise be available::
 
 .. versionadded:: 1.4
 
-These views now return :class:`~django.template.response.TemplateResponse`
+These views now return :class:`~djangocg.template.response.TemplateResponse`
 instances which allow you to easily customize the response data before
 rendering. For more details, see the
 :doc:`TemplateResponse documentation </ref/template-response>`.
@@ -1302,8 +1302,8 @@ definitions on forms <form-media-paths>`.
 
 Django admin Javascript makes use of the `jQuery`_ library. To avoid
 conflicts with user-supplied scripts or libraries, Django's jQuery is
-namespaced as ``django.jQuery``. If you want to use jQuery in your own admin
-JavaScript without including a second copy, you can use the ``django.jQuery``
+namespaced as ``djangocg.jQuery``. If you want to use jQuery in your own admin
+JavaScript without including a second copy, you can use the ``djangocg.jQuery``
 object on changelist and add/edit views.
 
 If you require the jQuery library to be in the global namespace, for example
@@ -1316,7 +1316,7 @@ Adding custom validation to the admin
 -------------------------------------
 
 Adding custom validation of data in the admin is quite easy. The automatic
-admin interface reuses :mod:`django.forms`, and the ``ModelAdmin`` class gives
+admin interface reuses :mod:`djangocg.forms`, and the ``ModelAdmin`` class gives
 you the ability define your own form::
 
     class ArticleAdmin(admin.ModelAdmin):
@@ -1372,8 +1372,8 @@ information.
 
     Django provides two subclasses of ``InlineModelAdmin`` and they are:
 
-    * :class:`~django.contrib.admin.TabularInline`
-    * :class:`~django.contrib.admin.StackedInline`
+    * :class:`~djangocg.contrib.admin.TabularInline`
+    * :class:`~djangocg.contrib.admin.StackedInline`
 
     The difference between these two is merely the template used to render
     them.
@@ -1521,7 +1521,7 @@ Working with many-to-many models
 
 By default, admin widgets for many-to-many relations will be displayed
 on whichever model contains the actual reference to the
-:class:`~django.db.models.ManyToManyField`. Depending on your ``ModelAdmin``
+:class:`~djangocg.db.models.ManyToManyField`. Depending on your ``ModelAdmin``
 definition, each many-to-many field in your model will be represented by a
 standard HTML ``<select multiple>``, a horizontal or vertical filter, or a
 ``raw_id_admin`` widget. However, it is also possible to replace these
@@ -1575,7 +1575,7 @@ Working with many-to-many intermediary models
 ---------------------------------------------
 
 When you specify an intermediary model using the ``through`` argument to a
-:class:`~django.db.models.ManyToManyField`, the admin will not display a
+:class:`~djangocg.db.models.ManyToManyField`, the admin will not display a
 widget by default. This is because each instance of that intermediary model
 requires more information than could be displayed in a single widget, and the
 layout required for multiple widgets will vary depending on the intermediate
@@ -1645,13 +1645,13 @@ you have the following models::
 If you want to allow editing and creating ``Image`` instance on the ``Product``
 add/change views you can use ``GenericTabularInline`` or
 ``GenericStackedInline`` (both subclasses of ``GenericInlineModelAdmin``)
-provided by ``django.contrib.contenttypes.generic``, they implement tabular and
+provided by ``djangocg.contrib.contenttypes.generic``, they implement tabular and
 stacked visual layouts for the forms representing the inline objects
 respectively just like their non-generic counterparts and behave just like any
 other inline. In your ``admin.py`` for this example app::
 
-    from django.contrib import admin
-    from django.contrib.contenttypes import generic
+    from djangocg.contrib import admin
+    from djangocg.contrib.contenttypes import generic
 
     from myproject.myapp.models import Image, Product
 
@@ -1777,8 +1777,8 @@ creating your own ``AdminSite`` instance (see below), and changing the
 .. class:: AdminSite(name='admin')
 
     A Django administrative site is represented by an instance of
-    ``django.contrib.admin.sites.AdminSite``; by default, an instance of
-    this class is created as ``django.contrib.admin.site`` and you can
+    ``djangocg.contrib.admin.sites.AdminSite``; by default, an instance of
+    this class is created as ``djangocg.contrib.admin.site`` and you can
     register your models and ``ModelAdmin`` instances with it.
 
     If you'd like to set up your own administrative site with custom
@@ -1813,7 +1813,7 @@ Templates can override or extend base admin templates as described in
 
     .. versionadded:: 1.3
 
-    Subclass of :class:`~django.contrib.auth.forms.AuthenticationForm` that
+    Subclass of :class:`~djangocg.contrib.auth.forms.AuthenticationForm` that
     will be used by the admin site login view.
 
 .. attribute:: AdminSite.logout_template
@@ -1838,11 +1838,11 @@ instance into your URLconf. Do this by pointing a given URL at the
 ``AdminSite.urls`` method.
 
 In this example, we register the default ``AdminSite`` instance
-``django.contrib.admin.site`` at the URL ``/admin/`` ::
+``djangocg.contrib.admin.site`` at the URL ``/admin/`` ::
 
     # urls.py
-    from django.conf.urls import patterns, url, include
-    from django.contrib import admin
+    from djangocg.conf.urls import patterns, url, include
+    from djangocg.contrib import admin
 
     admin.autodiscover()
 
@@ -1857,7 +1857,7 @@ In this example, we register the ``AdminSite`` instance
 ``myproject.admin.admin_site`` at the URL ``/myadmin/`` ::
 
     # urls.py
-    from django.conf.urls import patterns, url, include
+    from djangocg.conf.urls import patterns, url, include
     from myproject.admin import admin_site
 
     urlpatterns = patterns('',
@@ -1881,7 +1881,7 @@ separate versions of the admin site -- using the ``AdminSite`` instances
 respectively::
 
     # urls.py
-    from django.conf.urls import patterns, url, include
+    from djangocg.conf.urls import patterns, url, include
     from myproject.admin import basic_site, advanced_site
 
     urlpatterns = patterns('',
@@ -1898,18 +1898,18 @@ Adding views to admin sites
 ---------------------------
 
 Just like :class:`ModelAdmin`, :class:`AdminSite` provides a
-:meth:`~django.contrib.admin.ModelAdmin.get_urls()` method
+:meth:`~djangocg.contrib.admin.ModelAdmin.get_urls()` method
 that can be overridden to define additional views for the site. To add
 a new view to your admin site, extend the base
-:meth:`~django.contrib.admin.ModelAdmin.get_urls()` method to include
+:meth:`~djangocg.contrib.admin.ModelAdmin.get_urls()` method to include
 a pattern for your new view.
 
 .. note::
 
     Any view you render that uses the admin templates, or extends the base
     admin template, should provide the ``current_app`` argument to
-    :class:`~django.template.RequestContext` or
-    :class:`~django.template.Context` when rendering the template.  It should
+    :class:`~djangocg.template.RequestContext` or
+    :class:`~djangocg.template.Context` when rendering the template.  It should
     be set to either ``self.name`` if your view is on an ``AdminSite`` or
     ``self.admin_site.name`` if your view is on a ``ModelAdmin``.
 
@@ -1923,10 +1923,10 @@ your URLconf. Specifically, add these four patterns:
 
 .. code-block:: python
 
-    url(r'^admin/password_reset/$', 'django.contrib.auth.views.password_reset', name='admin_password_reset'),
-    (r'^admin/password_reset/done/$', 'django.contrib.auth.views.password_reset_done'),
-    (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
-    (r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete'),
+    url(r'^admin/password_reset/$', 'djangocg.contrib.auth.views.password_reset', name='admin_password_reset'),
+    (r'^admin/password_reset/done/$', 'djangocg.contrib.auth.views.password_reset_done'),
+    (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'djangocg.contrib.auth.views.password_reset_confirm'),
+    (r'^reset/done/$', 'djangocg.contrib.auth.views.password_reset_complete'),
 
 (This assumes you've added the admin at ``admin/`` and requires that you put
 the URLs starting with ``^admin/`` before the line that includes the admin app
@@ -1979,7 +1979,7 @@ So - if you wanted to get a reference to the Change view for a particular
 ``Choice`` object (from the polls application) in the default admin, you would
 call::
 
-    >>> from django.core import urlresolvers
+    >>> from djangocg.core import urlresolvers
     >>> c = Choice.objects.get(...)
     >>> change_url = urlresolvers.reverse('admin:polls_choice_change', args=(c.id,))
 

@@ -1,16 +1,16 @@
 import ctypes
 import random
 
-from django.contrib.gis.geos import (GEOSException, GEOSIndexError, GEOSGeometry,
+from djangocg.contrib.gis.geos import (GEOSException, GEOSIndexError, GEOSGeometry,
     GeometryCollection, Point, MultiPoint, Polygon, MultiPolygon, LinearRing,
     LineString, MultiLineString, fromfile, fromstr, geos_version_info)
-from django.contrib.gis.geos.base import gdal, numpy, GEOSBase
-from django.contrib.gis.geos.libgeos import GEOS_PREPARE
-from django.contrib.gis.geometry.test_data import TestDataMixin
+from djangocg.contrib.gis.geos.base import gdal, numpy, GEOSBase
+from djangocg.contrib.gis.geos.libgeos import GEOS_PREPARE
+from djangocg.contrib.gis.geometry.test_data import TestDataMixin
 
-from django.utils import six
-from django.utils.six.moves import xrange
-from django.utils import unittest
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
+from djangocg.utils import unittest
 
 
 class GEOSTest(unittest.TestCase, TestDataMixin):
@@ -953,7 +953,7 @@ class GEOSTest(unittest.TestCase, TestDataMixin):
     def test_pickle(self):
         "Testing pickling and unpickling support."
         # Using both pickle and cPickle -- just 'cause.
-        from django.utils.six.moves import cPickle
+        from djangocg.utils.six.moves import cPickle
         import pickle
 
         # Creating a list of test geometries for pickling,
@@ -1022,7 +1022,7 @@ class GEOSTest(unittest.TestCase, TestDataMixin):
 
     def test_geos_version(self):
         "Testing the GEOS version regular expression."
-        from django.contrib.gis.geos.libgeos import version_regex
+        from djangocg.contrib.gis.geos.libgeos import version_regex
         versions = [ ('3.0.0rc4-CAPI-1.3.3', '3.0.0'),
                      ('3.0.0-CAPI-1.4.1', '3.0.0'),
                      ('3.4.0dev-CAPI-1.8.0', '3.4.0') ]

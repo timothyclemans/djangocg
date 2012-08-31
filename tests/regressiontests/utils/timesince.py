@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 import datetime
 import unittest
 
-from django.utils.timesince import timesince, timeuntil
-from django.utils.tzinfo import LocalTimezone, FixedOffset
+from djangocg.utils.timesince import timesince, timeuntil
+from djangocg.utils.tzinfo import LocalTimezone, FixedOffset
 
 class TimesinceTests(unittest.TestCase):
 

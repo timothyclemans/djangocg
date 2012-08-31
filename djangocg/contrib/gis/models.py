@@ -1,4 +1,4 @@
-from django.db import connection
+from djangocg.db import connection
 
 if (hasattr(connection.ops, 'spatial_version') and
     not connection.ops.mysql):

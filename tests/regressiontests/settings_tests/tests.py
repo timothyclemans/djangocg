@@ -1,11 +1,11 @@
 import os
 import warnings
 
-from django.conf import settings, global_settings
-from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpRequest
-from django.test import TransactionTestCase, TestCase, signals
-from django.test.utils import override_settings
+from djangocg.conf import settings, global_settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.http import HttpRequest
+from djangocg.test import TransactionTestCase, TestCase, signals
+from djangocg.test.utils import override_settings
 
 
 @override_settings(TEST='override')
@@ -279,7 +279,7 @@ class EnvironmentVariableTest(TestCase):
     def setUp(self):
         self.original_value = os.environ.get('DJANGO_SETTINGS_MODULE')
         self.save_warnings_state()
-        warnings.filterwarnings('ignore', category=DeprecationWarning, module='django.core.management')
+        warnings.filterwarnings('ignore', category=DeprecationWarning, module='djangocg.core.management')
 
     def tearDown(self):
         self.restore_warnings_state()
@@ -295,7 +295,7 @@ class EnvironmentVariableTest(TestCase):
 
         This tests both plus the default (neither set).
         """
-        from django.core.management import setup_environ
+        from djangocg.core.management import setup_environ
 
         # whatever was already there
         original_module =  os.environ.get(

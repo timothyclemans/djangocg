@@ -4,14 +4,14 @@ except ImportError:     # Python 2
     from urllib import urlencode
 from xml.dom.minidom import parseString
 
-from django.contrib.auth.decorators import login_required, permission_required
-from django.core import mail
-from django.forms import fields
-from django.forms.forms import Form
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
-from django.shortcuts import render_to_response
-from django.template import Context, Template
-from django.utils.decorators import method_decorator
+from djangocg.contrib.auth.decorators import login_required, permission_required
+from djangocg.core import mail
+from djangocg.forms import fields
+from djangocg.forms.forms import Form
+from djangocg.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
+from djangocg.shortcuts import render_to_response
+from djangocg.template import Context, Template
+from djangocg.utils.decorators import method_decorator
 
 def get_view(request):
     "A simple view that expects a GET request, and returns a rendered template"

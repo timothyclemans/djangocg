@@ -1,15 +1,15 @@
 """
 Various data structures used in query construction.
 
-Factored out from django.db.models.query to avoid making the main module very
+Factored out from djangocg.db.models.query to avoid making the main module very
 large and/or so that they can be used by other modules without getting into
 circular import difficulties.
 """
 from __future__ import unicode_literals
 
-from django.db.backends import util
-from django.utils import six
-from django.utils import tree
+from djangocg.db.backends import util
+from djangocg.utils import six
+from djangocg.utils import tree
 
 
 class InvalidQuery(Exception):
@@ -76,7 +76,7 @@ class DeferredAttribute(object):
         Retrieves and caches the value from the datastore on the first lookup.
         Returns the cached value.
         """
-        from django.db.models.fields import FieldDoesNotExist
+        from djangocg.db.models.fields import FieldDoesNotExist
         non_deferred_model = instance._meta.proxy_for_model
         opts = non_deferred_model._meta
 

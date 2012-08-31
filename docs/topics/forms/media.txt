@@ -27,7 +27,7 @@ in a form suitable for easy inclusion on your Web page.
 
     If you like the widgets that the Django Admin application uses,
     feel free to use them in your own application! They're all stored
-    in ``django.contrib.admin.widgets``.
+    in ``djangocg.contrib.admin.widgets``.
 
 .. admonition:: Which JavaScript toolkit?
 

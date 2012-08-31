@@ -69,7 +69,7 @@ backwards-incompatible. The big changes are:
   important backwards-incompatible changes, detailed in `CSRF Protection`_,
   below.
 
-* Authors of custom :class:`~django.db.models.Field` subclasses should be
+* Authors of custom :class:`~djangocg.db.models.Field` subclasses should be
   aware that a number of methods have had a change in prototype, detailed
   under `get_db_prep_*() methods on Field`_, below.
 
@@ -78,10 +78,10 @@ backwards-incompatible. The big changes are:
   should ensure that their code follows the new rules for `stateful template
   tags`_
 
-* The :func:`~django.contrib.auth.decorators.user_passes_test`,
-  :func:`~django.contrib.auth.decorators.login_required`, and
-  :func:`~django.contrib.auth.decorators.permission_required`, decorators
-  from :mod:`django.contrib.auth` only apply to functions and no longer
+* The :func:`~djangocg.contrib.auth.decorators.user_passes_test`,
+  :func:`~djangocg.contrib.auth.decorators.login_required`, and
+  :func:`~djangocg.contrib.auth.decorators.permission_required`, decorators
+  from :mod:`djangocg.contrib.auth` only apply to functions and no longer
   work on methods. There's a simple one-line fix `detailed below`_.
 
 .. _detailed below: `user_passes_test, login_required and permission_required`_
@@ -164,7 +164,7 @@ Object-level permissions
 A foundation for specifying permissions at the per-object level has been added.
 Although there is no implementation of this in core, a custom authentication
 backend can provide this implementation and it will be used by
-:class:`django.contrib.auth.models.User`. See the :doc:`authentication docs
+:class:`djangocg.contrib.auth.models.User`. See the :doc:`authentication docs
 </topics/auth>` for more information.
 
 Permissions for anonymous users
@@ -180,8 +180,8 @@ docs </topics/auth>` for more details.
 Relaxed requirements for usernames
 ----------------------------------
 
-The built-in :class:`~django.contrib.auth.models.User` model's
-:attr:`~django.contrib.auth.models.User.username` field now allows a wider range
+The built-in :class:`~djangocg.contrib.auth.models.User` model's
+:attr:`~djangocg.contrib.auth.models.User.username` field now allows a wider range
 of characters, including ``@``, ``+``, ``.`` and ``-`` characters.
 
 Email backends
@@ -302,7 +302,7 @@ were run before the interruption.
 ``BigIntegerField``
 -------------------
 
-Models can now use a 64-bit :class:`~django.db.models.BigIntegerField` type.
+Models can now use a 64-bit :class:`~djangocg.db.models.BigIntegerField` type.
 
 Improved localization
 ---------------------
@@ -316,7 +316,7 @@ forms. See :ref:`Format localization <format-localization>` for more details.
 ``readonly_fields`` in ``ModelAdmin``
 -------------------------------------
 
-:attr:`django.contrib.admin.ModelAdmin.readonly_fields` has been added to
+:attr:`djangocg.contrib.admin.ModelAdmin.readonly_fields` has been added to
 enable non-editable fields in add/change pages for models and inlines. Field
 and calculated values can be displayed alongside editable fields.
 
@@ -345,10 +345,10 @@ in 1.2 is support for multiple spatial databases.  As a result,
 the following :ref:`spatial database backends <spatial-backends>`
 are now included:
 
-* :mod:`django.contrib.gis.db.backends.postgis`
-* :mod:`django.contrib.gis.db.backends.mysql`
-* :mod:`django.contrib.gis.db.backends.oracle`
-* :mod:`django.contrib.gis.db.backends.spatialite`
+* :mod:`djangocg.contrib.gis.db.backends.postgis`
+* :mod:`djangocg.contrib.gis.db.backends.mysql`
+* :mod:`djangocg.contrib.gis.db.backends.oracle`
+* :mod:`djangocg.contrib.gis.db.backends.spatialite`
 
 GeoDjango now supports the rich capabilities added
 in the `PostGIS 1.5 release <http://postgis.refractions.net/documentation/manual-1.5/>`_.
@@ -357,30 +357,30 @@ and enabling of :ref:`distance queries <distance-queries>`
 with non-point geometries on geographic coordinate systems.
 
 Support for 3D geometry fields was added, and may be enabled
-by setting the :attr:`~django.contrib.gis.db.models.GeometryField.dim`
-keyword to 3 in your :class:`~django.contrib.gis.db.models.GeometryField`.
-The :class:`~django.contrib.gis.db.models.Extent3D` aggregate
-and :meth:`~django.contrib.gis.db.models.GeoQuerySet.extent3d` ``GeoQuerySet``
+by setting the :attr:`~djangocg.contrib.gis.db.models.GeometryField.dim`
+keyword to 3 in your :class:`~djangocg.contrib.gis.db.models.GeometryField`.
+The :class:`~djangocg.contrib.gis.db.models.Extent3D` aggregate
+and :meth:`~djangocg.contrib.gis.db.models.GeoQuerySet.extent3d` ``GeoQuerySet``
 method were added as a part of this feature.
 
-The following :class:`~django.contrib.gis.db.models.GeoQuerySet`
+The following :class:`~djangocg.contrib.gis.db.models.GeoQuerySet`
 methods are new in 1.2:
 
-* :meth:`~django.contrib.gis.db.models.GeoQuerySet.force_rhr`
-* :meth:`~django.contrib.gis.db.models.GeoQuerySet.reverse_geom`
-* :meth:`~django.contrib.gis.db.models.GeoQuerySet.geohash`
+* :meth:`~djangocg.contrib.gis.db.models.GeoQuerySet.force_rhr`
+* :meth:`~djangocg.contrib.gis.db.models.GeoQuerySet.reverse_geom`
+* :meth:`~djangocg.contrib.gis.db.models.GeoQuerySet.geohash`
 
 The :ref:`GEOS interface <ref-geos>` was updated to use
 thread-safe C library functions when available on the platform.
 
 The :ref:`GDAL interface <ref-gdal>` now allows the user to
-set a :attr:`~django.contrib.gis.gdal.Layer.spatial_filter` on
+set a :attr:`~djangocg.contrib.gis.gdal.Layer.spatial_filter` on
 the features returned when iterating over a
-:class:`~django.contrib.gis.gdal.Layer`.
+:class:`~djangocg.contrib.gis.gdal.Layer`.
 
 Finally, :doc:`GeoDjango's documentation </ref/contrib/gis/index>` is now
 included with Django's and is no longer
-hosted separately at `geodjango.org <http://geodjango.org/>`_.
+hosted separately at `geodjangocg.org <http://geodjangocg.org/>`_.
 
 .. _1.2-js-assisted-inlines:
 
@@ -571,7 +571,7 @@ is thread safe, this leakage no longer occurs.
 ``user_passes_test``, ``login_required`` and ``permission_required``
 --------------------------------------------------------------------
 
-``django.contrib.auth.decorators`` provides the decorators
+``djangocg.contrib.auth.decorators`` provides the decorators
 ``login_required``, ``permission_required`` and
 ``user_passes_test``. Previously it was possible to use these
 decorators both on functions (where the first argument is 'request')
@@ -583,7 +583,7 @@ work.
 
 For this reason, the 'auto adapt' behavior has been removed, and if
 you are using these decorators on methods, you will need to manually
-apply :func:`django.utils.decorators.method_decorator` to convert the
+apply :func:`djangocg.utils.decorators.method_decorator` to convert the
 decorator to one that works with methods. For example, you would
 change code from this::
 
@@ -595,7 +595,7 @@ change code from this::
 
 to this::
 
-    from django.utils.decorators import method_decorator
+    from djangocg.utils.decorators import method_decorator
 
     class MyClass(object):
 
@@ -605,7 +605,7 @@ to this::
 
 or::
 
-    from django.utils.decorators import method_decorator
+    from djangocg.utils.decorators import method_decorator
 
     login_required_m = method_decorator(login_required)
 
@@ -718,8 +718,8 @@ Changes to the interpretation of ``max_num`` in FormSets
 
 As part of enhancements made to the handling of FormSets, the default
 value and interpretation of the ``max_num`` parameter to the
-:ref:`django.forms.formsets.formset_factory() <formsets-max-num>` and
-:ref:`django.forms.models.modelformset_factory()
+:ref:`djangocg.forms.formsets.formset_factory() <formsets-max-num>` and
+:ref:`djangocg.forms.models.modelformset_factory()
 <model-formsets-max-num>` functions has changed slightly. This
 change also affects the way the ``max_num`` argument is :ref:`used for
 inline admin objects <ref-contrib-admin-inline-max-num>`
@@ -750,7 +750,7 @@ will need to update your FormSet and/or admin definitions.
 ------------
 
 An undocumented regular expression for validating email addresses has been moved
-from ``django.form.fields`` to ``django.core.validators``. You will need to
+from ``djangocg.form.fields`` to ``djangocg.core.validators``. You will need to
 update your imports if you are using it.
 
 .. _deprecated-features-1.2:
@@ -808,7 +808,7 @@ shortened. The previous sample settings would now look like this::
     DATABASES = {
         'default': {
             'NAME': 'test_db',
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'djangocg.db.backends.postgresql_psycopg2',
             'USER': 'myusername',
             'PASSWORD': 's3krit',
         }
@@ -837,7 +837,7 @@ connection using ``DatabaseWrapper()`` from your database backend of choice.
 In addition to the change in structure, Django 1.2 removes the special
 handling for the built-in database backends. All database backends
 must now be specified by a fully qualified module name (i.e.,
-``django.db.backends.postgresql_psycopg2``, rather than just
+``djangocg.db.backends.postgresql_psycopg2``, rather than just
 ``postgresql_psycopg2``).
 
 ``postgresql`` database backend
@@ -851,7 +851,7 @@ If you are currently using the ``postgresql`` backend, you should
 migrate to using the ``postgresql_psycopg2`` backend. To update your
 code, install the ``psycopg2`` library and change the
 :setting:`DATABASE_ENGINE` setting to use
-``django.db.backends.postgresql_psycopg2``.
+``djangocg.db.backends.postgresql_psycopg2``.
 
 CSRF response-rewriting middleware
 ----------------------------------
@@ -878,15 +878,15 @@ The ``SMTPConnection`` class has been deprecated in favor of a generic
 email backend API. Old code that explicitly instantiated an instance
 of an SMTPConnection::
 
-    from django.core.mail import SMTPConnection
+    from djangocg.core.mail import SMTPConnection
     connection = SMTPConnection()
     messages = get_notification_email()
     connection.send_messages(messages)
 
-...should now call :meth:`~django.core.mail.get_connection()` to
+...should now call :meth:`~djangocg.core.mail.get_connection()` to
 instantiate a generic email connection::
 
-    from django.core.mail import get_connection
+    from djangocg.core.mail import get_connection
     connection = get_connection()
     messages = get_notification_email()
     connection.send_messages(messages)
@@ -896,16 +896,16 @@ may not return an SMTP connection. If you explicitly require an SMTP
 connection with which to send email, you can explicitly request an
 SMTP connection::
 
-    from django.core.mail import get_connection
-    connection = get_connection('django.core.mail.backends.smtp.EmailBackend')
+    from djangocg.core.mail import get_connection
+    connection = get_connection('djangocg.core.mail.backends.smtp.EmailBackend')
     messages = get_notification_email()
     connection.send_messages(messages)
 
 If your call to construct an instance of ``SMTPConnection`` required
 additional arguments, those arguments can be passed to the
-:meth:`~django.core.mail.get_connection()` call::
+:meth:`~djangocg.core.mail.get_connection()` call::
 
-    connection = get_connection('django.core.mail.backends.smtp.EmailBackend', hostname='localhost', port=1234)
+    connection = get_connection('djangocg.core.mail.backends.smtp.EmailBackend', hostname='localhost', port=1234)
 
 User Messages API
 -----------------
@@ -920,7 +920,7 @@ To upgrade your code, you need to replace any instances of this::
 
 ...with the following::
 
-    from django.contrib import messages
+    from djangocg.contrib import messages
     messages.add_message(request, messages.INFO, 'a message')
 
 Additionally, if you make use of the method, you need to replace the
@@ -931,7 +931,7 @@ following::
 
 ...with::
 
-    from django.contrib import messages
+    from djangocg.contrib import messages
     for message in messages.get_messages(request):
         ...
 
@@ -942,36 +942,36 @@ update your code to use the new API immediately.
 Date format helper functions
 ----------------------------
 
-``django.utils.translation.get_date_formats()`` and
-``django.utils.translation.get_partial_date_formats()`` have been deprecated
-in favor of the appropriate calls to ``django.utils.formats.get_format()``,
+``djangocg.utils.translation.get_date_formats()`` and
+``djangocg.utils.translation.get_partial_date_formats()`` have been deprecated
+in favor of the appropriate calls to ``djangocg.utils.formats.get_format()``,
 which is locale-aware when :setting:`USE_L10N` is set to ``True``, and falls
 back to default settings if set to ``False``.
 
 To get the different date formats, instead of writing this::
 
-    from django.utils.translation import get_date_formats
+    from djangocg.utils.translation import get_date_formats
     date_format, datetime_format, time_format = get_date_formats()
 
 ...use::
 
-    from django.utils import formats
+    from djangocg.utils import formats
     date_format = formats.get_format('DATE_FORMAT')
     datetime_format = formats.get_format('DATETIME_FORMAT')
     time_format = formats.get_format('TIME_FORMAT')
 
 Or, when directly formatting a date value::
 
-    from django.utils import formats
+    from djangocg.utils import formats
     value_formatted = formats.date_format(value, 'DATETIME_FORMAT')
 
-The same applies to the globals found in ``django.forms.fields``:
+The same applies to the globals found in ``djangocg.forms.fields``:
 
 * ``DEFAULT_DATE_INPUT_FORMATS``
 * ``DEFAULT_TIME_INPUT_FORMATS``
 * ``DEFAULT_DATETIME_INPUT_FORMATS``
 
-Use ``django.utils.formats.get_format()`` to get the appropriate formats.
+Use ``djangocg.utils.formats.get_format()`` to get the appropriate formats.
 
 Function-based test runners
 ---------------------------
@@ -983,11 +983,11 @@ should be updated to use the new :ref:`class-based runners
 
 .. _1.2-updating-feeds:
 
-``Feed`` in ``django.contrib.syndication.feeds``
+``Feed`` in ``djangocg.contrib.syndication.feeds``
 ------------------------------------------------
 
-The :class:`django.contrib.syndication.feeds.Feed` class has been
-replaced by the :class:`django.contrib.syndication.views.Feed` class.
+The :class:`djangocg.contrib.syndication.feeds.Feed` class has been
+replaced by the :class:`djangocg.contrib.syndication.views.Feed` class.
 The old ``feeds.Feed`` class is deprecated, and will be removed in
 Django 1.4.
 
@@ -995,7 +995,7 @@ The new class has an almost identical API, but allows instances to be
 used as views. For example, consider the use of the old framework in
 the following :doc:`URLconf </topics/http/urls>`::
 
-    from django.conf.urls.defaults import *
+    from djangocg.conf.urls.defaults import *
     from myproject.feeds import LatestEntries, LatestEntriesByCategory
 
     feeds = {
@@ -1005,14 +1005,14 @@ the following :doc:`URLconf </topics/http/urls>`::
 
     urlpatterns = patterns('',
         # ...
-        (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',
+        (r'^feeds/(?P<url>.*)/$', 'djangocg.contrib.syndication.views.feed',
             {'feed_dict': feeds}),
         # ...
     )
 
 Using the new Feed class, these feeds can be deployed directly as views::
 
-    from django.conf.urls.defaults import *
+    from djangocg.conf.urls.defaults import *
     from myproject.feeds import LatestEntries, LatestEntriesByCategory
 
     urlpatterns = patterns('',
@@ -1024,7 +1024,7 @@ Using the new Feed class, these feeds can be deployed directly as views::
 
 If you currently use the ``feed()`` view, the ``LatestEntries`` class would
 often not need to be modified apart from subclassing the new
-:class:`~django.contrib.syndication.views.Feed` class. The exception is if
+:class:`~djangocg.contrib.syndication.views.Feed` class. The exception is if
 Django was automatically working out the name of the template to use to render
 the feed's description and title elements (if you were not specifying the
 ``title_template`` and ``description_template`` attributes). You should ensure
@@ -1033,12 +1033,12 @@ attributes, or provide ``item_title()`` and ``item_description()`` methods.
 
 However, ``LatestEntriesByCategory`` uses the ``get_object()`` method
 with the ``bits`` argument to specify a specific category to show. In
-the new :class:`~django.contrib.syndication.views.Feed` class,
+the new :class:`~djangocg.contrib.syndication.views.Feed` class,
 ``get_object()`` method takes a ``request`` and arguments from the
 URL, so it would look like this::
 
-    from django.contrib.syndication.views import Feed
-    from django.shortcuts import get_object_or_404
+    from djangocg.contrib.syndication.views import Feed
+    from djangocg.shortcuts import get_object_or_404
     from myproject.models import Category
 
     class LatestEntriesByCategory(Feed):
@@ -1085,8 +1085,8 @@ GeoDjango
 
 To allow support for multiple databases, the GeoDjango database internals were
 changed substantially.  The largest backwards-incompatible change is that
-the module ``django.contrib.gis.db.backend`` was renamed to
-:mod:`django.contrib.gis.db.backends`, where the full-fledged
+the module ``djangocg.contrib.gis.db.backend`` was renamed to
+:mod:`djangocg.contrib.gis.db.backends`, where the full-fledged
 :ref:`spatial database backends <spatial-backends>` now exist.  The
 following sections provide information on the most-popular APIs that
 were affected by these changes.
@@ -1095,34 +1095,34 @@ were affected by these changes.
 ^^^^^^^^^^^^^^^^^^
 
 Prior to the creation of the separate spatial backends, the
-``django.contrib.gis.db.backend.SpatialBackend`` object was
+``djangocg.contrib.gis.db.backend.SpatialBackend`` object was
 provided as an abstraction to introspect on the capabilities of
 the spatial database.  All of the attributes and routines provided by
 ``SpatialBackend`` are now a part of the ``ops`` attribute of the
 database backend.
 
-The old module ``django.contrib.gis.db.backend`` is still provided
+The old module ``djangocg.contrib.gis.db.backend`` is still provided
 for backwards-compatibility access to a ``SpatialBackend`` object,
 which is just an alias to the ``ops`` module of the
 *default* spatial database connection.
 
 Users that were relying on undocumented modules and objects
-within ``django.contrib.gis.db.backend``, rather the abstractions
+within ``djangocg.contrib.gis.db.backend``, rather the abstractions
 provided by ``SpatialBackend``, are required to modify their code.
 For example, the following import which would work in 1.1 and
 below::
 
-    from django.contrib.gis.db.backend.postgis import PostGISAdaptor
+    from djangocg.contrib.gis.db.backend.postgis import PostGISAdaptor
 
 Would need to be changed::
 
-    from django.db import connection
+    from djangocg.db import connection
     PostGISAdaptor = connection.ops.Adapter
 
 ``SpatialRefSys`` and ``GeometryColumns`` models
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In previous versions of GeoDjango, :mod:`django.contrib.gis.db.models`
+In previous versions of GeoDjango, :mod:`djangocg.contrib.gis.db.models`
 had ``SpatialRefSys`` and ``GeometryColumns`` models for querying
 the OGC spatial metadata tables ``spatial_ref_sys`` and ``geometry_columns``,
 respectively.
@@ -1139,14 +1139,14 @@ is using a supported spatial database backend.
     the ``gis`` application name.  Thus, no models will be returned
     when using the ``get_models`` method in the following example::
 
-        >>> from django.db.models import get_app, get_models
+        >>> from djangocg.db.models import get_app, get_models
         >>> get_models(get_app('gis'))
         []
 
 To get the correct ``SpatialRefSys`` and ``GeometryColumns``
 for your spatial database use the methods provided by the spatial backend::
 
-     >>> from django.db import connections
+     >>> from djangocg.db import connections
      >>> SpatialRefSys = connections['my_spatialite'].ops.spatial_ref_sys()
      >>> GeometryColumns = connections['my_postgis'].ops.geometry_columns()
 

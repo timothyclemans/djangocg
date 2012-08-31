@@ -2,11 +2,11 @@ from __future__ import unicode_literals
 
 import warnings
 
-from django.contrib.localflavor.ca.forms import (CAPostalCodeField,
+from djangocg.contrib.localflavor.ca.forms import (CAPostalCodeField,
         CAPhoneNumberField, CAProvinceField, CAProvinceSelect,
         CASocialInsuranceNumberField)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class CALocalFlavorTests(SimpleTestCase):
@@ -15,7 +15,7 @@ class CALocalFlavorTests(SimpleTestCase):
         warnings.filterwarnings(
             "ignore",
             category=RuntimeWarning,
-            module='django.contrib.localflavor.ca.ca_provinces'
+            module='djangocg.contrib.localflavor.ca.ca_provinces'
         )
 
     def tearDown(self):

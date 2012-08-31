@@ -37,7 +37,7 @@ What's new in Django 1.5
 Support for saving a subset of model's fields
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The method :meth:`Model.save() <django.db.models.Model.save()>` has a new
+The method :meth:`Model.save() <djangocg.db.models.Model.save()>` has a new
 keyword argument ``update_fields``. By using this argument it is possible to
 save only a select list of model's fields. This can be useful for performance
 reasons or when trying to avoid overwriting concurrent changes.
@@ -46,7 +46,7 @@ Deferred instances (those loaded by .only() or .defer()) will automatically
 save just the loaded fields. If any field is set manually after load, that
 field will also get updated on save.
 
-See the :meth:`Model.save() <django.db.models.Model.save()>` documentation for
+See the :meth:`Model.save() <djangocg.db.models.Model.save()>` documentation for
 more details.
 
 Caching of related model instances
@@ -77,11 +77,11 @@ tag's content.
 Retrieval of ``ContentType`` instances associated with proxy models
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The methods :meth:`ContentTypeManager.get_for_model() <django.contrib.contenttypes.models.ContentTypeManager.get_for_model()>`
-and :meth:`ContentTypeManager.get_for_models() <django.contrib.contenttypes.models.ContentTypeManager.get_for_models()>`
+The methods :meth:`ContentTypeManager.get_for_model() <djangocg.contrib.contenttypes.models.ContentTypeManager.get_for_model()>`
+and :meth:`ContentTypeManager.get_for_models() <djangocg.contrib.contenttypes.models.ContentTypeManager.get_for_models()>`
 have a new keyword argument – respectively ``for_concrete_model`` and ``for_concrete_models``.
 By passing ``False`` using this argument it is now possible to retreive the
-:class:`ContentType <django.contrib.contenttypes.models.ContentType>`
+:class:`ContentType <djangocg.contrib.contenttypes.models.ContentType>`
 associated with proxy models.
 
 New ``view`` variable in class-based views context
@@ -98,8 +98,8 @@ Django 1.5 also includes several smaller improvements worth noting:
 * The template engine now interprets ``True``, ``False`` and ``None`` as the
   corresponding Python objects.
 
-* :mod:`django.utils.timezone` provides a helper for converting aware
-  datetimes between time zones. See :func:`~django.utils.timezone.localtime`.
+* :mod:`djangocg.utils.timezone` provides a helper for converting aware
+  datetimes between time zones. See :func:`~djangocg.utils.timezone.localtime`.
 
 * The generic views support OPTIONS requests.
 
@@ -117,7 +117,7 @@ Django 1.5 also includes several smaller improvements worth noting:
   connect to more than one signal by supplying a list of signals.
 
 * :meth:`QuerySet.bulk_create()
-  <django.db.models.query.QuerySet.bulk_create>` now has a batch_size
+  <djangocg.db.models.query.QuerySet.bulk_create>` now has a batch_size
   argument. By default the batch_size is unlimited except for SQLite where
   single batch is limited so that 999 parameters per query isn't exceeded.
 
@@ -136,7 +136,7 @@ Context in year archive class-based views
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For consistency with the other date-based generic views,
-:class:`~django.views.generic.dates.YearArchiveView` now passes ``year`` in
+:class:`~djangocg.views.generic.dates.YearArchiveView` now passes ``year`` in
 the context as a :class:`datetime.date` rather than a string.  If you are
 using ``{{ year }}`` in your templates, you must replace it with ``{{
 year|date:"Y" }}``.
@@ -148,7 +148,7 @@ Context in TemplateView
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 For consistency with the design of the other generic views,
-:class:`~django.views.generic.base.TemplateView` no longer passes a ``params``
+:class:`~djangocg.views.generic.base.TemplateView` no longer passes a ``params``
 dictionary into the context, instead passing the variables from the URLconf
 directly into the context.
 
@@ -178,12 +178,12 @@ System version of :mod:`simplejson` no longer used
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :ref:`As explained below <simplejson-deprecation>`, Django 1.5 deprecates
-:mod:`django.utils.simplejson` in favor of Python 2.6's built-in :mod:`json`
+:mod:`djangocg.utils.simplejson` in favor of Python 2.6's built-in :mod:`json`
 module. In theory, this change is harmless. Unfortunately, because of
 incompatibilities between versions of :mod:`simplejson`, it may trigger errors
 in some circumstances.
 
-JSON-related features in Django 1.4 always used :mod:`django.utils.simplejson`.
+JSON-related features in Django 1.4 always used :mod:`djangocg.utils.simplejson`.
 This module was actually:
 
 - A system version of :mod:`simplejson`, if one was available (ie. ``import
@@ -210,7 +210,7 @@ More information on these incompatibilities is available in `ticket #18023`_.
 
 The net result is that, if you have installed :mod:`simplejson` and your code
 uses Django's serialization internals directly -- for instance
-:class:`django.core.serializers.json.DjangoJSONEncoder`, the switch from
+:class:`djangocg.core.serializers.json.DjangoJSONEncoder`, the switch from
 :mod:`simplejson` to :mod:`json` could break your code. (In general, changes to
 internals aren't documented; we're making an exception here.)
 
@@ -227,14 +227,14 @@ If you have written a :ref:`custom password hasher <auth_password_storage>`,
 your ``encode()``, ``verify()`` or ``safe_summary()`` methods should accept
 Unicode parameters (``password``, ``salt`` or ``encoded``). If any of the
 hashing methods need byte strings, you can use the
-:func:`~django.utils.encoding.force_bytes` utility to encode the strings.
+:func:`~djangocg.utils.encoding.force_bytes` utility to encode the strings.
 
 Validation of previous_page_number and next_page_number
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When using :doc:`object pagination </topics/pagination>`,
 the ``previous_page_number()`` and ``next_page_number()`` methods of the
-:class:`~django.core.paginator.Page` object did not check if the returned
+:class:`~djangocg.core.paginator.Page` object did not check if the returned
 number was inside the existing page range.
 It does check it now and raises an :exc:`InvalidPage` exception when the number
 is either too low or too high.
@@ -260,29 +260,29 @@ Changes in tests execution
 Some changes have been introduced in the execution of tests that might be
 backward-incompatible for some testing setups:
 
-Database flushing in ``django.test.TransactionTestCase``
+Database flushing in ``djangocg.test.TransactionTestCase``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Previously, the test database was truncated *before* each test run in a
-:class:`~django.test.TransactionTestCase`.
+:class:`~djangocg.test.TransactionTestCase`.
 
 In order to be able to run unit tests in any order and to make sure they are
-always isolated from each other, :class:`~django.test.TransactionTestCase` will
+always isolated from each other, :class:`~djangocg.test.TransactionTestCase` will
 now reset the database *after* each test run instead.
 
 No more implict DB sequences reset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:class:`~django.test.TransactionTestCase` tests used to reset primary key
+:class:`~djangocg.test.TransactionTestCase` tests used to reset primary key
 sequences automatically together with the database flushing actions described
 above.
 
 This has been changed so no sequences are implicitly reset. This can cause
-:class:`~django.test.TransactionTestCase` tests that depend on hard-coded
+:class:`~djangocg.test.TransactionTestCase` tests that depend on hard-coded
 primary key values to break.
 
-The new :attr:`~django.test.TransactionTestCase.reset_sequences` attribute can
-be used to force the old behavior for :class:`~django.test.TransactionTestCase`
+The new :attr:`~djangocg.test.TransactionTestCase.reset_sequences` attribute can
+be used to force the old behavior for :class:`~djangocg.test.TransactionTestCase`
 that might need it.
 
 Ordering of tests
@@ -292,15 +292,15 @@ In order to make sure all ``TestCase`` code starts with a clean database,
 tests are now executed in the following order:
 
 * First, all unittests (including :class:`unittest.TestCase`,
-  :class:`~django.test.SimpleTestCase`, :class:`~django.test.TestCase` and
-  :class:`~django.test.TransactionTestCase`) are run with no particular ordering
+  :class:`~djangocg.test.SimpleTestCase`, :class:`~djangocg.test.TestCase` and
+  :class:`~djangocg.test.TransactionTestCase`) are run with no particular ordering
   guaranteed nor enforced among them.
 
 * Then any other tests (e.g. doctests) that may alter the database without
   restoring it to its original state are run.
 
 This should not cause any problems unless you have existing doctests which
-assume a :class:`~django.test.TransactionTestCase` executed earlier left some
+assume a :class:`~djangocg.test.TransactionTestCase` executed earlier left some
 database state behind or unit tests that rely on some form of state being
 preserved after the execution of other tests. Such tests are already very
 fragile, and must now be changed to be able to run independently.
@@ -308,11 +308,11 @@ fragile, and must now be changed to be able to run independently.
 `cleaned_data` dictionary kept for invalid forms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :attr:`~django.forms.Form.cleaned_data` dictionary is now always present
+The :attr:`~djangocg.forms.Form.cleaned_data` dictionary is now always present
 after form validation. When the form doesn't validate, it contains only the
 fields that passed validation. You should test the success of the validation
-with the :meth:`~django.forms.Form.is_valid()` method and not with the
-presence or absence of the :attr:`~django.forms.Form.cleaned_data` attribute
+with the :meth:`~djangocg.forms.Form.is_valid()` method and not with the
+presence or absence of the :attr:`~djangocg.forms.Form.cleaned_data` attribute
 on the form.
 
 Miscellaneous
@@ -320,25 +320,25 @@ Miscellaneous
 
 * GeoDjango dropped support for GDAL < 1.5
 
-* :func:`~django.utils.http.int_to_base36` properly raises a :exc:`TypeError`
+* :func:`~djangocg.utils.http.int_to_base36` properly raises a :exc:`TypeError`
   instead of :exc:`ValueError` for non-integer inputs.
 
 * The ``slugify`` template filter is now available as a standard python
-  function at :func:`django.utils.text.slugify`. Similarly, ``remove_tags`` is
-  available at :func:`django.utils.html.remove_tags`.
+  function at :func:`djangocg.utils.text.slugify`. Similarly, ``remove_tags`` is
+  available at :func:`djangocg.utils.html.remove_tags`.
 
 Features deprecated in 1.5
 ==========================
 
 .. _simplejson-deprecation:
 
-``django.utils.simplejson``
+``djangocg.utils.simplejson``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Since Django 1.5 drops support for Python 2.5, we can now rely on the
 :mod:`json` module being available in Python's standard library, so we've
 removed our own copy of :mod:`simplejson`. You should now import :mod:`json`
-instead :mod:`django.utils.simplejson`.
+instead :mod:`djangocg.utils.simplejson`.
 
 Unfortunately, this change might have unwanted side-effects, because of
 incompatibilities between versions of :mod:`simplejson` -- see the
@@ -349,12 +349,12 @@ If you rely on features added to :mod:`simplejson` after it became Python's
 ``itercompat.product``
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The :func:`~django.utils.itercompat.product` function has been deprecated. Use
+The :func:`~djangocg.utils.itercompat.product` function has been deprecated. Use
 the built-in :func:`itertools.product` instead.
 
-``django.utils.encoding.StrAndUnicode``
+``djangocg.utils.encoding.StrAndUnicode``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :class:`~django.utils.encoding.StrAndUnicode` mix-in has been deprecated.
+The :class:`~djangocg.utils.encoding.StrAndUnicode` mix-in has been deprecated.
 Define a ``__str__`` method and apply the
-:func:`~django.utils.encoding.python_2_unicode_compatible` decorator instead.
+:func:`~djangocg.utils.encoding.python_2_unicode_compatible` decorator instead.

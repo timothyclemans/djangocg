@@ -1,11 +1,11 @@
 import sys
 
-from django.conf import settings
-from django.core.signals import got_request_exception
-from django.http import HttpResponse
-from django.template.response import TemplateResponse
-from django.template import Template
-from django.test import TestCase
+from djangocg.conf import settings
+from djangocg.core.signals import got_request_exception
+from djangocg.http import HttpResponse
+from djangocg.template.response import TemplateResponse
+from djangocg.template import Template
+from djangocg.test import TestCase
 
 class TestException(Exception):
     pass

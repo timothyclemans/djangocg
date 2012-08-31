@@ -4,10 +4,10 @@ Belgium-specific Form helpers
 
 from __future__ import absolute_import
 
-from django.contrib.localflavor.be.be_provinces import PROVINCE_CHOICES
-from django.contrib.localflavor.be.be_regions import REGION_CHOICES
-from django.forms.fields import RegexField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.be.be_provinces import PROVINCE_CHOICES
+from djangocg.contrib.localflavor.be.be_regions import REGION_CHOICES
+from djangocg.forms.fields import RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class BEPostalCodeField(RegexField):

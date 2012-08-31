@@ -4,10 +4,10 @@ This is a URLconf to be loaded by tests.py. Add any URLs needed for tests only.
 
 from __future__ import absolute_import
 
-from django.conf.urls import patterns, url
-from django.contrib.formtools.tests import TestFormPreview, TestWizardClass
+from djangocg.conf.urls import patterns, url
+from djangocg.contrib.formtools.tests import TestFormPreview, TestWizardClass
 
-from django.contrib.formtools.tests.forms import (ContactWizard, Page1, Page2,
+from djangocg.contrib.formtools.tests.forms import (ContactWizard, Page1, Page2,
     Page3, TestForm, WizardPageOneForm, WizardPageTwoForm, WizardPageThreeForm)
 
 

@@ -1,13 +1,13 @@
 from __future__ import absolute_import
 
 from django import template
-from django.conf import settings
-from django.contrib import comments
-from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.comments import signals
-from django.contrib.comments.views.utils import next_redirect, confirmation_view
-from django.shortcuts import get_object_or_404, render_to_response
-from django.views.decorators.csrf import csrf_protect
+from djangocg.conf import settings
+from djangocg.contrib import comments
+from djangocg.contrib.auth.decorators import login_required, permission_required
+from djangocg.contrib.comments import signals
+from djangocg.contrib.comments.views.utils import next_redirect, confirmation_view
+from djangocg.shortcuts import get_object_or_404, render_to_response
+from djangocg.views.decorators.csrf import csrf_protect
 
 
 

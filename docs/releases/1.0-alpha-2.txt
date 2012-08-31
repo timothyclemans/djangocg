@@ -23,7 +23,7 @@ For features which were new as of Django 1.0 alpha 1, see :doc:`the 1.0 alpha 1
 release notes </releases/1.0-alpha-1>`. Since the 1.0 alpha 1 release several new
 features have landed, including:
 
-``django.contrib.gis`` (`GeoDjango`_)
+``djangocg.contrib.gis`` (`GeoDjango`_)
     A project over a year in the making, this adds world-class GIS
     (`Geographic Information Systems`_) support to Django, in the form
     of a ``contrib`` application.  `Its documentation`_ is currently
@@ -54,9 +54,9 @@ memory, and Django's internal dispatcher -- which is invoked frequently during
 request/response processing and when working with Django's object-relational
 mapper -- is now significantly faster.
 
-.. _GeoDjango: http://geodjango.org/
+.. _GeoDjango: http://geodjangocg.org/
 .. _Geographic Information Systems: http://en.wikipedia.org/wiki/Geographic_information_system
-.. _Its documentation: http://geodjango.org/docs/
+.. _Its documentation: http://geodjangocg.org/docs/
 .. _Jython: http://www.jython.org/
 
 

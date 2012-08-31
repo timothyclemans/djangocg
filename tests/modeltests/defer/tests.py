@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.db.models.query_utils import DeferredAttribute, InvalidQuery
-from django.test import TestCase
+from djangocg.db.models.query_utils import DeferredAttribute, InvalidQuery
+from djangocg.test import TestCase
 
 from .models import Secondary, Primary, Child, BigChild, ChildProxy
 

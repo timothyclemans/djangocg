@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.cz.forms import (CZPostalCodeField,
+from djangocg.contrib.localflavor.cz.forms import (CZPostalCodeField,
     CZRegionSelect, CZBirthNumberField, CZICNumberField)
 
-from django.core.exceptions import ValidationError
-from django.test import SimpleTestCase
+from djangocg.core.exceptions import ValidationError
+from djangocg.test import SimpleTestCase
 
 
 class CZLocalFlavorTests(SimpleTestCase):

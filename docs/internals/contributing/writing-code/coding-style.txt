@@ -145,10 +145,10 @@ Model style
           ('F', 'Female'),
       )
 
-Use of ``django.conf.settings``
+Use of ``djangocg.conf.settings``
 -------------------------------
 
-Modules should not in general use settings stored in ``django.conf.settings``
+Modules should not in general use settings stored in ``djangocg.conf.settings``
 at the top level (i.e. evaluated when the module is imported). The explanation
 for this is as follows:
 
@@ -156,7 +156,7 @@ Manual configuration of settings (i.e. not relying on the
 ``DJANGO_SETTINGS_MODULE`` environment variable) is allowed and possible as
 follows::
 
-    from django.conf import settings
+    from djangocg.conf import settings
 
     settings.configure({}, SOME_SETTING='foo')
 
@@ -167,8 +167,8 @@ already been configured).
 
 So, if there is a module containing some code as follows::
 
-    from django.conf import settings
-    from django.core.urlresolvers import get_callable
+    from djangocg.conf import settings
+    from djangocg.core.urlresolvers import get_callable
 
     default_foo_view = get_callable(settings.FOO_VIEW)
 
@@ -178,8 +178,8 @@ level is incompatible with the ability to configure the settings object
 manually, or makes it very difficult in some circumstances.
 
 Instead of the above code, a level of laziness or indirection must be used, such
-as :class:`django.utils.functional.LazyObject`,
-:func:`django.utils.functional.lazy` or ``lambda``.
+as :class:`djangocg.utils.functional.LazyObject`,
+:func:`djangocg.utils.functional.lazy` or ``lambda``.
 
 Miscellaneous
 -------------

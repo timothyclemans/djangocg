@@ -1,6 +1,6 @@
-from django.contrib.contenttypes import generic
-from django.contrib.contenttypes.models import ContentType
-from django.db import models
+from djangocg.contrib.contenttypes import generic
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.db import models
 
 
 class Award(models.Model):

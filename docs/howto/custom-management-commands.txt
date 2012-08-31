@@ -44,7 +44,7 @@ look like this:
 
 .. code-block:: python
 
-    from django.core.management.base import BaseCommand, CommandError
+    from djangocg.core.management.base import BaseCommand, CommandError
     from polls.models import Poll
 
     class Command(BaseCommand):
@@ -124,8 +124,8 @@ default options such as :djadminopt:`--verbosity` and :djadminopt:`--traceback`.
 
     .. code-block:: python
 
-        from django.core.management.base import BaseCommand, CommandError
-        from django.utils import translation
+        from djangocg.core.management.base import BaseCommand, CommandError
+        from djangocg.utils import translation
 
         class Command(BaseCommand):
             ...
@@ -139,7 +139,7 @@ default options such as :djadminopt:`--verbosity` and :djadminopt:`--traceback`.
                 # Or you can activate the LANGUAGE_CODE
                 # chosen in the settings:
                 #
-                #from django.conf import settings
+                #from djangocg.conf import settings
                 #translation.activate(settings.LANGUAGE_CODE)
 
                 # Your command logic here

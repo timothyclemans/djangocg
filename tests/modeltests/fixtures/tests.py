@@ -1,10 +1,10 @@
 from __future__ import absolute_import
 
-from django.contrib.sites.models import Site
-from django.core import management
-from django.db import connection, IntegrityError
-from django.test import TestCase, TransactionTestCase, skipUnlessDBFeature
-from django.utils.six import StringIO
+from djangocg.contrib.sites.models import Site
+from djangocg.core import management
+from djangocg.db import connection, IntegrityError
+from djangocg.test import TestCase, TransactionTestCase, skipUnlessDBFeature
+from djangocg.utils.six import StringIO
 
 from .models import Article, Book, Spy, Tag, Visa
 

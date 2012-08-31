@@ -1,10 +1,10 @@
-from django.conf import settings
-from django.template.loader import render_to_string
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
-from django.utils.six.moves import xrange
+from djangocg.conf import settings
+from djangocg.template.loader import render_to_string
+from djangocg.utils.html import format_html
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils.six.moves import xrange
 
-from django.contrib.gis.maps.google.overlays import GPolygon, GPolyline, GMarker
+from djangocg.contrib.gis.maps.google.overlays import GPolygon, GPolyline, GMarker
 
 class GoogleMapException(Exception):
     pass

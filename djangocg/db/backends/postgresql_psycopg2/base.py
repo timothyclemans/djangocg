@@ -5,24 +5,24 @@ Requires psycopg 2: http://initd.org/projects/psycopg2
 """
 import sys
 
-from django.db import utils
-from django.db.backends import *
-from django.db.backends.signals import connection_created
-from django.db.backends.postgresql_psycopg2.operations import DatabaseOperations
-from django.db.backends.postgresql_psycopg2.client import DatabaseClient
-from django.db.backends.postgresql_psycopg2.creation import DatabaseCreation
-from django.db.backends.postgresql_psycopg2.version import get_version
-from django.db.backends.postgresql_psycopg2.introspection import DatabaseIntrospection
-from django.utils.log import getLogger
-from django.utils.safestring import SafeText, SafeBytes
-from django.utils import six
-from django.utils.timezone import utc
+from djangocg.db import utils
+from djangocg.db.backends import *
+from djangocg.db.backends.signals import connection_created
+from djangocg.db.backends.postgresql_psycopg2.operations import DatabaseOperations
+from djangocg.db.backends.postgresql_psycopg2.client import DatabaseClient
+from djangocg.db.backends.postgresql_psycopg2.creation import DatabaseCreation
+from djangocg.db.backends.postgresql_psycopg2.version import get_version
+from djangocg.db.backends.postgresql_psycopg2.introspection import DatabaseIntrospection
+from djangocg.utils.log import getLogger
+from djangocg.utils.safestring import SafeText, SafeBytes
+from djangocg.utils import six
+from djangocg.utils.timezone import utc
 
 try:
     import psycopg2 as Database
     import psycopg2.extensions
 except ImportError as e:
-    from django.core.exceptions import ImproperlyConfigured
+    from djangocg.core.exceptions import ImproperlyConfigured
     raise ImproperlyConfigured("Error loading psycopg2 module: %s" % e)
 
 DatabaseError = Database.DatabaseError
@@ -32,7 +32,7 @@ psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 psycopg2.extensions.register_adapter(SafeBytes, psycopg2.extensions.QuotedString)
 psycopg2.extensions.register_adapter(SafeText, psycopg2.extensions.QuotedString)
 
-logger = getLogger('django.db.backends')
+logger = getLogger('djangocg.db.backends')
 
 def utc_tzinfo_factory(offset):
     if offset != 0:
@@ -159,7 +159,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         settings_dict = self.settings_dict
         if self.connection is None:
             if not settings_dict['NAME']:
-                from django.core.exceptions import ImproperlyConfigured
+                from djangocg.core.exceptions import ImproperlyConfigured
                 raise ImproperlyConfigured(
                     "settings.DATABASES is improperly configured. "
                     "Please supply the NAME value.")

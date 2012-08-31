@@ -1,6 +1,6 @@
-from django.contrib.redirects.models import Redirect
+from djangocg.contrib.redirects.models import Redirect
 from django import http
-from django.conf import settings
+from djangocg.conf import settings
 
 class RedirectFallbackMiddleware(object):
     def process_response(self, request, response):

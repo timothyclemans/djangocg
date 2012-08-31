@@ -1,8 +1,8 @@
-from django.core.exceptions import ImproperlyConfigured
-from django.core.management.base import BaseCommand, CommandError
-from django.core import serializers
-from django.db import router, DEFAULT_DB_ALIAS
-from django.utils.datastructures import SortedDict
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.management.base import BaseCommand, CommandError
+from djangocg.core import serializers
+from djangocg.db import router, DEFAULT_DB_ALIAS
+from djangocg.utils.datastructures import SortedDict
 
 from optparse import make_option
 
@@ -28,7 +28,7 @@ class Command(BaseCommand):
     args = '[appname appname.ModelName ...]'
 
     def handle(self, *app_labels, **options):
-        from django.db.models import get_app, get_apps, get_model
+        from djangocg.db.models import get_app, get_apps, get_model
 
         format = options.get('format')
         indent = options.get('indent')
@@ -127,7 +127,7 @@ def sort_dependencies(app_list):
     is serialized before a normal model, and any model with a natural key
     dependency has it's dependencies serialized first.
     """
-    from django.db.models import get_model, get_models
+    from djangocg.db.models import get_model, get_models
     # Process the list of models, and get the list of dependencies
     model_dependencies = []
     models = set()

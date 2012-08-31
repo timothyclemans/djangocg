@@ -1,8 +1,8 @@
-from django.contrib.gis.geos import fromstr, Point, LineString, LinearRing, Polygon
-from django.utils.functional import total_ordering
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.gis.geos import fromstr, Point, LineString, LinearRing, Polygon
+from djangocg.utils.functional import total_ordering
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
@@ -18,8 +18,8 @@ class GEvent(object):
 
     Example:
 
-      from django.shortcuts import render_to_response
-      from django.contrib.gis.maps.google import GoogleMap, GEvent, GPolyline
+      from djangocg.shortcuts import render_to_response
+      from djangocg.contrib.gis.maps.google import GoogleMap, GEvent, GPolyline
 
       def sample_request(request):
           polyline = GPolyline('LINESTRING(101 26, 112 26, 102 31)')
@@ -257,8 +257,8 @@ class GMarker(GOverlayBase):
 
     Example:
 
-      from django.shortcuts import render_to_response
-      from django.contrib.gis.maps.google.overlays import GMarker, GEvent
+      from djangocg.shortcuts import render_to_response
+      from djangocg.contrib.gis.maps.google.overlays import GMarker, GEvent
 
       def sample_request(request):
           marker = GMarker('POINT(101 26)')

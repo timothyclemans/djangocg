@@ -14,10 +14,10 @@
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3'
+        'ENGINE': 'djangocg.db.backends.sqlite3'
     },
     'other': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'djangocg.db.backends.sqlite3',
     }
 }
 
@@ -26,5 +26,5 @@ SECRET_KEY = "django_tests_secret_key"
 # This should not be needed under other databases, as the relative speedup
 # is only marginal there.
 PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'djangocg.contrib.auth.hashers.MD5PasswordHasher',
 )

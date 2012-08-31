@@ -2,10 +2,10 @@ from __future__ import absolute_import
 
 from datetime import datetime
 
-from django.contrib.gis.tests.utils import no_mysql, no_spatialite
-from django.contrib.gis.shortcuts import render_to_kmz
-from django.db.models import Count
-from django.test import TestCase
+from djangocg.contrib.gis.tests.utils import no_mysql, no_spatialite
+from djangocg.contrib.gis.shortcuts import render_to_kmz
+from djangocg.db.models import Count
+from djangocg.test import TestCase
 
 from .models import City, PennsylvaniaCity, State, Truth
 

@@ -1,6 +1,6 @@
-from django.contrib.gis.db import models
-from django.contrib.gis.tests.utils import mysql, spatialite
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.gis.db import models
+from djangocg.contrib.gis.tests.utils import mysql, spatialite
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 # MySQL spatial indices can't handle NULL geometries.
 null_flag = not mysql

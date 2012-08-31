@@ -8,11 +8,11 @@ import decimal
 import yaml
 from io import StringIO
 
-from django.db import models
-from django.core.serializers.base import DeserializationError
-from django.core.serializers.python import Serializer as PythonSerializer
-from django.core.serializers.python import Deserializer as PythonDeserializer
-from django.utils import six
+from djangocg.db import models
+from djangocg.core.serializers.base import DeserializationError
+from djangocg.core.serializers.python import Serializer as PythonSerializer
+from djangocg.core.serializers.python import Deserializer as PythonDeserializer
+from djangocg.utils import six
 
 
 class DjangoSafeDumper(yaml.SafeDumper):

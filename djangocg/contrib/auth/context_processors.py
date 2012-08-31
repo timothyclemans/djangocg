@@ -33,12 +33,12 @@ def auth(request):
     system.
 
     If there is no 'user' attribute in the request, uses AnonymousUser (from
-    django.contrib.auth).
+    djangocg.contrib.auth).
     """
     if hasattr(request, 'user'):
         user = request.user
     else:
-        from django.contrib.auth.models import AnonymousUser
+        from djangocg.contrib.auth.models import AnonymousUser
         user = AnonymousUser()
 
     return {

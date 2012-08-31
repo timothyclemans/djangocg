@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.contrib.flatpages.forms import FlatpageForm
-from django.contrib.flatpages.models import FlatPage
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils import translation
+from djangocg.conf import settings
+from djangocg.contrib.flatpages.forms import FlatpageForm
+from djangocg.contrib.flatpages.models import FlatPage
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils import translation
 
 @override_settings(SITE_ID=1)
 class FlatpageAdminFormTests(TestCase):
@@ -37,7 +37,7 @@ class FlatpageAdminFormTests(TestCase):
             self.assertEqual(form.errors['url'], ["URL is missing a leading slash."])
 
     @override_settings(APPEND_SLASH=True,
-            MIDDLEWARE_CLASSES=('django.middleware.common.CommonMiddleware',))
+            MIDDLEWARE_CLASSES=('djangocg.middleware.common.CommonMiddleware',))
     def test_flatpage_requires_trailing_slash_with_append_slash(self):
         form = FlatpageForm(data=dict(url='/no_trailing_slash', **self.form_data))
         with translation.override('en'):
@@ -45,7 +45,7 @@ class FlatpageAdminFormTests(TestCase):
             self.assertEqual(form.errors['url'], ["URL is missing a trailing slash."])
 
     @override_settings(APPEND_SLASH=False,
-            MIDDLEWARE_CLASSES=('django.middleware.common.CommonMiddleware',))
+            MIDDLEWARE_CLASSES=('djangocg.middleware.common.CommonMiddleware',))
     def test_flatpage_doesnt_requires_trailing_slash_without_append_slash(self):
         form = FlatpageForm(data=dict(url='/no_trailing_slash', **self.form_data))
         self.assertTrue(form.is_valid())

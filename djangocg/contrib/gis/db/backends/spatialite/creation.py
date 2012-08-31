@@ -1,9 +1,9 @@
 import os
-from django.conf import settings
-from django.core.cache import get_cache
-from django.core.cache.backends.db import BaseDatabaseCache
-from django.core.exceptions import ImproperlyConfigured
-from django.db.backends.sqlite3.creation import DatabaseCreation
+from djangocg.conf import settings
+from djangocg.core.cache import get_cache
+from djangocg.core.cache.backends.db import BaseDatabaseCache
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db.backends.sqlite3.creation import DatabaseCreation
 
 class SpatiaLiteCreation(DatabaseCreation):
 
@@ -15,8 +15,8 @@ class SpatiaLiteCreation(DatabaseCreation):
         This method is overloaded to load up the SpatiaLite initialization
         SQL prior to calling the `syncdb` command.
         """
-        # Don't import django.core.management if it isn't needed.
-        from django.core.management import call_command
+        # Don't import djangocg.core.management if it isn't needed.
+        from djangocg.core.management import call_command
 
         test_database_name = self._get_test_db_name()
 
@@ -54,8 +54,8 @@ class SpatiaLiteCreation(DatabaseCreation):
             interactive=False,
             database=self.connection.alias)
 
-        from django.core.cache import get_cache
-        from django.core.cache.backends.db import BaseDatabaseCache
+        from djangocg.core.cache import get_cache
+        from djangocg.core.cache.backends.db import BaseDatabaseCache
         for cache_alias in settings.CACHES:
             cache = get_cache(cache_alias)
             if isinstance(cache, BaseDatabaseCache):
@@ -69,7 +69,7 @@ class SpatiaLiteCreation(DatabaseCreation):
 
     def sql_indexes_for_field(self, model, f, style):
         "Return any spatial index creation SQL for the field."
-        from django.contrib.gis.db.models.fields import GeometryField
+        from djangocg.contrib.gis.db.models.fields import GeometryField
 
         output = super(SpatiaLiteCreation, self).sql_indexes_for_field(model, f, style)
 

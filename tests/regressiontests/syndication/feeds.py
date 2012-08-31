@@ -1,8 +1,8 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.syndication import views
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils import feedgenerator, tzinfo
+from djangocg.contrib.syndication import views
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.utils import feedgenerator, tzinfo
 
 from .models import Article, Entry
 

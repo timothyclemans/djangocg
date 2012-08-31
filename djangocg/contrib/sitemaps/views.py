@@ -1,13 +1,13 @@
-from django.contrib.sites.models import get_current_site
-from django.core import urlresolvers
-from django.core.paginator import EmptyPage, PageNotAnInteger
-from django.http import Http404
-from django.template.response import TemplateResponse
-from django.utils import six
+from djangocg.contrib.sites.models import get_current_site
+from djangocg.core import urlresolvers
+from djangocg.core.paginator import EmptyPage, PageNotAnInteger
+from djangocg.http import Http404
+from djangocg.template.response import TemplateResponse
+from djangocg.utils import six
 
 def index(request, sitemaps,
           template_name='sitemap_index.xml', mimetype='application/xml',
-          sitemap_url_name='django.contrib.sitemaps.views.sitemap'):
+          sitemap_url_name='djangocg.contrib.sitemaps.views.sitemap'):
     req_protocol = 'https' if request.is_secure() else 'http'
     req_site = get_current_site(request)
 

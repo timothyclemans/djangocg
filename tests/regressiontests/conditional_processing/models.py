@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 from datetime import datetime
 
-from django.test import TestCase
-from django.utils import unittest
-from django.utils.http import parse_etags, quote_etag, parse_http_date
+from djangocg.test import TestCase
+from djangocg.utils import unittest
+from djangocg.utils.http import parse_etags, quote_etag, parse_http_date
 
 
 FULL_RESPONSE = 'Test conditional get response'

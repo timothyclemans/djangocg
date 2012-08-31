@@ -4,23 +4,23 @@ import re
 from functools import partial
 from inspect import getargspec
 
-from django.conf import settings
-from django.template.context import (Context, RequestContext,
+from djangocg.conf import settings
+from djangocg.template.context import (Context, RequestContext,
     ContextPopException)
-from django.utils.importlib import import_module
-from django.utils.itercompat import is_iterable
-from django.utils.text import (smart_split, unescape_string_literal,
+from djangocg.utils.importlib import import_module
+from djangocg.utils.itercompat import is_iterable
+from djangocg.utils.text import (smart_split, unescape_string_literal,
     get_text_list)
-from django.utils.encoding import force_str, force_text
-from django.utils.translation import ugettext_lazy, pgettext_lazy
-from django.utils.safestring import (SafeData, EscapeData, mark_safe,
+from djangocg.utils.encoding import force_str, force_text
+from djangocg.utils.translation import ugettext_lazy, pgettext_lazy
+from djangocg.utils.safestring import (SafeData, EscapeData, mark_safe,
     mark_for_escaping)
-from django.utils.formats import localize
-from django.utils.html import escape
-from django.utils.module_loading import module_has_submodule
-from django.utils import six
-from django.utils.timezone import template_localtime
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.utils.formats import localize
+from djangocg.utils.html import escape
+from djangocg.utils.module_loading import module_has_submodule
+from djangocg.utils import six
+from djangocg.utils.timezone import template_localtime
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 TOKEN_TEXT = 0
@@ -144,7 +144,7 @@ class Template(object):
 def compile_string(template_string, origin):
     "Compiles template_string into NodeList ready for rendering"
     if settings.TEMPLATE_DEBUG:
-        from django.template.debug import DebugLexer, DebugParser
+        from djangocg.template.debug import DebugLexer, DebugParser
         lexer_class, parser_class = DebugLexer, DebugParser
     else:
         lexer_class, parser_class = Lexer, Parser
@@ -1185,7 +1185,7 @@ class Library(object):
                     _dict = func(*resolved_args, **resolved_kwargs)
 
                     if not getattr(self, 'nodelist', False):
-                        from django.template.loader import get_template, select_template
+                        from djangocg.template.loader import get_template, select_template
                         if isinstance(file_name, Template):
                             t = file_name
                         elif not isinstance(file_name, six.string_types) and is_iterable(file_name):
@@ -1320,5 +1320,5 @@ def add_to_builtins(module):
     builtins.append(import_library(module))
 
 
-add_to_builtins('django.template.defaulttags')
-add_to_builtins('django.template.defaultfilters')
+add_to_builtins('djangocg.template.defaulttags')
+add_to_builtins('djangocg.template.defaultfilters')

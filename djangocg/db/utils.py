@@ -1,10 +1,10 @@
 import os
 from threading import local
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.importlib import import_module
+from djangocg.utils import six
 
 
 DEFAULT_DB_ALIAS = 'default'
@@ -33,20 +33,20 @@ def load_backend(backend_name):
                     and not f.startswith('.')]
         except EnvironmentError:
             available_backends = []
-        full_notation = backend_name.startswith('django.db.backends.')
+        full_notation = backend_name.startswith('djangocg.db.backends.')
         if full_notation:
             backend_name = backend_name[19:] # See #15621.
         if backend_name not in available_backends:
             backend_reprs = map(repr, sorted(available_backends))
             error_msg = ("%r isn't an available database backend.\n"
-                         "Try using django.db.backends.XXX, where XXX "
+                         "Try using djangocg.db.backends.XXX, where XXX "
                          "is one of:\n    %s\nError was: %s" %
                          (backend_name, ", ".join(backend_reprs), e_user))
             raise ImproperlyConfigured(error_msg)
         elif not full_notation:
             # user tried to use the old notation for the database backend
             error_msg = ("%r isn't an available database backend.\n"
-                         "Try using django.db.backends.%s instead.\n"
+                         "Try using djangocg.db.backends.%s instead.\n"
                          "Error was: %s" %
                          (backend_name, backend_name, e_user))
             raise ImproperlyConfigured(error_msg)
@@ -74,9 +74,9 @@ class ConnectionHandler(object):
         except KeyError:
             raise ConnectionDoesNotExist("The connection %s doesn't exist" % alias)
 
-        conn.setdefault('ENGINE', 'django.db.backends.dummy')
-        if conn['ENGINE'] == 'django.db.backends.' or not conn['ENGINE']:
-            conn['ENGINE'] = 'django.db.backends.dummy'
+        conn.setdefault('ENGINE', 'djangocg.db.backends.dummy')
+        if conn['ENGINE'] == 'djangocg.db.backends.' or not conn['ENGINE']:
+            conn['ENGINE'] = 'djangocg.db.backends.dummy'
         conn.setdefault('OPTIONS', {})
         conn.setdefault('TIME_ZONE', 'UTC' if settings.USE_TZ else settings.TIME_ZONE)
         for setting in ['NAME', 'USER', 'PASSWORD', 'HOST', 'PORT']:

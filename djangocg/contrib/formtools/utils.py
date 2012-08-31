@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 # Do not try cPickle here (see #18340)
 import pickle
 
-from django.utils.crypto import salted_hmac
-from django.utils import six
+from djangocg.utils.crypto import salted_hmac
+from djangocg.utils import six
 
 
 def form_hmac(form):
@@ -24,5 +24,5 @@ def form_hmac(form):
         data.append((bf.name, value))
 
     pickled = pickle.dumps(data, pickle.HIGHEST_PROTOCOL)
-    key_salt = 'django.contrib.formtools'
+    key_salt = 'djangocg.contrib.formtools'
     return salted_hmac(key_salt, pickled).hexdigest()

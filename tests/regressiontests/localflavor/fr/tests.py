@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.fr.forms import (FRZipCodeField,
+from djangocg.contrib.localflavor.fr.forms import (FRZipCodeField,
         FRPhoneNumberField, FRDepartmentSelect)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class FRLocalFlavorTests(SimpleTestCase):

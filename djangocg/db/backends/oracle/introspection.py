@@ -1,4 +1,4 @@
-from django.db.backends import BaseDatabaseIntrospection
+from djangocg.db.backends import BaseDatabaseIntrospection
 import cx_Oracle
 import re
 

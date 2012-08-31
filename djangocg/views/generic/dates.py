@@ -1,17 +1,17 @@
 from __future__ import unicode_literals
 
 import datetime
-from django.conf import settings
-from django.db import models
-from django.core.exceptions import ImproperlyConfigured
-from django.http import Http404
-from django.utils.encoding import force_text
-from django.utils.functional import cached_property
-from django.utils.translation import ugettext as _
-from django.utils import timezone
-from django.views.generic.base import View
-from django.views.generic.detail import BaseDetailView, SingleObjectTemplateResponseMixin
-from django.views.generic.list import MultipleObjectMixin, MultipleObjectTemplateResponseMixin
+from djangocg.conf import settings
+from djangocg.db import models
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.http import Http404
+from djangocg.utils.encoding import force_text
+from djangocg.utils.functional import cached_property
+from djangocg.utils.translation import ugettext as _
+from djangocg.utils import timezone
+from djangocg.views.generic.base import View
+from djangocg.views.generic.detail import BaseDetailView, SingleObjectTemplateResponseMixin
+from djangocg.views.generic.list import MultipleObjectMixin, MultipleObjectTemplateResponseMixin
 
 class YearMixin(object):
     """

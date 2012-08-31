@@ -1,17 +1,17 @@
 import re
 
 from django import forms
-from django.shortcuts import redirect
-from django.core.urlresolvers import reverse
-from django.forms import formsets, ValidationError
-from django.views.generic import TemplateView
-from django.utils.datastructures import SortedDict
-from django.utils.decorators import classonlymethod
-from django.utils import six
+from djangocg.shortcuts import redirect
+from djangocg.core.urlresolvers import reverse
+from djangocg.forms import formsets, ValidationError
+from djangocg.views.generic import TemplateView
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.decorators import classonlymethod
+from djangocg.utils import six
 
-from django.contrib.formtools.wizard.storage import get_storage
-from django.contrib.formtools.wizard.storage.exceptions import NoFileStorageConfigured
-from django.contrib.formtools.wizard.forms import ManagementForm
+from djangocg.contrib.formtools.wizard.storage import get_storage
+from djangocg.contrib.formtools.wizard.storage.exceptions import NoFileStorageConfigured
+from djangocg.contrib.formtools.wizard.forms import ManagementForm
 
 
 def normalize_name(name):
@@ -560,14 +560,14 @@ class SessionWizardView(WizardView):
     """
     A WizardView with pre-configured SessionStorage backend.
     """
-    storage_name = 'django.contrib.formtools.wizard.storage.session.SessionStorage'
+    storage_name = 'djangocg.contrib.formtools.wizard.storage.session.SessionStorage'
 
 
 class CookieWizardView(WizardView):
     """
     A WizardView with pre-configured CookieStorage backend.
     """
-    storage_name = 'django.contrib.formtools.wizard.storage.cookie.CookieStorage'
+    storage_name = 'djangocg.contrib.formtools.wizard.storage.cookie.CookieStorage'
 
 
 class NamedUrlWizardView(WizardView):
@@ -694,11 +694,11 @@ class NamedUrlSessionWizardView(NamedUrlWizardView):
     """
     A NamedUrlWizardView with pre-configured SessionStorage backend.
     """
-    storage_name = 'django.contrib.formtools.wizard.storage.session.SessionStorage'
+    storage_name = 'djangocg.contrib.formtools.wizard.storage.session.SessionStorage'
 
 
 class NamedUrlCookieWizardView(NamedUrlWizardView):
     """
     A NamedUrlFormWizard with pre-configured CookieStorageBackend.
     """
-    storage_name = 'django.contrib.formtools.wizard.storage.cookie.CookieStorage'
+    storage_name = 'djangocg.contrib.formtools.wizard.storage.cookie.CookieStorage'

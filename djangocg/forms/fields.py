@@ -15,21 +15,21 @@ except ImportError:     # Python 2
 from decimal import Decimal, DecimalException
 from io import BytesIO
 
-from django.core import validators
-from django.core.exceptions import ValidationError
-from django.forms.util import ErrorList, from_current_timezone, to_current_timezone
-from django.forms.widgets import (TextInput, PasswordInput, HiddenInput,
+from djangocg.core import validators
+from djangocg.core.exceptions import ValidationError
+from djangocg.forms.util import ErrorList, from_current_timezone, to_current_timezone
+from djangocg.forms.widgets import (TextInput, PasswordInput, HiddenInput,
     MultipleHiddenInput, ClearableFileInput, CheckboxInput, Select,
     NullBooleanSelect, SelectMultiple, DateInput, DateTimeInput, TimeInput,
     SplitDateTimeWidget, SplitHiddenDateTimeWidget, FILE_INPUT_CONTRADICTION)
-from django.utils import formats
-from django.utils.encoding import smart_text, force_text
-from django.utils.ipv6 import clean_ipv6_address
-from django.utils import six
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils import formats
+from djangocg.utils.encoding import smart_text, force_text
+from djangocg.utils.ipv6 import clean_ipv6_address
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext_lazy as _
 
 # Provide this import for backwards compatibility.
-from django.core.validators import EMPTY_VALUES
+from djangocg.core.validators import EMPTY_VALUES
 
 
 __all__ = (

@@ -4,10 +4,10 @@ import hashlib
 import json
 import os
 
-from django.core.files.uploadedfile import UploadedFile
-from django.http import HttpResponse, HttpResponseServerError
-from django.utils import six
-from django.utils.encoding import force_bytes
+from djangocg.core.files.uploadedfile import UploadedFile
+from djangocg.http import HttpResponse, HttpResponseServerError
+from djangocg.utils import six
+from djangocg.utils.encoding import force_bytes
 
 from .models import FileModel, UPLOAD_TO
 from .tests import UNICODE_FILENAME

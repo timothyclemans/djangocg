@@ -1,7 +1,7 @@
-from django.core.management.base import CommandError
-from django.core.management.templates import TemplateCommand
-from django.utils.crypto import get_random_string
-from django.utils.importlib import import_module
+from djangocg.core.management.base import CommandError
+from djangocg.core.management.templates import TemplateCommand
+from djangocg.utils.crypto import get_random_string
+from djangocg.utils.importlib import import_module
 
 
 class Command(TemplateCommand):

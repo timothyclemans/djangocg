@@ -1,7 +1,7 @@
 """
 Signals relating to comments.
 """
-from django.dispatch import Signal
+from djangocg.dispatch import Signal
 
 # Sent just before a comment will be posted (after it's been approved and
 # moderated; this can be used to modify the comment (in place) with posting

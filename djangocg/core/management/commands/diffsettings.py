@@ -1,4 +1,4 @@
-from django.core.management.base import NoArgsCommand
+from djangocg.core.management.base import NoArgsCommand
 
 def module_to_dict(module, omittable=lambda k: k.startswith('_')):
     "Converts a module namespace to a Python dictionary. Used by get_settings_diff."
@@ -13,7 +13,7 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         # Inspired by Postfix's "postconf -n".
-        from django.conf import settings, global_settings
+        from djangocg.conf import settings, global_settings
 
         # Because settings are imported lazily, we need to explicitly load them.
         settings._setup()

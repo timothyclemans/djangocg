@@ -1,5 +1,5 @@
-from django.db.backends.sqlite3.base import Database
-from django.contrib.gis.db.backends.adapter import WKTAdapter
+from djangocg.db.backends.sqlite3.base import Database
+from djangocg.contrib.gis.db.backends.adapter import WKTAdapter
 
 class SpatiaLiteAdapter(WKTAdapter):
     "SQLite adaptor for geometry objects."

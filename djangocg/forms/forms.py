@@ -6,15 +6,15 @@ from __future__ import absolute_import, unicode_literals
 
 import copy
 
-from django.core.exceptions import ValidationError
-from django.forms.fields import Field, FileField
-from django.forms.util import flatatt, ErrorDict, ErrorList
-from django.forms.widgets import Media, media_property, TextInput, Textarea
-from django.utils.datastructures import SortedDict
-from django.utils.html import conditional_escape, format_html
-from django.utils.encoding import smart_text, force_text, python_2_unicode_compatible
-from django.utils.safestring import mark_safe
-from django.utils import six
+from djangocg.core.exceptions import ValidationError
+from djangocg.forms.fields import Field, FileField
+from djangocg.forms.util import flatatt, ErrorDict, ErrorList
+from djangocg.forms.widgets import Media, media_property, TextInput, Textarea
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.html import conditional_escape, format_html
+from djangocg.utils.encoding import smart_text, force_text, python_2_unicode_compatible
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
 
 
 __all__ = ('BaseForm', 'Form')

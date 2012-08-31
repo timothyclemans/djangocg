@@ -4,9 +4,9 @@ import re
 import sys
 import socket
 
-from django.core.management.base import BaseCommand, CommandError
-from django.core.servers.basehttp import run, WSGIServerException, get_internal_wsgi_application
-from django.utils import autoreload
+from djangocg.core.management.base import BaseCommand, CommandError
+from djangocg.core.servers.basehttp import run, WSGIServerException, get_internal_wsgi_application
+from djangocg.utils import autoreload
 
 naiveip_re = re.compile(r"""^(?:
 (?P<addr>
@@ -80,8 +80,8 @@ class Command(BaseCommand):
             self.inner_run(*args, **options)
 
     def inner_run(self, *args, **options):
-        from django.conf import settings
-        from django.utils import translation
+        from djangocg.conf import settings
+        from djangocg.utils import translation
 
         threading = options.get('use_threading')
         shutdown_message = options.get('shutdown_message', '')
@@ -100,7 +100,7 @@ class Command(BaseCommand):
             "port": self.port,
             "quit_command": quit_command,
         })
-        # django.core.management.base forces the locale to en-us. We should
+        # djangocg.core.management.base forces the locale to en-us. We should
         # set it up correctly for the first request (particularly important
         # in the "--noreload" case).
         translation.activate(settings.LANGUAGE_CODE)

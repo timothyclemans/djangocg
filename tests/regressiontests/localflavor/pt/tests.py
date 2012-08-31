@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.pt.forms import PTZipCodeField, PTPhoneNumberField
+from djangocg.contrib.localflavor.pt.forms import PTZipCodeField, PTPhoneNumberField
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class PTLocalFlavorTests(SimpleTestCase):

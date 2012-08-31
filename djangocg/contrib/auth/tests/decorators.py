@@ -1,12 +1,12 @@
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.tests.views import AuthViewsTestCase
+from djangocg.conf import settings
+from djangocg.contrib.auth.decorators import login_required
+from djangocg.contrib.auth.tests.views import AuthViewsTestCase
 
 class LoginRequiredTestCase(AuthViewsTestCase):
     """
     Tests the login_required decorators
     """
-    urls = 'django.contrib.auth.tests.urls'
+    urls = 'djangocg.contrib.auth.tests.urls'
 
     def testCallable(self):
         """

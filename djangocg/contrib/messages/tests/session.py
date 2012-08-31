@@ -1,5 +1,5 @@
-from django.contrib.messages.tests.base import BaseTest
-from django.contrib.messages.storage.session import SessionStorage
+from djangocg.contrib.messages.tests.base import BaseTest
+from djangocg.contrib.messages.storage.session import SessionStorage
 
 
 def set_session_data(storage, messages):

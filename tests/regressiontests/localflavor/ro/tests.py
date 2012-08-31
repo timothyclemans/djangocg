@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.ro.forms import (ROCIFField, ROCNPField,
+from djangocg.contrib.localflavor.ro.forms import (ROCIFField, ROCNPField,
     ROCountyField, ROCountySelect, ROIBANField, ROPhoneNumberField,
     ROPostalCodeField)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class ROLocalFlavorTests(SimpleTestCase):

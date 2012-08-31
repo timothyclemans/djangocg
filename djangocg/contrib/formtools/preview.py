@@ -2,11 +2,11 @@
 Formtools Preview application.
 """
 
-from django.http import Http404
-from django.shortcuts import render_to_response
-from django.template.context import RequestContext
-from django.utils.crypto import constant_time_compare
-from django.contrib.formtools.utils import form_hmac
+from djangocg.http import Http404
+from djangocg.shortcuts import render_to_response
+from djangocg.template.context import RequestContext
+from djangocg.utils.crypto import constant_time_compare
+from djangocg.contrib.formtools.utils import form_hmac
 
 AUTO_ID = 'formtools_%s' # Each form here uses this as its auto_id parameter.
 

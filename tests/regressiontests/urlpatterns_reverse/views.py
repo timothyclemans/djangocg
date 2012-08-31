@@ -1,8 +1,8 @@
-from django.http import HttpResponse
-from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse_lazy
+from djangocg.http import HttpResponse
+from djangocg.views.generic import RedirectView
+from djangocg.core.urlresolvers import reverse_lazy
 
-from django.contrib.auth.decorators import user_passes_test
+from djangocg.contrib.auth.decorators import user_passes_test
 
 def empty_view(request, *args, **kwargs):
     return HttpResponse('')

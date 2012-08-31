@@ -3,9 +3,9 @@ Testing some internals of the template processing. These are *not* examples to b
 """
 from __future__ import unicode_literals
 
-from django.template import (TokenParser, FilterExpression, Parser, Variable,
+from djangocg.template import (TokenParser, FilterExpression, Parser, Variable,
     TemplateSyntaxError)
-from django.utils.unittest import TestCase
+from djangocg.utils.unittest import TestCase
 
 
 class ParserTests(TestCase):

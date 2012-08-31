@@ -158,4 +158,4 @@ window.SelectFilter = {
     }
 }
 
-})(django.jQuery);
+})(djangocg.jQuery);

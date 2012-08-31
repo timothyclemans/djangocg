@@ -5,11 +5,11 @@ except ImportError:     # Python 2
     from urllib import url2pathname
     from urlparse import urlparse
 
-from django.conf import settings
-from django.core.handlers.wsgi import WSGIHandler
+from djangocg.conf import settings
+from djangocg.core.handlers.wsgi import WSGIHandler
 
-from django.contrib.staticfiles import utils
-from django.contrib.staticfiles.views import serve
+from djangocg.contrib.staticfiles import utils
+from djangocg.contrib.staticfiles.views import serve
 
 class StaticFilesHandler(WSGIHandler):
     """
@@ -55,14 +55,14 @@ class StaticFilesHandler(WSGIHandler):
         return serve(request, self.file_path(request.path), insecure=True)
 
     def get_response(self, request):
-        from django.http import Http404
+        from djangocg.http import Http404
 
         if self._should_handle(request.path):
             try:
                 return self.serve(request)
             except Http404 as e:
                 if settings.DEBUG:
-                    from django.views import debug
+                    from djangocg.views import debug
                     return debug.technical_404_response(request, e)
         return super(StaticFilesHandler, self).get_response(request)
 

@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include
+from djangocg.conf.urls import patterns, include
 
 from . import admin
 

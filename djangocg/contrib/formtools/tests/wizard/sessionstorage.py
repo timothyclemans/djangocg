@@ -1,7 +1,7 @@
-from django.test import TestCase
+from djangocg.test import TestCase
 
-from django.contrib.formtools.tests.wizard.storage import TestStorage
-from django.contrib.formtools.wizard.storage.session import SessionStorage
+from djangocg.contrib.formtools.tests.wizard.storage import TestStorage
+from djangocg.contrib.formtools.wizard.storage.session import SessionStorage
 
 
 class TestSessionStorage(TestStorage, TestCase):

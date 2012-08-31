@@ -8,12 +8,12 @@ try:
 except ImportError:     # Python 2
     from urllib import urlencode
 
-from django.http import HttpResponseRedirect
-from django.core import urlresolvers
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib import comments
+from djangocg.http import HttpResponseRedirect
+from djangocg.core import urlresolvers
+from djangocg.shortcuts import render_to_response
+from djangocg.template import RequestContext
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.contrib import comments
 
 def next_redirect(data, default, default_view, **get_kwargs):
     """

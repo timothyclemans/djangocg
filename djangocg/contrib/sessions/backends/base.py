@@ -4,17 +4,17 @@ import base64
 import time
 from datetime import datetime, timedelta
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from djangocg.utils.six.moves import cPickle as pickle
 except ImportError:
     import pickle
 
-from django.conf import settings
-from django.core.exceptions import SuspiciousOperation
-from django.utils.crypto import constant_time_compare
-from django.utils.crypto import get_random_string
-from django.utils.crypto import salted_hmac
-from django.utils import timezone
-from django.utils.encoding import force_bytes
+from djangocg.conf import settings
+from djangocg.core.exceptions import SuspiciousOperation
+from djangocg.utils.crypto import constant_time_compare
+from djangocg.utils.crypto import get_random_string
+from djangocg.utils.crypto import salted_hmac
+from djangocg.utils import timezone
+from djangocg.utils.encoding import force_bytes
 
 class CreateError(Exception):
     """
@@ -74,7 +74,7 @@ class SessionBase(object):
         del self[self.TEST_COOKIE_NAME]
 
     def _hash(self, value):
-        key_salt = "django.contrib.sessions" + self.__class__.__name__
+        key_salt = "djangocg.contrib.sessions" + self.__class__.__name__
         return salted_hmac(key_salt, value).hexdigest()
 
     def encode(self, session_dict):

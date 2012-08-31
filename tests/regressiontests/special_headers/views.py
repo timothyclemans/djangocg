@@ -1,8 +1,8 @@
-from django.core.xheaders import populate_xheaders
-from django.http import HttpResponse
-from django.utils.decorators import decorator_from_middleware
-from django.views.generic import View
-from django.middleware.doc import XViewMiddleware
+from djangocg.core.xheaders import populate_xheaders
+from djangocg.http import HttpResponse
+from djangocg.utils.decorators import decorator_from_middleware
+from djangocg.views.generic import View
+from djangocg.middleware.doc import XViewMiddleware
 
 from .models import Article
 

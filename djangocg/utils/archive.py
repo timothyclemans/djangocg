@@ -26,7 +26,7 @@ import shutil
 import tarfile
 import zipfile
 
-from django.utils import six
+from djangocg.utils import six
 
 
 class ArchiveException(Exception):

@@ -8,10 +8,10 @@ this behavior by explicitly adding ``primary_key=True`` to a field.
 
 from __future__ import absolute_import, unicode_literals
 
-from django.db import models
+from djangocg.db import models
 
 from .fields import MyAutoField
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible

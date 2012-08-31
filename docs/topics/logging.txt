@@ -4,7 +4,7 @@ Logging
 
 .. versionadded:: 1.3
 
-.. module:: django.utils.log
+.. module:: djangocg.utils.log
    :synopsis: Logging tools for Django applications
 
 A quick logging primer
@@ -208,7 +208,7 @@ By default, Django uses the `dictConfig format`_.
 .. note::
     ``logging.dictConfig`` is a builtin library in Python 2.7. In
     order to make this library available for users of earlier Python
-    versions, Django includes a copy as part of ``django.utils.log``.
+    versions, Django includes a copy as part of ``djangocg.utils.log``.
     If you have Python 2.7 or later, the system native library will be used; if
     you have Python 2.6, Django's copy will be used.
 
@@ -219,7 +219,7 @@ and the log levels and other properties that you want those components
 to have.
 
 Logging is configured as soon as settings have been loaded
-(either manually using :func:`~django.conf.settings.configure` or when at least
+(either manually using :func:`~djangocg.conf.settings.configure` or when at least
 one setting is accessed). Since the loading of settings is one of the first
 things that Django does, you can be certain that loggers are always ready for
 use in your project code.
@@ -256,7 +256,7 @@ complex logging setup, configured using :meth:`logging.dictConfig`::
         'handlers': {
             'null': {
                 'level':'DEBUG',
-                'class':'django.utils.log.NullHandler',
+                'class':'djangocg.utils.log.NullHandler',
             },
             'console':{
                 'level':'DEBUG',
@@ -265,7 +265,7 @@ complex logging setup, configured using :meth:`logging.dictConfig`::
             },
             'mail_admins': {
                 'level': 'ERROR',
-                'class': 'django.utils.log.AdminEmailHandler',
+                'class': 'djangocg.utils.log.AdminEmailHandler',
                 'filters': ['special']
             }
         },
@@ -275,7 +275,7 @@ complex logging setup, configured using :meth:`logging.dictConfig`::
                 'propagate': True,
                 'level':'INFO',
             },
-            'django.request': {
+            'djangocg.request': {
                 'handlers': ['mail_admins'],
                 'level': 'ERROR',
                 'propagate': False,
@@ -334,10 +334,10 @@ This logging configuration does the following things:
   * ``django``, which passes all messages at ``INFO`` or higher
     to the ``null`` handler.
 
-  * ``django.request``, which passes all ``ERROR`` messages to
+  * ``djangocg.request``, which passes all ``ERROR`` messages to
     the ``mail_admins`` handler. In addition, this logger is
     marked to *not* propagate messages. This means that log
-    messages written to ``django.request`` will not be handled
+    messages written to ``djangocg.request`` will not be handled
     by the ``django`` logger.
 
   * ``myproject.custom``, which passes all messages at ``INFO``
@@ -369,7 +369,7 @@ This logging configuration does the following things:
     and ``myproject/logconfig.py`` has the following line before the
     ``MyHandler`` definition::
 
-        from django.conf import settings
+        from djangocg.conf import settings
 
     then the ``dictconfig`` module will raise an exception like the following::
 
@@ -424,7 +424,7 @@ Django provides three built-in loggers.
 ``django`` is the catch-all logger. No messages are posted directly to
 this logger.
 
-``django.request``
+``djangocg.request``
 ~~~~~~~~~~~~~~~~~~
 
 Log messages related to the handling of requests. 5XX responses are
@@ -439,7 +439,7 @@ Messages to this logger have the following extra context:
 * ``request``: The request object that generated the logging
   message.
 
-``django.db.backends``
+``djangocg.db.backends``
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Messages relating to the interaction of code with the database.
@@ -478,12 +478,12 @@ Python logging module.
     containing the full content of the debug Web page that would have been
     produced if :setting:`DEBUG` were ``True``. To set this value in your
     configuration, include it in the handler definition for
-    ``django.utils.log.AdminEmailHandler``, like this::
+    ``djangocg.utils.log.AdminEmailHandler``, like this::
 
         'handlers': {
             'mail_admins': {
                 'level': 'ERROR',
-                'class': 'django.utils.log.AdminEmailHandler',
+                'class': 'djangocg.utils.log.AdminEmailHandler',
                 'include_html': True,
             }
         },
@@ -516,11 +516,11 @@ logging module.
    through the filter. Handling of that record will not proceed if the callback
    returns False.
 
-   For instance, to filter out :class:`~django.http.UnreadablePostError`
+   For instance, to filter out :class:`~djangocg.http.UnreadablePostError`
    (raised when a user cancels an upload) from the admin emails, you would
    create a filter function::
 
-    from django.http import UnreadablePostError
+    from djangocg.http import UnreadablePostError
 
     def skip_unreadable_post(record):
         if record.exc_info:
@@ -533,7 +533,7 @@ logging module.
 
         'filters': {
             'skip_unreadable_posts': {
-                '()': 'django.utils.log.CallbackFilter',
+                '()': 'djangocg.utils.log.CallbackFilter',
                 'callback': skip_unreadable_post,
             }
         },
@@ -541,7 +541,7 @@ logging module.
             'mail_admins': {
                 'level': 'ERROR',
                 'filters': ['skip_unreadable_posts'],
-                'class': 'django.utils.log.AdminEmailHandler'
+                'class': 'djangocg.utils.log.AdminEmailHandler'
             }
         },
 
@@ -557,13 +557,13 @@ logging module.
 
        'filters': {
             'require_debug_false': {
-                '()': 'django.utils.log.RequireDebugFalse',
+                '()': 'djangocg.utils.log.RequireDebugFalse',
             }
         },
         'handlers': {
             'mail_admins': {
                 'level': 'ERROR',
                 'filters': ['require_debug_false'],
-                'class': 'django.utils.log.AdminEmailHandler'
+                'class': 'djangocg.utils.log.AdminEmailHandler'
             }
         },

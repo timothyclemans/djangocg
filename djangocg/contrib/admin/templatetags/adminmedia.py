@@ -1,6 +1,6 @@
 import warnings
-from django.template import Library
-from django.templatetags.static import PrefixNode
+from djangocg.template import Library
+from djangocg.templatetags.static import PrefixNode
 
 register = Library()
 

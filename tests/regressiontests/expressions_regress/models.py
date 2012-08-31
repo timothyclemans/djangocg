@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.utils.encoding import python_2_unicode_compatible
 """
 Model for testing arithmetic expressions.
 """
-from django.db import models
+from djangocg.db import models
 
 
 @python_2_unicode_compatible

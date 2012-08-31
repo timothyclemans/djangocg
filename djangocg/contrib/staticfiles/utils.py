@@ -1,7 +1,7 @@
 import os
 import fnmatch
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
 
 def matches_patterns(path, patterns=None):
     """

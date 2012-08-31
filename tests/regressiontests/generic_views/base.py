@@ -2,11 +2,11 @@ from __future__ import absolute_import
 
 import time
 
-from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponse
-from django.test import TestCase, RequestFactory
-from django.utils import unittest
-from django.views.generic import View, TemplateView, RedirectView
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.http import HttpResponse
+from djangocg.test import TestCase, RequestFactory
+from djangocg.utils import unittest
+from djangocg.views.generic import View, TemplateView, RedirectView
 
 from . import views
 

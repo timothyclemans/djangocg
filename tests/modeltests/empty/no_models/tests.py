@@ -1,4 +1,4 @@
-from django.test import TestCase
+from djangocg.test import TestCase
 
 
 class NoModelTests(TestCase):

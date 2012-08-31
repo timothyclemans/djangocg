@@ -2,14 +2,14 @@
 Writing custom model fields
 ===========================
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 Introduction
 ============
 
 The :doc:`model reference </topics/db/models>` documentation explains how to use
-Django's standard field classes -- :class:`~django.db.models.CharField`,
-:class:`~django.db.models.DateField`, etc. For many purposes, those classes are
+Django's standard field classes -- :class:`~djangocg.db.models.CharField`,
+:class:`~djangocg.db.models.DateField`, etc. For many purposes, those classes are
 all you'll need. Sometimes, though, the Django version won't meet your precise
 requirements, or you'll want to use a field that is entirely different from
 those shipped with Django.
@@ -109,7 +109,7 @@ What does a field class do?
 
 All of Django's fields (and when we say *fields* in this document, we always
 mean model fields and not :doc:`form fields </ref/forms/fields>`) are subclasses
-of :class:`django.db.models.Field`. Most of the information that Django records
+of :class:`djangocg.db.models.Field`. Most of the information that Django records
 about a field is common to all fields -- name, help text, uniqueness and so
 forth. Storing all that information is handled by ``Field``. We'll get into the
 precise details of what ``Field`` can do later on; for now, suffice it to say
@@ -145,24 +145,24 @@ classes when you want a custom field:
 Writing a field subclass
 ========================
 
-When planning your :class:`~django.db.models.Field` subclass, first give some
-thought to which existing :class:`~django.db.models.Field` class your new field
+When planning your :class:`~djangocg.db.models.Field` subclass, first give some
+thought to which existing :class:`~djangocg.db.models.Field` class your new field
 is most similar to. Can you subclass an existing Django field and save yourself
-some work? If not, you should subclass the :class:`~django.db.models.Field`
+some work? If not, you should subclass the :class:`~djangocg.db.models.Field`
 class, from which everything is descended.
 
 Initializing your new field is a matter of separating out any arguments that are
 specific to your case from the common arguments and passing the latter to the
-:meth:`~django.db.models.Field.__init__` method of
-:class:`~django.db.models.Field` (or your parent class).
+:meth:`~djangocg.db.models.Field.__init__` method of
+:class:`~djangocg.db.models.Field` (or your parent class).
 
 In our example, we'll call our field ``HandField``. (It's a good idea to call
-your :class:`~django.db.models.Field` subclass ``<Something>Field``, so it's
-easily identifiable as a :class:`~django.db.models.Field` subclass.) It doesn't
+your :class:`~djangocg.db.models.Field` subclass ``<Something>Field``, so it's
+easily identifiable as a :class:`~djangocg.db.models.Field` subclass.) It doesn't
 behave like any existing field, so we'll subclass directly from
-:class:`~django.db.models.Field`::
+:class:`~djangocg.db.models.Field`::
 
-    from django.db import models
+    from djangocg.db import models
 
     class HandField(models.Field):
 
@@ -180,11 +180,11 @@ card values plus their suits; 104 characters in total.
 
     Many of Django's model fields accept options that they don't do anything
     with. For example, you can pass both
-    :attr:`~django.db.models.Field.editable` and
-    :attr:`~django.db.models.Field.auto_now` to a
-    :class:`django.db.models.DateField` and it will simply ignore the
-    :attr:`~django.db.models.Field.editable` parameter
-    (:attr:`~django.db.models.Field.auto_now` being set implies
+    :attr:`~djangocg.db.models.Field.editable` and
+    :attr:`~djangocg.db.models.Field.auto_now` to a
+    :class:`djangocg.db.models.DateField` and it will simply ignore the
+    :attr:`~djangocg.db.models.Field.editable` parameter
+    (:attr:`~djangocg.db.models.Field.auto_now` being set implies
     ``editable=False``). No error is raised in this case.
 
     This behavior simplifies the field classes, because they don't need to
@@ -195,34 +195,34 @@ card values plus their suits; 104 characters in total.
 
 .. method:: Field.__init__
 
-The :meth:`~django.db.models.Field.__init__` method takes the following
+The :meth:`~djangocg.db.models.Field.__init__` method takes the following
 parameters:
 
-* :attr:`~django.db.models.Field.verbose_name`
-* :attr:`~django.db.models.Field.name`
-* :attr:`~django.db.models.Field.primary_key`
-* :attr:`~django.db.models.Field.max_length`
-* :attr:`~django.db.models.Field.unique`
-* :attr:`~django.db.models.Field.blank`
-* :attr:`~django.db.models.Field.null`
-* :attr:`~django.db.models.Field.db_index`
-* :attr:`~django.db.models.Field.rel`: Used for related fields (like
+* :attr:`~djangocg.db.models.Field.verbose_name`
+* :attr:`~djangocg.db.models.Field.name`
+* :attr:`~djangocg.db.models.Field.primary_key`
+* :attr:`~djangocg.db.models.Field.max_length`
+* :attr:`~djangocg.db.models.Field.unique`
+* :attr:`~djangocg.db.models.Field.blank`
+* :attr:`~djangocg.db.models.Field.null`
+* :attr:`~djangocg.db.models.Field.db_index`
+* :attr:`~djangocg.db.models.Field.rel`: Used for related fields (like
   :class:`ForeignKey`). For advanced use only.
-* :attr:`~django.db.models.Field.default`
-* :attr:`~django.db.models.Field.editable`
-* :attr:`~django.db.models.Field.serialize`: If ``False``, the field will
+* :attr:`~djangocg.db.models.Field.default`
+* :attr:`~djangocg.db.models.Field.editable`
+* :attr:`~djangocg.db.models.Field.serialize`: If ``False``, the field will
   not be serialized when the model is passed to Django's :doc:`serializers
   </topics/serialization>`. Defaults to ``True``.
-* :attr:`~django.db.models.Field.unique_for_date`
-* :attr:`~django.db.models.Field.unique_for_month`
-* :attr:`~django.db.models.Field.unique_for_year`
-* :attr:`~django.db.models.Field.choices`
-* :attr:`~django.db.models.Field.help_text`
-* :attr:`~django.db.models.Field.db_column`
-* :attr:`~django.db.models.Field.db_tablespace`: Only for index creation, if the
+* :attr:`~djangocg.db.models.Field.unique_for_date`
+* :attr:`~djangocg.db.models.Field.unique_for_month`
+* :attr:`~djangocg.db.models.Field.unique_for_year`
+* :attr:`~djangocg.db.models.Field.choices`
+* :attr:`~djangocg.db.models.Field.help_text`
+* :attr:`~djangocg.db.models.Field.db_column`
+* :attr:`~djangocg.db.models.Field.db_tablespace`: Only for index creation, if the
   backend supports :doc:`tablespaces </topics/db/tablespaces>`. You can usually
   ignore this option.
-* :attr:`~django.db.models.Field.auto_created`: True if the field was
+* :attr:`~djangocg.db.models.Field.auto_created`: True if the field was
   automatically created, as for the `OneToOneField` used by model
   inheritance. For advanced use only.
 
@@ -233,7 +233,7 @@ meaning they do for normal Django fields. See the :doc:`field documentation
 The ``SubfieldBase`` metaclass
 ------------------------------
 
-.. class:: django.db.models.SubfieldBase
+.. class:: djangocg.db.models.SubfieldBase
 
 As we indicated in the introduction_, field subclasses are often needed for
 two reasons: either to take advantage of a custom database column type, or to
@@ -266,7 +266,7 @@ be called when the attribute is initialized.
 ModelForms and custom fields
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you use :class:`~django.db.models.SubfieldBase`, :meth:`.to_python`
+If you use :class:`~djangocg.db.models.SubfieldBase`, :meth:`.to_python`
 will be called every time an instance of the field is assigned a
 value. This means that whenever a value may be assigned to the field,
 you need to ensure that it will be of the correct datatype, or that
@@ -294,7 +294,7 @@ Documenting your custom field
 As always, you should document your field type, so users will know what it is.
 In addition to providing a docstring for it, which is useful for developers,
 you can also allow users of the admin app to see a short description of the
-field type via the :doc:`django.contrib.admindocs
+field type via the :doc:`djangocg.contrib.admindocs
 </ref/contrib/admin/admindocs>` application. To do this simply provide
 descriptive text in a ``description`` class attribute of your custom field. In
 the above example, the description displayed by the ``admindocs``
@@ -303,7 +303,7 @@ application for a ``HandField`` will be 'A hand of cards (bridge style)'.
 Useful methods
 --------------
 
-Once you've created your :class:`~django.db.models.Field` subclass and set up
+Once you've created your :class:`~djangocg.db.models.Field` subclass and set up
 the ``__metaclass__``, you might consider overriding a few standard methods,
 depending on your field's behavior. The list of methods below is in
 approximately decreasing order of importance, so start from the top.
@@ -313,14 +313,14 @@ Custom database types
 
 .. method:: Field.db_type(self, connection)
 
-Returns the database column data type for the :class:`~django.db.models.Field`,
+Returns the database column data type for the :class:`~djangocg.db.models.Field`,
 taking into account the connection object, and the settings associated with it.
 
 Say you've created a PostgreSQL custom type called ``mytype``. You can use this
 field with Django by subclassing ``Field`` and implementing the
 :meth:`.db_type` method, like so::
 
-    from django.db import models
+    from djangocg.db import models
 
     class MytypeField(models.Field):
         def db_type(self, connection):
@@ -343,7 +343,7 @@ For example::
 
     class MyDateField(models.Field):
         def db_type(self, connection):
-            if connection.settings_dict['ENGINE'] == 'django.db.backends.mysql':
+            if connection.settings_dict['ENGINE'] == 'djangocg.db.backends.mysql':
                 return 'datetime'
             else:
                 return 'timestamp'
@@ -372,7 +372,7 @@ sense to have a ``CharMaxlength25Field``, shown here::
 
 The better way of doing this would be to make the parameter specifiable at run
 time -- i.e., when the class is instantiated. To do that, just implement
-:meth:`django.db.models.Field.__init__`, like so::
+:meth:`djangocg.db.models.Field.__init__`, like so::
 
     # This is a much more flexible example.
     class BetterCharField(models.Field):
@@ -406,7 +406,7 @@ The default implementation simply returns ``value``, for the common case in
 which the database backend already returns data in the correct format (as a
 Python string, for example).
 
-If your custom :class:`~django.db.models.Field` class deals with data structures
+If your custom :class:`~djangocg.db.models.Field` class deals with data structures
 that are more complex than strings, dates, integers or floats, then you'll need
 to override this method. As a general rule, the method should deal gracefully
 with any of the following arguments:
@@ -441,7 +441,7 @@ database, so we need to be able to process strings and ``Hand`` instances in
 Notice that we always return a ``Hand`` instance from this method. That's the
 Python object type we want to store in the model's attribute. If anything is
 going wrong during value conversion, you should raise a
-:exc:`~django.core.exceptions.ValidationError` exception.
+:exc:`~djangocg.core.exceptions.ValidationError` exception.
 
 **Remember:** If your custom field needs the :meth:`to_python` method to be
 called when it is created, you should be using `The SubfieldBase metaclass`_
@@ -509,15 +509,15 @@ Preprocessing values before saving
 This method is called just prior to :meth:`.get_db_prep_save` and should return
 the value of the appropriate attribute from ``model_instance`` for this field.
 The attribute name is in ``self.attname`` (this is set up by
-:class:`~django.db.models.Field`). If the model is being saved to the database
+:class:`~djangocg.db.models.Field`). If the model is being saved to the database
 for the first time, the ``add`` parameter will be ``True``, otherwise it will be
 ``False``.
 
 You only need to override this method if you want to preprocess the value
 somehow, just before saving. For example, Django's
-:class:`~django.db.models.DateTimeField` uses this method to set the attribute
-correctly in the case of :attr:`~django.db.models.Field.auto_now` or
-:attr:`~django.db.models.Field.auto_now_add`.
+:class:`~djangocg.db.models.DateTimeField` uses this method to set the attribute
+correctly in the case of :attr:`~djangocg.db.models.Field.auto_now` or
+:attr:`~djangocg.db.models.Field.auto_now_add`.
 
 If you do override this method, you must return the value of the attribute at
 the end. You should also update the model's attribute if you make any changes
@@ -592,15 +592,15 @@ Specifying the form field for a model field
 .. method:: Field.formfield(self, form_class=forms.CharField, **kwargs)
 
 Returns the default form field to use when this field is displayed in a model.
-This method is called by the :class:`~django.forms.ModelForm` helper.
+This method is called by the :class:`~djangocg.forms.ModelForm` helper.
 
 All of the ``kwargs`` dictionary is passed directly to the form field's
-:meth:`~django.forms.Field__init__` method. Normally, all you need to do is
+:meth:`~djangocg.forms.Field__init__` method. Normally, all you need to do is
 set up a good default for the ``form_class`` argument and then delegate further
 handling to the parent class. This might require you to write a custom form
 field (and even a form widget). See the :doc:`forms documentation
 </topics/forms/index>` for information about this, and take a look at the code in
-:mod:`django.contrib.localflavor` for some examples of custom widgets.
+:mod:`djangocg.contrib.localflavor` for some examples of custom widgets.
 
 Continuing our ongoing example, we can write the :meth:`.formfield` method as::
 
@@ -626,7 +626,7 @@ Emulating built-in field types
 
 .. method:: Field.get_internal_type(self)
 
-Returns a string giving the name of the :class:`~django.db.models.Field`
+Returns a string giving the name of the :class:`~djangocg.db.models.Field`
 subclass we are emulating at the database level. This is used to determine the
 type of database column for simple cases.
 
@@ -648,7 +648,7 @@ and other SQL commands create the right column type for storing a string.
 
 If :meth:`.get_internal_type` returns a string that is not known to Django for
 the database backend you are using -- that is, it doesn't appear in
-``django.db.backends.<db_name>.creation.DATA_TYPES`` -- the string will still be
+``djangocg.db.backends.<db_name>.creation.DATA_TYPES`` -- the string will still be
 used by the serializer, but the default :meth:`.db_type` method will return
 ``None``. See the documentation of :meth:`.db_type` for reasons why this might be
 useful. Putting a descriptive string in as the type of the field for the
@@ -688,7 +688,7 @@ smoothly:
 2. Put a :meth:`__str__` or :meth:`__unicode__` method on the class you're
    wrapping up as a field. There are a lot of places where the default
    behavior of the field code is to call
-   :func:`~django.utils.encoding.force_text` on the value. (In our
+   :func:`~djangocg.utils.encoding.force_text` on the value. (In our
    examples in this document, ``value`` would be a ``Hand`` instance, not a
    ``HandField``). So if your :meth:`__unicode__` method automatically
    converts to the string form of your Python object, you can save yourself
@@ -707,7 +707,7 @@ of supporting a particular type of file.
 Django provides a ``File`` class, which is used as a proxy to the file's
 contents and operations. This can be subclassed to customize how the file is
 accessed, and what methods are available. It lives at
-``django.db.models.fields.files``, and its default behavior is explained in the
+``djangocg.db.models.fields.files``, and its default behavior is explained in the
 :doc:`file documentation </ref/files/file>`.
 
 Once a subclass of ``File`` is created, the new ``FileField`` subclass must be

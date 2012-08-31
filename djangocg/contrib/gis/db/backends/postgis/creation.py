@@ -1,5 +1,5 @@
-from django.conf import settings
-from django.db.backends.postgresql_psycopg2.creation import DatabaseCreation
+from djangocg.conf import settings
+from djangocg.db.backends.postgresql_psycopg2.creation import DatabaseCreation
 
 class PostGISCreation(DatabaseCreation):
     geom_index_type = 'GIST'
@@ -7,7 +7,7 @@ class PostGISCreation(DatabaseCreation):
 
     def sql_indexes_for_field(self, model, f, style):
         "Return any spatial index creation SQL for the field."
-        from django.contrib.gis.db.models.fields import GeometryField
+        from djangocg.contrib.gis.db.models.fields import GeometryField
 
         output = super(PostGISCreation, self).sql_indexes_for_field(model, f, style)
 

@@ -7,8 +7,8 @@ should be good enough for a large class of URLS, however.
 """
 from __future__ import unicode_literals
 
-from django.utils import six
-from django.utils.six.moves import zip
+from djangocg.utils import six
+from djangocg.utils.six.moves import zip
 
 # Mapping of an escape character to a representative of that class. So, e.g.,
 # "\w" is replaced by "x" in a reverse URL. A value of None means to ignore

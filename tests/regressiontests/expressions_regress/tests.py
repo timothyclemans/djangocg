@@ -5,9 +5,9 @@ from __future__ import absolute_import
 
 import datetime
 
-from django.db import connection
-from django.db.models import F
-from django.test import TestCase, Approximate, skipUnlessDBFeature
+from djangocg.db import connection
+from djangocg.db.models import F
+from djangocg.test import TestCase, Approximate, skipUnlessDBFeature
 
 from .models import Number, Experiment
 

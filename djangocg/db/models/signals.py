@@ -1,4 +1,4 @@
-from django.dispatch import Signal
+from djangocg.dispatch import Signal
 
 class_prepared = Signal(providing_args=["class"])
 

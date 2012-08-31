@@ -1,5 +1,5 @@
 """
-Tests for django.core.servers.
+Tests for djangocg.core.servers.
 """
 import os
 try:
@@ -7,10 +7,10 @@ try:
 except ImportError:     # Python 2
     from urllib2 import urlopen, HTTPError
 
-from django.core.exceptions import ImproperlyConfigured
-from django.test import LiveServerTestCase
-from django.core.servers.basehttp import WSGIServerException
-from django.test.utils import override_settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test import LiveServerTestCase
+from djangocg.core.servers.basehttp import WSGIServerException
+from djangocg.test.utils import override_settings
 
 from .models import Person
 

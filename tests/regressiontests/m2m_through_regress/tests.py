@@ -1,9 +1,9 @@
 from __future__ import absolute_import
 
-from django.core import management
-from django.contrib.auth.models import User
-from django.test import TestCase
-from django.utils.six import StringIO
+from djangocg.core import management
+from djangocg.contrib.auth.models import User
+from djangocg.test import TestCase
+from djangocg.utils.six import StringIO
 
 from .models import (Person, Group, Membership, UserMembership, Car, Driver,
     CarDriver)

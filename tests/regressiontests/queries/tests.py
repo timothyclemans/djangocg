@@ -5,17 +5,17 @@ from operator import attrgetter
 import pickle
 import sys
 
-from django.conf import settings
-from django.core.exceptions import FieldError
-from django.db import DatabaseError, connection, connections, DEFAULT_DB_ALIAS
-from django.db.models import Count
-from django.db.models.query import Q, ITER_CHUNK_SIZE, EmptyQuerySet
-from django.db.models.sql.where import WhereNode, EverythingNode, NothingNode
-from django.db.models.sql.datastructures import EmptyResultSet
-from django.test import TestCase, skipUnlessDBFeature
-from django.test.utils import str_prefix
-from django.utils import unittest
-from django.utils.datastructures import SortedDict
+from djangocg.conf import settings
+from djangocg.core.exceptions import FieldError
+from djangocg.db import DatabaseError, connection, connections, DEFAULT_DB_ALIAS
+from djangocg.db.models import Count
+from djangocg.db.models.query import Q, ITER_CHUNK_SIZE, EmptyQuerySet
+from djangocg.db.models.sql.where import WhereNode, EverythingNode, NothingNode
+from djangocg.db.models.sql.datastructures import EmptyResultSet
+from djangocg.test import TestCase, skipUnlessDBFeature
+from djangocg.test.utils import str_prefix
+from djangocg.utils import unittest
+from djangocg.utils.datastructures import SortedDict
 
 from .models import (Annotation, Article, Author, Celebrity, Child, Cover,
     Detail, DumbCategory, ExtraInfo, Fan, Item, LeafA, LoopX, LoopZ,
@@ -1450,7 +1450,7 @@ class Queries6Tests(TestCase):
 
         # We need to mess with the implementation internals a bit here to decrease the
         # cache fill size so that we don't read all the results at once.
-        from django.db.models import query
+        from djangocg.db.models import query
         query.ITER_CHUNK_SIZE = 2
         qs = Tag.objects.all()
 

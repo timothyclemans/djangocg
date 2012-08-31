@@ -3,7 +3,7 @@ GEOS Testing module.
 """
 from __future__ import absolute_import
 
-from django.utils.unittest import TestSuite, TextTestRunner
+from djangocg.utils.unittest import TestSuite, TextTestRunner
 from . import test_geos, test_io, test_geos_mutation, test_mutable_list
 
 test_suites = [

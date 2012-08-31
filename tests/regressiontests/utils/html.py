@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 import unittest
 
-from django.utils import html
+from djangocg.utils import html
 
 class TestUtilsHtml(unittest.TestCase):
 

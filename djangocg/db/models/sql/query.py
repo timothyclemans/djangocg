@@ -9,22 +9,22 @@ all about the internals of models in order to get the information it needs.
 
 import copy
 
-from django.utils.datastructures import SortedDict
-from django.utils.encoding import force_text
-from django.utils.tree import Node
-from django.utils import six
-from django.db import connections, DEFAULT_DB_ALIAS
-from django.db.models import signals
-from django.db.models.expressions import ExpressionNode
-from django.db.models.fields import FieldDoesNotExist
-from django.db.models.query_utils import InvalidQuery
-from django.db.models.sql import aggregates as base_aggregates_module
-from django.db.models.sql.constants import *
-from django.db.models.sql.datastructures import EmptyResultSet, Empty, MultiJoin
-from django.db.models.sql.expressions import SQLEvaluator
-from django.db.models.sql.where import (WhereNode, Constraint, EverythingNode,
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.encoding import force_text
+from djangocg.utils.tree import Node
+from djangocg.utils import six
+from djangocg.db import connections, DEFAULT_DB_ALIAS
+from djangocg.db.models import signals
+from djangocg.db.models.expressions import ExpressionNode
+from djangocg.db.models.fields import FieldDoesNotExist
+from djangocg.db.models.query_utils import InvalidQuery
+from djangocg.db.models.sql import aggregates as base_aggregates_module
+from djangocg.db.models.sql.constants import *
+from djangocg.db.models.sql.datastructures import EmptyResultSet, Empty, MultiJoin
+from djangocg.db.models.sql.expressions import SQLEvaluator
+from djangocg.db.models.sql.where import (WhereNode, Constraint, EverythingNode,
     ExtraWhere, AND, OR)
-from django.core.exceptions import FieldError
+from djangocg.core.exceptions import FieldError
 
 __all__ = ['Query', 'RawQuery']
 
@@ -349,7 +349,7 @@ class Query(object):
         # information but retrieves only the first row. Aggregate
         # over the subquery instead.
         if self.group_by is not None:
-            from django.db.models.sql.subqueries import AggregateQuery
+            from djangocg.db.models.sql.subqueries import AggregateQuery
             query = AggregateQuery(self.model)
 
             obj = self.clone()
@@ -401,7 +401,7 @@ class Query(object):
             # If a select clause exists, then the query has already started to
             # specify the columns that are to be returned.
             # In this case, we need to use a subquery to evaluate the count.
-            from django.db.models.sql.subqueries import AggregateQuery
+            from djangocg.db.models.sql.subqueries import AggregateQuery
             subquery = obj
             subquery.clear_ordering(True)
             subquery.clear_limits()

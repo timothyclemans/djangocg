@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from djangocg.http import HttpResponse
 
 
 def custom_submit_comment(request):

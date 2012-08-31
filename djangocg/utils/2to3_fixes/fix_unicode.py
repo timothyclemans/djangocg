@@ -1,6 +1,6 @@
 """Fixer for __unicode__ methods.
 
-Uses the django.utils.encoding.python_2_unicode_compatible decorator.
+Uses the djangocg.utils.encoding.python_2_unicode_compatible decorator.
 """
 
 from __future__ import unicode_literals
@@ -33,4 +33,4 @@ class FixUnicode(fixer_base.BaseFix):
         decorated = Node(syms.decorated, [decorator, klass], prefix=node.prefix)
         node.replace(decorated)
 
-        touch_import('django.utils.encoding', 'python_2_unicode_compatible', decorated)
+        touch_import('djangocg.utils.encoding', 'python_2_unicode_compatible', decorated)

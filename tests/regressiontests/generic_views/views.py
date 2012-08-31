@@ -1,10 +1,10 @@
 from __future__ import absolute_import
 
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.core.urlresolvers import reverse
-from django.utils.decorators import method_decorator
-from django.views import generic
+from djangocg.contrib.auth.decorators import login_required
+from djangocg.core.paginator import Paginator
+from djangocg.core.urlresolvers import reverse
+from djangocg.utils.decorators import method_decorator
+from djangocg.views import generic
 
 from .forms import AuthorForm
 from .models import Artist, Author, Book, Page, BookSigning

@@ -1,5 +1,5 @@
-from django.utils import unittest
-from django.utils.functional import lazy, lazy_property
+from djangocg.utils import unittest
+from djangocg.utils.functional import lazy, lazy_property
 
 
 class FunctionalTestCase(unittest.TestCase):

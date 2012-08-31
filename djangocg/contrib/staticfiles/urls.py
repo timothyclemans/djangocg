@@ -1,5 +1,5 @@
-from django.conf import settings
-from django.conf.urls.static import static
+from djangocg.conf import settings
+from djangocg.conf.urls.static import static
 
 urlpatterns = []
 
@@ -9,7 +9,7 @@ def staticfiles_urlpatterns(prefix=None):
     """
     if prefix is None:
         prefix = settings.STATIC_URL
-    return static(prefix, view='django.contrib.staticfiles.views.serve')
+    return static(prefix, view='djangocg.contrib.staticfiles.views.serve')
 
 # Only append if urlpatterns are empty
 if settings.DEBUG and not urlpatterns:

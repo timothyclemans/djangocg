@@ -11,7 +11,7 @@ views.
 View
 ----
 
-.. class:: django.views.generic.base.View
+.. class:: djangocg.views.generic.base.View
 
     The master class-based base view. All other class-based views inherit from
     this base class.
@@ -23,8 +23,8 @@ View
 
     **Example views.py**::
 
-        from django.http import HttpResponse
-        from django.views.generic import View
+        from djangocg.http import HttpResponse
+        from djangocg.views.generic import View
 
         class MyView(View):
 
@@ -33,7 +33,7 @@ View
 
     **Example urls.py**::
 
-        from django.conf.urls import patterns, url
+        from djangocg.conf.urls import patterns, url
 
         from myapp.views import MyView
 
@@ -74,16 +74,16 @@ View
 TemplateView
 ------------
 
-.. class:: django.views.generic.base.TemplateView
+.. class:: djangocg.views.generic.base.TemplateView
 
     Renders a given template, passing it a ``{{ params }}`` template variable,
     which is a dictionary of the parameters captured in the URL.
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.base.TemplateView`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.base.TemplateView`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Method Flowchart**
 
@@ -93,7 +93,7 @@ TemplateView
 
     **Example views.py**::
 
-        from django.views.generic.base import TemplateView
+        from djangocg.views.generic.base import TemplateView
 
         from articles.models import Article
 
@@ -108,7 +108,7 @@ TemplateView
 
     **Example urls.py**::
 
-        from django.conf.urls import patterns, url
+        from djangocg.conf.urls import patterns, url
 
         from myapp.views import HomePageView
 
@@ -141,7 +141,7 @@ TemplateView
 RedirectView
 ------------
 
-.. class:: django.views.generic.base.RedirectView
+.. class:: djangocg.views.generic.base.RedirectView
 
     Redirects to a given URL.
 
@@ -156,7 +156,7 @@ RedirectView
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.base.View`
 
     **Method Flowchart**
 
@@ -166,8 +166,8 @@ RedirectView
 
     **Example views.py**::
 
-        from django.shortcuts import get_object_or_404
-        from django.views.generic.base import RedirectView
+        from djangocg.shortcuts import get_object_or_404
+        from djangocg.views.generic.base import RedirectView
 
         from articles.models import Article
 
@@ -183,8 +183,8 @@ RedirectView
 
     **Example urls.py**::
 
-        from django.conf.urls import patterns, url
-        from django.views.generic.base import RedirectView
+        from djangocg.conf.urls import patterns, url
+        from djangocg.views.generic.base import RedirectView
 
         from article.views import ArticleCounterRedirectView
 

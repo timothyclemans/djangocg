@@ -1,4 +1,4 @@
-from django.db.backends.creation import BaseDatabaseCreation
+from djangocg.db.backends.creation import BaseDatabaseCreation
 
 class DatabaseCreation(BaseDatabaseCreation):
     # This dictionary maps Field objects to their associated MySQL column
@@ -43,7 +43,7 @@ class DatabaseCreation(BaseDatabaseCreation):
         return [], True
 
     def sql_for_inline_many_to_many_references(self, model, field, style):
-        from django.db import models
+        from djangocg.db import models
         opts = model._meta
         qn = self.connection.ops.quote_name
 

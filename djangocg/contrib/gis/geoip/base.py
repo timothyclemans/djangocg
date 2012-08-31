@@ -2,15 +2,15 @@ import os
 import re
 from ctypes import c_char_p
 
-from django.core.validators import ipv4_re
-from django.contrib.gis.geoip.libgeoip import GEOIP_SETTINGS
-from django.contrib.gis.geoip.prototypes import (
+from djangocg.core.validators import ipv4_re
+from djangocg.contrib.gis.geoip.libgeoip import GEOIP_SETTINGS
+from djangocg.contrib.gis.geoip.prototypes import (
     GeoIPRecord, GeoIPTag, GeoIP_open, GeoIP_delete, GeoIP_database_info,
     GeoIP_lib_version, GeoIP_record_by_addr, GeoIP_record_by_name,
     GeoIP_country_code_by_addr, GeoIP_country_code_by_name,
     GeoIP_country_name_by_addr, GeoIP_country_name_by_name)
 
-from django.utils import six
+from djangocg.utils import six
 
 # Regular expressions for recognizing the GeoIP free database editions.
 free_regex = re.compile(r'^GEO-\d{3}FREE')
@@ -213,7 +213,7 @@ class GeoIP(object):
         "Returns a GEOS Point object for the given query."
         ll = self.lon_lat(query)
         if ll:
-            from django.contrib.gis.geos import Point
+            from djangocg.contrib.gis.geos import Point
             return Point(ll, srid=4326)
         else:
             return None

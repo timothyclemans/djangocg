@@ -2,13 +2,13 @@ import os
 import gettext as gettext_module
 
 from django import http
-from django.conf import settings
-from django.utils import importlib
-from django.utils.translation import check_for_language, activate, to_locale, get_language
-from django.utils.text import javascript_quote
-from django.utils.encoding import smart_text
-from django.utils.formats import get_format_modules, get_format
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.utils import importlib
+from djangocg.utils.translation import check_for_language, activate, to_locale, get_language
+from djangocg.utils.text import javascript_quote
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.formats import get_format_modules, get_format
+from djangocg.utils import six
 
 def set_language(request):
     """
@@ -172,7 +172,7 @@ def javascript_catalog(request, domain='djangojs', packages=None):
 
     Receives the list of packages to check for translations in the
     packages parameter either from an infodict or as a +-delimited
-    string from the request. Default is 'django.conf'.
+    string from the request. Default is 'djangocg.conf'.
 
     Additionally you can override the gettext domain for this view,
     but usually you don't want to do that, as JavaScript messages
@@ -184,10 +184,10 @@ def javascript_catalog(request, domain='djangojs', packages=None):
             if check_for_language(request.GET['language']):
                 activate(request.GET['language'])
     if packages is None:
-        packages = ['django.conf']
+        packages = ['djangocg.conf']
     if isinstance(packages, six.string_types):
         packages = packages.split('+')
-    packages = [p for p in packages if p == 'django.conf' or p in settings.INSTALLED_APPS]
+    packages = [p for p in packages if p == 'djangocg.conf' or p in settings.INSTALLED_APPS]
     default_locale = to_locale(settings.LANGUAGE_CODE)
     locale = to_locale(get_language())
     t = {}

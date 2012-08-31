@@ -1,6 +1,6 @@
-from django.contrib.gis.gdal import OGRGeomType
-from django.db.backends.sqlite3.introspection import DatabaseIntrospection, FlexibleFieldLookupDict
-from django.utils import six
+from djangocg.contrib.gis.gdal import OGRGeomType
+from djangocg.db.backends.sqlite3.introspection import DatabaseIntrospection, FlexibleFieldLookupDict
+from djangocg.utils import six
 
 class GeoFlexibleFieldLookupDict(FlexibleFieldLookupDict):
     """

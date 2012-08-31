@@ -3,9 +3,9 @@
 #
 # Modified from original contribution by Aryeh Leib Taurog, which was
 # released under the New BSD license.
-from django.contrib.gis.geos.mutable_list import ListMixin
-from django.utils import six
-from django.utils import unittest
+from djangocg.contrib.gis.geos.mutable_list import ListMixin
+from djangocg.utils import six
+from djangocg.utils import unittest
 
 
 class UserListA(ListMixin):

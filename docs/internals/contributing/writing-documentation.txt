@@ -117,11 +117,11 @@ documentation:
 * The main thing to keep in mind as you write and edit docs is that the
   more semantic markup you can add the better. So::
 
-      Add ``django.contrib.auth`` to your ``INSTALLED_APPS``...
+      Add ``djangocg.contrib.auth`` to your ``INSTALLED_APPS``...
 
   Isn't nearly as helpful as::
 
-      Add :mod:`django.contrib.auth` to your :setting:`INSTALLED_APPS`...
+      Add :mod:`djangocg.contrib.auth` to your :setting:`INSTALLED_APPS`...
 
   This is because Sphinx will generate proper links for the latter, which
   greatly helps readers. There's basically no limit to the amount of
@@ -320,10 +320,10 @@ look better:
 
 * When referring to classes/functions/modules, etc., you'll want to use
   the fully-qualified name of the target
-  (``:class:`django.contrib.contenttypes.models.ContentType```).
+  (``:class:`djangocg.contrib.contenttypes.models.ContentType```).
 
   Since this doesn't look all that awesome in the output -- it shows the
   entire path to the object -- you can prefix the target with a ``~``
   (that's a tilde) to get just the "last bit" of that path. So
-  ``:class:`~django.contrib.contenttypes.models.ContentType``` will just
+  ``:class:`~djangocg.contrib.contenttypes.models.ContentType``` will just
   display a link with the title "ContentType".

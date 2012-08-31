@@ -7,7 +7,7 @@ This example exists purely to point out errors in models.
 
 from __future__ import unicode_literals
 
-from django.db import connection, models
+from djangocg.db import connection, models
 
 
 class FieldErrors(models.Model):

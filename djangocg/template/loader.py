@@ -25,11 +25,11 @@
 # Python eggs) sets is_usable to False if the "pkg_resources" module isn't
 # installed, because pkg_resources is necessary to read eggs.
 
-from django.core.exceptions import ImproperlyConfigured
-from django.template.base import Origin, Template, Context, TemplateDoesNotExist, add_to_builtins
-from django.utils.importlib import import_module
-from django.conf import settings
-from django.utils import six
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.template.base import Origin, Template, Context, TemplateDoesNotExist, add_to_builtins
+from djangocg.utils.importlib import import_module
+from djangocg.conf import settings
+from djangocg.utils import six
 
 template_source_loaders = None
 
@@ -193,4 +193,4 @@ def select_template(template_name_list):
     # If we get here, none of the templates could be loaded
     raise TemplateDoesNotExist(', '.join(not_found))
 
-add_to_builtins('django.template.loader_tags')
+add_to_builtins('djangocg.template.loader_tags')

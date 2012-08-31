@@ -2,7 +2,7 @@
  Utilities for manipulating Geometry WKT.
 """
 
-from django.utils import six
+from djangocg.utils import six
 
 def precision_wkt(geom, prec):
     """

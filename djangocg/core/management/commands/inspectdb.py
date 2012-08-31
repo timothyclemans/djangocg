@@ -4,9 +4,9 @@ import keyword
 import re
 from optparse import make_option
 
-from django.core.management.base import NoArgsCommand, CommandError
-from django.db import connections, DEFAULT_DB_ALIAS
-from django.utils import six
+from djangocg.core.management.base import NoArgsCommand, CommandError
+from djangocg.db import connections, DEFAULT_DB_ALIAS
+from djangocg.utils import six
 
 class Command(NoArgsCommand):
     help = "Introspects the database tables in the given database and outputs a Django model module."
@@ -19,7 +19,7 @@ class Command(NoArgsCommand):
 
     requires_model_validation = False
 
-    db_module = 'django.db'
+    db_module = 'djangocg.db'
 
     def handle_noargs(self, **options):
         try:

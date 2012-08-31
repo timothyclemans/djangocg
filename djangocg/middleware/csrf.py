@@ -10,15 +10,15 @@ import hashlib
 import re
 import random
 
-from django.conf import settings
-from django.core.urlresolvers import get_callable
-from django.utils.cache import patch_vary_headers
-from django.utils.encoding import force_text
-from django.utils.http import same_origin
-from django.utils.log import getLogger
-from django.utils.crypto import constant_time_compare, get_random_string
+from djangocg.conf import settings
+from djangocg.core.urlresolvers import get_callable
+from djangocg.utils.cache import patch_vary_headers
+from djangocg.utils.encoding import force_text
+from djangocg.utils.http import same_origin
+from djangocg.utils.log import getLogger
+from djangocg.utils.crypto import constant_time_compare, get_random_string
 
-logger = getLogger('django.request')
+logger = getLogger('djangocg.request')
 
 REASON_NO_REFERER = "Referer checking failed - no Referer."
 REASON_BAD_REFERER = "Referer checking failed - %s does not match %s."

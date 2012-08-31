@@ -2,7 +2,7 @@
 The messages framework
 ======================
 
-.. module:: django.contrib.messages
+.. module:: djangocg.contrib.messages
    :synopsis: Provides cookie- and session-based temporary message storage.
 
 Quite commonly in web applications, you may need to display a one-time
@@ -23,29 +23,29 @@ class and corresponding :doc:`context processor </ref/templates/api>`.
 To enable message functionality, do the following:
 
 * Edit the :setting:`MIDDLEWARE_CLASSES` setting and make sure
-  it contains ``'django.contrib.messages.middleware.MessageMiddleware'``.
+  it contains ``'djangocg.contrib.messages.middleware.MessageMiddleware'``.
 
   If you are using a :ref:`storage backend <message-storage-backends>` that
   relies on :doc:`sessions </topics/http/sessions>` (the default),
-  ``'django.contrib.sessions.middleware.SessionMiddleware'`` must be
+  ``'djangocg.contrib.sessions.middleware.SessionMiddleware'`` must be
   enabled and appear before ``MessageMiddleware`` in your
   :setting:`MIDDLEWARE_CLASSES`.
 
 * Edit the :setting:`TEMPLATE_CONTEXT_PROCESSORS` setting and make sure
-  it contains ``'django.contrib.messages.context_processors.messages'``.
+  it contains ``'djangocg.contrib.messages.context_processors.messages'``.
 
-* Add ``'django.contrib.messages'`` to your :setting:`INSTALLED_APPS`
+* Add ``'djangocg.contrib.messages'`` to your :setting:`INSTALLED_APPS`
   setting
 
 The default ``settings.py`` created by ``django-admin.py startproject`` has
-``MessageMiddleware`` activated and the ``django.contrib.messages`` app
+``MessageMiddleware`` activated and the ``djangocg.contrib.messages`` app
 installed. Also, the default value for :setting:`TEMPLATE_CONTEXT_PROCESSORS`
-contains ``'django.contrib.messages.context_processors.messages'``.
+contains ``'djangocg.contrib.messages.context_processors.messages'``.
 
 If you don't want to use messages, you can remove the
 ``MessageMiddleware`` line from :setting:`MIDDLEWARE_CLASSES`, the ``messages``
 context processor from :setting:`TEMPLATE_CONTEXT_PROCESSORS` and
-``'django.contrib.messages'`` from your :setting:`INSTALLED_APPS`.
+``'djangocg.contrib.messages'`` from your :setting:`INSTALLED_APPS`.
 
 Configuring the message engine
 ==============================
@@ -61,22 +61,22 @@ which backend is being used by adding a `MESSAGE_STORAGE`_ to your
 settings, referencing the module and class of the storage class. For
 example::
 
-    MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+    MESSAGE_STORAGE = 'djangocg.contrib.messages.storage.cookie.CookieStorage'
 
 The value should be the full path of the desired storage class.
 
 Three storage classes are available:
 
-``'django.contrib.messages.storage.session.SessionStorage'``
+``'djangocg.contrib.messages.storage.session.SessionStorage'``
     This class stores all messages inside of the request's session. It
     requires Django's ``contrib.sessions`` application.
 
-``'django.contrib.messages.storage.cookie.CookieStorage'``
+``'djangocg.contrib.messages.storage.cookie.CookieStorage'``
     This class stores the message data in a cookie (signed with a secret hash
     to prevent manipulation) to persist notifications across requests. Old
     messages are dropped if the cookie data size would exceed 4096 bytes.
 
-``'django.contrib.messages.storage.fallback.FallbackStorage'``
+``'djangocg.contrib.messages.storage.fallback.FallbackStorage'``
     This is the default storage class.
 
     This class first uses CookieStorage for all messages, falling back to using
@@ -86,7 +86,7 @@ Three storage classes are available:
     ``contrib.sessions`` application.
 
 To write your own storage class, subclass the ``BaseStorage`` class in
-``django.contrib.messages.storage.base`` and implement the ``_get`` and
+``djangocg.contrib.messages.storage.base`` and implement the ``_get`` and
 ``_store`` methods.
 
 Message levels
@@ -97,7 +97,7 @@ to that of the Python logging module. Message levels allow you to group
 messages by type so they can be filtered or displayed differently in views and
 templates.
 
-The built-in levels (which can be imported from ``django.contrib.messages``
+The built-in levels (which can be imported from ``djangocg.contrib.messages``
 directly) are:
 
 =========== ========
@@ -142,7 +142,7 @@ set the `MESSAGE_TAGS`_ setting to a dictionary containing the levels
 you wish to change. As this extends the default tags, you only need to provide
 tags for the levels you wish to override::
 
-    from django.contrib.messages import constants as messages
+    from djangocg.contrib.messages import constants as messages
     MESSAGE_TAGS = {
         messages.INFO: '',
         50: 'critical',
@@ -156,7 +156,7 @@ Adding a message
 
 To add a message, call::
 
-    from django.contrib import messages
+    from djangocg.contrib import messages
     messages.add_message(request, messages.INFO, 'Hello world.')
 
 Some shortcut methods provide a standard way to add messages with commonly
@@ -228,7 +228,7 @@ Changing the minimum recorded level per-request
 The minimum recorded level can be set per request via the ``set_level``
 method::
 
-    from django.contrib import messages
+    from djangocg.contrib import messages
 
     # Change the messages level to ensure the debug message is added.
     messages.set_level(request, messages.DEBUG)
@@ -244,7 +244,7 @@ method::
 
 Similarly, the current effective level can be retrieved with ``get_level``::
 
-    from django.contrib import messages
+    from djangocg.contrib import messages
     current_level = messages.get_level(request)
 
 For more information on how the minimum recorded level functions, see
@@ -333,7 +333,7 @@ This sets the minimum message that will be saved in the message storage. See
    the built-in constants, you must import the constants module directly to
    avoid the potential for circular imports, e.g.::
 
-       from django.contrib.messages import constants as message_constants
+       from djangocg.contrib.messages import constants as message_constants
        MESSAGE_LEVEL = message_constants.DEBUG
 
    If desired, you may specify the numeric values for the constants directly
@@ -343,13 +343,13 @@ This sets the minimum message that will be saved in the message storage. See
 MESSAGE_STORAGE
 ---------------
 
-Default: ``'django.contrib.messages.storage.user_messages.FallbackStorage'``
+Default: ``'djangocg.contrib.messages.storage.user_messages.FallbackStorage'``
 
 Controls where Django stores message data. Valid values are:
 
-* ``'django.contrib.messages.storage.fallback.FallbackStorage'``
-* ``'django.contrib.messages.storage.session.SessionStorage'``
-* ``'django.contrib.messages.storage.cookie.CookieStorage'``
+* ``'djangocg.contrib.messages.storage.fallback.FallbackStorage'``
+* ``'djangocg.contrib.messages.storage.session.SessionStorage'``
+* ``'djangocg.contrib.messages.storage.cookie.CookieStorage'``
 
 See `Storage backends`_ for more details.
 
@@ -375,7 +375,7 @@ to override. See `Displaying messages`_ above for more details.
    the built-in constants, you must import the ``constants`` module directly to
    avoid the potential for circular imports, e.g.::
 
-       from django.contrib.messages import constants as message_constants
+       from djangocg.contrib.messages import constants as message_constants
        MESSAGE_TAGS = {message_constants.INFO: ''}
 
    If desired, you may specify the numeric values for the constants directly

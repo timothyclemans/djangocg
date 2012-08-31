@@ -1,19 +1,19 @@
-from django.db.utils import DatabaseError
+from djangocg.db.utils import DatabaseError
 
 try:
-    from django.utils.six.moves import _thread as thread
+    from djangocg.utils.six.moves import _thread as thread
 except ImportError:
-    from django.utils.six.moves import _dummy_thread as thread
+    from djangocg.utils.six.moves import _dummy_thread as thread
 from contextlib import contextmanager
 
-from django.conf import settings
-from django.db import DEFAULT_DB_ALIAS
-from django.db.backends import util
-from django.db.transaction import TransactionManagementError
-from django.utils.functional import cached_property
-from django.utils.importlib import import_module
-from django.utils import six
-from django.utils.timezone import is_aware
+from djangocg.conf import settings
+from djangocg.db import DEFAULT_DB_ALIAS
+from djangocg.db.backends import util
+from djangocg.db.transaction import TransactionManagementError
+from djangocg.utils.functional import cached_property
+from djangocg.utils.importlib import import_module
+from djangocg.utils import six
+from djangocg.utils.timezone import is_aware
 
 
 class BaseDatabaseWrapper(object):
@@ -321,7 +321,7 @@ class BaseDatabaseWrapper(object):
 
 class BaseDatabaseFeatures(object):
     allows_group_by_pk = False
-    # True if django.db.backend.utils.typecast_timestamp is used on values
+    # True if djangocg.db.backend.utils.typecast_timestamp is used on values
     # returned from dates() calls.
     needs_datetime_string_cast = True
     empty_fetchmany_value = []
@@ -463,7 +463,7 @@ class BaseDatabaseOperations(object):
     a backend performs ordering or calculates the ID of a recently-inserted
     row.
     """
-    compiler_module = "django.db.models.sql.compiler"
+    compiler_module = "djangocg.db.models.sql.compiler"
 
     def __init__(self, connection):
         self.connection = connection
@@ -609,7 +609,7 @@ class BaseDatabaseOperations(object):
         exists for database backends to provide a better implementation
         according to their own quoting schemes.
         """
-        from django.utils.encoding import force_text
+        from djangocg.utils.encoding import force_text
 
         # Convert params to contain Unicode values.
         to_unicode = lambda s: force_text(s, strings_only=True, errors='replace')
@@ -754,7 +754,7 @@ class BaseDatabaseOperations(object):
         sequences passed in :param sequences:.
 
         The `style` argument is a Style object as returned by either
-        color_style() or no_style() in django.core.management.color.
+        color_style() or no_style() in djangocg.core.management.color.
         """
         raise NotImplementedError()
 
@@ -764,7 +764,7 @@ class BaseDatabaseOperations(object):
         passed in :param sequences:.
 
         The `style` argument is a Style object as returned by either
-        color_style() or no_style() in django.core.management.color.
+        color_style() or no_style() in djangocg.core.management.color.
         """
         return []
 
@@ -774,7 +774,7 @@ class BaseDatabaseOperations(object):
         the given models.
 
         The `style` argument is a Style object as returned by either
-        color_style() or no_style() in django.core.management.color.
+        color_style() or no_style() in djangocg.core.management.color.
         """
         return [] # No sequence reset required by default.
 
@@ -802,7 +802,7 @@ class BaseDatabaseOperations(object):
 
     def prep_for_like_query(self, x):
         """Prepares a value for use in a LIKE query."""
-        from django.utils.encoding import force_text
+        from djangocg.utils.encoding import force_text
         return force_text(x).replace("\\", "\\\\").replace("%", "\%").replace("_", "\_")
 
     # Same as prep_for_like_query(), but called for "iexact" matches, which
@@ -965,7 +965,7 @@ class BaseDatabaseIntrospection(object):
         If only_existing is True, the resulting list will only include the tables
         that actually exist in the database.
         """
-        from django.db import models, router
+        from djangocg.db import models, router
         tables = set()
         for app in models.get_apps():
             for model in models.get_models(app):
@@ -987,7 +987,7 @@ class BaseDatabaseIntrospection(object):
 
     def installed_models(self, tables):
         "Returns a set of all models represented by the provided list of table names."
-        from django.db import models, router
+        from djangocg.db import models, router
         all_models = []
         for app in models.get_apps():
             for model in models.get_models(app):
@@ -1001,7 +1001,7 @@ class BaseDatabaseIntrospection(object):
 
     def sequence_list(self):
         "Returns a list of information about all DB sequences for all models in all apps."
-        from django.db import models, router
+        from djangocg.db import models, router
 
         apps = models.get_apps()
         sequence_list = []

@@ -22,12 +22,12 @@ activity over the past year, with several major new features landing
 since the 0.96 release. Some of the highlights include:
 
 Refactored admin application (newforms-admin)
-    The Django administrative interface (``django.contrib.admin``) has
+    The Django administrative interface (``djangocg.contrib.admin``) has
     been completely refactored; admin definitions are now completely
     decoupled from model definitions (no more ``class Admin``
     declaration in models!), rewritten to use Django's new
     form-handling library (introduced in the 0.96 release as
-    ``django.newforms``, and now available as simply ``django.forms``)
+    ``djangocg.newforms``, and now available as simply ``djangocg.forms``)
     and redesigned with extensibility and customization in mind. Full
     documentation for the admin application is available online in the
     official Django documentation:
@@ -71,7 +71,7 @@ Automatic escaping of template variables
 There are many more new features, many bugfixes and many enhancements
 to existing features from previous releases. The ``newforms`` library,
 for example, has undergone massive improvements including several
-useful add-ons in ``django.contrib`` which complement and build on
+useful add-ons in ``djangocg.contrib`` which complement and build on
 Django's form-handling capabilities, and Django's file-uploading
 handlers have been refactored to allow finer-grained control over the
 uploading process as well as streaming uploads of large files.

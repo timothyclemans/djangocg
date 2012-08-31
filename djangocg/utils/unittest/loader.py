@@ -9,12 +9,12 @@ import unittest
 
 from fnmatch import fnmatch
 
-from django.utils.unittest import case, suite
+from djangocg.utils.unittest import case, suite
 
 try:
     from os.path import relpath
 except ImportError:
-    from django.utils.unittest.compatibility import relpath
+    from djangocg.utils.unittest.compatibility import relpath
 
 __unittest = True
 

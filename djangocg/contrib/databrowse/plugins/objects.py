@@ -4,9 +4,9 @@ except ImportError:     # Python 2
     from urlparse import urljoin
 
 from django import http
-from django.contrib.databrowse.datastructures import EasyModel
-from django.contrib.databrowse.sites import DatabrowsePlugin
-from django.shortcuts import render_to_response
+from djangocg.contrib.databrowse.datastructures import EasyModel
+from djangocg.contrib.databrowse.sites import DatabrowsePlugin
+from djangocg.shortcuts import render_to_response
 
 class ObjectDetailPlugin(DatabrowsePlugin):
     def model_view(self, request, model_databrowse, url):

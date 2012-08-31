@@ -8,7 +8,7 @@
 from __future__ import absolute_import
 
 import warnings
-warnings.warn("django.utils.simplejson is deprecated; use json instead.",
+warnings.warn("djangocg.utils.simplejson is deprecated; use json instead.",
               PendingDeprecationWarning)
 
 try:

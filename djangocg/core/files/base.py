@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 import os
 from io import BytesIO, StringIO, UnsupportedOperation
 
-from django.utils.encoding import smart_text
-from django.core.files.utils import FileProxyMixin
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.utils.encoding import smart_text
+from djangocg.core.files.utils import FileProxyMixin
+from djangocg.utils import six
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class File(FileProxyMixin):

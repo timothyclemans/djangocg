@@ -6,14 +6,14 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.contrib.localflavor.hr.hr_choices import (
+from djangocg.contrib.localflavor.hr.hr_choices import (
     HR_LICENSE_PLATE_PREFIX_CHOICES, HR_COUNTY_CHOICES,
     HR_PHONE_NUMBER_PREFIX_CHOICES)
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Field, Select, RegexField
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Field, Select, RegexField
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 jmbg_re = re.compile(r'^(?P<dd>\d{2})(?P<mm>\d{2})(?P<yyy>\d{3})' + \

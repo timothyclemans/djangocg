@@ -1,9 +1,9 @@
 import logging
 import traceback
 
-from django.conf import settings
-from django.core import mail
-from django.views.debug import ExceptionReporter, get_exception_reporter_filter
+from djangocg.conf import settings
+from djangocg.core import mail
+from djangocg.views.debug import ExceptionReporter, get_exception_reporter_filter
 
 # Make sure a NullHandler is available
 # This was added in Python 2.7/3.2
@@ -19,7 +19,7 @@ except ImportError:
 try:
     from logging.config import dictConfig
 except ImportError:
-    from django.utils.dictconfig import dictConfig
+    from djangocg.utils.dictconfig import dictConfig
 
 getLogger = logging.getLogger
 

@@ -2,9 +2,9 @@ from __future__ import absolute_import,unicode_literals
 
 from functools import update_wrapper
 
-from django.db import connection
-from django.test import TestCase, skipUnlessDBFeature, skipIfDBFeature
-from django.utils import six
+from djangocg.db import connection
+from djangocg.test import TestCase, skipUnlessDBFeature, skipIfDBFeature
+from djangocg.utils import six
 
 from .models import Reporter, Article
 

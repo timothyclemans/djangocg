@@ -17,11 +17,11 @@ second half of this document describes how these storage systems work.
 Using files in models
 =====================
 
-When you use a :class:`~django.db.models.FileField` or
-:class:`~django.db.models.ImageField`, Django provides a set of APIs you can use
+When you use a :class:`~djangocg.db.models.FileField` or
+:class:`~djangocg.db.models.ImageField`, Django provides a set of APIs you can use
 to deal with that file.
 
-Consider the following model, using an :class:`~django.db.models.ImageField` to
+Consider the following model, using an :class:`~djangocg.db.models.ImageField` to
 store a photo::
 
     class Car(models.Model):
@@ -54,7 +54,7 @@ it has all the methods and attributes described below.
 The ``File`` object
 ===================
 
-Internally, Django uses a :class:`django.core.files.File` instance any time it
+Internally, Django uses a :class:`djangocg.core.files.File` instance any time it
 needs to represent a file. This object is a thin wrapper around Python's
 `built-in file object`_ with some Django-specific additions.
 
@@ -66,19 +66,19 @@ file attached to a model as above, or perhaps an uploaded file).
 If you need to construct a ``File`` yourself, the easiest way is to create one
 using a Python built-in ``file`` object::
 
-    >>> from django.core.files import File
+    >>> from djangocg.core.files import File
 
     # Create a Python file object using open()
     >>> f = open('/tmp/hello.world', 'w')
     >>> myfile = File(f)
 
 Now you can use any of the documented attributes and methods
-of the :class:`~django.core.files.File` class.
+of the :class:`~djangocg.core.files.File` class.
 
 Be aware that files created in this way are not automatically closed.
 The following approach may be used to close files automatically::
 
-    >>> from django.core.files import File
+    >>> from djangocg.core.files import File
 
     # Create a Python file object using open() and the with statement
     >>> with open('/tmp/hello.world', 'w') as f:
@@ -121,8 +121,8 @@ the proper storage for that file), you can use file storage systems directly.
 You can create an instance of some custom file storage class, or -- often more
 useful -- you can use the global default storage system::
 
-    >>> from django.core.files.storage import default_storage
-    >>> from django.core.files.base import ContentFile
+    >>> from djangocg.core.files.storage import default_storage
+    >>> from djangocg.core.files.base import ContentFile
 
     >>> path = default_storage.save('/path/to/file', ContentFile('new content'))
     >>> path
@@ -143,7 +143,7 @@ The built-in filesystem storage class
 -------------------------------------
 
 Django ships with a built-in ``FileSystemStorage`` class (defined in
-``django.core.files.storage``) which implements basic local filesystem file
+``djangocg.core.files.storage``) which implements basic local filesystem file
 storage. Its initializer takes two arguments:
 
 ======================  ===================================================
@@ -160,8 +160,8 @@ Argument                Description
 For example, the following code will store uploaded files under
 ``/media/photos`` regardless of what your :setting:`MEDIA_ROOT` setting is::
 
-    from django.db import models
-    from django.core.files.storage import FileSystemStorage
+    from djangocg.db import models
+    from djangocg.core.files.storage import FileSystemStorage
 
     fs = FileSystemStorage(location='/media/photos')
 
@@ -171,4 +171,4 @@ For example, the following code will store uploaded files under
 
 :doc:`Custom storage systems </howto/custom-file-storage>` work the same way:
 you can pass them in as the ``storage`` argument to a
-:class:`~django.db.models.FileField`.
+:class:`~djangocg.db.models.FileField`.

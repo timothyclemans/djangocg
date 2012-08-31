@@ -4,20 +4,20 @@
  vector files (e.g. SHP files) to Geographic-enabled Django models.
 
  For more information, please consult the GeoDjango documentation:
-   http://geodjango.org/docs/layermapping.html
+   http://geodjangocg.org/docs/layermapping.html
 """
 import sys
 from decimal import Decimal
-from django.core.exceptions import ObjectDoesNotExist
-from django.db import connections, DEFAULT_DB_ALIAS
-from django.contrib.gis.db.models import GeometryField
-from django.contrib.gis.gdal import (CoordTransform, DataSource,
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.db import connections, DEFAULT_DB_ALIAS
+from djangocg.contrib.gis.db.models import GeometryField
+from djangocg.contrib.gis.gdal import (CoordTransform, DataSource,
     OGRException, OGRGeometry, OGRGeomType, SpatialReference)
-from django.contrib.gis.gdal.field import (
+from djangocg.contrib.gis.gdal.field import (
     OFTDate, OFTDateTime, OFTInteger, OFTReal, OFTString, OFTTime)
-from django.db import models, transaction
-from django.contrib.localflavor.us.models import USStateField
-from django.utils import six
+from djangocg.db import models, transaction
+from djangocg.contrib.localflavor.us.models import USStateField
+from djangocg.utils import six
 
 # LayerMapping exceptions.
 class LayerMapError(Exception): pass

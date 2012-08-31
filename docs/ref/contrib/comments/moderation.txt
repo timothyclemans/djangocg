@@ -2,7 +2,7 @@
 Generic comment moderation
 ==========================
 
-.. module:: django.contrib.comments.moderation
+.. module:: djangocg.contrib.comments.moderation
    :synopsis: Support for automatic comment moderation.
 
 Django's bundled comments application is extremely useful on its own,
@@ -10,7 +10,7 @@ but the amount of comment spam circulating on the Web today
 essentially makes it necessary to have some sort of automatic
 moderation system in place for any application which makes use of
 comments. To make this easier to handle in a consistent fashion,
-``django.contrib.comments.moderation`` provides a generic, extensible
+``djangocg.contrib.comments.moderation`` provides a generic, extensible
 comment-moderation system which can be applied to any model or set of
 models which want to make use of Django's comment system.
 
@@ -18,7 +18,7 @@ models which want to make use of Django's comment system.
 Overview
 ========
 
-The entire system is contained within ``django.contrib.comments.moderation``,
+The entire system is contained within ``djangocg.contrib.comments.moderation``,
 and uses a two-step process to enable moderation for any given model:
 
 1. A subclass of :class:`CommentModerator`
@@ -31,7 +31,7 @@ and uses a two-step process to enable moderation for any given model:
 A simple example is the best illustration of this. Suppose we have the
 following model, which would represent entries in a Weblog::
 
-    from django.db import models
+    from djangocg.db import models
     
     class Entry(models.Model):
         title = models.CharField(maxlength=250)
@@ -54,7 +54,7 @@ new comment is posted on an ``Entry``:
 Accomplishing this is fairly straightforward and requires very little
 code::
 
-    from django.contrib.comments.moderation import CommentModerator, moderator
+    from djangocg.contrib.comments.moderation import CommentModerator, moderator
     
     class EntryModerator(CommentModerator):
         email_notification = True
@@ -81,8 +81,8 @@ Built-in moderation options
     .. attribute:: auto_close_field
 
         If this is set to the name of a
-        :class:`~django.db.models.fields.DateField` or
-        :class:`~django.db.models.fields.DateTimeField` on the model for which
+        :class:`~djangocg.db.models.fields.DateField` or
+        :class:`~djangocg.db.models.fields.DateTimeField` on the model for which
         comments are being moderated, new comments for objects of that model
         will be disallowed (immediately deleted) when a certain number of days
         have passed after the date specified in that field. Must be
@@ -117,7 +117,7 @@ Built-in moderation options
     .. attribute:: enable_field
 
         If this is set to the name of a
-        :class:`~django.db.models.fields.BooleanField` on the model
+        :class:`~djangocg.db.models.fields.BooleanField` on the model
         for which comments are being moderated, new comments on
         objects of that model will be disallowed (immediately deleted)
         whenever the value of that field is ``False`` on the object
@@ -151,7 +151,7 @@ determine how moderation will take place; each method will be called
 by the moderation system and passed two arguments: ``comment``, which
 is the new comment being posted, ``content_object``, which is the
 object the comment will be attached to, and ``request``, which is the
-:class:`~django.http.HttpRequest` in which the comment is being submitted:
+:class:`~djangocg.http.HttpRequest` in which the comment is being submitted:
 
 .. method:: CommentModerator.allow(comment, content_object, request)
 
@@ -177,7 +177,7 @@ Registering models for moderation
 ---------------------------------
 
 The moderation system, represented by
-``django.contrib.comments.moderation.moderator`` is an instance of the class
+``djangocg.contrib.comments.moderation.moderator`` is an instance of the class
 :class:`Moderator`, which allows registration and "unregistration" of models
 via two methods:
 
@@ -220,8 +220,8 @@ models with an instance of the subclass.
         Determines how moderation is set up globally. The base
         implementation in
         :class:`Moderator` does this by
-        attaching listeners to the :data:`~django.contrib.comments.signals.comment_will_be_posted`
-        and :data:`~django.contrib.comments.signals.comment_was_posted` signals from the
+        attaching listeners to the :data:`~djangocg.contrib.comments.signals.comment_will_be_posted`
+        and :data:`~djangocg.contrib.comments.signals.comment_was_posted` signals from the
         comment models.
 
     .. method:: pre_save_moderation(sender, comment, request, **kwargs)

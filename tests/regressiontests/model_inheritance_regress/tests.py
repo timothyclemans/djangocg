@@ -7,7 +7,7 @@ import datetime
 from operator import attrgetter
 from django import forms
 
-from django.test import TestCase
+from djangocg.test import TestCase
 
 from .models import (Place, Restaurant, ItalianRestaurant, ParkingLot,
     ParkingLot2, ParkingLot3, Supplier, Wholesaler, Child, SelfRefParent,

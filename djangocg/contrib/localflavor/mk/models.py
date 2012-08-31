@@ -1,8 +1,8 @@
-from django.db.models.fields import CharField
-from django.utils.translation import ugettext_lazy as _
+from djangocg.db.models.fields import CharField
+from djangocg.utils.translation import ugettext_lazy as _
 
-from django.contrib.localflavor.mk.mk_choices import MK_MUNICIPALITIES
-from django.contrib.localflavor.mk.forms import (UMCNField as UMCNFormField,
+from djangocg.contrib.localflavor.mk.mk_choices import MK_MUNICIPALITIES
+from djangocg.contrib.localflavor.mk.forms import (UMCNField as UMCNFormField,
     MKIdentityCardNumberField as MKIdentityCardNumberFormField)
 
 

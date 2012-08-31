@@ -1,18 +1,18 @@
 import operator
 from functools import reduce
 
-from django.core.exceptions import SuspiciousOperation, ImproperlyConfigured
-from django.core.paginator import InvalidPage
-from django.db import models
-from django.db.models.fields import FieldDoesNotExist
-from django.utils.datastructures import SortedDict
-from django.utils.encoding import force_str, force_text
-from django.utils.translation import ugettext, ugettext_lazy
-from django.utils.http import urlencode
+from djangocg.core.exceptions import SuspiciousOperation, ImproperlyConfigured
+from djangocg.core.paginator import InvalidPage
+from djangocg.db import models
+from djangocg.db.models.fields import FieldDoesNotExist
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.encoding import force_str, force_text
+from djangocg.utils.translation import ugettext, ugettext_lazy
+from djangocg.utils.http import urlencode
 
-from django.contrib.admin import FieldListFilter
-from django.contrib.admin.options import IncorrectLookupParameters
-from django.contrib.admin.util import (quote, get_fields_from_path,
+from djangocg.contrib.admin import FieldListFilter
+from djangocg.contrib.admin.options import IncorrectLookupParameters
+from djangocg.contrib.admin.util import (quote, get_fields_from_path,
     lookup_needs_distinct, prepare_lookup_value)
 
 # Changelist settings

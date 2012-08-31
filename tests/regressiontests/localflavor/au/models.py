@@ -1,5 +1,5 @@
-from django.contrib.localflavor.au.models import AUStateField, AUPostCodeField
-from django.db import models
+from djangocg.contrib.localflavor.au.models import AUStateField, AUPostCodeField
+from djangocg.db import models
 
 class AustralianPlace(models.Model):
     state = AUStateField(blank=True)

@@ -13,25 +13,25 @@ import tempfile
 import time
 import warnings
 
-from django.conf import settings
-from django.core import management
-from django.core.cache import get_cache, DEFAULT_CACHE_ALIAS
-from django.core.cache.backends.base import (CacheKeyWarning,
+from djangocg.conf import settings
+from djangocg.core import management
+from djangocg.core.cache import get_cache, DEFAULT_CACHE_ALIAS
+from djangocg.core.cache.backends.base import (CacheKeyWarning,
     InvalidCacheBackendError)
-from django.db import router
-from django.http import HttpResponse, HttpRequest, QueryDict
-from django.middleware.cache import (FetchFromCacheMiddleware,
+from djangocg.db import router
+from djangocg.http import HttpResponse, HttpRequest, QueryDict
+from djangocg.middleware.cache import (FetchFromCacheMiddleware,
     UpdateCacheMiddleware, CacheMiddleware)
-from django.template import Template
-from django.template.response import TemplateResponse
-from django.test import TestCase, TransactionTestCase, RequestFactory
-from django.test.utils import (get_warnings_state, restore_warnings_state,
+from djangocg.template import Template
+from djangocg.template.response import TemplateResponse
+from djangocg.test import TestCase, TransactionTestCase, RequestFactory
+from djangocg.test.utils import (get_warnings_state, restore_warnings_state,
     override_settings)
-from django.utils import timezone, translation, unittest
-from django.utils.cache import (patch_vary_headers, get_cache_key,
+from djangocg.utils import timezone, translation, unittest
+from djangocg.utils.cache import (patch_vary_headers, get_cache_key,
     learn_cache_key, patch_cache_control, patch_response_headers)
-from django.utils.encoding import force_text
-from django.views.decorators.cache import cache_page
+from djangocg.utils.encoding import force_text
+from djangocg.views.decorators.cache import cache_page
 
 from .models import Poll, expensive_calculation
 
@@ -47,7 +47,7 @@ class C:
 class DummyCacheTests(unittest.TestCase):
     # The Dummy cache backend doesn't really behave like a test backend,
     # so it has different test requirements.
-    backend_name = 'django.core.cache.backends.dummy.DummyCache'
+    backend_name = 'djangocg.core.cache.backends.dummy.DummyCache'
 
     def setUp(self):
         self.cache = get_cache(self.backend_name)
@@ -791,7 +791,7 @@ def custom_key_func(key, key_prefix, version):
 
 
 class DBCacheTests(BaseCacheTests, TransactionTestCase):
-    backend_name = 'django.core.cache.backends.db.DatabaseCache'
+    backend_name = 'djangocg.core.cache.backends.db.DatabaseCache'
 
     def setUp(self):
         # Spaces are used in the table name to ensure quoting/escaping is working
@@ -804,7 +804,7 @@ class DBCacheTests(BaseCacheTests, TransactionTestCase):
         self.custom_key_cache2 = get_cache(self.backend_name, LOCATION=self._table_name, KEY_FUNCTION='regressiontests.cache.tests.custom_key_func')
 
     def tearDown(self):
-        from django.db import connection
+        from djangocg.db import connection
         cursor = connection.cursor()
         cursor.execute('DROP TABLE %s' % connection.ops.quote_name(self._table_name))
         connection.commit()
@@ -875,7 +875,7 @@ class CreateCacheTableForDBCacheTests(TestCase):
 
 
 class LocMemCacheTests(unittest.TestCase, BaseCacheTests):
-    backend_name = 'django.core.cache.backends.locmem.LocMemCache'
+    backend_name = 'djangocg.core.cache.backends.locmem.LocMemCache'
 
     def setUp(self):
         self.cache = get_cache(self.backend_name, OPTIONS={'MAX_ENTRIES': 30})
@@ -937,14 +937,14 @@ class LocMemCacheTests(unittest.TestCase, BaseCacheTests):
 # need to contain at least one cache backend setting that points at
 # your memcache server.
 @unittest.skipUnless(
-    any(cache['BACKEND'].startswith('django.core.cache.backends.memcached.')
+    any(cache['BACKEND'].startswith('djangocg.core.cache.backends.memcached.')
         for cache in settings.CACHES.values()),
     "memcached not available")
 class MemcachedCacheTests(unittest.TestCase, BaseCacheTests):
 
     def setUp(self):
         for cache_key, cache in settings.CACHES.items():
-            if cache['BACKEND'].startswith('django.core.cache.backends.memcached.'):
+            if cache['BACKEND'].startswith('djangocg.core.cache.backends.memcached.'):
                 break
         random_prefix = ''.join(random.choice(string.ascii_letters) for x in range(10))
         self.cache = get_cache(cache_key)
@@ -976,7 +976,7 @@ class FileBasedCacheTests(unittest.TestCase, BaseCacheTests):
     """
     Specific test cases for the file-based cache.
     """
-    backend_name = 'django.core.cache.backends.filebased.FileBasedCache'
+    backend_name = 'djangocg.core.cache.backends.filebased.FileBasedCache'
 
     def setUp(self):
         self.dirname = tempfile.mkdtemp()
@@ -1041,20 +1041,20 @@ class GetCacheTests(unittest.TestCase):
 
     def test_simple(self):
         cache = get_cache('locmem://')
-        from django.core.cache.backends.locmem import LocMemCache
+        from djangocg.core.cache.backends.locmem import LocMemCache
         self.assertTrue(isinstance(cache, LocMemCache))
 
-        from django.core.cache import cache
+        from djangocg.core.cache import cache
         self.assertTrue(isinstance(cache, get_cache('default').__class__))
 
         cache = get_cache(
-            'django.core.cache.backends.dummy.DummyCache', **{'TIMEOUT': 120})
+            'djangocg.core.cache.backends.dummy.DummyCache', **{'TIMEOUT': 120})
         self.assertEqual(cache.default_timeout, 120)
 
         self.assertRaises(InvalidCacheBackendError, get_cache, 'does_not_exist')
 
     def test_close(self):
-        from django.core import signals
+        from djangocg.core import signals
         cache = get_cache('regressiontests.cache.closeable_cache.CacheClass')
         self.assertFalse(cache.closed)
         signals.request_finished.send(self.__class__)
@@ -1066,13 +1066,13 @@ class GetCacheTests(unittest.TestCase):
         CACHE_MIDDLEWARE_SECONDS=1,
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
             },
         },
         USE_I18N=False,
 )
 class CacheUtils(TestCase):
-    """TestCase for django.utils.cache functions."""
+    """TestCase for djangocg.utils.cache functions."""
 
     def setUp(self):
         self.path = '/cache/test/'
@@ -1171,7 +1171,7 @@ class CacheUtils(TestCase):
 @override_settings(
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
                 'KEY_PREFIX': 'cacheprefix',
             },
         },
@@ -1185,7 +1185,7 @@ class PrefixedCacheUtils(CacheUtils):
         CACHE_MIDDLEWARE_KEY_PREFIX='test',
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
             },
         },
 )
@@ -1245,7 +1245,7 @@ class CacheHEADTest(TestCase):
         CACHE_MIDDLEWARE_KEY_PREFIX='settingsprefix',
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
             },
         },
         LANGUAGES=(
@@ -1421,7 +1421,7 @@ class CacheI18nTest(TestCase):
 @override_settings(
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
                 'KEY_PREFIX': 'cacheprefix'
             },
         },
@@ -1441,10 +1441,10 @@ def hello_world_view(request, value):
         CACHE_MIDDLEWARE_ANONYMOUS_ONLY=False,
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
             },
             'other': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
                 'LOCATION': 'other',
                 'TIMEOUT': '1',
             },
@@ -1461,7 +1461,7 @@ class CacheMiddlewareTest(TestCase):
         self.other_cache = get_cache('other')
         self.save_warnings_state()
         warnings.filterwarnings('ignore', category=DeprecationWarning,
-            module='django.views.decorators.cache')
+            module='djangocg.views.decorators.cache')
 
     def tearDown(self):
         self.restore_warnings_state()
@@ -1489,7 +1489,7 @@ class CacheMiddlewareTest(TestCase):
 
         self.assertEqual(as_view_decorator.cache_timeout, 300) # Timeout value for 'default' cache, i.e. 300
         self.assertEqual(as_view_decorator.key_prefix, '')
-        self.assertEqual(as_view_decorator.cache_alias, 'default') # Value of DEFAULT_CACHE_ALIAS from django.core.cache
+        self.assertEqual(as_view_decorator.cache_alias, 'default') # Value of DEFAULT_CACHE_ALIAS from djangocg.core.cache
         self.assertEqual(as_view_decorator.cache_anonymous_only, False)
 
         # Next, test with custom values:
@@ -1536,8 +1536,8 @@ class CacheMiddlewareTest(TestCase):
         CACHE_MIDDLEWARE_ANONYMOUS_ONLY if nothing else has accessed the
         session. Refs 13283 """
 
-        from django.contrib.sessions.middleware import SessionMiddleware
-        from django.contrib.auth.middleware import AuthenticationMiddleware
+        from djangocg.contrib.sessions.middleware import SessionMiddleware
+        from djangocg.contrib.auth.middleware import AuthenticationMiddleware
 
         middleware = CacheMiddleware()
         session_middleware = SessionMiddleware()
@@ -1680,7 +1680,7 @@ class CacheMiddlewareTest(TestCase):
         CACHE_MIDDLEWARE_SECONDS=1,
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
             },
         },
         USE_I18N=False,

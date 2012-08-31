@@ -1,12 +1,12 @@
-from django.forms import ValidationError
-from django.contrib.gis.gdal import HAS_GDAL
-from django.contrib.gis.tests.utils import HAS_SPATIALREFSYS
-from django.utils import unittest
+from djangocg.forms import ValidationError
+from djangocg.contrib.gis.gdal import HAS_GDAL
+from djangocg.contrib.gis.tests.utils import HAS_SPATIALREFSYS
+from djangocg.utils import unittest
 
 
 if HAS_SPATIALREFSYS:
-    from django.contrib.gis import forms
-    from django.contrib.gis.geos import GEOSGeometry
+    from djangocg.contrib.gis import forms
+    from djangocg.contrib.gis.geos import GEOSGeometry
 
 @unittest.skipUnless(HAS_GDAL and HAS_SPATIALREFSYS, "GeometryFieldTest needs gdal support and a spatial database")
 class GeometryFieldTest(unittest.TestCase):

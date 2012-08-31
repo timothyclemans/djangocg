@@ -57,7 +57,7 @@ request object, which is not normally accessible from within the template
 context. To fix this, a small adjustment needs to be made to the ``detail``
 view, so that it looks like the following::
 
-    from django.template import RequestContext
+    from djangocg.template import RequestContext
     # ...
     def detail(request, poll_id):
         p = get_object_or_404(Poll, pk=poll_id)
@@ -76,10 +76,10 @@ created a URLconf for the polls application that includes this line::
 We also created a dummy implementation of the ``vote()`` function. Let's
 create a real version. Add the following to ``polls/views.py``::
 
-    from django.shortcuts import get_object_or_404, render_to_response
-    from django.http import HttpResponseRedirect, HttpResponse
-    from django.core.urlresolvers import reverse
-    from django.template import RequestContext
+    from djangocg.shortcuts import get_object_or_404, render_to_response
+    from djangocg.http import HttpResponseRedirect, HttpResponse
+    from djangocg.core.urlresolvers import reverse
+    from djangocg.template import RequestContext
     from polls.models import Choice, Poll
     # ...
     def vote(request, poll_id):
@@ -102,16 +102,16 @@ create a real version. Add the following to ``polls/views.py``::
 
 This code includes a few things we haven't covered yet in this tutorial:
 
-* :attr:`request.POST <django.http.HttpRequest.POST>` is a dictionary-like
+* :attr:`request.POST <djangocg.http.HttpRequest.POST>` is a dictionary-like
   object that lets you access submitted data by key name. In this case,
   ``request.POST['choice']`` returns the ID of the selected choice, as a
-  string. :attr:`request.POST <django.http.HttpRequest.POST>` values are
+  string. :attr:`request.POST <djangocg.http.HttpRequest.POST>` values are
   always strings.
 
   Note that Django also provides :attr:`request.GET
-  <django.http.HttpRequest.GET>` for accessing GET data in the same way --
+  <djangocg.http.HttpRequest.GET>` for accessing GET data in the same way --
   but we're explicitly using :attr:`request.POST
-  <django.http.HttpRequest.POST>` in our code, to ensure that data is only
+  <djangocg.http.HttpRequest.POST>` in our code, to ensure that data is only
   altered via a POST call.
 
 * ``request.POST['choice']`` will raise :exc:`KeyError` if ``choice`` wasn't
@@ -119,24 +119,24 @@ This code includes a few things we haven't covered yet in this tutorial:
   redisplays the poll form with an error message if ``choice`` isn't given.
 
 * After incrementing the choice count, the code returns an
-  :class:`~django.http.HttpResponseRedirect` rather than a normal
-  :class:`~django.http.HttpResponse`.
-  :class:`~django.http.HttpResponseRedirect` takes a single argument: the
+  :class:`~djangocg.http.HttpResponseRedirect` rather than a normal
+  :class:`~djangocg.http.HttpResponse`.
+  :class:`~djangocg.http.HttpResponseRedirect` takes a single argument: the
   URL to which the user will be redirected (see the following point for how
   we construct the URL in this case).
 
   As the Python comment above points out, you should always return an
-  :class:`~django.http.HttpResponseRedirect` after successfully dealing with
+  :class:`~djangocg.http.HttpResponseRedirect` after successfully dealing with
   POST data. This tip isn't specific to Django; it's just good Web
   development practice.
 
-* We are using the :func:`~django.core.urlresolvers.reverse` function in the
-  :class:`~django.http.HttpResponseRedirect` constructor in this example.
+* We are using the :func:`~djangocg.core.urlresolvers.reverse` function in the
+  :class:`~djangocg.http.HttpResponseRedirect` constructor in this example.
   This function helps avoid having to hardcode a URL in the view function.
   It is given the name of the view that we want to pass control to and the
   variable portion of the URL pattern that points to that view. In this
   case, using the URLconf we set up in Tutorial 3, this
-  :func:`~django.core.urlresolvers.reverse` call will return a string like
+  :func:`~djangocg.core.urlresolvers.reverse` call will return a string like
   ::
 
     '/polls/3/results/'
@@ -145,8 +145,8 @@ This code includes a few things we haven't covered yet in this tutorial:
   then call the ``'results'`` view to display the final page. Note that you
   need to use the full name of the view here (including the prefix).
 
-As mentioned in Tutorial 3, ``request`` is a :class:`~django.http.HttpRequest`
-object. For more on :class:`~django.http.HttpRequest` objects, see the
+As mentioned in Tutorial 3, ``request`` is a :class:`~djangocg.http.HttpRequest`
+object. For more on :class:`~djangocg.http.HttpRequest` objects, see the
 :doc:`request and response documentation </ref/request-response>`.
 
 After somebody votes in a poll, the ``vote()`` view redirects to the results
@@ -218,7 +218,7 @@ Read on for details.
 First, open the ``polls/urls.py`` URLconf. It looks like this, according to the
 tutorial so far::
 
-    from django.conf.urls import patterns, include, url
+    from djangocg.conf.urls import patterns, include, url
 
     urlpatterns = patterns('polls.views',
         url(r'^$', 'index'),
@@ -229,8 +229,8 @@ tutorial so far::
 
 Change it like so::
 
-    from django.conf.urls import patterns, include, url
-    from django.views.generic import DetailView, ListView
+    from djangocg.conf.urls import patterns, include, url
+    from djangocg.views.generic import DetailView, ListView
     from polls.models import Poll
 
     urlpatterns = patterns('',
@@ -254,15 +254,15 @@ Change it like so::
     )
 
 We're using two generic views here:
-:class:`~django.views.generic.list.ListView` and
-:class:`~django.views.generic.detail.DetailView`. Respectively, those
+:class:`~djangocg.views.generic.list.ListView` and
+:class:`~djangocg.views.generic.detail.DetailView`. Respectively, those
 two views abstract the concepts of "display a list of objects" and
 "display a detail page for a particular type of object."
 
 * Each generic view needs to know what model it will be acting
   upon. This is provided using the ``model`` parameter.
 
-* The :class:`~django.views.generic.list.DetailView` generic view
+* The :class:`~djangocg.views.generic.list.DetailView` generic view
   expects the primary key value captured from the URL to be called
   ``"pk"``, so we've changed ``poll_id`` to ``pk`` for the generic
   views.
@@ -271,12 +271,12 @@ two views abstract the concepts of "display a list of objects" and
   so that we have a way to refer to their URL later on (see the
   documentation about :ref:`naming URL patterns
   <naming-url-patterns>` for information). We're also using the
-  :func:`~django.conf.urls.url` function from
-  :mod:`django.conf.urls` here. It's a good habit to use
-  :func:`~django.conf.urls.url` when you are providing a
+  :func:`~djangocg.conf.urls.url` function from
+  :mod:`djangocg.conf.urls` here. It's a good habit to use
+  :func:`~djangocg.conf.urls.url` when you are providing a
   pattern name like this.
 
-By default, the :class:`~django.views.generic.list.DetailView` generic
+By default, the :class:`~djangocg.views.generic.list.DetailView` generic
 view uses a template called ``<app name>/<model name>_detail.html``.
 In our case, it'll use the template ``"polls/poll_detail.html"``. The
 ``template_name`` argument is used to tell Django to use a specific
@@ -284,12 +284,12 @@ template name instead of the autogenerated default template name. We
 also specify the ``template_name`` for the ``results`` list view --
 this ensures that the results view and the detail view have a
 different appearance when rendered, even though they're both a
-:class:`~django.views.generic.list.DetailView` behind the scenes.
+:class:`~djangocg.views.generic.list.DetailView` behind the scenes.
 
-Similarly, the :class:`~django.views.generic.list.ListView` generic
+Similarly, the :class:`~djangocg.views.generic.list.ListView` generic
 view uses a default template called ``<app name>/<model
 name>_list.html``; we use ``template_name`` to tell
-:class:`~django.views.generic.list.ListView` to use our existing
+:class:`~djangocg.views.generic.list.ListView` to use our existing
 ``"polls/index.html"`` template.
 
 In previous parts of the tutorial, the templates have been provided
@@ -310,9 +310,9 @@ been replaced by generic views.
 
 The last thing to do is fix the URL handling to account for the use of
 generic views. In the vote view above, we used the
-:func:`~django.core.urlresolvers.reverse` function to avoid
+:func:`~djangocg.core.urlresolvers.reverse` function to avoid
 hard-coding our URLs. Now that we've switched to a generic view, we'll
-need to change the :func:`~django.core.urlresolvers.reverse` call to
+need to change the :func:`~djangocg.core.urlresolvers.reverse` call to
 point back to our new generic view. We can't simply use the view
 function anymore -- generic views can be (and are) used multiple times
 -- but we can use the name we've given::

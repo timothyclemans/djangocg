@@ -1,6 +1,6 @@
-from django.contrib.gis.geos.geometry import GEOSGeometry, wkt_regex, hex_regex
+from djangocg.contrib.gis.geos.geometry import GEOSGeometry, wkt_regex, hex_regex
 
-from django.utils import six
+from djangocg.utils import six
 
 def fromfile(file_h):
     """

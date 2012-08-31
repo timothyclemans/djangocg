@@ -1,12 +1,12 @@
 import warnings
-from django.conf import settings, UserSettingsHolder
-from django.core import mail
-from django.test.signals import template_rendered, setting_changed
-from django.template import Template, loader, TemplateDoesNotExist
-from django.template.loaders import cached
-from django.utils.translation import deactivate
-from django.utils.functional import wraps
-from django.utils import six
+from djangocg.conf import settings, UserSettingsHolder
+from djangocg.core import mail
+from djangocg.test.signals import template_rendered, setting_changed
+from djangocg.template import Template, loader, TemplateDoesNotExist
+from djangocg.template.loaders import cached
+from djangocg.utils.translation import deactivate
+from djangocg.utils.functional import wraps
+from djangocg.utils import six
 
 
 __all__ = (
@@ -72,7 +72,7 @@ def setup_test_environment():
     Template._render = instrumented_test_render
 
     mail.original_email_backend = settings.EMAIL_BACKEND
-    settings.EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+    settings.EMAIL_BACKEND = 'djangocg.core.mail.backends.locmem.EmailBackend'
 
     mail.outbox = []
 
@@ -184,7 +184,7 @@ class override_settings(object):
         self.disable()
 
     def __call__(self, test_func):
-        from django.test import TransactionTestCase
+        from djangocg.test import TransactionTestCase
         if isinstance(test_func, type) and issubclass(test_func, TransactionTestCase):
             original_pre_setup = test_func._pre_setup
             original_post_teardown = test_func._post_teardown

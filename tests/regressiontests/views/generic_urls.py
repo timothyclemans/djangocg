@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from django.conf.urls import patterns, url
-from django.views.generic import RedirectView
+from djangocg.conf.urls import patterns, url
+from djangocg.views.generic import RedirectView
 
 from . import views
 from .models import Article, DateArticle, UrlArticle
@@ -28,8 +28,8 @@ numeric_days_info_dict = dict(date_based_info_dict, day_format='%d')
 date_based_datefield_info_dict = dict(date_based_info_dict, queryset=DateArticle.objects.all())
 
 urlpatterns = patterns('',
-    (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
-    (r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
+    (r'^accounts/login/$', 'djangocg.contrib.auth.views.login', {'template_name': 'login.html'}),
+    (r'^accounts/logout/$', 'djangocg.contrib.auth.views.logout'),
 
     # Special URLs for particular regression cases.
     url('^中文/$', 'regressiontests.views.views.redirect'),

@@ -2,9 +2,9 @@ import sys
 import os
 from optparse import make_option, OptionParser
 
-from django.conf import settings
-from django.core.management.base import BaseCommand
-from django.test.utils import get_runner
+from djangocg.conf import settings
+from djangocg.core.management.base import BaseCommand
+from djangocg.test.utils import get_runner
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
@@ -58,8 +58,8 @@ class Command(BaseCommand):
                             option_list=options)
 
     def handle(self, *test_labels, **options):
-        from django.conf import settings
-        from django.test.utils import get_runner
+        from djangocg.conf import settings
+        from djangocg.test.utils import get_runner
 
         TestRunner = get_runner(settings, options.get('testrunner'))
         options['verbosity'] = int(options.get('verbosity'))

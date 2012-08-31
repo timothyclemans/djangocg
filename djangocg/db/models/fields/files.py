@@ -2,15 +2,15 @@ import datetime
 import os
 
 from django import forms
-from django.db.models.fields import Field
-from django.core.exceptions import ValidationError
-from django.core.files.base import File
-from django.core.files.storage import default_storage
-from django.core.files.images import ImageFile
-from django.db.models import signals
-from django.utils.encoding import force_str, force_text
-from django.utils import six
-from django.utils.translation import ugettext_lazy as _
+from djangocg.db.models.fields import Field
+from djangocg.core.exceptions import ValidationError
+from djangocg.core.files.base import File
+from djangocg.core.files.storage import default_storage
+from djangocg.core.files.images import ImageFile
+from djangocg.db.models import signals
+from djangocg.utils.encoding import force_str, force_text
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext_lazy as _
 
 class FieldFile(File):
     def __init__(self, instance, field, name):

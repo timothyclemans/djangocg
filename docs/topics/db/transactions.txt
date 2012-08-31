@@ -2,7 +2,7 @@
 Managing database transactions
 ==============================
 
-.. module:: django.db.transaction
+.. module:: djangocg.db.transaction
 
 Django gives you a few ways to control how database transactions are managed,
 if you're using a database that supports transactions.
@@ -35,11 +35,11 @@ To activate this feature, just add the ``TransactionMiddleware`` middleware to
 your :setting:`MIDDLEWARE_CLASSES` setting::
 
     MIDDLEWARE_CLASSES = (
-        'django.middleware.cache.UpdateCacheMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.common.CommonMiddleware',
-        'django.middleware.transaction.TransactionMiddleware',
-        'django.middleware.cache.FetchFromCacheMiddleware',
+        'djangocg.middleware.cache.UpdateCacheMiddleware',
+        'djangocg.contrib.sessions.middleware.SessionMiddleware',
+        'djangocg.middleware.common.CommonMiddleware',
+        'djangocg.middleware.transaction.TransactionMiddleware',
+        'djangocg.middleware.cache.FetchFromCacheMiddleware',
     )
 
 The order is quite important. The transaction middleware applies not only to
@@ -48,9 +48,9 @@ you use the session middleware after the transaction middleware, session
 creation will be part of the transaction.
 
 The various cache middlewares are an exception:
-:class:`~django.middleware.cache.CacheMiddleware`,
-:class:`~django.middleware.cache.UpdateCacheMiddleware`, and
-:class:`~django.middleware.cache.FetchFromCacheMiddleware` are never affected.
+:class:`~djangocg.middleware.cache.CacheMiddleware`,
+:class:`~djangocg.middleware.cache.UpdateCacheMiddleware`, and
+:class:`~djangocg.middleware.cache.FetchFromCacheMiddleware` are never affected.
 Even when using database caching, Django's cache backend uses its own
 database cursor (which is mapped to its own database connection internally).
 
@@ -71,14 +71,14 @@ Controlling transaction management in views
 
 For most people, implicit request-based transactions work wonderfully. However,
 if you need more fine-grained control over how transactions are managed, you can
-use a set of functions in ``django.db.transaction`` to control transactions on a
+use a set of functions in ``djangocg.db.transaction`` to control transactions on a
 per-function or per-code-block basis.
 
 These functions, described in detail below, can be used in two different ways:
 
 * As a decorator_ on a particular function. For example::
 
-    from django.db import transaction
+    from djangocg.db import transaction
 
     @transaction.commit_on_success
     def viewfunc(request):
@@ -88,7 +88,7 @@ These functions, described in detail below, can be used in two different ways:
 
 * As a `context manager`_ around a particular block of code::
 
-    from django.db import transaction
+    from djangocg.db import transaction
 
     def viewfunc(request):
         # ...
@@ -124,7 +124,7 @@ managers, too.
 
     Example::
 
-        from django.db import transaction
+        from djangocg.db import transaction
 
         @transaction.autocommit
         def viewfunc(request):
@@ -144,7 +144,7 @@ managers, too.
     Use the ``commit_on_success`` decorator to use a single transaction for all
     the work done in a function::
 
-        from django.db import transaction
+        from djangocg.db import transaction
 
         @transaction.commit_on_success
         def viewfunc(request):
@@ -169,7 +169,7 @@ managers, too.
 
     Manual transaction management looks like this::
 
-        from django.db import transaction
+        from djangocg.db import transaction
 
         @transaction.commit_manually
         def viewfunc(request):
@@ -272,7 +272,7 @@ Savepoints are controlled by three methods on the transaction object:
 
 The following example demonstrates the use of savepoints::
 
-    from django.db import transaction
+    from djangocg.db import transaction
 
     @transaction.commit_manually
     def viewfunc(request):

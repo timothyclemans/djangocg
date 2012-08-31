@@ -1,20 +1,20 @@
 from __future__ import unicode_literals
 
 from django import forms
-from django.contrib.admin.util import (flatten_fieldsets, lookup_field,
+from djangocg.contrib.admin.util import (flatten_fieldsets, lookup_field,
     display_for_field, label_for_field, help_text_for_field)
-from django.contrib.admin.templatetags.admin_static import static
-from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ObjectDoesNotExist
-from django.db.models.fields.related import ManyToManyRel
-from django.forms.util import flatatt
-from django.template.defaultfilters import capfirst
-from django.utils.encoding import force_text, smart_text
-from django.utils.html import conditional_escape, format_html
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
+from djangocg.contrib.admin.templatetags.admin_static import static
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.db.models.fields.related import ManyToManyRel
+from djangocg.forms.util import flatatt
+from djangocg.template.defaultfilters import capfirst
+from djangocg.utils.encoding import force_text, smart_text
+from djangocg.utils.html import conditional_escape, format_html
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.conf import settings
 
 
 ACTION_CHECKBOX_NAME = '_selected_action'
@@ -93,7 +93,7 @@ class Fieldset(object):
 
 class Fieldline(object):
     def __init__(self, form, field, readonly_fields=None, model_admin=None):
-        self.form = form # A django.forms.Form instance
+        self.form = form # A djangocg.forms.Form instance
         if not hasattr(field, "__iter__") or isinstance(field, six.text_type):
             self.fields = [field]
         else:
@@ -116,7 +116,7 @@ class Fieldline(object):
 
 class AdminField(object):
     def __init__(self, form, field, is_first):
-        self.field = form[field] # A django.forms.BoundField instance
+        self.field = form[field] # A djangocg.forms.BoundField instance
         self.is_first = is_first # Whether this field is first on the line
         self.is_checkbox = isinstance(self.field.field.widget, forms.CheckboxInput)
 
@@ -169,8 +169,8 @@ class AdminReadonlyField(object):
                            capfirst(force_text(label)))
 
     def contents(self):
-        from django.contrib.admin.templatetags.admin_list import _boolean_icon
-        from django.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
+        from djangocg.contrib.admin.templatetags.admin_list import _boolean_icon
+        from djangocg.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
         field, obj, model_admin = self.field['field'], self.form.instance, self.model_admin
         try:
             f, attr, value = lookup_field(field, obj, model_admin)
@@ -299,11 +299,11 @@ class InlineAdminForm(AdminForm):
             return ""
 
     def deletion_field(self):
-        from django.forms.formsets import DELETION_FIELD_NAME
+        from djangocg.forms.formsets import DELETION_FIELD_NAME
         return AdminField(self.form, DELETION_FIELD_NAME, False)
 
     def ordering_field(self):
-        from django.forms.formsets import ORDERING_FIELD_NAME
+        from djangocg.forms.formsets import ORDERING_FIELD_NAME
         return AdminField(self.form, ORDERING_FIELD_NAME, False)
 
 class InlineFieldset(Fieldset):

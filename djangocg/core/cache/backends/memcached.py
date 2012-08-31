@@ -3,10 +3,10 @@
 import time
 from threading import local
 
-from django.core.cache.backends.base import BaseCache, InvalidCacheBackendError
+from djangocg.core.cache.backends.base import BaseCache, InvalidCacheBackendError
 
-from django.utils import six
-from django.utils.encoding import force_str
+from djangocg.utils import six
+from djangocg.utils.encoding import force_str
 
 class BaseMemcachedCache(BaseCache):
     def __init__(self, server, params, library, value_not_found_exception):

@@ -6,7 +6,7 @@ import copy
 import types
 import warnings
 
-warnings.warn("django.utils.copycompat is deprecated; use the native copy module instead",
+warnings.warn("djangocg.utils.copycompat is deprecated; use the native copy module instead",
               DeprecationWarning)
 
 # Monkeypatch copy's deepcopy registry to handle functions correctly.

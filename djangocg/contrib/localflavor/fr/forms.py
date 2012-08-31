@@ -5,12 +5,12 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.contrib.localflavor.fr.fr_department import DEPARTMENT_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import CharField, RegexField, Select
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.fr.fr_department import DEPARTMENT_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import CharField, RegexField, Select
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 phone_digits_re = re.compile(r'^0\d(\s|\.)?(\d{2}(\s|\.)?){3}\d{2}$')

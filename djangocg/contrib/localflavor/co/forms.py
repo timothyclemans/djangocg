@@ -4,8 +4,8 @@ Colombian-specific form helpers.
 
 from __future__ import absolute_import
 
-from django.contrib.localflavor.co.co_departments import DEPARTMENT_CHOICES
-from django.forms.fields import Select
+from djangocg.contrib.localflavor.co.co_departments import DEPARTMENT_CHOICES
+from djangocg.forms.fields import Select
 
 
 class CODepartmentSelect(Select):

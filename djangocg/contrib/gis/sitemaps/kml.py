@@ -1,7 +1,7 @@
-from django.core import urlresolvers
-from django.contrib.sitemaps import Sitemap
-from django.contrib.gis.db.models.fields import GeometryField
-from django.db import models
+from djangocg.core import urlresolvers
+from djangocg.contrib.sitemaps import Sitemap
+from djangocg.contrib.gis.db.models.fields import GeometryField
+from djangocg.db import models
 
 class KMLSitemap(Sitemap):
     """
@@ -53,7 +53,7 @@ class KMLSitemap(Sitemap):
         return self.locations
 
     def location(self, obj):
-        return urlresolvers.reverse('django.contrib.gis.sitemaps.views.%s' % self.geo_format,
+        return urlresolvers.reverse('djangocg.contrib.gis.sitemaps.views.%s' % self.geo_format,
                                     kwargs={'label' : obj[0], 
                                             'model' : obj[1],
                                             'field_name': obj[2],

@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from djangocg.http import HttpResponse
 from .models import Person
 
 

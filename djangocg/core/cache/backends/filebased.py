@@ -5,12 +5,12 @@ import os
 import shutil
 import time
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from djangocg.utils.six.moves import cPickle as pickle
 except ImportError:
     import pickle
 
-from django.core.cache.backends.base import BaseCache
-from django.utils.encoding import force_bytes
+from djangocg.core.cache.backends.base import BaseCache
+from djangocg.utils.encoding import force_bytes
 
 class FileBasedCache(BaseCache):
     def __init__(self, dir, params):

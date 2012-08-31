@@ -1,10 +1,10 @@
-from django.db.models.fields import Field
-from django.db.models.sql.expressions import SQLEvaluator
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.gis import forms
-from django.contrib.gis.db.models.proxy import GeometryProxy
-from django.contrib.gis.geometry.backend import Geometry, GeometryException
-from django.utils import six
+from djangocg.db.models.fields import Field
+from djangocg.db.models.sql.expressions import SQLEvaluator
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.contrib.gis import forms
+from djangocg.contrib.gis.db.models.proxy import GeometryProxy
+from djangocg.contrib.gis.geometry.backend import Geometry, GeometryException
+from djangocg.utils import six
 
 # Local cache of the spatial_ref_sys table, which holds SRID data for each
 # spatial database alias. This cache exists so that the database isn't queried

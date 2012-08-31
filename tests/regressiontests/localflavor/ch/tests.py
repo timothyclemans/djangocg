@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.ch.forms import (CHZipCodeField,
+from djangocg.contrib.localflavor.ch.forms import (CHZipCodeField,
     CHPhoneNumberField, CHIdentityCardNumberField, CHStateSelect)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class CHLocalFlavorTests(SimpleTestCase):

@@ -1,18 +1,18 @@
 from __future__ import unicode_literals
 
-from django.core.urlresolvers import reverse
-from django.http import QueryDict
-from django.test import TestCase
+from djangocg.core.urlresolvers import reverse
+from djangocg.http import QueryDict
+from djangocg.test import TestCase
 
-from django.contrib.auth.models import User
+from djangocg.contrib.auth.models import User
 
-from django.contrib.formtools.wizard.views import (NamedUrlSessionWizardView,
+from djangocg.contrib.formtools.wizard.views import (NamedUrlSessionWizardView,
                                                    NamedUrlCookieWizardView)
-from django.contrib.formtools.tests.wizard.forms import get_request, Step1, Step2
+from djangocg.contrib.formtools.tests.wizard.forms import get_request, Step1, Step2
 
 
 class NamedWizardTests(object):
-    urls = 'django.contrib.formtools.tests.wizard.namedwizardtests.urls'
+    urls = 'djangocg.contrib.formtools.tests.wizard.namedwizardtests.urls'
 
     def setUp(self):
         self.testuser, created = User.objects.get_or_create(username='testuser1')
@@ -339,7 +339,7 @@ class NamedCookieWizardTests(NamedWizardTests, TestCase):
 
 
 class NamedFormTests(object):
-    urls = 'django.contrib.formtools.tests.wizard.namedwizardtests.urls'
+    urls = 'djangocg.contrib.formtools.tests.wizard.namedwizardtests.urls'
 
     def test_revalidation(self):
         request = get_request()

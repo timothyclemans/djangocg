@@ -10,10 +10,10 @@ from __future__ import unicode_literals
 
 from datetime import date, datetime, timedelta
 
-from django.test.utils import str_prefix
-from django.utils.tzinfo import LocalTimezone, FixedOffset
-from django.utils.safestring import mark_safe
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.test.utils import str_prefix
+from djangocg.utils.tzinfo import LocalTimezone, FixedOffset
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 # These two classes are used to test auto-escaping of __unicode__ output.
 @python_2_unicode_compatible

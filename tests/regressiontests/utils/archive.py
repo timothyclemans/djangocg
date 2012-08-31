@@ -1,9 +1,9 @@
 import os
 import shutil
 import tempfile
-from django.utils import unittest
+from djangocg.utils import unittest
 
-from django.utils.archive import Archive, extract
+from djangocg.utils.archive import Archive, extract
 
 
 TEST_DIR = os.path.join(os.path.dirname(__file__), 'archives')

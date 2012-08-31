@@ -1,5 +1,5 @@
-from django.conf.urls import patterns, url
-from django.contrib.formtools.tests.wizard.namedwizardtests.forms import (
+from djangocg.conf.urls import patterns, url
+from djangocg.contrib.formtools.tests.wizard.namedwizardtests.forms import (
     SessionContactWizard, CookieContactWizard, Page1, Page2, Page3, Page4)
 
 def get_named_session_wizard():

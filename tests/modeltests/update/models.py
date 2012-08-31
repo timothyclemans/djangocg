@@ -3,9 +3,9 @@ Tests for the update() queryset method that allows in-place, multi-object
 updates.
 """
 
-from django.db import models
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils import six
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible

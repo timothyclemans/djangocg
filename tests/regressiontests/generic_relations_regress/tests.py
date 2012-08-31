@@ -1,5 +1,5 @@
-from django.db.models import Q
-from django.test import TestCase
+from djangocg.db.models import Q
+from djangocg.test import TestCase
 
 from .models import (Address, Place, Restaurant, Link, CharLink, TextLink,
     Person, Contact, Note, Organization, OddRelation1, OddRelation2)

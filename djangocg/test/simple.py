@@ -1,14 +1,14 @@
 import unittest as real_unittest
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.db.models import get_app, get_apps
-from django.test import _doctest as doctest
-from django.test.utils import setup_test_environment, teardown_test_environment
-from django.test.testcases import OutputChecker, DocTestRunner
-from django.utils import unittest
-from django.utils.importlib import import_module
-from django.utils.module_loading import module_has_submodule
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db.models import get_app, get_apps
+from djangocg.test import _doctest as doctest
+from djangocg.test.utils import setup_test_environment, teardown_test_environment
+from djangocg.test.testcases import OutputChecker, DocTestRunner
+from djangocg.utils import unittest
+from djangocg.utils.importlib import import_module
+from djangocg.utils.module_loading import module_has_submodule
 
 __all__ = ('DjangoTestSuiteRunner')
 
@@ -266,7 +266,7 @@ class DjangoTestSuiteRunner(object):
         return reorder_suite(suite, (unittest.TestCase,))
 
     def setup_databases(self, **kwargs):
-        from django.db import connections, DEFAULT_DB_ALIAS
+        from djangocg.db import connections, DEFAULT_DB_ALIAS
 
         # First pass -- work out which databases actually need to be created,
         # and which ones are test mirrors or duplicate entries in DATABASES

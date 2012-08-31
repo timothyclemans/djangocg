@@ -14,7 +14,7 @@ or implicit commits or rollbacks.
 
 from functools import wraps
 
-from django.db import connections, DEFAULT_DB_ALIAS
+from djangocg.db import connections, DEFAULT_DB_ALIAS
 
 
 class TransactionManagementError(Exception):

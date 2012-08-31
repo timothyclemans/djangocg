@@ -1,11 +1,11 @@
 from __future__ import absolute_import
 
-from django.core.exceptions import ImproperlyConfigured
-from django.db import connection, connections, transaction, DEFAULT_DB_ALIAS
-from django.db.transaction import commit_on_success, commit_manually, TransactionManagementError
-from django.test import TransactionTestCase, skipUnlessDBFeature
-from django.test.utils import override_settings
-from django.utils.unittest import skipIf, skipUnless
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db import connection, connections, transaction, DEFAULT_DB_ALIAS
+from djangocg.db.transaction import commit_on_success, commit_manually, TransactionManagementError
+from djangocg.test import TransactionTestCase, skipUnlessDBFeature
+from djangocg.test.utils import override_settings
+from djangocg.utils.unittest import skipIf, skipUnless
 
 from .models import Mod, M2mA, M2mB
 
@@ -139,7 +139,7 @@ class TestTransactionClosing(TransactionTestCase):
         transactions were only marked "dirty" by the save() function after it successfully
         wrote the object to the database.
         """
-        from django.contrib.auth.models import User
+        from djangocg.contrib.auth.models import User
 
         @transaction.commit_on_success
         def create_system_user():
@@ -158,7 +158,7 @@ class TestTransactionClosing(TransactionTestCase):
         except:
             pass
         else:
-            raise ImproperlyConfigured('Unique constraint not enforced on django.contrib.auth.models.User')
+            raise ImproperlyConfigured('Unique constraint not enforced on djangocg.contrib.auth.models.User')
 
         try:
             # Try to read the database. If the last transaction was indeed closed,

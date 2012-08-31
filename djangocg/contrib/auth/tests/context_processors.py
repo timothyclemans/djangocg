@@ -1,11 +1,11 @@
 import os
 
-from django.conf import global_settings
-from django.contrib.auth import authenticate
-from django.db.models import Q
-from django.template import context
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.conf import global_settings
+from djangocg.contrib.auth import authenticate
+from djangocg.db.models import Q
+from djangocg.template import context
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 
 @override_settings(
@@ -13,13 +13,13 @@ from django.test.utils import override_settings
             os.path.join(os.path.dirname(__file__), 'templates'),
         ),
     USE_TZ=False,                           # required for loading the fixture
-    PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',),
+    PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',),
 )
 class AuthContextProcessorTests(TestCase):
     """
-    Tests for the ``django.contrib.auth.context_processors.auth`` processor
+    Tests for the ``djangocg.contrib.auth.context_processors.auth`` processor
     """
-    urls = 'django.contrib.auth.tests.urls'
+    urls = 'djangocg.contrib.auth.tests.urls'
     fixtures = ['context-processors-users.xml']
 
     @override_settings(

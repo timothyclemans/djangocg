@@ -1,10 +1,10 @@
 from functools import wraps
 from operator import attrgetter
 
-from django.db import connections, transaction, IntegrityError
-from django.db.models import signals, sql
-from django.utils.datastructures import SortedDict
-from django.utils import six
+from djangocg.db import connections, transaction, IntegrityError
+from djangocg.db.models import signals, sql
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils import six
 
 
 class ProtectedError(IntegrityError):

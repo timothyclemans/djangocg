@@ -3,9 +3,9 @@ Base/mixin classes for the spatial backend database operations and the
 `SpatialRefSys` model the backend.
 """
 import re
-from django.contrib.gis import gdal
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.gis import gdal
+from djangocg.utils import six
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 class BaseSpatialOperations(object):
     """

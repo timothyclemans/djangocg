@@ -1,20 +1,20 @@
 import os
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.contrib.flatpages.models import FlatPage
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.flatpages.models import FlatPage
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 
 @override_settings(
     LOGIN_URL='/accounts/login/',
     MIDDLEWARE_CLASSES=(
-        'django.middleware.common.CommonMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        # no 'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+        'djangocg.middleware.common.CommonMiddleware',
+        'djangocg.contrib.sessions.middleware.SessionMiddleware',
+        'djangocg.middleware.csrf.CsrfViewMiddleware',
+        'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+        'djangocg.contrib.messages.middleware.MessageMiddleware',
+        # no 'djangocg.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
     ),
     TEMPLATE_DIRS=(
         os.path.join(os.path.dirname(__file__), 'templates'),
@@ -23,7 +23,7 @@ from django.test.utils import override_settings
 )
 class FlatpageViewTests(TestCase):
     fixtures = ['sample_flatpages', 'example_site']
-    urls = 'django.contrib.flatpages.tests.urls'
+    urls = 'djangocg.contrib.flatpages.tests.urls'
 
     def test_view_flatpage(self):
         "A flatpage can be served through a view"
@@ -76,12 +76,12 @@ class FlatpageViewTests(TestCase):
     APPEND_SLASH = True,
     LOGIN_URL='/accounts/login/',
     MIDDLEWARE_CLASSES=(
-        'django.middleware.common.CommonMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        # no 'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+        'djangocg.middleware.common.CommonMiddleware',
+        'djangocg.contrib.sessions.middleware.SessionMiddleware',
+        'djangocg.middleware.csrf.CsrfViewMiddleware',
+        'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+        'djangocg.contrib.messages.middleware.MessageMiddleware',
+        # no 'djangocg.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
     ),
     TEMPLATE_DIRS=(
         os.path.join(os.path.dirname(__file__), 'templates'),
@@ -90,7 +90,7 @@ class FlatpageViewTests(TestCase):
 )
 class FlatpageViewAppendSlashTests(TestCase):
     fixtures = ['sample_flatpages', 'example_site']
-    urls = 'django.contrib.flatpages.tests.urls'
+    urls = 'djangocg.contrib.flatpages.tests.urls'
 
     def test_redirect_view_flatpage(self):
         "A flatpage can be served through a view and should add a slash"

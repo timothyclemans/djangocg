@@ -2,12 +2,12 @@ from __future__ import unicode_literals
 
 import os
 
-from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse, clear_url_caches
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.template import Template, Context
-from django.utils import translation
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.urlresolvers import reverse, clear_url_caches
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.template import Template, Context
+from djangocg.utils import translation
 
 
 @override_settings(
@@ -25,8 +25,8 @@ from django.utils import translation
         ('pt-br', 'Brazilian Portuguese'),
     ),
     MIDDLEWARE_CLASSES=(
-        'django.middleware.locale.LocaleMiddleware',
-        'django.middleware.common.CommonMiddleware',
+        'djangocg.middleware.locale.LocaleMiddleware',
+        'djangocg.middleware.common.CommonMiddleware',
     ),
 )
 class URLTestCaseBase(TestCase):

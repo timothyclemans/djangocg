@@ -1,7 +1,7 @@
-from django.conf import settings
-from django.core.handlers.wsgi import WSGIHandler
-from django.test import RequestFactory
-from django.utils import unittest
+from djangocg.conf import settings
+from djangocg.core.handlers.wsgi import WSGIHandler
+from djangocg.test import RequestFactory
+from djangocg.utils import unittest
 
 
 class HandlerTests(unittest.TestCase):

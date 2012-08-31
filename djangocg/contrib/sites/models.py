@@ -1,6 +1,6 @@
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 SITE_CACHE = {}
@@ -14,11 +14,11 @@ class SiteManager(models.Manager):
         project's settings. The ``Site`` object is cached the first
         time it's retrieved from the database.
         """
-        from django.conf import settings
+        from djangocg.conf import settings
         try:
             sid = settings.SITE_ID
         except AttributeError:
-            from django.core.exceptions import ImproperlyConfigured
+            from djangocg.core.exceptions import ImproperlyConfigured
             raise ImproperlyConfigured("You're using the Django \"sites framework\" without having set the SITE_ID setting. Create a site in your database and set the SITE_ID setting to fix this error.")
         try:
             current_site = SITE_CACHE[sid]

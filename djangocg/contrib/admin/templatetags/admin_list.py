@@ -2,23 +2,23 @@ from __future__ import unicode_literals
 
 import datetime
 
-from django.contrib.admin.util import (lookup_field, display_for_field,
+from djangocg.contrib.admin.util import (lookup_field, display_for_field,
     display_for_value, label_for_field)
-from django.contrib.admin.views.main import (ALL_VAR, EMPTY_CHANGELIST_VALUE,
+from djangocg.contrib.admin.views.main import (ALL_VAR, EMPTY_CHANGELIST_VALUE,
     ORDER_VAR, PAGE_VAR, SEARCH_VAR)
-from django.contrib.admin.templatetags.admin_static import static
-from django.core.exceptions import ObjectDoesNotExist
-from django.db import models
-from django.utils import formats
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.text import capfirst
-from django.utils.translation import ugettext as _
-from django.utils.encoding import smart_text, force_text
-from django.template import Library
-from django.template.loader import get_template
-from django.template.context import Context
+from djangocg.contrib.admin.templatetags.admin_static import static
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.db import models
+from djangocg.utils import formats
+from djangocg.utils.html import format_html
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.text import capfirst
+from djangocg.utils.translation import ugettext as _
+from djangocg.utils.encoding import smart_text, force_text
+from djangocg.template import Library
+from djangocg.template.loader import get_template
+from djangocg.template.context import Context
 
 register = Library()
 

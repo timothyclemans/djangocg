@@ -27,7 +27,7 @@ Activate the admin site
 The Django admin site is not activated by default -- it's an opt-in thing. To
 activate the admin site for your installation, do these three things:
 
-* Uncomment ``"django.contrib.admin"`` in the :setting:`INSTALLED_APPS` setting.
+* Uncomment ``"djangocg.contrib.admin"`` in the :setting:`INSTALLED_APPS` setting.
 
 * Run ``python manage.py syncdb``. Since you have added a new application
   to :setting:`INSTALLED_APPS`, the database tables need to be updated.
@@ -40,10 +40,10 @@ activate the admin site for your installation, do these three things:
 
   .. parsed-literal::
 
-      from django.conf.urls import patterns, include, url
+      from djangocg.conf.urls import patterns, include, url
 
       # Uncomment the next two lines to enable the admin:
-      **from django.contrib import admin**
+      **from djangocg.contrib import admin**
       **admin.autodiscover()**
 
       urlpatterns = patterns('',
@@ -52,7 +52,7 @@ activate the admin site for your installation, do these three things:
           # url(r'^{{ project_name }}/', include('{{ project_name }}.foo.urls')),
 
           # Uncomment the admin/doc line below to enable admin documentation:
-          # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+          # url(r'^admin/doc/', include('djangocg.contrib.admindocs.urls')),
 
           # Uncomment the next line to enable the admin:
           **url(r'^admin/', include(admin.site.urls)),**
@@ -113,7 +113,7 @@ Just one thing to do: We need to tell the admin that ``Poll``
 objects have an admin interface. To do this, create a file called
 ``admin.py`` in your ``polls`` directory, and edit it to look like this::
 
-    from django.contrib import admin
+    from djangocg.contrib import admin
     from polls.models import Poll
 
     admin.site.register(Poll)
@@ -147,12 +147,12 @@ Things to note here:
 
 * The form is automatically generated from the Poll model.
 
-* The different model field types (:class:`~django.db.models.DateTimeField`,
-  :class:`~django.db.models.CharField`) correspond to the appropriate HTML
+* The different model field types (:class:`~djangocg.db.models.DateTimeField`,
+  :class:`~djangocg.db.models.CharField`) correspond to the appropriate HTML
   input widget. Each type of field knows how to display itself in the Django
   admin.
 
-* Each :class:`~django.db.models.DateTimeField` gets free JavaScript
+* Each :class:`~djangocg.db.models.DateTimeField` gets free JavaScript
   shortcuts. Dates get a "Today" shortcut and calendar popup, and times get
   a "Now" shortcut and a convenient popup that lists commonly entered times.
 
@@ -265,7 +265,7 @@ looks like this:
    :alt: Choice admin page
 
 In that form, the "Poll" field is a select box containing every poll in the
-database. Django knows that a :class:`~django.db.models.ForeignKey` should be
+database. Django knows that a :class:`~djangocg.db.models.ForeignKey` should be
 represented in the admin as a ``<select>`` box. In our case, only one poll
 exists at this point.
 
@@ -283,7 +283,7 @@ It'd be better if you could add a bunch of Choices directly when you create the
 Remove the ``register()`` call for the ``Choice`` model. Then, edit the ``Poll``
 registration code to read::
 
-    from django.contrib import admin
+    from djangocg.contrib import admin
     from polls.models import Choice, Poll
 
     class ChoiceInline(admin.StackedInline):
@@ -398,7 +398,7 @@ That adds a "Filter" sidebar that lets people filter the change list by the
    :alt: Polls change list page, updated
 
 The type of filter displayed depends on the type of field you're filtering on.
-Because ``pub_date`` is a :class:`~django.db.models.fields.DateTimeField`,
+Because ``pub_date`` is a :class:`~djangocg.db.models.fields.DateTimeField`,
 Django knows to give appropriate filter options: "Any date," "Today," "Past 7
 days," "This month," "This year."
 
@@ -467,7 +467,7 @@ above, then copy ``django/contrib/admin/templates/admin/base_site.html`` to
         import sys
         sys.path = sys.path[1:]
         import django
-        print(django.__path__)"
+        print(djangocg.__path__)"
 
 Then, just edit the file and replace the generic Django text with your own
 site's name as you see fit.

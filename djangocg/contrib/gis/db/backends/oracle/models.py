@@ -7,9 +7,9 @@
  For example, the `USER_SDO_GEOM_METADATA` is used for the GeometryColumns
  model and the `SDO_COORD_REF_SYS` is used for the SpatialRefSys model.
 """
-from django.contrib.gis.db import models
-from django.contrib.gis.db.backends.base import SpatialRefSysMixin
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.gis.db import models
+from djangocg.contrib.gis.db.backends.base import SpatialRefSysMixin
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class GeometryColumns(models.Model):

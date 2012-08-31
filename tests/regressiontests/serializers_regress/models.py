@@ -5,10 +5,10 @@ This class sets up a model for each model field type
 (except for image types, because of the PIL dependency).
 """
 
-from django.db import models
-from django.contrib.contenttypes import generic
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.localflavor.us.models import USStateField, PhoneNumberField
+from djangocg.db import models
+from djangocg.contrib.contenttypes import generic
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib.localflavor.us.models import USStateField, PhoneNumberField
 
 # The following classes are for testing basic data
 # marshalling, including NULL values, where allowed.

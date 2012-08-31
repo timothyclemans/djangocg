@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.core.exceptions import FieldError
-from django.test import TestCase
+from djangocg.core.exceptions import FieldError
+from djangocg.test import TestCase
 
 from .models import Author, Article
 

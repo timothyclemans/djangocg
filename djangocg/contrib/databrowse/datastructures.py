@@ -4,12 +4,12 @@ convenience functionality and permalink functions for the databrowse app.
 """
 from __future__ import unicode_literals
 
-from django.db import models
-from django.utils import formats
-from django.utils.text import capfirst
-from django.utils.encoding import smart_text, force_str, iri_to_uri
-from django.db.models.query import QuerySet
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils import formats
+from djangocg.utils.text import capfirst
+from djangocg.utils.encoding import smart_text, force_str, iri_to_uri
+from djangocg.db.models.query import QuerySet
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 EMPTY_VALUE = '(None)'
 DISPLAY_SIZE = 100

@@ -1,11 +1,11 @@
 import locale
 import traceback
 
-from django.contrib.auth.management.commands import createsuperuser
-from django.contrib.auth.models import User, AnonymousUser
-from django.core.management import call_command
-from django.test import TestCase
-from django.utils.six import StringIO
+from djangocg.contrib.auth.management.commands import createsuperuser
+from djangocg.contrib.auth.models import User, AnonymousUser
+from djangocg.core.management import call_command
+from djangocg.test import TestCase
+from djangocg.utils.six import StringIO
 
 
 class BasicTestCase(TestCase):

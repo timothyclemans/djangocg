@@ -1,8 +1,8 @@
 from datetime import datetime
-from django.conf.urls import patterns, url
-from django.contrib.sitemaps import Sitemap, GenericSitemap, FlatPageSitemap, views
-from django.contrib.auth.models import User
-from django.views.decorators.cache import cache_page
+from djangocg.conf.urls import patterns, url
+from djangocg.contrib.sitemaps import Sitemap, GenericSitemap, FlatPageSitemap, views
+from djangocg.contrib.auth.models import User
+from djangocg.views.decorators.cache import cache_page
 
 class SimpleSitemap(Sitemap):
     changefreq = "never"
@@ -25,7 +25,7 @@ flatpage_sitemaps = {
     'flatpages': FlatPageSitemap,
 }
 
-urlpatterns = patterns('django.contrib.sitemaps.views',
+urlpatterns = patterns('djangocg.contrib.sitemaps.views',
     (r'^simple/index\.xml$', 'index', {'sitemaps': simple_sitemaps}),
     (r'^simple/custom-index\.xml$', 'index',
         {'sitemaps': simple_sitemaps, 'template_name': 'custom_sitemap_index.xml'}),

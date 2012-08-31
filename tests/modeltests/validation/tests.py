@@ -1,8 +1,8 @@
 from __future__ import absolute_import, unicode_literals
 
 from django import forms
-from django.core.exceptions import NON_FIELD_ERRORS
-from django.test import TestCase
+from djangocg.core.exceptions import NON_FIELD_ERRORS
+from djangocg.test import TestCase
 
 from . import ValidationTestCase
 from .models import (Author, Article, ModelToValidate,

@@ -864,7 +864,7 @@ an attribute "description," you could use::
     {% regroup cities by country.description as country_list %}
 
 Or, if ``country`` is a field with ``choices``, it will have a
-:meth:`^django.db.models.Model.get_FOO_display` method available as an
+:meth:`^djangocg.db.models.Model.get_FOO_display` method available as an
 attribute, allowing  you to group on the display string rather than the
 ``choices`` key::
 
@@ -1004,7 +1004,7 @@ refer to the name of the pattern in the ``url`` tag instead of using the
 path to the view.
 
 Note that if the URL you're reversing doesn't exist, you'll get an
-:exc:`^django.core.urlresolvers.NoReverseMatch` exception raised, which will
+:exc:`^djangocg.core.urlresolvers.NoReverseMatch` exception raised, which will
 cause your site to display an error page.
 
 If you'd like to retrieve a URL without displaying it, you can use a slightly
@@ -2304,13 +2304,13 @@ Django comes with a couple of other template-tag libraries that you have to
 enable explicitly in your :setting:`INSTALLED_APPS` setting and enable in your
 template with the :ttag:`{% load %}<load>` tag.
 
-django.contrib.humanize
+djangocg.contrib.humanize
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 A set of Django template filters useful for adding a "human touch" to data. See
 :doc:`/ref/contrib/humanize`.
 
-django.contrib.markup
+djangocg.contrib.markup
 ^^^^^^^^^^^^^^^^^^^^^
 
 A collection of template filters that implement these common markup languages:
@@ -2321,7 +2321,7 @@ A collection of template filters that implement these common markup languages:
 
 See the :doc:`markup documentation </ref/contrib/markup>`.
 
-django.contrib.webdesign
+djangocg.contrib.webdesign
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 A collection of template tags that can be useful while designing a Web site,
@@ -2339,7 +2339,7 @@ static
 
 To link to static files that are saved in :setting:`STATIC_ROOT` Django ships
 with a :ttag:`static` template tag. You can use this regardless if you're
-using :class:`~django.template.RequestContext` or not.
+using :class:`~djangocg.template.RequestContext` or not.
 
 .. code-block:: html+django
 
@@ -2367,7 +2367,7 @@ slightly different call::
 
 .. note::
 
-    The :mod:`staticfiles<django.contrib.staticfiles>` contrib app also ships
+    The :mod:`staticfiles<djangocg.contrib.staticfiles>` contrib app also ships
     with a :ttag:`static template tag<staticfiles-static>` which uses
     ``staticfiles'`` :setting:`STATICFILES_STORAGE` to build the URL of the
     given path. Use that instead if you have an advanced use case such as
@@ -2383,7 +2383,7 @@ get_static_prefix
 
 .. highlight:: html+django
 
-If you're not using :class:`~django.template.RequestContext`, or if you need
+If you're not using :class:`~djangocg.template.RequestContext`, or if you need
 more control over exactly where and how :setting:`STATIC_URL` is injected
 into the template, you can use the :ttag:`get_static_prefix` template tag
 instead::

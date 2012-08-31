@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 from warnings import catch_warnings
 
-from django.forms import *
-from django.test import TestCase
-from django.utils.translation import ugettext_lazy, override
+from djangocg.forms import *
+from djangocg.test import TestCase
+from djangocg.utils.translation import ugettext_lazy, override
 
 from regressiontests.forms.models import Cheese
 
@@ -72,7 +72,7 @@ class FormsRegressionsTestCase(TestCase):
             self.assertHTMLEqual(f.as_p(), '<ul class="errorlist"><li>\u041e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u043e\u043b\u0435.</li></ul>\n<p><label for="id_somechoice_0">\xc5\xf8\xdf:</label> <ul>\n<li><label for="id_somechoice_0"><input type="radio" id="id_somechoice_0" value="\xc5" name="somechoice" /> En tied\xe4</label></li>\n<li><label for="id_somechoice_1"><input type="radio" id="id_somechoice_1" value="\xf8" name="somechoice" /> Mies</label></li>\n<li><label for="id_somechoice_2"><input type="radio" id="id_somechoice_2" value="\xdf" name="somechoice" /> Nainen</label></li>\n</ul></p>')
 
         # Deep copying translated text shouldn't raise an error)
-        from django.utils.translation import gettext_lazy
+        from djangocg.utils.translation import gettext_lazy
 
         class CopyForm(Form):
             degree = IntegerField(widget=Select(choices=((1, gettext_lazy('test')),)))
@@ -106,7 +106,7 @@ class FormsRegressionsTestCase(TestCase):
         # might be presented in non-HTML contexts. Instead, the message is just marked
         # for escaping by the template engine. So we'll need to construct a little
         # silly template to trigger the escaping.
-        from django.template import Template, Context
+        from djangocg.template import Template, Context
         t = Template('{{ form.errors }}')
 
         class SomeForm(Form):

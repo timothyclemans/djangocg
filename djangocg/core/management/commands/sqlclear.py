@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 from optparse import make_option
 
-from django.core.management.base import AppCommand
-from django.core.management.sql import sql_delete
-from django.db import connections, DEFAULT_DB_ALIAS
+from djangocg.core.management.base import AppCommand
+from djangocg.core.management.sql import sql_delete
+from djangocg.db import connections, DEFAULT_DB_ALIAS
 
 class Command(AppCommand):
     help = "Prints the DROP TABLE SQL statements for the given app name(s)."

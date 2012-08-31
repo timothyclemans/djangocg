@@ -71,12 +71,12 @@ FileField no longer deletes files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In earlier Django versions, when a model instance containing a
-:class:`~django.db.models.FileField` was deleted,
-:class:`~django.db.models.FileField` took it upon itself to also delete the
+:class:`~djangocg.db.models.FileField` was deleted,
+:class:`~djangocg.db.models.FileField` took it upon itself to also delete the
 file from the backend storage. This opened the door to several potentially
 serious data-loss scenarios, including rolled-back transactions and fields on
 different models referencing the same file. In Django 1.2.5,
-:class:`~django.db.models.FileField` will never delete files from the backend
+:class:`~djangocg.db.models.FileField` will never delete files from the backend
 storage. If you need cleanup of orphaned files, you'll need to handle it
 yourself (for instance, with a custom management command that can be run
 manually or scheduled to run periodically via e.g. cron).

@@ -4,16 +4,16 @@ import os
 import re
 import shutil
 
-from django.core import management
-from django.test import TestCase
-from django.utils.six import StringIO
+from djangocg.core import management
+from djangocg.test import TestCase
+from djangocg.utils.six import StringIO
 
 
 LOCALE='de'
 
 class ExtractorTests(TestCase):
 
-    PO_FILE='locale/%s/LC_MESSAGES/django.po' % LOCALE
+    PO_FILE='locale/%s/LC_MESSAGES/djangocg.po' % LOCALE
 
     def setUp(self):
         self._cwd = os.getcwd()

@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from django.core.exceptions import ImproperlyConfigured
-from django.test import TestCase
-from django.views.generic.base import View
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test import TestCase
+from djangocg.views.generic.base import View
 
 from .models import Author, Artist
 

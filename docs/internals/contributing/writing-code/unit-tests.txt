@@ -35,7 +35,7 @@ with this sample ``settings`` module, ``cd`` into the Django
 
     ./runtests.py --settings=test_sqlite
 
-If you get an ``ImportError: No module named django.contrib`` error,
+If you get an ``ImportError: No module named djangocg.contrib`` error,
 you need to add your install of Django to your ``PYTHONPATH``.
 
 Using another ``settings`` module
@@ -51,7 +51,7 @@ and type:
 
 .. code-block:: bash
 
-    ./runtests.py --settings=path.to.django.settings
+    ./runtests.py --settings=path.to.djangocg.settings
 
 The :setting:`DATABASES` setting in this test settings module needs to define
 two databases:

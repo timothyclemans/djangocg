@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
 
 import hashlib
-from django.template import Library, Node, TemplateSyntaxError, Variable, VariableDoesNotExist
-from django.template import resolve_variable
-from django.core.cache import cache
-from django.utils.encoding import force_bytes
-from django.utils.http import urlquote
+from djangocg.template import Library, Node, TemplateSyntaxError, Variable, VariableDoesNotExist
+from djangocg.template import resolve_variable
+from djangocg.core.cache import cache
+from djangocg.utils.encoding import force_bytes
+from djangocg.utils.http import urlquote
 
 register = Library()
 

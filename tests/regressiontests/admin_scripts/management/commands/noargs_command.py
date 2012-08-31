@@ -1,4 +1,4 @@
-from django.core.management.base import NoArgsCommand
+from djangocg.core.management.base import NoArgsCommand
 
 
 class Command(NoArgsCommand):

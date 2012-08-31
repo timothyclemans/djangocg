@@ -2,8 +2,8 @@
 Various edge-cases for model managers.
 """
 
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class OnlyFred(models.Manager):

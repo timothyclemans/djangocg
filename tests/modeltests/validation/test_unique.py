@@ -2,9 +2,9 @@ from __future__ import absolute_import, unicode_literals
 
 import datetime
 
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-from django.utils import unittest
+from djangocg.core.exceptions import ValidationError
+from djangocg.test import TestCase
+from djangocg.utils import unittest
 
 from .models import (CustomPKModel, UniqueTogetherModel, UniqueFieldsModel,
     UniqueForDateModel, ModelToValidate, Post, FlexibleDatePost,

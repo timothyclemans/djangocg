@@ -10,11 +10,11 @@ except ImportError:     # Python 2
     from urllib import quote
     from urlparse import urlsplit, urlunsplit
 
-from django.utils.safestring import SafeData, mark_safe
-from django.utils.encoding import force_bytes, force_text
-from django.utils.functional import allow_lazy
-from django.utils import six
-from django.utils.text import normalize_newlines
+from djangocg.utils.safestring import SafeData, mark_safe
+from djangocg.utils.encoding import force_bytes, force_text
+from djangocg.utils.functional import allow_lazy
+from djangocg.utils import six
+from djangocg.utils.text import normalize_newlines
 
 # Configuration for urlize() function.
 TRAILING_PUNCTUATION = ['.', ',', ':', ';', '.)']
@@ -255,7 +255,7 @@ def clean_html(text):
         * Remove stuff like "<p>&nbsp;&nbsp;</p>", but only if it's at the
           bottom of the text.
     """
-    from django.utils.text import normalize_newlines
+    from djangocg.utils.text import normalize_newlines
     text = normalize_newlines(force_text(text))
     text = re.sub(r'<(/?)\s*b\s*>', '<\\1strong>', text)
     text = re.sub(r'<(/?)\s*i\s*>', '<\\1em>', text)

@@ -7,14 +7,14 @@ import zipfile
 from optparse import make_option
 import traceback
 
-from django.conf import settings
-from django.core import serializers
-from django.core.management.base import BaseCommand, CommandError
-from django.core.management.color import no_style
-from django.db import (connections, router, transaction, DEFAULT_DB_ALIAS,
+from djangocg.conf import settings
+from djangocg.core import serializers
+from djangocg.core.management.base import BaseCommand, CommandError
+from djangocg.core.management.color import no_style
+from djangocg.db import (connections, router, transaction, DEFAULT_DB_ALIAS,
       IntegrityError, DatabaseError)
-from django.db.models import get_apps
-from django.utils.encoding import force_text
+from djangocg.db.models import get_apps
+from djangocg.utils.encoding import force_text
 from itertools import product
 
 try:

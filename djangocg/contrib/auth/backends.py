@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
 
-from django.contrib.auth.models import User, Permission
+from djangocg.contrib.auth.models import User, Permission
 
 
 class ModelBackend(object):
     """
-    Authenticates against django.contrib.auth.models.User.
+    Authenticates against djangocg.contrib.auth.models.User.
     """
 
     # TODO: Model, login attribute name and password attribute name should be

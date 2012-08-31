@@ -1,13 +1,13 @@
 from __future__ import unicode_literals
 
-from django.core.exceptions import ImproperlyConfigured
-from django.core.servers.basehttp import get_internal_wsgi_application
-from django.core.wsgi import get_wsgi_application
-from django.test import TestCase
-from django.test.client import RequestFactory
-from django.test.utils import override_settings
-from django.utils import six
-from django.utils import unittest
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.servers.basehttp import get_internal_wsgi_application
+from djangocg.core.wsgi import get_wsgi_application
+from djangocg.test import TestCase
+from djangocg.test.client import RequestFactory
+from djangocg.test.utils import override_settings
+from djangocg.utils import six
+from djangocg.utils import unittest
 
 
 class WSGITest(TestCase):
@@ -70,7 +70,7 @@ class GetInternalWSGIApplicationTest(unittest.TestCase):
         fake_app = object()
         def mock_get_wsgi_app():
             return fake_app
-        from django.core.servers import basehttp
+        from djangocg.core.servers import basehttp
         _orig_get_wsgi_app = basehttp.get_wsgi_application
         basehttp.get_wsgi_application = mock_get_wsgi_app
 

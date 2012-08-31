@@ -2,10 +2,10 @@ from __future__ import unicode_literals
 
 import time
 
-from django.core import signing
-from django.test import TestCase
-from django.utils.encoding import force_str
-from django.utils import six
+from djangocg.core import signing
+from djangocg.test import TestCase
+from djangocg.utils.encoding import force_str
+from djangocg.utils import six
 
 
 class TestSigner(TestCase):

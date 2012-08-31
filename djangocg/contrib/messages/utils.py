@@ -1,5 +1,5 @@
-from django.conf import settings
-from django.contrib.messages import constants
+from djangocg.conf import settings
+from djangocg.contrib.messages import constants
 
 
 def get_level_tags():

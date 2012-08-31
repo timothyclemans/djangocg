@@ -3,11 +3,11 @@ from __future__ import absolute_import
 import os
 import sys
 
-from django.conf import settings
-from django.core.management import call_command
-from django.db.models.loading import cache, load_app
-from django.test import TestCase, TransactionTestCase
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.core.management import call_command
+from djangocg.db.models.loading import cache, load_app
+from djangocg.test import TestCase, TransactionTestCase
+from djangocg.test.utils import override_settings
 
 from .models import (ConcreteModel, ConcreteModelSubclass,
     ConcreteModelSubclassProxy)

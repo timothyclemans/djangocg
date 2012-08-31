@@ -4,11 +4,11 @@ Chile specific form helpers.
 
 from __future__ import absolute_import, unicode_literals
 
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import RegexField, Select
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import smart_text
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import smart_text
 
 from .cl_regions import REGION_CHOICES
 

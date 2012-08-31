@@ -3,10 +3,10 @@ from __future__ import absolute_import
 from copy import deepcopy
 from datetime import datetime
 
-from django.core.exceptions import MultipleObjectsReturned, FieldError
-from django.test import TestCase
-from django.utils import six
-from django.utils.translation import ugettext_lazy
+from djangocg.core.exceptions import MultipleObjectsReturned, FieldError
+from djangocg.test import TestCase
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext_lazy
 
 from .models import Article, Reporter
 

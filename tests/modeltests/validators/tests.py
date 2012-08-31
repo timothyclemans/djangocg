@@ -5,10 +5,10 @@ import re
 import types
 from datetime import datetime, timedelta
 
-from django.core.exceptions import ValidationError
-from django.core.validators import *
-from django.test.utils import str_prefix
-from django.utils.unittest import TestCase
+from djangocg.core.exceptions import ValidationError
+from djangocg.core.validators import *
+from djangocg.test.utils import str_prefix
+from djangocg.utils.unittest import TestCase
 
 
 NOW = datetime.now()
@@ -58,7 +58,7 @@ TEST_DATA = (
     (validate_ipv4_address, '25,1,1,1', ValidationError),
     (validate_ipv4_address, '25.1 .1.1', ValidationError),
 
-    # validate_ipv6_address uses django.utils.ipv6, which
+    # validate_ipv6_address uses djangocg.utils.ipv6, which
     # is tested in much greater detail in it's own testcase
     (validate_ipv6_address, 'fe80::1', None),
     (validate_ipv6_address, '::1', None),

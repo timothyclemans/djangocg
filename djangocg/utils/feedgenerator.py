@@ -3,7 +3,7 @@ Syndication feed generation library -- used for generating RSS, etc.
 
 Sample usage:
 
->>> from django.utils import feedgenerator
+>>> from djangocg.utils import feedgenerator
 >>> feed = feedgenerator.Rss201rev2Feed(
 ...     title="Poynter E-Media Tidbits",
 ...     link="http://www.poynter.org/column.asp?id=31",
@@ -28,12 +28,12 @@ try:
     from urllib.parse import urlparse
 except ImportError:     # Python 2
     from urlparse import urlparse
-from django.utils.xmlutils import SimplerXMLGenerator
-from django.utils.encoding import force_text, iri_to_uri
-from django.utils import datetime_safe
-from django.utils import six
-from django.utils.six import StringIO
-from django.utils.timezone import is_aware
+from djangocg.utils.xmlutils import SimplerXMLGenerator
+from djangocg.utils.encoding import force_text, iri_to_uri
+from djangocg.utils import datetime_safe
+from djangocg.utils import six
+from djangocg.utils.six import StringIO
+from djangocg.utils.timezone import is_aware
 
 def rfc2822_date(date):
     # We can't use strftime() because it produces locale-dependant results, so

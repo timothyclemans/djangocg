@@ -1,4 +1,4 @@
-from django.utils.encoding import smart_text
+from djangocg.utils.encoding import smart_text
 
 def ssn_check_digit(value):
     "Calculate Italian social security number check digit."

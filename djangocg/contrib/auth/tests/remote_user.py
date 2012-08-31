@@ -1,17 +1,17 @@
 from datetime import datetime
 
-from django.conf import settings
-from django.contrib.auth.backends import RemoteUserBackend
-from django.contrib.auth.models import User
-from django.test import TestCase
-from django.utils import timezone
+from djangocg.conf import settings
+from djangocg.contrib.auth.backends import RemoteUserBackend
+from djangocg.contrib.auth.models import User
+from djangocg.test import TestCase
+from djangocg.utils import timezone
 
 
 class RemoteUserTest(TestCase):
 
-    urls = 'django.contrib.auth.tests.urls'
-    middleware = 'django.contrib.auth.middleware.RemoteUserMiddleware'
-    backend = 'django.contrib.auth.backends.RemoteUserBackend'
+    urls = 'djangocg.contrib.auth.tests.urls'
+    middleware = 'djangocg.contrib.auth.middleware.RemoteUserMiddleware'
+    backend = 'djangocg.contrib.auth.backends.RemoteUserBackend'
 
     # Usernames to be passed in REMOTE_USER for the test_known_user test case.
     known_user = 'knownuser'
@@ -113,7 +113,7 @@ class RemoteUserNoCreateTest(RemoteUserTest):
     """
 
     backend =\
-        'django.contrib.auth.tests.remote_user.RemoteUserNoCreateBackend'
+        'djangocg.contrib.auth.tests.remote_user.RemoteUserNoCreateBackend'
 
     def test_unknown_user(self):
         num_users = User.objects.count()
@@ -149,7 +149,7 @@ class RemoteUserCustomTest(RemoteUserTest):
     """
 
     backend =\
-        'django.contrib.auth.tests.remote_user.CustomRemoteUserBackend'
+        'djangocg.contrib.auth.tests.remote_user.CustomRemoteUserBackend'
     # REMOTE_USER strings with email addresses for the custom backend to
     # clean.
     known_user = 'knownuser@example.com'

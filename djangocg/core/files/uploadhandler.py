@@ -6,11 +6,11 @@ from __future__ import unicode_literals
 
 from io import BytesIO
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.core.files.uploadedfile import TemporaryUploadedFile, InMemoryUploadedFile
-from django.utils import importlib
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.files.uploadedfile import TemporaryUploadedFile, InMemoryUploadedFile
+from djangocg.utils import importlib
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 __all__ = ['UploadFileException','StopUpload', 'SkipFile', 'FileUploadHandler',
            'TemporaryFileUploadHandler', 'MemoryFileUploadHandler',
@@ -197,7 +197,7 @@ def load_handler(path, *args, **kwargs):
     Given a path to a handler, return an instance of that handler.
 
     E.g.::
-        >>> load_handler('django.core.files.uploadhandler.TemporaryFileUploadHandler', request)
+        >>> load_handler('djangocg.core.files.uploadhandler.TemporaryFileUploadHandler', request)
         <TemporaryFileUploadHandler object at 0x...>
 
     """

@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from django.conf.urls import patterns, url, include
+from djangocg.conf.urls import patterns, url, include
 
 from .namespace_urls import URLObject
 from .views import view_class_instance

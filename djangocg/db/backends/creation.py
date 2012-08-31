@@ -1,9 +1,9 @@
 import sys
 import time
 
-from django.conf import settings
-from django.db.utils import load_backend
-from django.utils.six.moves import input
+from djangocg.conf import settings
+from djangocg.db.utils import load_backend
+from djangocg.utils.six.moves import input
 
 # The prefix to put on the default database name when creating
 # the test database.
@@ -136,7 +136,7 @@ class BaseDatabaseCreation(object):
         """
         Returns any ALTER TABLE statements to add constraints after the fact.
         """
-        from django.db.backends.util import truncate_name
+        from djangocg.db.backends.util import truncate_name
 
         if not model._meta.managed or model._meta.proxy:
             return []
@@ -178,7 +178,7 @@ class BaseDatabaseCreation(object):
         """
         Return the CREATE INDEX SQL statements for a single model field.
         """
-        from django.db.backends.util import truncate_name
+        from djangocg.db.backends.util import truncate_name
 
         if f.db_index and not f.unique:
             qn = self.connection.ops.quote_name
@@ -222,7 +222,7 @@ class BaseDatabaseCreation(object):
         return output
 
     def sql_remove_table_constraints(self, model, references_to_delete, style):
-        from django.db.backends.util import truncate_name
+        from djangocg.db.backends.util import truncate_name
         if not model._meta.managed or model._meta.proxy:
             return []
         output = []
@@ -248,8 +248,8 @@ class BaseDatabaseCreation(object):
         Creates a test database, prompting the user for confirmation if the
         database already exists. Returns the name of the test database created.
         """
-        # Don't import django.core.management if it isn't needed.
-        from django.core.management import call_command
+        # Don't import djangocg.core.management if it isn't needed.
+        from djangocg.core.management import call_command
 
         test_database_name = self._get_test_db_name()
 
@@ -284,8 +284,8 @@ class BaseDatabaseCreation(object):
             interactive=False,
             database=self.connection.alias)
 
-        from django.core.cache import get_cache
-        from django.core.cache.backends.db import BaseDatabaseCache
+        from djangocg.core.cache import get_cache
+        from djangocg.core.cache.backends.db import BaseDatabaseCache
         for cache_alias in settings.CACHES:
             cache = get_cache(cache_alias)
             if isinstance(cache, BaseDatabaseCache):

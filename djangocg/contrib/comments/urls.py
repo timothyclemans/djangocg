@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, url
+from djangocg.conf.urls import patterns, url
 
-urlpatterns = patterns('django.contrib.comments.views',
+urlpatterns = patterns('djangocg.contrib.comments.views',
     url(r'^post/$',          'comments.post_comment',       name='comments-post-comment'),
     url(r'^posted/$',        'comments.comment_done',       name='comments-comment-done'),
     url(r'^flag/(\d+)/$',    'moderation.flag',             name='comments-flag'),
@@ -12,5 +12,5 @@ urlpatterns = patterns('django.contrib.comments.views',
 )
 
 urlpatterns += patterns('',
-    url(r'^cr/(\d+)/(.+)/$', 'django.contrib.contenttypes.views.shortcut', name='comments-url-redirect'),
+    url(r'^cr/(\d+)/(.+)/$', 'djangocg.contrib.contenttypes.views.shortcut', name='comments-url-redirect'),
 )

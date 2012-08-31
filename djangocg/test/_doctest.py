@@ -104,8 +104,8 @@ import sys, traceback, inspect, linecache, os, re
 import unittest, difflib, pdb, tempfile
 import warnings
 
-from django.utils import six
-from django.utils.six.moves import StringIO, xrange
+from djangocg.utils import six
+from djangocg.utils.six.moves import StringIO, xrange
 
 if sys.platform.startswith('java'):
     # On Jython, isclass() reports some modules as classes. Patch it.

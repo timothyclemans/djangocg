@@ -4,7 +4,7 @@
 Geolocation with GeoIP
 ======================
 
-.. module:: django.contrib.gis.geoip
+.. module:: djangocg.contrib.gis.geoip
    :synopsis: High-level Python interface for MaxMind's GeoIP C library.
 
 .. versionchanged:: 1.4
@@ -12,8 +12,8 @@ Geolocation with GeoIP
 .. note::
 
     In Django 1.4, the :class:`GeoIP` object was moved out of
-    :mod:`django.contrib.gis.utils` and into its own module, 
-    :mod:`django.contrib.gis.geoip`. A shortcut is still provided
+    :mod:`djangocg.contrib.gis.utils` and into its own module, 
+    :mod:`djangocg.contrib.gis.geoip`. A shortcut is still provided
     in ``utils``, but will be removed in Django 1.6.
 
 The :class:`GeoIP` object is a ctypes wrapper for the
@@ -40,7 +40,7 @@ Example
 Assuming you have the GeoIP C library installed, here is an example of its
 usage::
 
-     >>> from django.contrib.gis.geoip import GeoIP
+     >>> from djangocg.contrib.gis.geoip import GeoIP
      >>> g = GeoIP()
      >>> g.country('google.com')
      {'country_code': 'US', 'country_name': 'United States'}
@@ -181,7 +181,7 @@ Returns a coordinate tuple of (latitude, longitude),
 
 .. method:: GeoIP.geos(query)
 
-Returns a :class:`django.contrib.gis.geos.Point` object corresponding to the query.
+Returns a :class:`djangocg.contrib.gis.geos.Point` object corresponding to the query.
 
 Database Information
 --------------------

@@ -3,7 +3,7 @@ Interfaces for serializing Django objects.
 
 Usage::
 
-    from django.core import serializers
+    from djangocg.core import serializers
     json = serializers.serialize("json", some_query_set)
     objects = list(serializers.deserialize("json", json))
 
@@ -16,22 +16,22 @@ To add your own serializers, use the SERIALIZATION_MODULES setting::
 
 """
 
-from django.conf import settings
-from django.utils import importlib
-from django.utils import six
-from django.core.serializers.base import SerializerDoesNotExist
+from djangocg.conf import settings
+from djangocg.utils import importlib
+from djangocg.utils import six
+from djangocg.core.serializers.base import SerializerDoesNotExist
 
 # Built-in serializers
 BUILTIN_SERIALIZERS = {
-    "xml"    : "django.core.serializers.xml_serializer",
-    "python" : "django.core.serializers.python",
-    "json"   : "django.core.serializers.json",
+    "xml"    : "djangocg.core.serializers.xml_serializer",
+    "python" : "djangocg.core.serializers.python",
+    "json"   : "djangocg.core.serializers.json",
 }
 
 # Check for PyYaml and register the serializer if it's available.
 try:
     import yaml
-    BUILTIN_SERIALIZERS["yaml"] = "django.core.serializers.pyyaml"
+    BUILTIN_SERIALIZERS["yaml"] = "djangocg.core.serializers.pyyaml"
 except ImportError:
     pass
 

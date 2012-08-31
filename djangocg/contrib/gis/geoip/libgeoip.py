@@ -1,7 +1,7 @@
 import os
 from ctypes import CDLL
 from ctypes.util import find_library
-from django.conf import settings
+from djangocg.conf import settings
 
 # Creating the settings dictionary with any settings, if needed.
 GEOIP_SETTINGS = dict((key, getattr(settings, key))

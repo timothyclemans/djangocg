@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from django.db import models, IntegrityError
-from django.test import TestCase, skipUnlessDBFeature, skipIfDBFeature
-from django.utils.six.moves import xrange
+from djangocg.db import models, IntegrityError
+from djangocg.test import TestCase, skipUnlessDBFeature, skipIfDBFeature
+from djangocg.utils.six.moves import xrange
 
 from .models import (R, RChild, S, T, U, A, M, MR, MRNull,
     create_a, get_default_r, User, Avatar, HiddenUser, HiddenUserProfile)
@@ -153,7 +153,7 @@ class DeletionTests(TestCase):
         self.assertFalse(m.m2m_through_null.exists())
 
     def test_bulk(self):
-        from django.db.models.sql.constants import GET_ITERATOR_CHUNK_SIZE
+        from djangocg.db.models.sql.constants import GET_ITERATOR_CHUNK_SIZE
         s = S.objects.create(r=R.objects.create())
         for i in xrange(2*GET_ITERATOR_CHUNK_SIZE):
             T.objects.create(s=s)

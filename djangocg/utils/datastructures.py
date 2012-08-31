@@ -1,7 +1,7 @@
 import copy
 import warnings
 from types import GeneratorType
-from django.utils import six
+from djangocg.utils import six
 
 
 class MergeDict(object):

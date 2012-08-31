@@ -5,7 +5,7 @@ Single object mixins
 SingleObjectMixin
 -----------------
 
-.. class:: django.views.generic.detail.SingleObjectMixin
+.. class:: djangocg.views.generic.detail.SingleObjectMixin
 
     Provides a mechanism for looking up an object associated with the
     current HTTP request.
@@ -92,7 +92,7 @@ SingleObjectMixin
 SingleObjectTemplateResponseMixin
 ---------------------------------
 
-.. class:: django.views.generic.detail.SingleObjectTemplateResponseMixin
+.. class:: djangocg.views.generic.detail.SingleObjectTemplateResponseMixin
 
     A mixin class that performs template-based response rendering for views
     that operate upon a single object instance. Requires that the view it is
@@ -103,7 +103,7 @@ SingleObjectTemplateResponseMixin
 
     **Extends**
 
-    * :class:`~django.views.generic.base.TemplateResponseMixin`
+    * :class:`~djangocg.views.generic.base.TemplateResponseMixin`
 
     **Methods and Attributes**
 

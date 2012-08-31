@@ -1,2 +1,2 @@
-from django.forms import *
-from django.contrib.gis.forms.fields import GeometryField
+from djangocg.forms import *
+from djangocg.contrib.gis.forms.fields import GeometryField

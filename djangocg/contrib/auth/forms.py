@@ -1,19 +1,19 @@
 from __future__ import unicode_literals
 
 from django import forms
-from django.forms.util import flatatt
-from django.template import loader
-from django.utils.datastructures import SortedDict
-from django.utils.html import format_html, format_html_join
-from django.utils.http import int_to_base36
-from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext, ugettext_lazy as _
+from djangocg.forms.util import flatatt
+from djangocg.template import loader
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.html import format_html, format_html_join
+from djangocg.utils.http import int_to_base36
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils.translation import ugettext, ugettext_lazy as _
 
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import UNUSABLE_PASSWORD, is_password_usable, identify_hasher
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.models import get_current_site
+from djangocg.contrib.auth import authenticate
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.auth.hashers import UNUSABLE_PASSWORD, is_password_usable, identify_hasher
+from djangocg.contrib.auth.tokens import default_token_generator
+from djangocg.contrib.sites.models import get_current_site
 
 
 UNMASKED_DIGITS_TO_SHOW = 6
@@ -217,7 +217,7 @@ class PasswordResetForm(forms.Form):
         Generates a one-use only link for resetting password and sends to the
         user.
         """
-        from django.core.mail import send_mail
+        from djangocg.core.mail import send_mail
         for user in self.users_cache:
             if not domain_override:
                 current_site = get_current_site(request)

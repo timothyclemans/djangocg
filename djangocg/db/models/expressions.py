@@ -1,5 +1,5 @@
 import datetime
-from django.utils import tree
+from djangocg.utils import tree
 
 class ExpressionNode(tree.Node):
     """

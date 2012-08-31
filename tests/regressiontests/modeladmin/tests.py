@@ -3,20 +3,20 @@ from __future__ import absolute_import, unicode_literals
 from datetime import date
 
 from django import forms
-from django.conf import settings
-from django.contrib.admin.options import (ModelAdmin, TabularInline,
+from djangocg.conf import settings
+from djangocg.contrib.admin.options import (ModelAdmin, TabularInline,
      HORIZONTAL, VERTICAL)
-from django.contrib.admin.sites import AdminSite
-from django.contrib.admin.validation import validate
-from django.contrib.admin.widgets import AdminDateWidget, AdminRadioSelect
-from django.contrib.admin import (SimpleListFilter,
+from djangocg.contrib.admin.sites import AdminSite
+from djangocg.contrib.admin.validation import validate
+from djangocg.contrib.admin.widgets import AdminDateWidget, AdminRadioSelect
+from djangocg.contrib.admin import (SimpleListFilter,
      BooleanFieldListFilter)
-from django.core.exceptions import ImproperlyConfigured
-from django.forms.models import BaseModelFormSet
-from django.forms.widgets import Select
-from django.test import TestCase
-from django.test.utils import str_prefix
-from django.utils import unittest
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.forms.models import BaseModelFormSet
+from djangocg.forms.widgets import Select
+from djangocg.test import TestCase
+from djangocg.test.utils import str_prefix
+from djangocg.utils import unittest
 
 from .models import Band, Concert, ValidationTestModel, ValidationTestInlineModel
 

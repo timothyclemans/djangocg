@@ -12,22 +12,22 @@ except ImportError:     # Python 2
     from urllib import unquote
     from urlparse import urlparse, urlsplit
 
-from django.conf import settings
-from django.contrib.auth import authenticate, login
-from django.core.handlers.base import BaseHandler
-from django.core.handlers.wsgi import WSGIRequest
-from django.core.signals import got_request_exception
-from django.http import SimpleCookie, HttpRequest, QueryDict
-from django.template import TemplateDoesNotExist
-from django.test import signals
-from django.utils.functional import curry
-from django.utils.encoding import force_bytes
-from django.utils.http import urlencode
-from django.utils.importlib import import_module
-from django.utils.itercompat import is_iterable
-from django.utils import six
-from django.db import close_connection
-from django.test.utils import ContextList
+from djangocg.conf import settings
+from djangocg.contrib.auth import authenticate, login
+from djangocg.core.handlers.base import BaseHandler
+from djangocg.core.handlers.wsgi import WSGIRequest
+from djangocg.core.signals import got_request_exception
+from djangocg.http import SimpleCookie, HttpRequest, QueryDict
+from djangocg.template import TemplateDoesNotExist
+from djangocg.test import signals
+from djangocg.utils.functional import curry
+from djangocg.utils.encoding import force_bytes
+from djangocg.utils.http import urlencode
+from djangocg.utils.importlib import import_module
+from djangocg.utils.itercompat import is_iterable
+from djangocg.utils import six
+from djangocg.db import close_connection
+from djangocg.test.utils import ContextList
 
 __all__ = ('Client', 'RequestFactory', 'encode_file', 'encode_multipart')
 
@@ -67,8 +67,8 @@ class ClientHandler(BaseHandler):
         super(ClientHandler, self).__init__(*args, **kwargs)
 
     def __call__(self, environ):
-        from django.conf import settings
-        from django.core import signals
+        from djangocg.conf import settings
+        from djangocg.core import signals
 
         # Set up middleware if needed. We couldn't do this earlier, because
         # settings weren't available.
@@ -341,7 +341,7 @@ class Client(RequestFactory):
         """
         Obtains the current session variables.
         """
-        if 'django.contrib.sessions' in settings.INSTALLED_APPS:
+        if 'djangocg.contrib.sessions' in settings.INSTALLED_APPS:
             engine = import_module(settings.SESSION_ENGINE)
             cookie = self.cookies.get(settings.SESSION_COOKIE_NAME, None)
             if cookie:
@@ -483,7 +483,7 @@ class Client(RequestFactory):
         """
         user = authenticate(**credentials)
         if user and user.is_active \
-                and 'django.contrib.sessions' in settings.INSTALLED_APPS:
+                and 'djangocg.contrib.sessions' in settings.INSTALLED_APPS:
             engine = import_module(settings.SESSION_ENGINE)
 
             # Create a fake request to store login details.

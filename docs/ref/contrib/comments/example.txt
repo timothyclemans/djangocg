@@ -141,8 +141,8 @@ enable it in your project's ``urls.py``:
 
 .. code-block:: python
 
-  from django.conf.urls import patterns, url, include
-  from django.contrib.comments.feeds import LatestCommentFeed
+  from djangocg.conf.urls import patterns, url, include
+  from djangocg.contrib.comments.feeds import LatestCommentFeed
 
   urlpatterns = patterns('',
   # ...
@@ -159,8 +159,8 @@ syndication feed view:
 
 .. code-block:: python
 
-    from django.conf.urls import patterns
-    from django.contrib.comments.feeds import LatestCommentFeed
+    from djangocg.conf.urls import patterns
+    from djangocg.contrib.comments.feeds import LatestCommentFeed
 
     feeds = {
         'latest': LatestCommentFeed,
@@ -168,7 +168,7 @@ syndication feed view:
 
     urlpatterns = patterns('',
     # ...
-        (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',
+        (r'^feeds/(?P<url>.*)/$', 'djangocg.contrib.syndication.views.feed',
             {'feed_dict': feeds}),
     # ...
     )
@@ -195,8 +195,8 @@ following way:
 
 .. code-block:: python
 
-   from django.contrib.comments.moderation import CommentModerator, moderator
-   from django.db import models
+   from djangocg.contrib.comments.moderation import CommentModerator, moderator
+   from djangocg.db import models
 
    class Post(models.Model):
        title   = models.CharField(max_length = 255)

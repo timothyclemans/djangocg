@@ -4,7 +4,7 @@ import codecs
 import os
 import sys
 from optparse import make_option
-from django.core.management.base import BaseCommand, CommandError
+from djangocg.core.management.base import BaseCommand, CommandError
 
 def has_bom(fn):
     with open(fn, 'rb') as f:
@@ -16,7 +16,7 @@ def has_bom(fn):
 def compile_messages(stderr, locale=None):
     basedirs = [os.path.join('conf', 'locale'), 'locale']
     if os.environ.get('DJANGO_SETTINGS_MODULE'):
-        from django.conf import settings
+        from djangocg.conf import settings
         basedirs.extend(settings.LOCALE_PATHS)
 
     # Gather existing directories.

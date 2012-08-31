@@ -2,7 +2,7 @@
 Signals sent by the comments app
 ================================
 
-.. module:: django.contrib.comments.signals
+.. module:: djangocg.contrib.comments.signals
    :synopsis: Signals sent by the comment module.
 
 The comment app sends a series of :doc:`signals </topics/signals>` to allow for
@@ -13,7 +13,7 @@ signals.
 comment_will_be_posted
 ======================
 
-.. data:: django.contrib.comments.signals.comment_will_be_posted
+.. data:: djangocg.contrib.comments.signals.comment_will_be_posted
    :module:
 
 Sent just before a comment will be saved, after it's been sanity checked and
@@ -24,7 +24,7 @@ If any receiver returns ``False`` the comment will be discarded and a 403 (not
 allowed) response will be returned.
 
 This signal is sent at more or less the same time (just before, actually) as the
-``Comment`` object's :data:`~django.db.models.signals.pre_save` signal.
+``Comment`` object's :data:`~djangocg.db.models.signals.pre_save` signal.
 
 Arguments sent with this signal:
 
@@ -37,12 +37,12 @@ Arguments sent with this signal:
     relations might not work correctly yet.
 
 ``request``
-    The :class:`~django.http.HttpRequest` that posted the comment.
+    The :class:`~djangocg.http.HttpRequest` that posted the comment.
 
 comment_was_posted
 ==================
 
-.. data:: django.contrib.comments.signals.comment_was_posted
+.. data:: djangocg.contrib.comments.signals.comment_was_posted
    :module:
 
 Sent just after the comment is saved.
@@ -55,15 +55,15 @@ Arguments sent with this signal:
 ``comment``
     The comment instance that was posted. Note that it will have already
     been saved, so if you modify it you'll need to call
-    :meth:`~django.db.models.Model.save` again.
+    :meth:`~djangocg.db.models.Model.save` again.
 
 ``request``
-    The :class:`~django.http.HttpRequest` that posted the comment.
+    The :class:`~djangocg.http.HttpRequest` that posted the comment.
 
 comment_was_flagged
 ===================
 
-.. data:: django.contrib.comments.signals.comment_was_flagged
+.. data:: djangocg.contrib.comments.signals.comment_was_flagged
    :module:
 
 Sent after a comment was "flagged" in some way. Check the flag to see if this
@@ -78,14 +78,14 @@ Arguments sent with this signal:
 ``comment``
     The comment instance that was posted. Note that it will have already
     been saved, so if you modify it you'll need to call
-    :meth:`~django.db.models.Model.save` again.
+    :meth:`~djangocg.db.models.Model.save` again.
 
 ``flag``
-    The :class:`~django.contrib.comments.models.CommentFlag` that's been
+    The :class:`~djangocg.contrib.comments.models.CommentFlag` that's been
     attached to the comment.
 
 ``created``
     ``True`` if this is a new flag; ``False`` if it's a duplicate flag.
 
 ``request``
-    The :class:`~django.http.HttpRequest` that posted the comment.
+    The :class:`~djangocg.http.HttpRequest` that posted the comment.

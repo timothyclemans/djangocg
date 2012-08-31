@@ -1,6 +1,6 @@
-from django.core.urlresolvers import reverse
+from djangocg.core.urlresolvers import reverse
 from django import template
-from django.contrib.admin.util import quote
+from djangocg.contrib.admin.util import quote
 
 register = template.Library()
 

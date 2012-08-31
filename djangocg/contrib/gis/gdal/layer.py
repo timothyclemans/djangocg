@@ -2,20 +2,20 @@
 from ctypes import c_double, byref
 
 # Other GDAL imports.
-from django.contrib.gis.gdal.base import GDALBase
-from django.contrib.gis.gdal.envelope import Envelope, OGREnvelope
-from django.contrib.gis.gdal.error import OGRException, OGRIndexError, SRSException
-from django.contrib.gis.gdal.feature import Feature
-from django.contrib.gis.gdal.field import OGRFieldTypes
-from django.contrib.gis.gdal.geomtype import OGRGeomType
-from django.contrib.gis.gdal.geometries import OGRGeometry
-from django.contrib.gis.gdal.srs import SpatialReference
+from djangocg.contrib.gis.gdal.base import GDALBase
+from djangocg.contrib.gis.gdal.envelope import Envelope, OGREnvelope
+from djangocg.contrib.gis.gdal.error import OGRException, OGRIndexError, SRSException
+from djangocg.contrib.gis.gdal.feature import Feature
+from djangocg.contrib.gis.gdal.field import OGRFieldTypes
+from djangocg.contrib.gis.gdal.geomtype import OGRGeomType
+from djangocg.contrib.gis.gdal.geometries import OGRGeometry
+from djangocg.contrib.gis.gdal.srs import SpatialReference
 
 # GDAL ctypes function prototypes.
-from django.contrib.gis.gdal.prototypes import ds as capi, geom as geom_api, srs as srs_api
+from djangocg.contrib.gis.gdal.prototypes import ds as capi, geom as geom_api, srs as srs_api
 
-from django.utils import six
-from django.utils.six.moves import xrange
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
 
 # For more information, see the OGR C API source code:
 #  http://www.gdal.org/ogr/ogr__api_8h.html
@@ -199,7 +199,7 @@ class Layer(GDALBase):
         the Layer.
         """
         if geos:
-            from django.contrib.gis.geos import GEOSGeometry
+            from djangocg.contrib.gis.geos import GEOSGeometry
             return [GEOSGeometry(feat.geom.wkb) for feat in self]
         else:
             return [feat.geom for feat in self]

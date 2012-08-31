@@ -1,5 +1,5 @@
-from django.contrib.gis.db.models.sql.compiler import GeoSQLCompiler as BaseGeoSQLCompiler
-from django.db.backends.mysql import compiler
+from djangocg.contrib.gis.db.models.sql.compiler import GeoSQLCompiler as BaseGeoSQLCompiler
+from djangocg.db.backends.mysql import compiler
 
 SQLCompiler = compiler.SQLCompiler
 

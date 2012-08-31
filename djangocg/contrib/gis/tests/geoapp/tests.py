@@ -2,16 +2,16 @@ from __future__ import absolute_import
 
 import re
 
-from django.db import connection
-from django.db.utils import DatabaseError
-from django.contrib.gis import gdal
-from django.contrib.gis.geos import (fromstr, GEOSGeometry,
+from djangocg.db import connection
+from djangocg.db.utils import DatabaseError
+from djangocg.contrib.gis import gdal
+from djangocg.contrib.gis.geos import (fromstr, GEOSGeometry,
     Point, LineString, LinearRing, Polygon, GeometryCollection)
-from django.contrib.gis.tests.utils import (
+from djangocg.contrib.gis.tests.utils import (
     no_mysql, no_oracle, no_spatialite,
     mysql, oracle, postgis, spatialite)
-from django.test import TestCase
-from django.utils import six
+from djangocg.test import TestCase
+from djangocg.utils import six
 
 from .models import Country, City, PennsylvaniaCity, State, Track
 

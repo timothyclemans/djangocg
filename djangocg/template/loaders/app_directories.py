@@ -6,13 +6,13 @@ packages.
 import os
 import sys
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.template.base import TemplateDoesNotExist
-from django.template.loader import BaseLoader
-from django.utils._os import safe_join
-from django.utils.importlib import import_module
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.template.base import TemplateDoesNotExist
+from djangocg.template.loader import BaseLoader
+from djangocg.utils._os import safe_join
+from djangocg.utils.importlib import import_module
+from djangocg.utils import six
 
 # At compile time, cache the directories to search.
 if not six.PY3:

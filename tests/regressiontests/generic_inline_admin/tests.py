@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from django.conf import settings
-from django.contrib import admin
-from django.contrib.admin.sites import AdminSite
-from django.contrib.contenttypes.generic import (
+from djangocg.conf import settings
+from djangocg.contrib import admin
+from djangocg.contrib.admin.sites import AdminSite
+from djangocg.contrib.contenttypes.generic import (
     generic_inlineformset_factory, GenericTabularInline)
-from django.forms.models import ModelForm
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.forms.models import ModelForm
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 # local test models
 from .admin import MediaInline, MediaPermanentInline
@@ -16,7 +16,7 @@ from .models import (Episode, EpisodeExtra, EpisodeMaxNum, Media,
     EpisodePermanent, Category)
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class GenericAdminViewTest(TestCase):
     urls = "regressiontests.generic_inline_admin.urls"
     fixtures = ['users.xml']
@@ -129,7 +129,7 @@ class GenericAdminViewTest(TestCase):
         formset = inline_formset(instance=e)
         self.assertTrue(formset.get_queryset().ordered)
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class GenericInlineAdminParametersTest(TestCase):
     urls = "regressiontests.generic_inline_admin.urls"
     fixtures = ['users.xml']
@@ -183,7 +183,7 @@ class GenericInlineAdminParametersTest(TestCase):
         self.assertEqual(formset.initial_form_count(), 1)
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class GenericInlineAdminWithUniqueTogetherTest(TestCase):
     urls = "regressiontests.generic_inline_admin.urls"
     fixtures = ['users.xml']

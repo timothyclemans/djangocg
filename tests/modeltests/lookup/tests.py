@@ -3,8 +3,8 @@ from __future__ import absolute_import, unicode_literals
 from datetime import datetime
 from operator import attrgetter
 
-from django.core.exceptions import FieldError
-from django.test import TestCase, skipUnlessDBFeature
+from djangocg.core.exceptions import FieldError
+from djangocg.test import TestCase, skipUnlessDBFeature
 
 from .models import Author, Article, Tag, Game, Season, Player
 

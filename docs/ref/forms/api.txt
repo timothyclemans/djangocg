@@ -2,9 +2,9 @@
 The Forms API
 =============
 
-.. module:: django.forms.forms
+.. module:: djangocg.forms.forms
 
-.. currentmodule:: django.forms
+.. currentmodule:: djangocg.forms
 
 .. admonition:: About this document
 
@@ -150,7 +150,7 @@ it's not necessary to include every field in your form. For example::
 These values are only displayed for unbound forms, and they're not used as
 fallback values if a particular value isn't provided.
 
-Note that if a :class:`~django.forms.fields.Field` defines
+Note that if a :class:`~djangocg.forms.fields.Field` defines
 :attr:`~Form.initial` *and* you include ``initial`` when instantiating the
 ``Form``, then the latter ``initial`` will have precedence. In this example,
 ``initial`` is provided both at the field level and at the form instance level,
@@ -176,7 +176,7 @@ data, but also for "cleaning" it -- normalizing it to a consistent format. This
 is a nice feature, because it allows data for a particular field to be input in
 a variety of ways, always resulting in consistent output.
 
-For example, :class:`~django.forms.DateField` normalizes input into a
+For example, :class:`~djangocg.forms.DateField` normalizes input into a
 Python ``datetime.date`` object. Regardless of whether you pass it a string in
 the format ``'1994-07-15'``, a ``datetime.date`` object, or a number of other
 formats, ``DateField`` will always normalize it to a ``datetime.date`` object
@@ -556,11 +556,11 @@ method you're using::
 Customizing the error list format
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default, forms use ``django.forms.util.ErrorList`` to format validation
+By default, forms use ``djangocg.forms.util.ErrorList`` to format validation
 errors. If you'd like to use an alternate class for displaying errors, you can
 pass that in at construction time::
 
-    >>> from django.forms.util import ErrorList
+    >>> from djangocg.forms.util import ErrorList
     >>> class DivErrorList(ErrorList):
     ...     def __unicode__(self):
     ...         return self.as_divs()
@@ -693,7 +693,7 @@ ContactForm to include an ``ImageField`` called ``mugshot``, we
 need to bind the file data containing the mugshot image::
 
     # Bound form with an image field
-    >>> from django.core.files.uploadedfile import SimpleUploadedFile
+    >>> from djangocg.core.files.uploadedfile import SimpleUploadedFile
     >>> data = {'subject': 'hello',
     ...         'message': 'Hi there',
     ...         'sender': 'foo@example.com',

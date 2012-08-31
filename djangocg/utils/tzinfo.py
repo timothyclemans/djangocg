@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import time
 from datetime import timedelta, tzinfo
 
-from django.utils.encoding import force_str, force_text, DEFAULT_LOCALE_ENCODING
+from djangocg.utils.encoding import force_str, force_text, DEFAULT_LOCALE_ENCODING
 
 # Python's doc say: "A tzinfo subclass must have an __init__() method that can
 # be called with no arguments". FixedOffset and LocalTimezone don't honor this
@@ -42,7 +42,7 @@ class FixedOffset(tzinfo):
 # This implementation is used for display purposes. It uses an approximation
 # for DST computations on dates >= 2038.
 
-# A similar implementation exists in django.utils.timezone. It's used for
+# A similar implementation exists in djangocg.utils.timezone. It's used for
 # timezone support (when USE_TZ = True) and focuses on correctness.
 
 class LocalTimezone(tzinfo):

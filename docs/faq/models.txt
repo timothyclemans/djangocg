@@ -9,7 +9,7 @@ How can I see the raw SQL queries Django is running?
 Make sure your Django :setting:`DEBUG` setting is set to ``True``.
 Then, just do this::
 
-    >>> from django.db import connection
+    >>> from djangocg.db import connection
     >>> connection.queries
     [{'sql': 'SELECT polls_polls.id,polls_polls.question,polls_polls.pub_date FROM polls_polls',
     'time': '0.002'}]
@@ -29,7 +29,7 @@ Note that the SQL recorded here may be :ref:`incorrectly quoted under SQLite
 If you are using :doc:`multiple databases</topics/db/multi-db>`, you can use the
 same interface on each member of the ``connections`` dictionary::
 
-    >>> from django.db import connections
+    >>> from djangocg.db import connections
     >>> connections['my_db_alias'].queries
 
 Can I use Django with a pre-existing database?
@@ -89,7 +89,7 @@ allocating more and more memory, with no sign of releasing it, check to make
 sure your :setting:`DEBUG` setting is set to ``False``. If :setting:`DEBUG`
 is ``True``, then Django saves a copy of every SQL statement it has executed.
 
-(The queries are saved in ``django.db.connection.queries``. See
+(The queries are saved in ``djangocg.db.connection.queries``. See
 `How can I see the raw SQL queries Django is running?`_.)
 
 To fix the problem, set :setting:`DEBUG` to ``False``.

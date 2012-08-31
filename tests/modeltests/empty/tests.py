@@ -1,10 +1,10 @@
 from __future__ import absolute_import
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.db.models.loading import get_app
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db.models.loading import get_app
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 from .models import Empty
 

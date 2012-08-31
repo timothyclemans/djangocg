@@ -1,9 +1,9 @@
 import sys
 
-from django.core.management.color import color_style
-from django.utils.encoding import force_str
-from django.utils.itercompat import is_iterable
-from django.utils import six
+from djangocg.core.management.color import color_style
+from djangocg.utils.encoding import force_str
+from djangocg.utils.itercompat import is_iterable
+from djangocg.utils import six
 
 class ModelErrorCollection:
     def __init__(self, outfile=sys.stdout):
@@ -21,11 +21,11 @@ def get_validation_errors(outfile, app=None):
     validates all models of all installed apps. Writes errors, if any, to outfile.
     Returns number of errors.
     """
-    from django.conf import settings
-    from django.db import models, connection
-    from django.db.models.loading import get_app_errors
-    from django.db.models.fields.related import RelatedObject
-    from django.db.models.deletion import SET_NULL, SET_DEFAULT
+    from djangocg.conf import settings
+    from djangocg.db import models, connection
+    from djangocg.db.models.loading import get_app_errors
+    from djangocg.db.models.fields.related import RelatedObject
+    from djangocg.db.models.deletion import SET_NULL, SET_DEFAULT
 
     e = ModelErrorCollection(outfile)
 

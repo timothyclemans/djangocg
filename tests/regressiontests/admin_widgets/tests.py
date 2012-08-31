@@ -4,18 +4,18 @@ from __future__ import absolute_import, unicode_literals
 from datetime import datetime
 
 from django import forms
-from django.conf import settings
-from django.contrib import admin
-from django.contrib.admin import widgets
-from django.contrib.admin.tests import AdminSeleniumWebDriverTestCase
-from django.core.files.storage import default_storage
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.db.models import DateField
-from django.test import TestCase as DjangoTestCase
-from django.test.utils import override_settings
-from django.utils import translation
-from django.utils.html import conditional_escape
-from django.utils.unittest import TestCase
+from djangocg.conf import settings
+from djangocg.contrib import admin
+from djangocg.contrib.admin import widgets
+from djangocg.contrib.admin.tests import AdminSeleniumWebDriverTestCase
+from djangocg.core.files.storage import default_storage
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.db.models import DateField
+from djangocg.test import TestCase as DjangoTestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils import translation
+from djangocg.utils.html import conditional_escape
+from djangocg.utils.unittest import TestCase
 
 from . import models
 from .widgetadmin import site as widget_admin_site
@@ -123,7 +123,7 @@ class AdminFormfieldForDBFieldTests(TestCase):
         self.assertFormfield(models.Album, 'backside_art', widgets.AdminFileWidget)
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class AdminFormfieldForDBFieldWithRequestTests(DjangoTestCase):
     fixtures = ["admin-widgets-users.xml"]
 
@@ -137,7 +137,7 @@ class AdminFormfieldForDBFieldWithRequestTests(DjangoTestCase):
         self.assertContains(response, "Volkswagon Passat")
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class AdminForeignKeyWidgetChangeList(DjangoTestCase):
     fixtures = ["admin-widgets-users.xml"]
     admin_root = '/widget_admin'
@@ -153,7 +153,7 @@ class AdminForeignKeyWidgetChangeList(DjangoTestCase):
         self.assertContains(response, '%s/auth/user/add/' % self.admin_root)
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class AdminForeignKeyRawIdWidget(DjangoTestCase):
     fixtures = ["admin-widgets-users.xml"]
     admin_root = '/widget_admin'
@@ -415,7 +415,7 @@ class RelatedFieldWidgetWrapperTests(DjangoTestCase):
 
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class DateTimePickerSeleniumFirefoxTests(AdminSeleniumWebDriverTestCase):
     webdriver_class = 'selenium.webdriver.firefox.webdriver.WebDriver'
     fixtures = ['admin-widgets-users.xml']
@@ -471,7 +471,7 @@ class DateTimePickerSeleniumIETests(DateTimePickerSeleniumFirefoxTests):
     webdriver_class = 'selenium.webdriver.ie.webdriver.WebDriver'
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class HorizontalVerticalFilterSeleniumFirefoxTests(AdminSeleniumWebDriverTestCase):
     webdriver_class = 'selenium.webdriver.firefox.webdriver.WebDriver'
     fixtures = ['admin-widgets-users.xml']

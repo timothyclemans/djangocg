@@ -14,10 +14,10 @@ try:
 except ImportError:     # Python 2
     from urllib import unquote
 
-from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseNotModified
-from django.template import loader, Template, Context, TemplateDoesNotExist
-from django.utils.http import http_date, parse_http_date
-from django.utils.translation import ugettext as _, ugettext_noop
+from djangocg.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseNotModified
+from djangocg.template import loader, Template, Context, TemplateDoesNotExist
+from djangocg.utils.http import http_date, parse_http_date
+from djangocg.utils.translation import ugettext as _, ugettext_noop
 
 def serve(request, path, document_root=None, show_indexes=False):
     """
@@ -25,7 +25,7 @@ def serve(request, path, document_root=None, show_indexes=False):
 
     To use, put a URL pattern such as::
 
-        (r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root' : '/path/to/my/files/'})
+        (r'^(?P<path>.*)$', 'djangocg.views.static.serve', {'document_root' : '/path/to/my/files/'})
 
     in your URLconf. You must provide the ``document_root`` param. You may
     also set ``show_indexes`` to ``True`` if you'd like to serve a basic index

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.hr.forms import (HRCountySelect,
+from djangocg.contrib.localflavor.hr.forms import (HRCountySelect,
     HRPhoneNumberPrefixSelect, HRLicensePlatePrefixSelect, HRPhoneNumberField,
     HRLicensePlateField, HRPostalCodeField, HROIBField, HRJMBGField,
     HRJMBAGField)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 class HRLocalFlavorTests(SimpleTestCase):
     def test_HRCountySelect(self):

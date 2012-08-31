@@ -1,13 +1,13 @@
-from django.db.backends.mysql.base import DatabaseOperations
+from djangocg.db.backends.mysql.base import DatabaseOperations
 
-from django.contrib.gis.db.backends.adapter import WKTAdapter
-from django.contrib.gis.db.backends.base import BaseSpatialOperations
+from djangocg.contrib.gis.db.backends.adapter import WKTAdapter
+from djangocg.contrib.gis.db.backends.base import BaseSpatialOperations
 
-from django.utils import six
+from djangocg.utils import six
 
 class MySQLOperations(DatabaseOperations, BaseSpatialOperations):
 
-    compiler_module = 'django.contrib.gis.db.backends.mysql.compiler'
+    compiler_module = 'djangocg.contrib.gis.db.backends.mysql.compiler'
     mysql = True
     name = 'mysql'
     select = 'AsText(%s)'

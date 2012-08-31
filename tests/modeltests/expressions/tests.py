@@ -1,9 +1,9 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.core.exceptions import FieldError
-from django.db.models import F
-from django.test import TestCase
-from django.utils import six
+from djangocg.core.exceptions import FieldError
+from djangocg.db.models import F
+from djangocg.test import TestCase
+from djangocg.utils import six
 
 from .models import Company, Employee
 

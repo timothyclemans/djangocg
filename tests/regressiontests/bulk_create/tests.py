@@ -2,9 +2,9 @@ from __future__ import absolute_import
 
 from operator import attrgetter
 
-from django.db import connection
-from django.test import TestCase, skipIfDBFeature
-from django.test.utils import override_settings
+from djangocg.db import connection
+from djangocg.test import TestCase, skipIfDBFeature
+from djangocg.test.utils import override_settings
 
 from .models import Country, Restaurant, Pizzeria, State, TwoFields
 

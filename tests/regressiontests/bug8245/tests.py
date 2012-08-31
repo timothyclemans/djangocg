@@ -1,5 +1,5 @@
-from django.contrib import admin
-from django.utils.unittest import TestCase
+from djangocg.contrib import admin
+from djangocg.utils.unittest import TestCase
 
 
 class Bug8245Test(TestCase):

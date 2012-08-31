@@ -1,19 +1,19 @@
-from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist, ImproperlyConfigured
-from django.db import connection
-from django.db.models.loading import get_apps, get_app, get_models, get_model, register_models
-from django.db.models.query import Q
-from django.db.models.expressions import F
-from django.db.models.manager import Manager
-from django.db.models.base import Model
-from django.db.models.aggregates import *
-from django.db.models.fields import *
-from django.db.models.fields.subclassing import SubfieldBase
-from django.db.models.fields.files import FileField, ImageField
-from django.db.models.fields.related import ForeignKey, OneToOneField, ManyToManyField, ManyToOneRel, ManyToManyRel, OneToOneRel
-from django.db.models.deletion import CASCADE, PROTECT, SET, SET_NULL, SET_DEFAULT, DO_NOTHING, ProtectedError
-from django.db.models import signals
-from django.utils.decorators import wraps
+from djangocg.conf import settings
+from djangocg.core.exceptions import ObjectDoesNotExist, ImproperlyConfigured
+from djangocg.db import connection
+from djangocg.db.models.loading import get_apps, get_app, get_models, get_model, register_models
+from djangocg.db.models.query import Q
+from djangocg.db.models.expressions import F
+from djangocg.db.models.manager import Manager
+from djangocg.db.models.base import Model
+from djangocg.db.models.aggregates import *
+from djangocg.db.models.fields import *
+from djangocg.db.models.fields.subclassing import SubfieldBase
+from djangocg.db.models.fields.files import FileField, ImageField
+from djangocg.db.models.fields.related import ForeignKey, OneToOneField, ManyToManyField, ManyToOneRel, ManyToManyRel, OneToOneRel
+from djangocg.db.models.deletion import CASCADE, PROTECT, SET, SET_NULL, SET_DEFAULT, DO_NOTHING, ProtectedError
+from djangocg.db.models import signals
+from djangocg.utils.decorators import wraps
 
 
 def permalink(func):
@@ -26,7 +26,7 @@ def permalink(func):
         (viewname, viewargs)
         (viewname, viewargs, viewkwargs)
     """
-    from django.core.urlresolvers import reverse
+    from djangocg.core.urlresolvers import reverse
     @wraps(func)
     def inner(*args, **kwargs):
         bits = func(*args, **kwargs)

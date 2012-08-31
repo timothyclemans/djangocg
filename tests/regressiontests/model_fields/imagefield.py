@@ -3,10 +3,10 @@ from __future__ import absolute_import
 import os
 import shutil
 
-from django.core.files import File
-from django.core.files.images import ImageFile
-from django.test import TestCase
-from django.utils.unittest import skipIf
+from djangocg.core.files import File
+from djangocg.core.files.images import ImageFile
+from djangocg.test import TestCase
+from djangocg.utils.unittest import skipIf
 
 from .models import Image
 

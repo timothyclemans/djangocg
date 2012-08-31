@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 import warnings
 
-from django.test import SimpleTestCase
-from django.utils import text
+from djangocg.test import SimpleTestCase
+from djangocg.utils import text
 
 class TestUtilsText(SimpleTestCase):
 

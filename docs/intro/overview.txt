@@ -137,7 +137,7 @@ as registering your model in the admin site::
 
     # In models.py...
 
-    from django.db import models
+    from djangocg.db import models
 
     class Article(models.Model):
         pub_date = models.DateTimeField()
@@ -149,7 +149,7 @@ as registering your model in the admin site::
     # In admin.py in the same directory...
 
     import models
-    from django.contrib import admin
+    from djangocg.contrib import admin
 
     admin.site.register(models.Article)
 
@@ -176,7 +176,7 @@ decouple URLs from Python code.
 Here's what a URLconf might look like for the ``Reporter``/``Article``
 example above::
 
-    from django.conf.urls import patterns, url, include
+    from djangocg.conf.urls import patterns, url, include
 
     urlpatterns = patterns('',
         (r'^articles/(\d{4})/$', 'news.views.year_archive'),
@@ -204,8 +204,8 @@ Write your views
 ================
 
 Each view is responsible for doing one of two things: Returning an
-:class:`~django.http.HttpResponse` object containing the content for the
-requested page, or raising an exception such as :class:`~django.http.Http404`.
+:class:`~djangocg.http.HttpResponse` object containing the content for the
+requested page, or raising an exception such as :class:`~djangocg.http.Http404`.
 The rest is up to you.
 
 Generally, a view retrieves data according to the parameters, loads a template

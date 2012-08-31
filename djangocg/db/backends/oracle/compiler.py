@@ -1,4 +1,4 @@
-from django.db.models.sql import compiler
+from djangocg.db.models.sql import compiler
 # The izip_longest was renamed to zip_longest in py3
 try:
     from itertools import zip_longest

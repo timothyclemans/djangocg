@@ -109,7 +109,7 @@ imported.
 
 Normally, you won't have to worry about lazy translations. Just be aware that
 if you examine an object and it claims to be a
-``django.utils.functional.__proxy__`` object, it is a lazy translation.
+``djangocg.utils.functional.__proxy__`` object, it is a lazy translation.
 Calling ``unicode()`` with the lazy translation as the argument will generate a
 Unicode string in the current locale.
 
@@ -126,7 +126,7 @@ a bit easier.
 Conversion functions
 ~~~~~~~~~~~~~~~~~~~~
 
-The ``django.utils.encoding`` module contains a few functions that are handy
+The ``djangocg.utils.encoding`` module contains a few functions that are handy
 for converting back and forth between Unicode and bytestrings.
 
 * ``smart_text(s, encoding='utf-8', strings_only=False, errors='strict')``
@@ -175,11 +175,11 @@ URL from an IRI_ -- very loosely speaking, a URI_ that can contain Unicode
 characters. Quoting and converting an IRI to URI can be a little tricky, so
 Django provides some assistance.
 
-* The function ``django.utils.encoding.iri_to_uri()`` implements the
+* The function ``djangocg.utils.encoding.iri_to_uri()`` implements the
   conversion from IRI to URI as required by the specification (:rfc:`3987`).
 
-* The functions ``django.utils.http.urlquote()`` and
-  ``django.utils.http.urlquote_plus()`` are versions of Python's standard
+* The functions ``djangocg.utils.http.urlquote()`` and
+  ``djangocg.utils.http.urlquote_plus()`` are versions of Python's standard
   ``urllib.quote()`` and ``urllib.quote_plus()`` that work with non-ASCII
   characters. (The data is converted to UTF-8 prior to encoding.)
 
@@ -262,7 +262,7 @@ Taking care in ``get_absolute_url()``
 
 URLs can only contain ASCII characters. If you're constructing a URL from
 pieces of data that might be non-ASCII, be careful to encode the results in a
-way that is suitable for a URL. The ``django.db.models.permalink()`` decorator
+way that is suitable for a URL. The ``djangocg.db.models.permalink()`` decorator
 handles this for you automatically.
 
 If you're constructing a URL manually (i.e., *not* using the ``permalink()``
@@ -270,8 +270,8 @@ decorator), you'll need to take care of the encoding yourself. In this case,
 use the ``iri_to_uri()`` and ``urlquote()`` functions that were documented
 above_. For example::
 
-    from django.utils.encoding import iri_to_uri
-    from django.utils.http import urlquote
+    from djangocg.utils.encoding import iri_to_uri
+    from djangocg.utils.http import urlquote
 
     def get_absolute_url(self):
         url = u'/person/%s/?x=0&y=0' % urlquote(self.location)
@@ -302,7 +302,7 @@ Templates
 You can use either Unicode or bytestrings when creating templates manually::
 
     from __future__ import unicode_literals
-    from django.template import Template
+    from djangocg.template import Template
     t1 = Template(b'This is a bytestring template.')
     t2 = Template('This is a Unicode template.')
 
@@ -333,7 +333,7 @@ A couple of tips to remember when writing your own template tags and filters:
 Email
 =====
 
-Django's email framework (in ``django.core.mail``) supports Unicode
+Django's email framework (in ``djangocg.core.mail``) supports Unicode
 transparently. You can use Unicode data in the message bodies and any headers.
 However, you're still obligated to respect the requirements of the email
 specifications, so, for example, email addresses should use only ASCII
@@ -343,7 +343,7 @@ The following code example demonstrates that everything except email addresses
 can be non-ASCII::
 
     from __future__ import unicode_literals
-    from django.core.mail import EmailMessage
+    from djangocg.core.mail import EmailMessage
 
     subject = 'My visit to Sør-Trøndelag'
     sender = 'Arnbjörg Ráðormsdóttir <arnbjorg@example.com>'

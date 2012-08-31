@@ -3,13 +3,13 @@ from __future__ import absolute_import, unicode_literals
 from datetime import date
 
 from django import forms
-from django.core.exceptions import FieldError, ValidationError
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.forms.models import (modelform_factory, ModelChoiceField,
+from djangocg.core.exceptions import FieldError, ValidationError
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.forms.models import (modelform_factory, ModelChoiceField,
     fields_for_model, construct_instance, ModelFormMetaclass)
-from django.utils import six
-from django.utils import unittest
-from django.test import TestCase
+from djangocg.utils import six
+from djangocg.utils import unittest
+from djangocg.test import TestCase
 
 from .models import (Person, RealPerson, Triple, FilePathModel, Article,
     Publication, CustomFF, Author, Author1, Homepage, Document, Edition)

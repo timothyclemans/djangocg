@@ -4,11 +4,11 @@ Tests for field subclassing.
 
 from __future__ import absolute_import
 
-from django.db import models
-from django.utils.encoding import force_text
+from djangocg.db import models
+from djangocg.utils.encoding import force_text
 
 from .fields import SmallField, SmallerField, JSONField
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible

@@ -2,7 +2,7 @@
 # pointed-to by the DJANGO_SETTINGS_MODULE environment variable.
 
 # This is defined here as a do-nothing function because we can't import
-# django.utils.translation -- that module depends on the settings.
+# djangocg.utils.translation -- that module depends on the settings.
 gettext_noop = lambda s: s
 
 ####################
@@ -153,18 +153,18 @@ SEND_BROKEN_LINK_EMAILS = False
 # Database connection info.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy',
+        'ENGINE': 'djangocg.db.backends.dummy',
     },
 }
 
 # Classes used to implement DB routing behavior.
 DATABASE_ROUTERS = []
 
-# The email backend to use. For possible shortcuts see django.core.mail.
+# The email backend to use. For possible shortcuts see djangocg.core.mail.
 # The default is to use the SMTP backend.
 # Third-party backends can be specified by providing a Python path
 # to a module that defines an EmailBackend class.
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'djangocg.core.mail.backends.smtp.EmailBackend'
 
 # Host for sending email.
 EMAIL_HOST = 'localhost'
@@ -187,23 +187,23 @@ TEMPLATE_DIRS = ()
 # See the comments in django/core/template/loader.py for interface
 # documentation.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'djangocg.template.loaders.filesystem.Loader',
+    'djangocg.template.loaders.app_directories.Loader',
+#     'djangocg.template.loaders.eggs.Loader',
 )
 
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its
 # only parameter and returns a dictionary to add to the context.
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-#    'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
+    'djangocg.contrib.auth.context_processors.auth',
+    'djangocg.core.context_processors.debug',
+    'djangocg.core.context_processors.i18n',
+    'djangocg.core.context_processors.media',
+    'djangocg.core.context_processors.static',
+    'djangocg.core.context_processors.tz',
+#    'djangocg.core.context_processors.request',
+    'djangocg.contrib.messages.context_processors.messages',
 )
 
 # Output to use in template system for invalid (e.g. misspelled) variables.
@@ -213,7 +213,7 @@ TEMPLATE_STRING_IF_INVALID = ''
 # the site managers.
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 
-# Subject-line prefix for email messages send with django.core.mail.mail_admins
+# Subject-line prefix for email messages send with djangocg.core.mail.mail_admins
 # or ...mail_managers.  Make sure to include the trailing space.
 EMAIL_SUBJECT_PREFIX = '[Django] '
 
@@ -267,7 +267,7 @@ IGNORABLE_404_URLS = ()
 SECRET_KEY = ''
 
 # Default file storage mechanism that holds media.
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DEFAULT_FILE_STORAGE = 'djangocg.core.files.storage.FileSystemStorage'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -287,8 +287,8 @@ STATIC_URL = None
 
 # List of upload handler classes to be applied in order.
 FILE_UPLOAD_HANDLERS = (
-    'django.core.files.uploadhandler.MemoryFileUploadHandler',
-    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+    'djangocg.core.files.uploadhandler.MemoryFileUploadHandler',
+    'djangocg.core.files.uploadhandler.TemporaryFileUploadHandler',
 )
 
 # Maximum size, in bytes, of a request before it will be streamed to the
@@ -414,7 +414,7 @@ USE_X_FORWARDED_HOST = False
 
 # The Python dotted path to the WSGI application that Django's internal servers
 # (runserver, runfcgi) will use. If `None`, the return value of
-# 'django.core.wsgi.get_wsgi_application' is used, thus preserving the same
+# 'djangocg.core.wsgi.get_wsgi_application' is used, thus preserving the same
 # behavior as previous versions of Django. Otherwise this should point to an
 # actual WSGI application object.
 WSGI_APPLICATION = None
@@ -436,13 +436,13 @@ SECURE_PROXY_SSL_HEADER = None
 # this middleware classes will be applied in the order given, and in the
 # response phase the middleware will be applied in reverse order.
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-#     'django.middleware.http.ConditionalGetMiddleware',
-#     'django.middleware.gzip.GZipMiddleware',
+    'djangocg.middleware.common.CommonMiddleware',
+    'djangocg.contrib.sessions.middleware.SessionMiddleware',
+    'djangocg.middleware.csrf.CsrfViewMiddleware',
+    'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+    'djangocg.contrib.messages.middleware.MessageMiddleware',
+#     'djangocg.middleware.http.ConditionalGetMiddleware',
+#     'djangocg.middleware.gzip.GZipMiddleware',
 )
 
 ############
@@ -457,7 +457,7 @@ SESSION_COOKIE_PATH = '/'                               # The path of the sessio
 SESSION_COOKIE_HTTPONLY = True                          # Whether to use the non-RFC standard httpOnly flag (IE, FF3+, others)
 SESSION_SAVE_EVERY_REQUEST = False                      # Whether to save the session data on every request.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False                 # Whether a user's session cookie expires when the Web browser is closed.
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # The module to store session data
+SESSION_ENGINE = 'djangocg.contrib.sessions.backends.db'  # The module to store session data
 SESSION_FILE_PATH = None                                # Directory to store session files if using the file session module. If None, the backend will use a sensible default.
 
 #########
@@ -467,7 +467,7 @@ SESSION_FILE_PATH = None                                # Directory to store ses
 # The cache backends to use.
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': 'djangocg.core.cache.backends.locmem.LocMemCache',
     }
 }
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
@@ -488,7 +488,7 @@ PROFANITIES_LIST = ()
 # AUTHENTICATION #
 ##################
 
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+AUTHENTICATION_BACKENDS = ('djangocg.contrib.auth.backends.ModelBackend',)
 
 LOGIN_URL = '/accounts/login/'
 
@@ -503,20 +503,20 @@ PASSWORD_RESET_TIMEOUT_DAYS = 3
 # password using different algorithms will be converted automatically
 # upon login
 PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.BCryptPasswordHasher',
-    'django.contrib.auth.hashers.SHA1PasswordHasher',
-    'django.contrib.auth.hashers.MD5PasswordHasher',
-    'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
-    'django.contrib.auth.hashers.CryptPasswordHasher',
+    'djangocg.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'djangocg.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'djangocg.contrib.auth.hashers.BCryptPasswordHasher',
+    'djangocg.contrib.auth.hashers.SHA1PasswordHasher',
+    'djangocg.contrib.auth.hashers.MD5PasswordHasher',
+    'djangocg.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
+    'djangocg.contrib.auth.hashers.CryptPasswordHasher',
 )
 
 ###########
 # SIGNING #
 ###########
 
-SIGNING_BACKEND = 'django.core.signing.TimestampSigner'
+SIGNING_BACKEND = 'djangocg.core.signing.TimestampSigner'
 
 ########
 # CSRF #
@@ -524,7 +524,7 @@ SIGNING_BACKEND = 'django.core.signing.TimestampSigner'
 
 # Dotted path to callable to be used as view when a request is
 # rejected by the CSRF middleware.
-CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
+CSRF_FAILURE_VIEW = 'djangocg.views.csrf.csrf_failure'
 
 # Settings for CSRF cookie.
 CSRF_COOKIE_NAME = 'csrftoken'
@@ -537,17 +537,17 @@ CSRF_COOKIE_SECURE = False
 ############
 
 # Class to use as messages backend
-MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+MESSAGE_STORAGE = 'djangocg.contrib.messages.storage.fallback.FallbackStorage'
 
 # Default values of MESSAGE_LEVEL and MESSAGE_TAGS are defined within
-# django.contrib.messages to avoid imports in this settings file.
+# djangocg.contrib.messages to avoid imports in this settings file.
 
 ###########
 # LOGGING #
 ###########
 
 # The callable to use to configure logging
-LOGGING_CONFIG = 'django.utils.log.dictConfig'
+LOGGING_CONFIG = 'djangocg.utils.log.dictConfig'
 
 # The default logging configuration. This sends an email to
 # the site admins on every HTTP 500 error. All other log
@@ -558,18 +558,18 @@ LOGGING = {
     'disable_existing_loggers': False,
     'filters': {
         'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse',
+            '()': 'djangocg.utils.log.RequireDebugFalse',
         }
     },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'djangocg.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
-        'django.request': {
+        'djangocg.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
@@ -579,14 +579,14 @@ LOGGING = {
 
 # Default exception reporter filter class used in case none has been
 # specifically assigned to the HttpRequest instance.
-DEFAULT_EXCEPTION_REPORTER_FILTER = 'django.views.debug.SafeExceptionReporterFilter'
+DEFAULT_EXCEPTION_REPORTER_FILTER = 'djangocg.views.debug.SafeExceptionReporterFilter'
 
 ###########
 # TESTING #
 ###########
 
 # The name of the class to use to run the test suite
-TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
+TEST_RUNNER = 'djangocg.test.simple.DjangoTestSuiteRunner'
 
 ############
 # FIXTURES #
@@ -603,12 +603,12 @@ FIXTURE_DIRS = ()
 STATICFILES_DIRS = ()
 
 # The default file storage backend used during the build process
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'djangocg.contrib.staticfiles.storage.StaticFilesStorage'
 
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'djangocg.contrib.staticfiles.finders.FileSystemFinder',
+    'djangocg.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'djangocg.contrib.staticfiles.finders.DefaultStorageFinder',
 )

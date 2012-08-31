@@ -1,9 +1,9 @@
 from django import template
-from django.template.loader import render_to_string
-from django.conf import settings
-from django.contrib.contenttypes.models import ContentType
-from django.contrib import comments
-from django.utils.encoding import smart_text
+from djangocg.template.loader import render_to_string
+from djangocg.conf import settings
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib import comments
+from djangocg.utils.encoding import smart_text
 
 register = template.Library()
 

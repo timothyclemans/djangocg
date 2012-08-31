@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.test import TestCase
-from django.db.models.signals import pre_save, post_save
+from djangocg.test import TestCase
+from djangocg.db.models.signals import pre_save, post_save
 from .models import Person, Employee, ProxyEmployee, Profile, Account
 
 

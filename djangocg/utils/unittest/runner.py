@@ -4,10 +4,10 @@ import sys
 import time
 import unittest
 
-from django.utils.unittest import result
+from djangocg.utils.unittest import result
 
 try:
-    from django.utils.unittest.signals import registerResult
+    from djangocg.utils.unittest.signals import registerResult
 except ImportError:
     def registerResult(_):
         pass

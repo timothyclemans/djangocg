@@ -5,9 +5,9 @@ Make sure to set ``related_name`` if you use relationships to the same table.
 """
 from __future__ import unicode_literals
 
-from django.db import models
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils import six
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class User(models.Model):

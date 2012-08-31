@@ -1,6 +1,6 @@
 from datetime import datetime
-from django.core.files import storage
-from django.contrib.staticfiles.storage import CachedStaticFilesStorage
+from djangocg.core.files import storage
+from djangocg.contrib.staticfiles.storage import CachedStaticFilesStorage
 
 class DummyStorage(storage.Storage):
     """

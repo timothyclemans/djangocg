@@ -6,11 +6,11 @@ from __future__ import unicode_literals
 import getpass
 import locale
 import unicodedata
-from django.contrib.auth import models as auth_app
-from django.db.models import get_models, signals
-from django.contrib.auth.models import User
-from django.utils import six
-from django.utils.six.moves import input
+from djangocg.contrib.auth import models as auth_app
+from djangocg.db.models import get_models, signals
+from djangocg.contrib.auth.models import User
+from djangocg.utils import six
+from djangocg.utils.six.moves import input
 
 
 def _get_permission_codename(action, opts):
@@ -26,7 +26,7 @@ def _get_all_permissions(opts):
 
 
 def create_permissions(app, created_models, verbosity, **kwargs):
-    from django.contrib.contenttypes.models import ContentType
+    from djangocg.contrib.contenttypes.models import ContentType
 
     app_models = get_models(app)
 
@@ -62,7 +62,7 @@ def create_permissions(app, created_models, verbosity, **kwargs):
 
 
 def create_superuser(app, created_models, verbosity, db, **kwargs):
-    from django.core.management import call_command
+    from djangocg.core.management import call_command
 
     if auth_app.User in created_models and kwargs.get('interactive', True):
         msg = ("\nYou just installed Django's auth system, which means you "
@@ -113,7 +113,7 @@ def get_default_username(check_db=True):
     :returns: The username, or an empty string if no username can be
         determined.
     """
-    from django.contrib.auth.management.commands.createsuperuser import (
+    from djangocg.contrib.auth.management.commands.createsuperuser import (
         RE_VALID_USERNAME)
     default_username = get_system_username()
     try:
@@ -135,6 +135,6 @@ def get_default_username(check_db=True):
 
 
 signals.post_syncdb.connect(create_permissions,
-    dispatch_uid = "django.contrib.auth.management.create_permissions")
+    dispatch_uid = "djangocg.contrib.auth.management.create_permissions")
 signals.post_syncdb.connect(create_superuser,
-    sender=auth_app, dispatch_uid = "django.contrib.auth.management.create_superuser")
+    sender=auth_app, dispatch_uid = "djangocg.contrib.auth.management.create_superuser")

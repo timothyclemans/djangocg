@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.kw.forms import KWCivilIDNumberField
+from djangocg.contrib.localflavor.kw.forms import KWCivilIDNumberField
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class KWLocalFlavorTests(SimpleTestCase):

@@ -6,11 +6,11 @@ try:
 except ImportError:     # Python 2
     from urlparse import urlsplit, urlunsplit
 
-from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import force_text
-from django.utils.ipv6 import is_valid_ipv6_address
-from django.utils import six
+from djangocg.core.exceptions import ValidationError
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import force_text
+from djangocg.utils.ipv6 import is_valid_ipv6_address
+from djangocg.utils import six
 
 # These values, if given to validate(), will trigger the self.required check.
 EMPTY_VALUES = (None, '', [], (), {})

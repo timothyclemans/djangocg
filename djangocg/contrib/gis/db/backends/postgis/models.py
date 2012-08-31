@@ -1,9 +1,9 @@
 """
  The GeometryColumns and SpatialRefSys models for the PostGIS backend.
 """
-from django.db import models
-from django.contrib.gis.db.backends.base import SpatialRefSysMixin
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.contrib.gis.db.backends.base import SpatialRefSysMixin
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class GeometryColumns(models.Model):

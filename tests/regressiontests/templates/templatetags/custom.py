@@ -1,9 +1,9 @@
 import operator
 
 from django import template
-from django.template.defaultfilters import stringfilter
-from django.template.loader import get_template
-from django.utils import six
+from djangocg.template.defaultfilters import stringfilter
+from djangocg.template.loader import get_template
+from djangocg.utils import six
 
 register = template.Library()
 

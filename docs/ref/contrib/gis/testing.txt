@@ -144,9 +144,9 @@ Run only GeoDjango tests
 
 To run *only* the tests for GeoDjango, the :setting:`TEST_RUNNER`
 setting must be changed to use the
-:class:`~django.contrib.gis.tests.GeoDjangoTestSuiteRunner`::
+:class:`~djangocg.contrib.gis.tests.GeoDjangoTestSuiteRunner`::
 
-    TEST_RUNNER = 'django.contrib.gis.tests.GeoDjangoTestSuiteRunner'
+    TEST_RUNNER = 'djangocg.contrib.gis.tests.GeoDjangoTestSuiteRunner'
 
 Example
 ^^^^^^^
@@ -154,11 +154,11 @@ Example
 First, you'll need a bare-bones settings file, like below, that is
 customized with your spatial database name and user::
 
-    TEST_RUNNER = 'django.contrib.gis.tests.GeoDjangoTestSuiteRunner'
+    TEST_RUNNER = 'djangocg.contrib.gis.tests.GeoDjangoTestSuiteRunner'
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'ENGINE': 'djangocg.contrib.gis.db.backends.postgis',
             'NAME': 'a_spatial_database',
             'USER': 'db_user'
         }
@@ -188,16 +188,16 @@ Example
 
 The following is an example bare-bones settings file with spatial backends
 that can be used to run the entire Django test suite, including those
-in :mod:`django.contrib.gis`::
+in :mod:`djangocg.contrib.gis`::
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'ENGINE': 'djangocg.contrib.gis.db.backends.postgis',
             'NAME': 'geodjango',
             'USER': 'geodjango',
         },
        'other': {
-            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'ENGINE': 'djangocg.contrib.gis.db.backends.postgis',
             'NAME': 'other',
             'USER': 'geodjango',
        }

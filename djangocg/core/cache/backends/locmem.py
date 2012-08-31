@@ -2,12 +2,12 @@
 
 import time
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from djangocg.utils.six.moves import cPickle as pickle
 except ImportError:
     import pickle
 
-from django.core.cache.backends.base import BaseCache
-from django.utils.synch import RWLock
+from djangocg.core.cache.backends.base import BaseCache
+from djangocg.utils.synch import RWLock
 
 # Global in-memory store of cache data. Keyed by name, to provide
 # multiple named local memory caches.

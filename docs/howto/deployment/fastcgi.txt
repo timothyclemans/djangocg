@@ -108,7 +108,7 @@ Running a threaded server on a TCP port::
 
 Running a preforked server on a Unix domain socket::
 
-    ./manage.py runfcgi method=prefork socket=/home/user/mysite.sock pidfile=django.pid
+    ./manage.py runfcgi method=prefork socket=/home/user/mysite.sock pidfile=djangocg.pid
 
 .. admonition:: Socket security
 
@@ -321,7 +321,7 @@ Reverse HTTP Proxy and much more.
 
 The Cherokee project provides a documentation to `setting up Django`_ with Cherokee.
 
-.. _setting up Django: http://www.cherokee-project.com/doc/cookbook_django.html
+.. _setting up Django: http://www.cherokee-project.com/doc/cookbook_djangocg.html
 
 .. _apache_shared_hosting:
 
@@ -365,7 +365,7 @@ be sure to make it executable:
     # Set the DJANGO_SETTINGS_MODULE environment variable.
     os.environ['DJANGO_SETTINGS_MODULE'] = "myproject.settings"
 
-    from django.core.servers.fastcgi import runfastcgi
+    from djangocg.core.servers.fastcgi import runfastcgi
     runfastcgi(method="threaded", daemonize="false")
 
 This works if your server uses mod_fastcgi. If, on the other hand, you are

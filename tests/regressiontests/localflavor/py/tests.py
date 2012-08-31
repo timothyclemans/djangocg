@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.py.forms import (PyDepartmentSelect,
+from djangocg.contrib.localflavor.py.forms import (PyDepartmentSelect,
     PyNumberedDepartmentSelect)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 class PYLocalFlavorTests(SimpleTestCase):
     def test_PyDepartmentSelect(self):

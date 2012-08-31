@@ -3,8 +3,8 @@ from __future__ import absolute_import
 from datetime import date
 import traceback
 
-from django.db import IntegrityError
-from django.test import TestCase
+from djangocg.db import IntegrityError
+from djangocg.test import TestCase
 
 from .models import Person, ManualPrimaryKeyTest
 

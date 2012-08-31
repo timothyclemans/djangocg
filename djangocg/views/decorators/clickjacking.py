@@ -1,6 +1,6 @@
 from functools import wraps
 
-from django.utils.decorators import available_attrs
+from djangocg.utils.decorators import available_attrs
 
 
 def xframe_options_deny(view_func):

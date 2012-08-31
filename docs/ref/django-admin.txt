@@ -904,7 +904,7 @@ When Django copies the app template files, it also renders certain files
 through the template engine: the files whose extensions match the
 ``--extension`` option (``py`` by default) and the files whose names are passed
 with the ``--name`` option. The :class:`template context
-<django.template.Context>` used is:
+<djangocg.template.Context>` used is:
 
 - Any option passed to the startapp command (among the command's supported
   options)
@@ -968,7 +968,7 @@ When Django copies the project template files, it also renders certain files
 through the template engine: the files whose extensions match the
 ``--extension`` option (``py`` by default) and the files whose names are passed
 with the ``--name`` option. The :class:`template context
-<django.template.Context>` used is:
+<djangocg.template.Context>` used is:
 
 - Any option passed to the startproject command
 - ``project_name`` -- the project name as passed to the command
@@ -1006,7 +1006,7 @@ run this command to install the default apps.
    to match, use the ``sql`` command to display the new SQL structure and
    compare that to your existing table schema to work out the changes.
 
-If you're installing the ``django.contrib.auth`` application, ``syncdb`` will
+If you're installing the ``djangocg.contrib.auth`` application, ``syncdb`` will
 give you the option of creating a superuser immediately.
 
 ``syncdb`` will also search for and install any fixture named ``initial_data``
@@ -1051,7 +1051,7 @@ provided by the :setting:`TEST_RUNNER` setting.
 .. django-admin-option:: --liveserver
 
 The ``--liveserver`` option can be used to override the default address where
-the live server (used with :class:`~django.test.LiveServerTestCase`) is
+the live server (used with :class:`~djangocg.test.LiveServerTestCase`) is
 expected to run from. The default value is ``localhost:8081``.
 
 testserver <fixture fixture ...>
@@ -1129,12 +1129,12 @@ setting) and prints validation errors to standard output.
 Commands provided by applications
 =================================
 
-Some commands are only available when the ``django.contrib`` application that
+Some commands are only available when the ``djangocg.contrib`` application that
 :doc:`implements </howto/custom-management-commands>` them has been
 :setting:`enabled <INSTALLED_APPS>`. This section describes them grouped by
 their application.
 
-``django.contrib.auth``
+``djangocg.contrib.auth``
 -----------------------
 
 changepassword
@@ -1143,7 +1143,7 @@ changepassword
 .. django-admin:: changepassword
 
 This command is only available if Django's :doc:`authentication system
-</topics/auth>` (``django.contrib.auth``) is installed.
+</topics/auth>` (``djangocg.contrib.auth``) is installed.
 
 Allows changing a user's password. It prompts you to enter twice the password of
 the user given as parameter. If they both match, the new password will be
@@ -1165,7 +1165,7 @@ createsuperuser
 .. django-admin:: createsuperuser
 
 This command is only available if Django's :doc:`authentication system
-</topics/auth>` (``django.contrib.auth``) is installed.
+</topics/auth>` (``djangocg.contrib.auth``) is installed.
 
 Creates a superuser account (a user who has all permissions). This is
 useful if you need to create an initial superuser account but did not
@@ -1190,38 +1190,38 @@ it when running interactively.
 Use the ``--database`` option to specify the database into which the superuser
 object will be saved.
 
-``django.contrib.gis``
+``djangocg.contrib.gis``
 ----------------------
 
 ogrinspect
 ~~~~~~~~~~
 
 This command is only available if :doc:`GeoDjango </ref/contrib/gis/index>`
-(``django.contrib.gis``) is installed.
+(``djangocg.contrib.gis``) is installed.
 
 Please refer to its :djadmin:`description <ogrinspect>` in the GeoDjango
 documentation.
 
-``django.contrib.sitemaps``
+``djangocg.contrib.sitemaps``
 ---------------------------
 
 ping_google
 ~~~~~~~~~~~
 
 This command is only available if the :doc:`Sitemaps framework
-</ref/contrib/sitemaps>` (``django.contrib.sitemaps``) is installed.
+</ref/contrib/sitemaps>` (``djangocg.contrib.sitemaps``) is installed.
 
 Please refer to its :djadmin:`description <ping_google>` in the Sitemaps
 documentation.
 
-``django.contrib.staticfiles``
+``djangocg.contrib.staticfiles``
 ------------------------------
 
 collectstatic
 ~~~~~~~~~~~~~
 
 This command is only available if the :doc:`static files application
-</howto/static-files>` (``django.contrib.staticfiles``) is installed.
+</howto/static-files>` (``djangocg.contrib.staticfiles``) is installed.
 
 Please refer to its :djadmin:`description <collectstatic>` in the
 :doc:`staticfiles </ref/contrib/staticfiles>` documentation.
@@ -1230,7 +1230,7 @@ findstatic
 ~~~~~~~~~~
 
 This command is only available if the :doc:`static files application
-</howto/static-files>` (``django.contrib.staticfiles``) is installed.
+</howto/static-files>` (``djangocg.contrib.staticfiles``) is installed.
 
 Please refer to its :djadmin:`description <findstatic>` in the :doc:`staticfiles
 </ref/contrib/staticfiles>` documentation.
@@ -1453,7 +1453,7 @@ Running management commands from your code
 
 .. _call-command:
 
-.. function:: django.core.management.call_command(name, *args, **options)
+.. function:: djangocg.core.management.call_command(name, *args, **options)
 
 To call a management command from code use ``call_command``.
 
@@ -1468,6 +1468,6 @@ To call a management command from code use ``call_command``.
 
 Examples::
 
-      from django.core import management
+      from djangocg.core import management
       management.call_command('flush', verbosity=0, interactive=False)
       management.call_command('loaddata', 'test_data', verbosity=0)

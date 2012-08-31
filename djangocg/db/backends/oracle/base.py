@@ -18,7 +18,7 @@ def _setup_environment(environ):
         try:
             import ctypes
         except ImportError as e:
-            from django.core.exceptions import ImproperlyConfigured
+            from djangocg.core.exceptions import ImproperlyConfigured
             raise ImproperlyConfigured("Error loading ctypes: %s; "
                                        "the Oracle backend requires ctypes to "
                                        "operate correctly under Cygwin." % e)
@@ -41,19 +41,19 @@ _setup_environment([
 try:
     import cx_Oracle as Database
 except ImportError as e:
-    from django.core.exceptions import ImproperlyConfigured
+    from djangocg.core.exceptions import ImproperlyConfigured
     raise ImproperlyConfigured("Error loading cx_Oracle module: %s" % e)
 
-from django.conf import settings
-from django.db import utils
-from django.db.backends import *
-from django.db.backends.signals import connection_created
-from django.db.backends.oracle.client import DatabaseClient
-from django.db.backends.oracle.creation import DatabaseCreation
-from django.db.backends.oracle.introspection import DatabaseIntrospection
-from django.utils.encoding import force_bytes, force_text
-from django.utils import six
-from django.utils import timezone
+from djangocg.conf import settings
+from djangocg.db import utils
+from djangocg.db.backends import *
+from djangocg.db.backends.signals import connection_created
+from djangocg.db.backends.oracle.client import DatabaseClient
+from djangocg.db.backends.oracle.creation import DatabaseCreation
+from djangocg.db.backends.oracle.introspection import DatabaseIntrospection
+from djangocg.utils.encoding import force_bytes, force_text
+from djangocg.utils import six
+from djangocg.utils import timezone
 
 DatabaseError = Database.DatabaseError
 IntegrityError = Database.IntegrityError
@@ -86,7 +86,7 @@ class DatabaseFeatures(BaseDatabaseFeatures):
     supports_sequence_reset = False
 
 class DatabaseOperations(BaseDatabaseOperations):
-    compiler_module = "django.db.backends.oracle.compiler"
+    compiler_module = "djangocg.db.backends.oracle.compiler"
 
     def autoinc_sql(self, table, column):
         # To simulate auto-incrementing primary keys in Oracle, we have to
@@ -317,7 +317,7 @@ WHEN (new.%(col_name)s IS NULL)
         return sql
 
     def sequence_reset_sql(self, style, model_list):
-        from django.db import models
+        from djangocg.db import models
         output = []
         query = _get_sequence_reset_sql()
         for model in model_list:

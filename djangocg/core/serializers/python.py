@@ -5,11 +5,11 @@ other serializers.
 """
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.core.serializers import base
-from django.db import models, DEFAULT_DB_ALIAS
-from django.utils.encoding import smart_text, is_protected_type
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.core.serializers import base
+from djangocg.db import models, DEFAULT_DB_ALIAS
+from djangocg.utils.encoding import smart_text, is_protected_type
+from djangocg.utils import six
 
 class Serializer(base.Serializer):
     """

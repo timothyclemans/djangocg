@@ -124,7 +124,7 @@ part of Django itself, and so are no longer separately maintained:
 
 * ``gis``: Added support for geographic/spatial queries to Django's
   object-relational mapper. This has been part of Django since the 1.0
-  release, as the bundled application ``django.contrib.gis``.
+  release, as the bundled application ``djangocg.contrib.gis``.
 
 * ``i18n``: Added :doc:`internationalization support </topics/i18n/index>` to
   Django. This has been part of Django since the 0.90 release.
@@ -146,7 +146,7 @@ part of Django itself, and so are no longer separately maintained:
 * ``newforms-admin``: The second refactoring of Django's bundled
   administrative application. This became part of Django as of the 1.0
   release, and is the basis of the current incarnation of
-  ``django.contrib.admin``.
+  ``djangocg.contrib.admin``.
 
 * ``queryset-refactor``: A refactoring of the internals of Django's
   object-relational mapper. This became part of Django as of the 1.0

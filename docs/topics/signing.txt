@@ -2,7 +2,7 @@
 Cryptographic signing
 =====================
 
-.. module:: django.core.signing
+.. module:: djangocg.core.signing
    :synopsis: Django's signing framework.
 
 .. versionadded:: 1.4
@@ -41,10 +41,10 @@ Using the low-level API
 
 .. class:: Signer
 
-Django's signing methods live in the ``django.core.signing`` module.
+Django's signing methods live in the ``djangocg.core.signing`` module.
 To sign a value, first instantiate a ``Signer`` instance::
 
-    >>> from django.core.signing import Signer
+    >>> from djangocg.core.signing import Signer
     >>> signer = Signer()
     >>> value = signer.sign('My string')
     >>> value
@@ -58,7 +58,7 @@ You can retrieve the original value using the ``unsign`` method::
     u'My string'
 
 If the signature or value have been altered in any way, a
-``django.core.signing.BadSignature`` exception will be raised::
+``djangocg.core.signing.BadSignature`` exception will be raised::
 
     >>> value += 'm'
     >>> try:
@@ -112,7 +112,7 @@ Verifying timestamped values
 timestamp to the value. This allows you to confirm that a signed value was
 created within a specified period of time::
 
-    >>> from django.core.signing import TimestampSigner
+    >>> from djangocg.core.signing import TimestampSigner
     >>> signer = TimestampSigner()
     >>> value = signer.sign('hello')
     >>> value
@@ -134,17 +134,17 @@ pickle module, but use JSON serialization under the hood. JSON ensures that
 even if your :setting:`SECRET_KEY` is stolen an attacker will not be able
 to execute arbitrary commands by exploiting the pickle format.::
 
-    >>> from django.core import signing
+    >>> from djangocg.core import signing
     >>> value = signing.dumps({"foo": "bar"})
     >>> value
     'eyJmb28iOiJiYXIifQ:1NMg1b:zGcDE4-TCkaeGzLeW9UQwZesciI'
     >>> signing.loads(value)
     {'foo': 'bar'}
 
-.. function:: dumps(obj, key=None, salt='django.core.signing', compress=False)
+.. function:: dumps(obj, key=None, salt='djangocg.core.signing', compress=False)
 
     Returns URL-safe, sha1 signed base64 compressed JSON string.
 
-.. function:: loads(string, key=None, salt='django.core.signing', max_age=None)
+.. function:: loads(string, key=None, salt='djangocg.core.signing', max_age=None)
 
     Reverse of dumps(), raises ``BadSignature`` if signature fails.

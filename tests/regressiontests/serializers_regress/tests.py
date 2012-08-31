@@ -16,15 +16,15 @@ try:
 except ImportError:
     yaml = None
 
-from django.core import serializers
-from django.core.serializers import SerializerDoesNotExist
-from django.core.serializers.base import DeserializationError
-from django.db import connection, models
-from django.http import HttpResponse
-from django.test import TestCase
-from django.utils import six
-from django.utils.functional import curry
-from django.utils.unittest import skipUnless
+from djangocg.core import serializers
+from djangocg.core.serializers import SerializerDoesNotExist
+from djangocg.core.serializers.base import DeserializationError
+from djangocg.db import connection, models
+from djangocg.http import HttpResponse
+from djangocg.test import TestCase
+from djangocg.utils import six
+from djangocg.utils.functional import curry
+from djangocg.utils.unittest import skipUnless
 
 from .models import (BooleanData, CharData, DateData, DateTimeData, EmailData,
     FileData, FilePathData, DecimalData, FloatData, IntegerData, IPAddressData,

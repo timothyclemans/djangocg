@@ -1,4 +1,4 @@
-from django.db import transaction
+from djangocg.db import transaction
 
 class TransactionMiddleware(object):
     """

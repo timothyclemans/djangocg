@@ -1,13 +1,13 @@
 from optparse import make_option
 
-from django.conf import settings
-from django.db import connections, router, transaction, models, DEFAULT_DB_ALIAS
-from django.core.management import call_command
-from django.core.management.base import NoArgsCommand, CommandError
-from django.core.management.color import no_style
-from django.core.management.sql import sql_flush, emit_post_sync_signal
-from django.utils.importlib import import_module
-from django.utils.six.moves import input
+from djangocg.conf import settings
+from djangocg.db import connections, router, transaction, models, DEFAULT_DB_ALIAS
+from djangocg.core.management import call_command
+from djangocg.core.management.base import NoArgsCommand, CommandError
+from djangocg.core.management.color import no_style
+from djangocg.core.management.sql import sql_flush, emit_post_sync_signal
+from djangocg.utils.importlib import import_module
+from djangocg.utils.six.moves import input
 
 
 class Command(NoArgsCommand):

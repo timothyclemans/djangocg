@@ -1,15 +1,15 @@
 from ctypes.util import find_library
-from django.conf import settings
+from djangocg.conf import settings
 
-from django.core.exceptions import ImproperlyConfigured
-from django.db.backends.sqlite3.base import (
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db.backends.sqlite3.base import (
     _sqlite_extract, _sqlite_date_trunc, _sqlite_regexp, _sqlite_format_dtdelta,
     connection_created, Database, DatabaseWrapper as SQLiteDatabaseWrapper,
     SQLiteCursorWrapper)
-from django.contrib.gis.db.backends.spatialite.client import SpatiaLiteClient
-from django.contrib.gis.db.backends.spatialite.creation import SpatiaLiteCreation
-from django.contrib.gis.db.backends.spatialite.introspection import SpatiaLiteIntrospection
-from django.contrib.gis.db.backends.spatialite.operations import SpatiaLiteOperations
+from djangocg.contrib.gis.db.backends.spatialite.client import SpatiaLiteClient
+from djangocg.contrib.gis.db.backends.spatialite.creation import SpatiaLiteCreation
+from djangocg.contrib.gis.db.backends.spatialite.introspection import SpatiaLiteIntrospection
+from djangocg.contrib.gis.db.backends.spatialite.operations import SpatiaLiteOperations
 
 class DatabaseWrapper(SQLiteDatabaseWrapper):
     def __init__(self, *args, **kwargs):

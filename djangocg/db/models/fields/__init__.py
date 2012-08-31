@@ -8,20 +8,20 @@ import math
 import warnings
 from itertools import tee
 
-from django.db import connection
-from django.db.models.query_utils import QueryWrapper
-from django.conf import settings
+from djangocg.db import connection
+from djangocg.db.models.query_utils import QueryWrapper
+from djangocg.conf import settings
 from django import forms
-from django.core import exceptions, validators
-from django.utils.datastructures import DictWrapper
-from django.utils.dateparse import parse_date, parse_datetime, parse_time
-from django.utils.functional import curry, total_ordering
-from django.utils.text import capfirst
-from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import smart_text, force_text
-from django.utils.ipv6 import clean_ipv6_address
-from django.utils import six
+from djangocg.core import exceptions, validators
+from djangocg.utils.datastructures import DictWrapper
+from djangocg.utils.dateparse import parse_date, parse_datetime, parse_time
+from djangocg.utils.functional import curry, total_ordering
+from djangocg.utils.text import capfirst
+from djangocg.utils import timezone
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import smart_text, force_text
+from djangocg.utils.ipv6 import clean_ipv6_address
+from djangocg.utils import six
 
 class NOT_PROVIDED:
     pass
@@ -149,7 +149,7 @@ class Field(object):
     def to_python(self, value):
         """
         Converts the input value into the expected Python data type, raising
-        django.core.exceptions.ValidationError if the data can't be converted.
+        djangocg.core.exceptions.ValidationError if the data can't be converted.
         Returns the converted value. Subclasses should override this.
         """
         return value
@@ -466,7 +466,7 @@ class Field(object):
 
     def formfield(self, form_class=forms.CharField, **kwargs):
         """
-        Returns a django.forms.Field instance for this database Field.
+        Returns a djangocg.forms.Field instance for this database Field.
         """
         defaults = {'required': not self.blank,
                     'label': capfirst(self.verbose_name),
@@ -878,13 +878,13 @@ class DecimalField(Field):
         Formats a number into a string with the requisite number of digits and
         decimal places.
         """
-        # Method moved to django.db.backends.util.
+        # Method moved to djangocg.db.backends.util.
         #
         # It is preserved because it is used by the oracle backend
-        # (django.db.backends.oracle.query), and also for
+        # (djangocg.db.backends.oracle.query), and also for
         # backwards-compatibility with any external code which may have used
         # this method.
-        from django.db.backends import util
+        from djangocg.db.backends import util
         return util.format_number(value, self.max_digits, self.decimal_places)
 
     def get_db_prep_save(self, value, connection):

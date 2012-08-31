@@ -5,13 +5,13 @@ import warnings
 from datetime import datetime, timedelta
 from io import BytesIO
 
-from django.conf import settings
-from django.core.handlers.wsgi import WSGIRequest, LimitedStream
-from django.http import HttpRequest, HttpResponse, parse_cookie, build_request_repr, UnreadablePostError
-from django.test.utils import str_prefix
-from django.utils import unittest
-from django.utils.http import cookie_date
-from django.utils.timezone import utc
+from djangocg.conf import settings
+from djangocg.core.handlers.wsgi import WSGIRequest, LimitedStream
+from djangocg.http import HttpRequest, HttpResponse, parse_cookie, build_request_repr, UnreadablePostError
+from djangocg.test.utils import str_prefix
+from djangocg.utils import unittest
+from djangocg.utils.http import cookie_date
+from djangocg.utils.timezone import utc
 
 
 class RequestsTests(unittest.TestCase):

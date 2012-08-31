@@ -1,16 +1,16 @@
 import re
 from decimal import Decimal
 
-from django.conf import settings
-from django.contrib.gis.db.backends.base import BaseSpatialOperations
-from django.contrib.gis.db.backends.util import SpatialOperation, SpatialFunction
-from django.contrib.gis.db.backends.postgis.adapter import PostGISAdapter
-from django.contrib.gis.geometry.backend import Geometry
-from django.contrib.gis.measure import Distance
-from django.core.exceptions import ImproperlyConfigured
-from django.db.backends.postgresql_psycopg2.base import DatabaseOperations
-from django.db.utils import DatabaseError
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.contrib.gis.db.backends.base import BaseSpatialOperations
+from djangocg.contrib.gis.db.backends.util import SpatialOperation, SpatialFunction
+from djangocg.contrib.gis.db.backends.postgis.adapter import PostGISAdapter
+from djangocg.contrib.gis.geometry.backend import Geometry
+from djangocg.contrib.gis.measure import Distance
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db.backends.postgresql_psycopg2.base import DatabaseOperations
+from djangocg.db.utils import DatabaseError
+from djangocg.utils import six
 
 #### Classes used in constructing PostGIS spatial SQL ####
 class PostGISOperator(SpatialOperation):
@@ -59,7 +59,7 @@ class PostGISRelate(PostGISFunctionParam):
 
 
 class PostGISOperations(DatabaseOperations, BaseSpatialOperations):
-    compiler_module = 'django.contrib.gis.db.models.sql.compiler'
+    compiler_module = 'djangocg.contrib.gis.db.models.sql.compiler'
     name = 'postgis'
     postgis = True
     version_regex = re.compile(r'^(?P<major>\d)\.(?P<minor1>\d)\.(?P<minor2>\d+)')
@@ -561,9 +561,9 @@ class PostGISOperations(DatabaseOperations, BaseSpatialOperations):
 
     # Routines for getting the OGC-compliant models.
     def geometry_columns(self):
-        from django.contrib.gis.db.backends.postgis.models import GeometryColumns
+        from djangocg.contrib.gis.db.backends.postgis.models import GeometryColumns
         return GeometryColumns
 
     def spatial_ref_sys(self):
-        from django.contrib.gis.db.backends.postgis.models import SpatialRefSys
+        from djangocg.contrib.gis.db.backends.postgis.models import SpatialRefSys
         return SpatialRefSys

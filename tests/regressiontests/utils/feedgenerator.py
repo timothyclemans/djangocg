@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 import datetime
 
-from django.utils import feedgenerator, tzinfo, unittest
+from djangocg.utils import feedgenerator, tzinfo, unittest
 
 class FeedgeneratorTest(unittest.TestCase):
     """

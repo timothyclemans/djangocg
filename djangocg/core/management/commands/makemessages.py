@@ -8,9 +8,9 @@ from optparse import make_option
 from subprocess import PIPE, Popen
 
 import django
-from django.core.management.base import CommandError, NoArgsCommand
-from django.utils.text import get_text_list
-from django.utils.jslex import prepare_js_for_gettext
+from djangocg.core.management.base import CommandError, NoArgsCommand
+from djangocg.utils.text import get_text_list
+from djangocg.utils.jslex import prepare_js_for_gettext
 
 plural_forms_re = re.compile(r'^(?P<value>"Plural-Forms.+?\\n")\s*$', re.MULTILINE | re.DOTALL)
 STATUS_OK = 0
@@ -84,7 +84,7 @@ def copy_plural_forms(msgs, locale, domain, verbosity, stdout=sys.stdout):
     the msgs string, inserting it at the right place. msgs should be the
     contents of a newly created .po file.
     """
-    django_dir = os.path.normpath(os.path.join(os.path.dirname(django.__file__)))
+    django_dir = os.path.normpath(os.path.join(os.path.dirname(djangocg.__file__)))
     if domain == 'djangojs':
         domains = ('djangojs', 'django')
     else:
@@ -134,7 +134,7 @@ def process_file(file, dirpath, potfile, domain, verbosity,
     Uses the xgettext GNU gettext utility.
     """
 
-    from django.utils.translation import templatize
+    from djangocg.utils.translation import templatize
 
     if verbosity > 1:
         stdout.write('processing file %s in %s\n' % (file, dirpath))
@@ -253,7 +253,7 @@ def make_messages(locale=None, domain='django', verbosity=1, all=False,
     the :param domain: domain and :param locale: locale.
     """
     # Need to ensure that the i18n framework is enabled
-    from django.conf import settings
+    from djangocg.conf import settings
     if settings.configured:
         settings.USE_I18N = True
     else:

@@ -1,6 +1,6 @@
-from django.contrib.localflavor.mx.models import (
+from djangocg.contrib.localflavor.mx.models import (
     MXStateField, MXRFCField, MXCURPField, MXZipCodeField)
-from django.db import models
+from djangocg.db import models
 
 
 class MXPersonProfile(models.Model):

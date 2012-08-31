@@ -1,6 +1,6 @@
-from django.conf import settings
-from django.conf.urls import patterns, url
-from django.core.urlresolvers import LocaleRegexURLResolver
+from djangocg.conf import settings
+from djangocg.conf.urls import patterns, url
+from djangocg.core.urlresolvers import LocaleRegexURLResolver
 
 def i18n_patterns(prefix, *args):
     """
@@ -16,5 +16,5 @@ def i18n_patterns(prefix, *args):
 
 
 urlpatterns = patterns('',
-    url(r'^setlang/$', 'django.views.i18n.set_language', name='set_language'),
+    url(r'^setlang/$', 'djangocg.views.i18n.set_language', name='set_language'),
 )

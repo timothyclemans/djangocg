@@ -4,8 +4,8 @@ PY-specific Form helpers.
 
 from __future__ import absolute_import
 
-from django.contrib.localflavor.py.py_department import DEPARTMENT_CHOICES, DEPARTMENT_ROMAN_CHOICES
-from django.forms.fields import Select
+from djangocg.contrib.localflavor.py.py_department import DEPARTMENT_CHOICES, DEPARTMENT_ROMAN_CHOICES
+from djangocg.forms.fields import Select
 
 
 class PyDepartmentSelect(Select):

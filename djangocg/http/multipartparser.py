@@ -9,13 +9,13 @@ from __future__ import unicode_literals
 import base64
 import cgi
 
-from django.conf import settings
-from django.core.exceptions import SuspiciousOperation
-from django.utils.datastructures import MultiValueDict
-from django.utils.encoding import force_text
-from django.utils import six
-from django.utils.text import unescape_entities
-from django.core.files.uploadhandler import StopUpload, SkipFile, StopFutureHandlers
+from djangocg.conf import settings
+from djangocg.core.exceptions import SuspiciousOperation
+from djangocg.utils.datastructures import MultiValueDict
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
+from djangocg.utils.text import unescape_entities
+from djangocg.core.files.uploadhandler import StopUpload, SkipFile, StopFutureHandlers
 
 __all__ = ('MultiPartParser', 'MultiPartParserError', 'InputStreamExhausted')
 
@@ -103,7 +103,7 @@ class MultiPartParser(object):
         Returns a tuple containing the POST and FILES dictionary, respectively.
         """
         # We have to import QueryDict down here to avoid a circular import.
-        from django.http import QueryDict
+        from djangocg.http import QueryDict
 
         encoding = self._encoding
         handlers = self._upload_handlers

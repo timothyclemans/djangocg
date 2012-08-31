@@ -8,7 +8,7 @@ Sources:
 """
 from __future__ import unicode_literals
 
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 HR_COUNTY_CHOICES = (
     ('GZG', _('Grad Zagreb')),

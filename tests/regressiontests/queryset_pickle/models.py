@@ -2,8 +2,8 @@ from __future__ import absolute_import
 
 import datetime
 
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from djangocg.db import models
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 def standalone_number(self):

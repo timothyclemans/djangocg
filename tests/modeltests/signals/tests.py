@@ -1,9 +1,9 @@
 from __future__ import absolute_import
 
-from django.db.models import signals
-from django.dispatch import receiver
-from django.test import TestCase
-from django.utils import six
+from djangocg.db.models import signals
+from djangocg.dispatch import receiver
+from djangocg.test import TestCase
+from djangocg.utils import six
 
 from .models import Person, Car
 

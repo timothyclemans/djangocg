@@ -1,8 +1,8 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.forms.models import inlineformset_factory
-from django.test import TestCase
-from django.utils import six
+from djangocg.forms.models import inlineformset_factory
+from djangocg.test import TestCase
+from djangocg.utils import six
 
 from .models import Poet, Poem, School, Parent, Child
 

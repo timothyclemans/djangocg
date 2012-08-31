@@ -1,6 +1,6 @@
-from django.contrib.gis.gdal.error import OGRException
+from djangocg.contrib.gis.gdal.error import OGRException
 
-from django.utils import six
+from djangocg.utils import six
 
 #### OGRGeomType ####
 class OGRGeomType(object):

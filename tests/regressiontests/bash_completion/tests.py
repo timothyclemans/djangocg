@@ -4,10 +4,10 @@ A series of tests to establish that the command-line bash completion works.
 import os
 import sys
 
-from django.conf import settings
-from django.core.management import ManagementUtility
-from django.utils import unittest
-from django.utils.six import StringIO
+from djangocg.conf import settings
+from djangocg.core.management import ManagementUtility
+from djangocg.utils import unittest
+from djangocg.utils.six import StringIO
 
 
 class BashCompletionTests(unittest.TestCase):

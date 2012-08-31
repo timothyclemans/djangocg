@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.conf.urls import patterns, include
-from django.contrib import admin
+from djangocg.conf.urls import patterns, include
+from djangocg.contrib import admin
 
 from . import admin as tz_admin
 

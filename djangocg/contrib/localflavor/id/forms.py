@@ -7,11 +7,11 @@ from __future__ import absolute_import, unicode_literals
 import re
 import time
 
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Field, Select
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import smart_text
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Field, Select
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import smart_text
 
 
 postcode_re = re.compile(r'^[1-9]\d{4}$')
@@ -58,7 +58,7 @@ class IDProvinceSelect(Select):
 
     def __init__(self, attrs=None):
         # Load data in memory only when it is required, see also #17275
-        from django.contrib.localflavor.id.id_choices import PROVINCE_CHOICES
+        from djangocg.contrib.localflavor.id.id_choices import PROVINCE_CHOICES
         super(IDProvinceSelect, self).__init__(attrs, choices=PROVINCE_CHOICES)
 
 
@@ -95,7 +95,7 @@ class IDLicensePlatePrefixSelect(Select):
 
     def __init__(self, attrs=None):
         # Load data in memory only when it is required, see also #17275
-        from django.contrib.localflavor.id.id_choices import LICENSE_PLATE_PREFIX_CHOICES
+        from djangocg.contrib.localflavor.id.id_choices import LICENSE_PLATE_PREFIX_CHOICES
         super(IDLicensePlatePrefixSelect, self).__init__(attrs,
             choices=LICENSE_PLATE_PREFIX_CHOICES)
 
@@ -114,7 +114,7 @@ class IDLicensePlateField(Field):
 
     def clean(self, value):
         # Load data in memory only when it is required, see also #17275
-        from django.contrib.localflavor.id.id_choices import LICENSE_PLATE_PREFIX_CHOICES
+        from djangocg.contrib.localflavor.id.id_choices import LICENSE_PLATE_PREFIX_CHOICES
         super(IDLicensePlateField, self).clean(value)
         if value in EMPTY_VALUES:
             return ''

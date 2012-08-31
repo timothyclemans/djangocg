@@ -3,10 +3,10 @@ from __future__ import absolute_import
 import mimetypes
 from os import path
 
-from django.conf import settings
-from django.conf.urls.static import static
-from django.test import TestCase
-from django.http import HttpResponseNotModified
+from djangocg.conf import settings
+from djangocg.conf.urls.static import static
+from djangocg.test import TestCase
+from djangocg.http import HttpResponseNotModified
 
 from .. import urls
 from ..urls import media_dir

@@ -5,10 +5,10 @@ import pickle
 from decimal import Decimal
 from operator import attrgetter
 
-from django.core.exceptions import FieldError
-from django.db.models import Count, Max, Avg, Sum, StdDev, Variance, F, Q
-from django.test import TestCase, Approximate, skipUnlessDBFeature
-from django.utils import six
+from djangocg.core.exceptions import FieldError
+from djangocg.db.models import Count, Max, Avg, Sum, StdDev, Variance, F, Q
+from djangocg.test import TestCase, Approximate, skipUnlessDBFeature
+from djangocg.utils import six
 
 from .models import Author, Book, Publisher, Clues, Entries, HardbackBook
 
@@ -870,8 +870,8 @@ class AggregationTests(TestCase):
     def test_type_conversion(self):
         # The database backend convert_values function should not try to covert
         # CharFields to float. Refs #13844.
-        from django.db.models import CharField
-        from django.db import connection
+        from djangocg.db.models import CharField
+        from djangocg.db import connection
         testData = 'not_a_float_value'
         testField = CharField()
         self.assertEqual(

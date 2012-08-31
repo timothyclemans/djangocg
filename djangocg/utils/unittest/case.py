@@ -7,12 +7,12 @@ import re
 import unittest
 import warnings
 
-from django.utils.unittest import result
-from django.utils.unittest.util import\
+from djangocg.utils.unittest import result
+from djangocg.utils.unittest.util import\
     safe_repr, safe_str, strclass,\
     unorderable_list_difference
 
-from django.utils.unittest.compatibility import wraps
+from djangocg.utils.unittest.compatibility import wraps
 
 __unittest = True
 

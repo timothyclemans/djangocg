@@ -1,10 +1,10 @@
-from django.contrib.gis.geos.base import numpy
-from django.contrib.gis.geos.coordseq import GEOSCoordSeq
-from django.contrib.gis.geos.error import GEOSException
-from django.contrib.gis.geos.geometry import GEOSGeometry
-from django.contrib.gis.geos.point import Point
-from django.contrib.gis.geos import prototypes as capi
-from django.utils.six.moves import xrange
+from djangocg.contrib.gis.geos.base import numpy
+from djangocg.contrib.gis.geos.coordseq import GEOSCoordSeq
+from djangocg.contrib.gis.geos.error import GEOSException
+from djangocg.contrib.gis.geos.geometry import GEOSGeometry
+from djangocg.contrib.gis.geos.point import Point
+from djangocg.contrib.gis.geos import prototypes as capi
+from djangocg.utils.six.moves import xrange
 
 class LineString(GEOSGeometry):
     _init_func = capi.create_linestring

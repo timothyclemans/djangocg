@@ -1,6 +1,6 @@
-from django.conf import settings
-from django.utils.safestring import mark_safe
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
 
 
 def format(number, decimal_sep, decimal_pos=None, grouping=0, thousand_sep='',

@@ -1,4 +1,4 @@
-from django.conf import settings
+from djangocg.conf import settings
 from django import http
 
 class XViewMiddleware(object):
@@ -15,7 +15,7 @@ class XViewMiddleware(object):
         assert hasattr(request, 'user'), (
             "The XView middleware requires authentication middleware to be "
             "installed. Edit your MIDDLEWARE_CLASSES setting to insert "
-            "'django.contrib.auth.middleware.AuthenticationMiddleware'.")
+            "'djangocg.contrib.auth.middleware.AuthenticationMiddleware'.")
         if request.method == 'HEAD' and (request.META.get('REMOTE_ADDR') in settings.INTERNAL_IPS or
                                          (request.user.is_active and request.user.is_staff)):
             response = http.HttpResponse()

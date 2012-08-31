@@ -5,19 +5,19 @@ and database field objects.
 
 from __future__ import absolute_import, unicode_literals
 
-from django.core.exceptions import ValidationError, NON_FIELD_ERRORS, FieldError
-from django.core.validators import EMPTY_VALUES
-from django.forms.fields import Field, ChoiceField
-from django.forms.forms import BaseForm, get_declared_fields
-from django.forms.formsets import BaseFormSet, formset_factory
-from django.forms.util import ErrorList
-from django.forms.widgets import (SelectMultiple, HiddenInput,
+from djangocg.core.exceptions import ValidationError, NON_FIELD_ERRORS, FieldError
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms.fields import Field, ChoiceField
+from djangocg.forms.forms import BaseForm, get_declared_fields
+from djangocg.forms.formsets import BaseFormSet, formset_factory
+from djangocg.forms.util import ErrorList
+from djangocg.forms.widgets import (SelectMultiple, HiddenInput,
     MultipleHiddenInput, media_property)
-from django.utils.encoding import smart_text, force_text
-from django.utils.datastructures import SortedDict
-from django.utils import six
-from django.utils.text import get_text_list, capfirst
-from django.utils.translation import ugettext_lazy as _, ugettext
+from djangocg.utils.encoding import smart_text, force_text
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils import six
+from djangocg.utils.text import get_text_list, capfirst
+from djangocg.utils.translation import ugettext_lazy as _, ugettext
 
 
 __all__ = (
@@ -31,7 +31,7 @@ def construct_instance(form, instance, fields=None, exclude=None):
     ``cleaned_data``, but does not save the returned instance to the
     database.
     """
-    from django.db import models
+    from djangocg.db import models
     opts = instance._meta
 
     cleaned_data = form.cleaned_data
@@ -108,7 +108,7 @@ def model_to_dict(instance, fields=None, exclude=None):
     the ``fields`` argument.
     """
     # avoid a circular import
-    from django.db.models.fields.related import ManyToManyField
+    from djangocg.db.models.fields.related import ManyToManyField
     opts = instance._meta
     data = {}
     for f in opts.fields + opts.many_to_many:
@@ -434,8 +434,8 @@ class BaseModelFormSet(BaseFormSet):
     def _construct_form(self, i, **kwargs):
         if self.is_bound and i < self.initial_form_count():
             # Import goes here instead of module-level because importing
-            # django.db has side effects.
-            from django.db import connections
+            # djangocg.db has side effects.
+            from djangocg.db import connections
             pk_key = "%s-%s" % (self.add_prefix(i), self.model._meta.pk.name)
             pk = self.data[pk_key]
             pk_field = self.model._meta.pk
@@ -632,7 +632,7 @@ class BaseModelFormSet(BaseFormSet):
 
     def add_fields(self, form, index):
         """Add a hidden field for the object's primary key."""
-        from django.db.models import AutoField, OneToOneField, ForeignKey
+        from djangocg.db.models import AutoField, OneToOneField, ForeignKey
         self._pk_field = pk = self.model._meta.pk
         # If a pk isn't editable, then it won't be on the form, so we need to
         # add it here so we can tell which object is which when we get the
@@ -682,7 +682,7 @@ class BaseInlineFormSet(BaseModelFormSet):
     """A formset for child objects related to a parent."""
     def __init__(self, data=None, files=None, instance=None,
                  save_as_new=False, prefix=None, queryset=None, **kwargs):
-        from django.db.models.fields.related import RelatedObject
+        from djangocg.db.models.fields.related import RelatedObject
         if instance is None:
             self.instance = self.fk.rel.to()
         else:
@@ -718,7 +718,7 @@ class BaseInlineFormSet(BaseModelFormSet):
 
     @classmethod
     def get_default_prefix(cls):
-        from django.db.models.fields.related import RelatedObject
+        from djangocg.db.models.fields.related import RelatedObject
         return RelatedObject(cls.fk.rel.to, cls.model, cls.fk).get_accessor_name().replace('+','')
 
     def save_new(self, form, commit=True):
@@ -772,7 +772,7 @@ def _get_foreign_key(parent_model, model, fk_name=None, can_fail=False):
     parent_model.
     """
     # avoid circular import
-    from django.db.models import ForeignKey
+    from djangocg.db.models import ForeignKey
     opts = model._meta
     if fk_name:
         fks_to_parent = [f for f in opts.fields if f.name == fk_name]

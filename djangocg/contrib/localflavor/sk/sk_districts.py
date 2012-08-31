@@ -2,7 +2,7 @@
 Slovak districts according to http://sk.wikipedia.org/wiki/Administrat%C3%ADvne_%C4%8Dlenenie_Slovenska
 """
 
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 DISTRICT_CHOICES = (
     ('BB', _('Banska Bystrica')),

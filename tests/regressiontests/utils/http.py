@@ -1,11 +1,11 @@
 import sys
 
-from django.http import HttpResponse, utils
-from django.test import RequestFactory
-from django.utils.datastructures import MultiValueDict
-from django.utils import http
-from django.utils import six
-from django.utils import unittest
+from djangocg.http import HttpResponse, utils
+from djangocg.test import RequestFactory
+from djangocg.utils.datastructures import MultiValueDict
+from djangocg.utils import http
+from djangocg.utils import six
+from djangocg.utils import unittest
 
 class TestUtilsHttp(unittest.TestCase):
 

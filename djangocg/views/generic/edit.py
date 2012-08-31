@@ -1,8 +1,8 @@
-from django.forms import models as model_forms
-from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponseRedirect
-from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
-from django.views.generic.detail import (SingleObjectMixin,
+from djangocg.forms import models as model_forms
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.http import HttpResponseRedirect
+from djangocg.views.generic.base import TemplateResponseMixin, ContextMixin, View
+from djangocg.views.generic.detail import (SingleObjectMixin,
                         SingleObjectTemplateResponseMixin, BaseDetailView)
 
 

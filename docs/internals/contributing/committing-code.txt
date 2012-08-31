@@ -49,7 +49,7 @@ to standard themselves.
 Here is one way to commit a pull request::
 
     # Create a new branch tracking upstream/master -- upstream is assumed
-    # to be django/django.
+    # to be django/djangocg.
     git checkout -b pull_xxxxx upstream/master
 
     # Download the patches from github and apply them.
@@ -75,13 +75,13 @@ Once you're ready::
 An alternative is to add the contributor's repository as a new remote,
 checkout the branch and work from there::
 
-    git remote add <contributor> https://github.com/<contributor>/django.git
+    git remote add <contributor> https://github.com/<contributor>/djangocg.git
     git checkout pull_xxxxx <contributor> <contributor's pull request branch>
 
 Yet another alternative is to fetch the branch without adding the
 contributor's repository as a remote::
 
-    git fetch https://github.com/<contributor>/django.git <contributor's pull request branch>
+    git fetch https://github.com/<contributor>/djangocg.git <contributor's pull request branch>
     git checkout -b pull_xxxxx FETCH_HEAD
 
 At this point, you can work on the code and continue as above.
@@ -125,7 +125,7 @@ In addition, please follow the following guidelines when committing code to
 Django's Git repository:
 
 * Never change the published history of django/django branches! **Never force-
-  push your changes to django/django.** If you absolutely must (for security
+  push your changes to django/djangocg.** If you absolutely must (for security
   reasons for example) first discuss the situation with the core team.
 
 * For any medium-to-big changes, where "medium-to-big" is according to

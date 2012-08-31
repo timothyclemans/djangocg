@@ -3,24 +3,24 @@ try:
 except ImportError:     # Python 2
     from urlparse import urlparse, urlunparse
 
-from django.conf import settings
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, QueryDict
-from django.template.response import TemplateResponse
-from django.utils.encoding import force_str
-from django.utils.http import base36_to_int
-from django.utils.translation import ugettext as _
-from django.views.decorators.debug import sensitive_post_parameters
-from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
+from djangocg.conf import settings
+from djangocg.core.urlresolvers import reverse
+from djangocg.http import HttpResponseRedirect, QueryDict
+from djangocg.template.response import TemplateResponse
+from djangocg.utils.encoding import force_str
+from djangocg.utils.http import base36_to_int
+from djangocg.utils.translation import ugettext as _
+from djangocg.views.decorators.debug import sensitive_post_parameters
+from djangocg.views.decorators.cache import never_cache
+from djangocg.views.decorators.csrf import csrf_protect
 
 # Avoid shadowing the login() and logout() views below.
-from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
-from django.contrib.auth.models import User
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.models import get_current_site
+from djangocg.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout
+from djangocg.contrib.auth.decorators import login_required
+from djangocg.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.auth.tokens import default_token_generator
+from djangocg.contrib.sites.models import get_current_site
 
 
 @sensitive_post_parameters()
@@ -147,7 +147,7 @@ def password_reset(request, is_admin_site=False,
                    current_app=None,
                    extra_context=None):
     if post_reset_redirect is None:
-        post_reset_redirect = reverse('django.contrib.auth.views.password_reset_done')
+        post_reset_redirect = reverse('djangocg.contrib.auth.views.password_reset_done')
     if request.method == "POST":
         form = password_reset_form(request.POST)
         if form.is_valid():
@@ -197,7 +197,7 @@ def password_reset_confirm(request, uidb36=None, token=None,
     """
     assert uidb36 is not None and token is not None # checked by URLconf
     if post_reset_redirect is None:
-        post_reset_redirect = reverse('django.contrib.auth.views.password_reset_complete')
+        post_reset_redirect = reverse('djangocg.contrib.auth.views.password_reset_complete')
     try:
         uid_int = base36_to_int(uidb36)
         user = User.objects.get(id=uid_int)
@@ -245,7 +245,7 @@ def password_change(request,
                     password_change_form=PasswordChangeForm,
                     current_app=None, extra_context=None):
     if post_change_redirect is None:
-        post_change_redirect = reverse('django.contrib.auth.views.password_change_done')
+        post_change_redirect = reverse('djangocg.contrib.auth.views.password_change_done')
     if request.method == "POST":
         form = password_change_form(user=request.user, data=request.POST)
         if form.is_valid():

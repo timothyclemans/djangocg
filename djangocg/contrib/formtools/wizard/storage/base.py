@@ -1,9 +1,9 @@
-from django.core.files.uploadedfile import UploadedFile
-from django.utils.datastructures import MultiValueDict
-from django.utils.functional import lazy_property
-from django.utils import six
+from djangocg.core.files.uploadedfile import UploadedFile
+from djangocg.utils.datastructures import MultiValueDict
+from djangocg.utils.functional import lazy_property
+from djangocg.utils import six
 
-from django.contrib.formtools.wizard.storage.exceptions import NoFileStorageConfigured
+from djangocg.contrib.formtools.wizard.storage.exceptions import NoFileStorageConfigured
 
 
 class BaseStorage(object):

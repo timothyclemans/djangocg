@@ -2,13 +2,13 @@
 Django shortcut functions
 =========================
 
-.. module:: django.shortcuts
+.. module:: djangocg.shortcuts
    :synopsis:
        Convenience shortcuts that spam multiple levels of Django's MVC stack.
 
 .. index:: shortcuts
 
-The package ``django.shortcuts`` collects helper functions and classes that
+The package ``djangocg.shortcuts`` collects helper functions and classes that
 "span" multiple levels of MVC. In other words, these functions/classes
 introduce controlled coupling for convenience's sake.
 
@@ -20,11 +20,11 @@ introduce controlled coupling for convenience's sake.
    .. versionadded:: 1.3
 
    Combines a given template with a given context dictionary and returns an
-   :class:`~django.http.HttpResponse` object with that rendered text.
+   :class:`~djangocg.http.HttpResponse` object with that rendered text.
 
    :func:`render()` is the same as a call to
    :func:`render_to_response()` with a `context_instance` argument that
-   forces the use of a :class:`~django.template.RequestContext`.
+   forces the use of a :class:`~djangocg.template.RequestContext`.
 
 Required arguments
 ------------------
@@ -66,7 +66,7 @@ Example
 The following example renders the template ``myapp/index.html`` with the
 MIME type :mimetype:`application/xhtml+xml`::
 
-    from django.shortcuts import render
+    from djangocg.shortcuts import render
 
     def my_view(request):
         # View code here...
@@ -75,8 +75,8 @@ MIME type :mimetype:`application/xhtml+xml`::
 
 This example is equivalent to::
 
-    from django.http import HttpResponse
-    from django.template import RequestContext, loader
+    from djangocg.http import HttpResponse
+    from djangocg.template import RequestContext, loader
 
     def my_view(request):
         # View code here...
@@ -92,7 +92,7 @@ This example is equivalent to::
 .. function:: render_to_response(template_name[, dictionary][, context_instance][, mimetype])
 
    Renders a given template with a given context dictionary and returns an
-   :class:`~django.http.HttpResponse` object with that rendered text.
+   :class:`~djangocg.http.HttpResponse` object with that rendered text.
 
 Required arguments
 ------------------
@@ -113,10 +113,10 @@ Optional arguments
 
 ``context_instance``
     The context instance to render the template with. By default, the template
-    will be rendered with a :class:`~django.template.Context` instance (filled
+    will be rendered with a :class:`~djangocg.template.Context` instance (filled
     with values from ``dictionary``). If you need to use :ref:`context
     processors <subclassing-context-requestcontext>`, render the template with
-    a :class:`~django.template.RequestContext` instance instead. Your code
+    a :class:`~djangocg.template.RequestContext` instance instead. Your code
     might look something like this::
 
         return render_to_response('my_template.html',
@@ -133,7 +133,7 @@ Example
 The following example renders the template ``myapp/index.html`` with the
 MIME type :mimetype:`application/xhtml+xml`::
 
-    from django.shortcuts import render_to_response
+    from djangocg.shortcuts import render_to_response
 
     def my_view(request):
         # View code here...
@@ -142,8 +142,8 @@ MIME type :mimetype:`application/xhtml+xml`::
 
 This example is equivalent to::
 
-    from django.http import HttpResponse
-    from django.template import Context, loader
+    from djangocg.http import HttpResponse
+    from djangocg.template import Context, loader
 
     def my_view(request):
         # View code here...
@@ -157,7 +157,7 @@ This example is equivalent to::
 
 .. function:: redirect(to[, permanent=False], *args, **kwargs)
 
-   Returns an :class:`~django.http.HttpResponseRedirect` to the appropriate URL
+   Returns an :class:`~djangocg.http.HttpResponseRedirect` to the appropriate URL
    for the arguments passed.
 
    The arguments could be:
@@ -178,10 +178,10 @@ Examples
 You can use the :func:`redirect` function in a number of ways.
 
 1. By passing some object; that object's
-   :meth:`~django.db.models.Model.get_absolute_url` method will be called
+   :meth:`~djangocg.db.models.Model.get_absolute_url` method will be called
    to figure out the redirect URL::
 
-        from django.shortcuts import redirect
+        from djangocg.shortcuts import redirect
 
         def my_view(request):
             ...
@@ -190,7 +190,7 @@ You can use the :func:`redirect` function in a number of ways.
 
 2. By passing the name of a view and optionally some positional or
    keyword arguments; the URL will be reverse resolved using the
-   :func:`~django.core.urlresolvers.reverse` method::
+   :func:`~djangocg.core.urlresolvers.reverse` method::
 
         def my_view(request):
             ...
@@ -222,16 +222,16 @@ will be returned::
 
 .. function:: get_object_or_404(klass, *args, **kwargs)
 
-   Calls :meth:`~django.db.models.query.QuerySet.get()` on a given model manager,
-   but it raises :class:`~django.http.Http404` instead of the model's
-   :class:`~django.core.exceptions.DoesNotExist` exception.
+   Calls :meth:`~djangocg.db.models.query.QuerySet.get()` on a given model manager,
+   but it raises :class:`~djangocg.http.Http404` instead of the model's
+   :class:`~djangocg.core.exceptions.DoesNotExist` exception.
 
 Required arguments
 ------------------
 
 ``klass``
-    A :class:`~django.db.models.Model`, :class:`~django.db.models.Manager` or
-    :class:`~django.db.models.query.QuerySet` instance from which to get the
+    A :class:`~djangocg.db.models.Model`, :class:`~djangocg.db.models.Manager` or
+    :class:`~djangocg.db.models.query.QuerySet` instance from which to get the
     object.
 
 ``**kwargs``
@@ -244,14 +244,14 @@ Example
 The following example gets the object with the primary key of 1 from
 ``MyModel``::
 
-    from django.shortcuts import get_object_or_404
+    from djangocg.shortcuts import get_object_or_404
 
     def my_view(request):
         my_object = get_object_or_404(MyModel, pk=1)
 
 This example is equivalent to::
 
-    from django.http import Http404
+    from djangocg.http import Http404
 
     def my_view(request):
         try:
@@ -260,7 +260,7 @@ This example is equivalent to::
             raise Http404
 
 Note: As with ``get()``, a
-:class:`~django.core.exceptions.MultipleObjectsReturned` exception
+:class:`~djangocg.core.exceptions.MultipleObjectsReturned` exception
 will be raised if more than one object is found.
 
 ``get_list_or_404``
@@ -268,16 +268,16 @@ will be raised if more than one object is found.
 
 .. function:: get_list_or_404(klass, *args, **kwargs)
 
-   Returns the result of :meth:`~django.db.models.query.QuerySet.filter()` on a
-   given model manager, raising :class:`~django.http.Http404` if the resulting
+   Returns the result of :meth:`~djangocg.db.models.query.QuerySet.filter()` on a
+   given model manager, raising :class:`~djangocg.http.Http404` if the resulting
    list is empty.
 
 Required arguments
 ------------------
 
 ``klass``
-    A :class:`~django.db.models.Model`, :class:`~django.db.models.Manager` or
-    :class:`~django.db.models.query.QuerySet` instance from which to get the
+    A :class:`~djangocg.db.models.Model`, :class:`~djangocg.db.models.Manager` or
+    :class:`~djangocg.db.models.query.QuerySet` instance from which to get the
     list.
 
 ``**kwargs``
@@ -289,14 +289,14 @@ Example
 
 The following example gets all published objects from ``MyModel``::
 
-    from django.shortcuts import get_list_or_404
+    from djangocg.shortcuts import get_list_or_404
 
     def my_view(request):
         my_objects = get_list_or_404(MyModel, published=True)
 
 This example is equivalent to::
 
-    from django.http import Http404
+    from djangocg.http import Http404
 
     def my_view(request):
         my_objects = list(MyModel.objects.filter(published=True))

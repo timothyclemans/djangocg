@@ -1,4 +1,4 @@
-from django.contrib.localflavor.gb.gb_regions import (
+from djangocg.contrib.localflavor.gb.gb_regions import (
     ENGLAND_REGION_CHOICES, NORTHERN_IRELAND_REGION_CHOICES,
     WALES_REGION_CHOICES, SCOTTISH_REGION_CHOICES, GB_NATIONS_CHOICES,
     GB_REGION_CHOICES)

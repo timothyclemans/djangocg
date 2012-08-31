@@ -2,7 +2,7 @@
 Classes to represent the default SQL aggregate functions
 """
 
-from django.db.models.fields import IntegerField, FloatField
+from djangocg.db.models.fields import IntegerField, FloatField
 
 # Fake fields used to identify aggregate types in data-conversion operations.
 ordinal_aggregate_field = IntegerField()

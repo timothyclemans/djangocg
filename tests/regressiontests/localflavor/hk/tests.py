@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.contrib.localflavor.hk.forms import HKPhoneNumberField
-from django.test import SimpleTestCase
+from djangocg.contrib.localflavor.hk.forms import HKPhoneNumberField
+from djangocg.test import SimpleTestCase
 
 
 class HKLocalFlavorTests(SimpleTestCase):

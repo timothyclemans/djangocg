@@ -3,14 +3,14 @@ from __future__ import unicode_literals
 
 import datetime
 
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.forms import *
-from django.http import QueryDict
-from django.template import Template, Context
-from django.test import TestCase
-from django.test.utils import str_prefix
-from django.utils.datastructures import MultiValueDict, MergeDict
-from django.utils.safestring import mark_safe
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.forms import *
+from djangocg.http import QueryDict
+from djangocg.template import Template, Context
+from djangocg.test import TestCase
+from djangocg.test.utils import str_prefix
+from djangocg.utils.datastructures import MultiValueDict, MergeDict
+from djangocg.utils.safestring import mark_safe
 
 
 class Person(Form):
@@ -809,7 +809,7 @@ class FormsTestCase(TestCase):
     def test_validators_independence(self):
         """ Test that we are able to modify a form field validators list without polluting
             other forms """
-        from django.core.validators import MaxValueValidator
+        from djangocg.core.validators import MaxValueValidator
         class MyForm(Form):
             myfield = CharField(max_length=25)
 

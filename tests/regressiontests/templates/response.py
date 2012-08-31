@@ -5,12 +5,12 @@ import pickle
 import time
 from datetime import datetime
 
-from django.test import RequestFactory, TestCase
-from django.conf import settings
-from django.template import Template, Context
-from django.template.response import (TemplateResponse, SimpleTemplateResponse,
+from djangocg.test import RequestFactory, TestCase
+from djangocg.conf import settings
+from djangocg.template import Template, Context
+from djangocg.template.response import (TemplateResponse, SimpleTemplateResponse,
                                       ContentNotRenderedError)
-from django.test.utils import override_settings
+from djangocg.test.utils import override_settings
 
 def test_processor(request):
     return {'processors': 'yes'}
@@ -308,8 +308,8 @@ class CacheMiddlewareTest(TestCase):
 
         settings.CACHE_MIDDLEWARE_SECONDS = 2.0
         settings.MIDDLEWARE_CLASSES = list(settings.MIDDLEWARE_CLASSES) + [
-            'django.middleware.cache.FetchFromCacheMiddleware',
-            'django.middleware.cache.UpdateCacheMiddleware',
+            'djangocg.middleware.cache.FetchFromCacheMiddleware',
+            'djangocg.middleware.cache.UpdateCacheMiddleware',
         ]
 
     def tearDown(self):

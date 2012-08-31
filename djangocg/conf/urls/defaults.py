@@ -1,6 +1,6 @@
 import warnings
-warnings.warn("django.conf.urls.defaults is deprecated; use django.conf.urls instead",
+warnings.warn("djangocg.conf.urls.defaults is deprecated; use djangocg.conf.urls instead",
               DeprecationWarning)
 
-from django.conf.urls import (handler403, handler404, handler500,
+from djangocg.conf.urls import (handler403, handler404, handler500,
         include, patterns, url)

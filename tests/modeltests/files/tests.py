@@ -4,13 +4,13 @@ import gzip
 import shutil
 import tempfile
 
-from django.core.cache import cache
-from django.core.exceptions import ValidationError
-from django.core.files import File
-from django.core.files.base import ContentFile
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase
-from django.utils import unittest
+from djangocg.core.cache import cache
+from djangocg.core.exceptions import ValidationError
+from djangocg.core.files import File
+from djangocg.core.files.base import ContentFile
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.test import TestCase
+from djangocg.utils import unittest
 
 from .models import Storage, temp_storage, temp_storage_location
 

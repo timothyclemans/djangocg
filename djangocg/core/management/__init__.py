@@ -5,10 +5,10 @@ from optparse import OptionParser, NO_DEFAULT
 import imp
 import warnings
 
-from django.core.management.base import BaseCommand, CommandError, handle_default_options
-from django.core.management.color import color_style
-from django.utils.importlib import import_module
-from django.utils import six
+from djangocg.core.management.base import BaseCommand, CommandError, handle_default_options
+from djangocg.core.management.color import color_style
+from djangocg.utils.importlib import import_module
+from djangocg.utils import six
 
 # For backwards compatibility: get_version() used to be in this module.
 from django import get_version
@@ -79,7 +79,7 @@ def get_commands():
     """
     Returns a dictionary mapping command names to their callback applications.
 
-    This works by looking for a management.commands package in django.core, and
+    This works by looking for a management.commands package in djangocg.core, and
     in each installed application -- if a commands package exists, all commands
     in that package are registered.
 
@@ -99,11 +99,11 @@ def get_commands():
     """
     global _commands
     if _commands is None:
-        _commands = dict([(name, 'django.core') for name in find_commands(__path__[0])])
+        _commands = dict([(name, 'djangocg.core') for name in find_commands(__path__[0])])
 
         # Find the installed apps
         try:
-            from django.conf import settings
+            from djangocg.conf import settings
             apps = settings.INSTALLED_APPS
         except (AttributeError, EnvironmentError, ImportError):
             apps = []
@@ -235,7 +235,7 @@ class ManagementUtility(object):
             ]
             commands_dict = collections.defaultdict(lambda: [])
             for name, app in six.iteritems(get_commands()):
-                if app == 'django.core':
+                if app == 'djangocg.core':
                     app = 'django'
                 else:
                     app = app.rpartition('.')[-1]
@@ -313,13 +313,13 @@ class ManagementUtility(object):
             # special case: 'runfcgi' stores additional options as
             # 'key=value' pairs
             if cwords[0] == 'runfcgi':
-                from django.core.servers.fastcgi import FASTCGI_OPTIONS
+                from djangocg.core.servers.fastcgi import FASTCGI_OPTIONS
                 options += [(k, 1) for k in FASTCGI_OPTIONS]
             # special case: add the names of installed apps to options
             elif cwords[0] in ('dumpdata', 'sql', 'sqlall', 'sqlclear',
                     'sqlcustom', 'sqlindexes', 'sqlsequencereset', 'test'):
                 try:
-                    from django.conf import settings
+                    from djangocg.conf import settings
                     # Get the last part of the dotted path as the app name.
                     options += [(a.split('.')[-1], 0) for a in settings.INSTALLED_APPS]
                 except ImportError:

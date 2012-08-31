@@ -3,11 +3,11 @@ from __future__ import unicode_literals
 import copy
 import warnings
 
-from django.conf import compat_patch_logging_config
-from django.core import mail
-from django.test import TestCase, RequestFactory
-from django.test.utils import override_settings
-from django.utils.log import CallbackFilter, RequireDebugFalse, getLogger
+from djangocg.conf import compat_patch_logging_config
+from djangocg.core import mail
+from djangocg.test import TestCase, RequestFactory
+from djangocg.test.utils import override_settings
+from djangocg.utils.log import CallbackFilter, RequireDebugFalse, getLogger
 
 
 # logging config prior to using filter with mail_admins
@@ -17,11 +17,11 @@ OLD_LOGGING = {
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'djangocg.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
-        'django.request': {
+        'djangocg.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
@@ -64,7 +64,7 @@ class PatchLoggingConfigTest(TestCase):
             compat_patch_logging_config(config)
 
         flt = config["filters"]["require_debug_false"]
-        self.assertEqual(flt["()"], "django.utils.log.RequireDebugFalse")
+        self.assertEqual(flt["()"], "djangocg.utils.log.RequireDebugFalse")
 
     def test_require_debug_false_filter(self):
         """
@@ -153,7 +153,7 @@ class AdminEmailHandlerTest(TestCase):
         token1 = 'ping'
         token2 = 'pong'
 
-        logger = getLogger('django.request')
+        logger = getLogger('djangocg.request')
         admin_email_handler = self.get_admin_email_handler(logger)
         # Backup then override original filters
         orig_filters = admin_email_handler.filters
@@ -184,7 +184,7 @@ class AdminEmailHandlerTest(TestCase):
         token1 = 'ping'
         token2 = 'pong'
 
-        logger = getLogger('django.request')
+        logger = getLogger('djangocg.request')
         admin_email_handler = self.get_admin_email_handler(logger)
         # Backup then override original filters
         orig_filters = admin_email_handler.filters
@@ -222,7 +222,7 @@ class AdminEmailHandlerTest(TestCase):
 
         self.assertEqual(len(mail.outbox), 0)
 
-        logger = getLogger('django.request')
+        logger = getLogger('djangocg.request')
         logger.error(message)
 
         self.assertEqual(len(mail.outbox), 1)
@@ -247,7 +247,7 @@ class AdminEmailHandlerTest(TestCase):
 
         self.assertEqual(len(mail.outbox), 0)
 
-        logger = getLogger('django.request')
+        logger = getLogger('djangocg.request')
         logger.error(message)
 
         self.assertEqual(len(mail.outbox), 1)

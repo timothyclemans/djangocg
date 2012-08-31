@@ -1,7 +1,7 @@
 from django import http
-from django.core.exceptions import PermissionDenied
-from django.template import Template
-from django.template.response import TemplateResponse
+from djangocg.core.exceptions import PermissionDenied
+from djangocg.template import Template
+from djangocg.template.response import TemplateResponse
 
 
 def normal_view(request):

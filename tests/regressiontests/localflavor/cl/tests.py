@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.cl.forms import CLRutField, CLRegionSelect
+from djangocg.contrib.localflavor.cl.forms import CLRutField, CLRegionSelect
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class CLLocalFlavorTests(SimpleTestCase):

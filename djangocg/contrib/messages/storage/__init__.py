@@ -1,6 +1,6 @@
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.importlib import import_module
 
 
 def get_storage(import_path):

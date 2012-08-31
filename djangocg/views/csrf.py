@@ -1,6 +1,6 @@
-from django.http import HttpResponseForbidden
-from django.template import Context, Template
-from django.conf import settings
+from djangocg.http import HttpResponseForbidden
+from djangocg.template import Context, Template
+from djangocg.conf import settings
 
 # We include the template inline since we need to be able to reliably display
 # this error message, especially for the sake of developers, and there isn't any
@@ -95,7 +95,7 @@ def csrf_failure(request, reason=""):
     """
     Default view used when request fails CSRF protection
     """
-    from django.middleware.csrf import REASON_NO_REFERER
+    from djangocg.middleware.csrf import REASON_NO_REFERER
     t = Template(CSRF_FAILURE_TEMPLATE)
     c = Context({'DEBUG': settings.DEBUG,
                  'reason': reason,

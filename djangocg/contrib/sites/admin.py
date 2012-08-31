@@ -1,5 +1,5 @@
-from django.contrib import admin
-from django.contrib.sites.models import Site
+from djangocg.contrib import admin
+from djangocg.contrib.sites.models import Site
 
 
 class SiteAdmin(admin.ModelAdmin):

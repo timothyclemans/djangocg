@@ -1,17 +1,17 @@
 from __future__ import unicode_literals
 
-from django.http import HttpResponse, Http404
-from django.template import loader
-from django.contrib.sites.models import get_current_site
-from django.core import urlresolvers
-from django.core.paginator import EmptyPage, PageNotAnInteger
-from django.contrib.gis.db.models.fields import GeometryField
-from django.db import connections, DEFAULT_DB_ALIAS
-from django.db.models import get_model
-from django.utils import six
-from django.utils.translation import ugettext as _
+from djangocg.http import HttpResponse, Http404
+from djangocg.template import loader
+from djangocg.contrib.sites.models import get_current_site
+from djangocg.core import urlresolvers
+from djangocg.core.paginator import EmptyPage, PageNotAnInteger
+from djangocg.contrib.gis.db.models.fields import GeometryField
+from djangocg.db import connections, DEFAULT_DB_ALIAS
+from djangocg.db.models import get_model
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext as _
 
-from django.contrib.gis.shortcuts import render_to_kml, render_to_kmz
+from djangocg.contrib.gis.shortcuts import render_to_kml, render_to_kmz
 
 def index(request, sitemaps):
     """
@@ -26,7 +26,7 @@ def index(request, sitemaps):
             pages = site().paginator.num_pages
         else:
             pages = site.paginator.num_pages
-        sitemap_url = urlresolvers.reverse('django.contrib.gis.sitemaps.views.sitemap', kwargs={'section': section})
+        sitemap_url = urlresolvers.reverse('djangocg.contrib.gis.sitemaps.views.sitemap', kwargs={'section': section})
         sites.append('%s://%s%s' % (protocol, current_site.domain, sitemap_url))
 
         if pages > 1:

@@ -5,12 +5,12 @@ import datetime
 import tempfile
 import os
 
-from django.contrib.auth.models import User
-from django.contrib.contenttypes import generic
-from django.contrib.contenttypes.models import ContentType
-from django.core.files.storage import FileSystemStorage
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.contenttypes import generic
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.core.files.storage import FileSystemStorage
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 class Section(models.Model):

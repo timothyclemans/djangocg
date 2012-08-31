@@ -4,14 +4,14 @@ import datetime
 import pickle
 from operator import attrgetter
 
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
-from django.core import management
-from django.db import connections, router, DEFAULT_DB_ALIAS
-from django.db.models import signals
-from django.test import TestCase
-from django.utils.six import StringIO
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.core import management
+from djangocg.db import connections, router, DEFAULT_DB_ALIAS
+from djangocg.db.models import signals
+from djangocg.test import TestCase
+from djangocg.utils.six import StringIO
 
 from .models import Book, Person, Pet, Review, UserProfile
 

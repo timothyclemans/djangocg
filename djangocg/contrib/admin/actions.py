@@ -2,13 +2,13 @@
 Built-in, globally-available admin actions.
 """
 
-from django.core.exceptions import PermissionDenied
-from django.contrib.admin import helpers
-from django.contrib.admin.util import get_deleted_objects, model_ngettext
-from django.db import router
-from django.template.response import TemplateResponse
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy, ugettext as _
+from djangocg.core.exceptions import PermissionDenied
+from djangocg.contrib.admin import helpers
+from djangocg.contrib.admin.util import get_deleted_objects, model_ngettext
+from djangocg.db import router
+from djangocg.template.response import TemplateResponse
+from djangocg.utils.encoding import force_text
+from djangocg.utils.translation import ugettext_lazy, ugettext as _
 
 def delete_selected(modeladmin, request, queryset):
     """

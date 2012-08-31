@@ -5,13 +5,13 @@ import os
 from decimal import Decimal
 
 from django import forms
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.validators import ValidationError
-from django.db import connection
-from django.forms.models import model_to_dict
-from django.utils.unittest import skipUnless
-from django.test import TestCase
-from django.utils import six
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.core.validators import ValidationError
+from djangocg.db import connection
+from djangocg.forms.models import model_to_dict
+from djangocg.utils.unittest import skipUnless
+from djangocg.test import TestCase
+from djangocg.utils import six
 
 from .models import (Article, ArticleStatus, BetterWriter, BigInt, Book,
     Category, CommaSeparatedInteger, CustomFieldForExclusionModel, DerivedBook,

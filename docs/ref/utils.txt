@@ -2,18 +2,18 @@
 Django Utils
 ============
 
-.. module:: django.utils
+.. module:: djangocg.utils
    :synopsis: Django's built-in utilities.
 
-This document covers all stable modules in ``django.utils``. Most of the
-modules in ``django.utils`` are designed for internal use and only the
+This document covers all stable modules in ``djangocg.utils``. Most of the
+modules in ``djangocg.utils`` are designed for internal use and only the
 following parts can be considered stable and thus backwards compatible as per
 the :ref:`internal release deprecation policy <internal-release-deprecation-policy>`.
 
-``django.utils.cache``
+``djangocg.utils.cache``
 ======================
 
-.. module:: django.utils.cache
+.. module:: djangocg.utils.cache
    :synopsis: Helper functions for controlling caching.
 
 This module contains helper functions for controlling caching. It does so by
@@ -97,15 +97,15 @@ to distinguish caches by the ``Accept-language`` header.
     cache, this just means that we have to build the response once to get at
     the Vary header and so at the list of headers to use for the cache key.
 
-``django.utils.datastructures``
+``djangocg.utils.datastructures``
 ===============================
 
-.. module:: django.utils.datastructures
+.. module:: djangocg.utils.datastructures
    :synopsis: Data structures that aren't in Python's standard library.
 
 .. class:: SortedDict
 
-    The :class:`django.utils.datastructures.SortedDict` class is a dictionary
+    The :class:`djangocg.utils.datastructures.SortedDict` class is a dictionary
     that keeps its keys in the order in which they're inserted.
     ``SortedDict`` adds two additional methods to the standard Python ``dict``
     class:
@@ -135,12 +135,12 @@ results. Instead do::
 
     SortedDict([('b', 1), ('a', 2), ('c', 3)])
 
-``django.utils.dateparse``
+``djangocg.utils.dateparse``
 ==========================
 
 .. versionadded:: 1.4
 
-.. module:: django.utils.dateparse
+.. module:: djangocg.utils.dateparse
    :synopsis: Functions to parse datetime objects.
 
 The functions defined in this module share the following properties:
@@ -167,13 +167,13 @@ The functions defined in this module share the following properties:
     Parses a string and returns a :class:`datetime.datetime`.
 
     UTC offsets are supported; if ``value`` describes one, the result's
-    ``tzinfo`` attribute is a :class:`~django.utils.tzinfo.FixedOffset`
+    ``tzinfo`` attribute is a :class:`~djangocg.utils.tzinfo.FixedOffset`
     instance.
 
-``django.utils.encoding``
+``djangocg.utils.encoding``
 =========================
 
-.. module:: django.utils.encoding
+.. module:: djangocg.utils.encoding
    :synopsis: A series of helper classes and function to manage character encoding.
 
 .. class:: StrAndUnicode
@@ -274,15 +274,15 @@ The functions defined in this module share the following properties:
 
     Returns an ASCII string containing the encoded result.
 
-``django.utils.feedgenerator``
+``djangocg.utils.feedgenerator``
 ==============================
 
-.. module:: django.utils.feedgenerator
+.. module:: djangocg.utils.feedgenerator
    :synopsis: Syndication feed generation library -- used for generating RSS, etc.
 
 Sample usage::
 
-    >>> from django.utils import feedgenerator
+    >>> from djangocg.utils import feedgenerator
     >>> feed = feedgenerator.Rss201rev2Feed(
     ...     title=u"Poynter E-Media Tidbits",
     ...     link=u"http://www.poynter.org/column.asp?id=31",
@@ -401,15 +401,15 @@ Atom1Feed
 
     Spec: http://www.atomenabled.org/developers/syndication/atom-format-spec.php
 
-``django.utils.functional``
+``djangocg.utils.functional``
 ===========================
 
-.. module:: django.utils.functional
+.. module:: djangocg.utils.functional
     :synopsis: Functional programming tools.
 
 .. function:: allow_lazy(func, *resultclasses)
 
-    Django offers many utility functions (particularly in ``django.utils``) that
+    Django offers many utility functions (particularly in ``djangocg.utils``) that
     take a string as their first argument and do something to that string. These
     functions are used by template filters as well as directly in other code.
 
@@ -419,14 +419,14 @@ Atom1Feed
     be using this function outside of a view (and hence the current thread's locale
     setting will not be correct).
 
-    For cases like this, use the ``django.utils.functional.allow_lazy()``
+    For cases like this, use the ``djangocg.utils.functional.allow_lazy()``
     decorator. It modifies the function so that *if* it's called with a lazy
     translation as the first argument, the function evaluation is delayed until it
     needs to be converted to a string.
 
     For example::
 
-        from django.utils.functional import allow_lazy
+        from djangocg.utils.functional import allow_lazy
 
         def fancy_utility_function(s, ...):
             # Do some conversion on string 's'
@@ -442,14 +442,14 @@ Atom1Feed
     input is a proper string, then add support for lazy translation objects at the
     end.
 
-``django.utils.html``
+``djangocg.utils.html``
 =====================
 
-.. module:: django.utils.html
+.. module:: djangocg.utils.html
    :synopsis: HTML helper functions
 
 Usually you should build up HTML using Django's templates to make use of its
-autoescape mechanism, using the utilities in :mod:`django.utils.safestring`
+autoescape mechanism, using the utilities in :mod:`djangocg.utils.safestring`
 where appropriate. This module provides some additional low level utilitiesfor
 escaping HTML.
 
@@ -457,8 +457,8 @@ escaping HTML.
 
     Returns the given text with ampersands, quotes and angle brackets encoded
     for use in HTML. The input is first passed through
-    :func:`~django.utils.encoding.force_text` and the output has
-    :func:`~django.utils.safestring.mark_safe` applied.
+    :func:`~djangocg.utils.encoding.force_text` and the output has
+    :func:`~djangocg.utils.safestring.mark_safe` applied.
 
 .. function:: conditional_escape(text)
 
@@ -499,7 +499,7 @@ escaping HTML.
     interpolation, some of the formatting options provided by `str.format`_
     (e.g. number formatting) will not work, since all arguments are passed
     through :func:`conditional_escape` which (ultimately) calls
-    :func:`~django.utils.encoding.force_text` on the values.
+    :func:`~djangocg.utils.encoding.force_text` on the values.
 
 .. function:: strip_tags(value)
 
@@ -531,10 +531,10 @@ escaping HTML.
 
 .. _str.format: http://docs.python.org/library/stdtypes.html#str.format
 
-``django.utils.http``
+``djangocg.utils.http``
 =====================
 
-.. module:: django.utils.http
+.. module:: djangocg.utils.http
    :synopsis: HTTP helper functions. (URL encoding, cookie handling, ...)
 
 .. function:: urlquote(url, safe='/')
@@ -590,10 +590,10 @@ escaping HTML.
     Converts a positive integer to a base 36 string. On Python 2 ``i`` must be
     smaller than :attr:`sys.maxint`.
 
-``django.utils.safestring``
+``djangocg.utils.safestring``
 ===========================
 
-.. module:: django.utils.safestring
+.. module:: djangocg.utils.safestring
    :synopsis: Functions and classes for working with strings that can be displayed safely without further escaping in HTML.
 
 Functions and classes for working with "safe strings": strings that can be
@@ -641,10 +641,10 @@ appropriate entities.
     Can be called multiple times on a single string (the resulting escaping is
     only applied once).
 
-``django.utils.text``
+``djangocg.utils.text``
 =====================
 
-.. module:: django.utils.text
+.. module:: djangocg.utils.text
     :synopsis: Text manipulation.
 
 .. function:: slugify
@@ -659,10 +659,10 @@ appropriate entities.
 
     If ``value`` is ``"Joel is a slug"``, the output will be ``"joel-is-a-slug"``.
 
-``django.utils.translation``
+``djangocg.utils.translation``
 ============================
 
-.. module:: django.utils.translation
+.. module:: djangocg.utils.translation
    :synopsis: Internationalization support.
 
 For a complete discussion on the usage of the following see the
@@ -748,11 +748,11 @@ For a complete discussion on the usage of the following see the
     .. versionadded:: 1.4
 
     A Python context manager that uses
-    :func:`django.utils.translation.activate` to fetch the translation object
+    :func:`djangocg.utils.translation.activate` to fetch the translation object
     for a given language, installing it as the translation object for the
     current thread and reinstall the previous active language on exit.
     Optionally it can simply deinstall the temporary translation on exit with
-    :func:`django.utils.translation.deactivate` if the deactivate argument is
+    :func:`djangocg.utils.translation.deactivate` if the deactivate argument is
     True. If you pass None as the language argument, a NullTranslations()
     instance is installed while the context is active.
 
@@ -792,12 +792,12 @@ For a complete discussion on the usage of the following see the
 
 .. _time-zone-selection-functions:
 
-``django.utils.timezone``
+``djangocg.utils.timezone``
 =========================
 
 .. versionadded:: 1.4
 
-.. module:: django.utils.timezone
+.. module:: djangocg.utils.timezone
     :synopsis: Timezone support.
 
 .. data:: utc
@@ -885,10 +885,10 @@ For a complete discussion on the usage of the following see the
 
 .. _pytz: http://pytz.sourceforge.net/
 
-``django.utils.tzinfo``
+``djangocg.utils.tzinfo``
 =======================
 
-.. module:: django.utils.tzinfo
+.. module:: djangocg.utils.tzinfo
    :synopsis: Implementation of ``tzinfo`` classes for use with ``datetime.datetime``.
 
 .. class:: FixedOffset

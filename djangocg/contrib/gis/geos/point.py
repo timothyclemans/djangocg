@@ -1,9 +1,9 @@
 from ctypes import c_uint
-from django.contrib.gis.geos.error import GEOSException
-from django.contrib.gis.geos.geometry import GEOSGeometry
-from django.contrib.gis.geos import prototypes as capi
-from django.utils import six
-from django.utils.six.moves import xrange
+from djangocg.contrib.gis.geos.error import GEOSException
+from djangocg.contrib.gis.geos.geometry import GEOSGeometry
+from djangocg.contrib.gis.geos import prototypes as capi
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
 
 class Point(GEOSGeometry):
     _minlength = 2

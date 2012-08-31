@@ -2,7 +2,7 @@
 Managers
 ========
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 .. class:: Manager()
 
@@ -25,7 +25,7 @@ want to use a name other than ``objects`` for the ``Manager``, you can rename
 it on a per-model basis. To rename the ``Manager`` for a given class, define a
 class attribute of type ``models.Manager()`` on that model. For example::
 
-    from django.db import models
+    from djangocg.db import models
 
     class Person(models.Model):
         #...
@@ -64,7 +64,7 @@ returns a list of all ``OpinionPoll`` objects, each with an extra
 
     class PollManager(models.Manager):
         def with_counts(self):
-            from django.db import connection
+            from djangocg.db import connection
             cursor = connection.cursor()
             cursor.execute("""
                 SELECT p.id, p.question, p.poll_date, COUNT(*)
@@ -186,7 +186,7 @@ object. This is because Django needs to be able to retrieve the related
 object, even if it would otherwise be filtered out (and hence be inaccessible)
 by the default manager.
 
-If the normal plain manager class (:class:`django.db.models.Manager`) is not
+If the normal plain manager class (:class:`djangocg.db.models.Manager`) is not
 appropriate for your circumstances, you can force Django to use the same class
 as the default manager for your model by setting the `use_for_related_fields`
 attribute on the manager class. This is documented fully below_.
@@ -305,7 +305,7 @@ This document has already mentioned a couple of places where Django creates a
 manager class for you: `default managers`_ and the "plain" manager used to
 `access related objects`_. There are other places in the implementation of
 Django where temporary plain managers are needed. Those automatically created
-managers will normally be instances of the :class:`django.db.models.Manager`
+managers will normally be instances of the :class:`djangocg.db.models.Manager`
 class.
 
 .. _default managers: manager-names_
@@ -316,9 +316,9 @@ manager that Django creates for you -- either as a default manager on a model
 with no managers, or to use temporarily when accessing related objects.
 
 Sometimes this default class won't be the right choice. One example is in the
-:mod:`django.contrib.gis` application that ships with Django itself. All ``gis``
-models must use a special manager class (:class:`~django.contrib.gis.db.models.GeoManager`)
-because they need a special queryset (:class:`~django.contrib.gis.db.models.GeoQuerySet`)
+:mod:`djangocg.contrib.gis` application that ships with Django itself. All ``gis``
+models must use a special manager class (:class:`~djangocg.contrib.gis.db.models.GeoManager`)
+because they need a special queryset (:class:`~djangocg.contrib.gis.db.models.GeoQuerySet`)
 to be used for interacting with the database.  It turns out that models which require
 a special manager like this need to use the same manager class wherever an automatic
 manager is created.
@@ -336,7 +336,7 @@ the manager class::
 If this attribute is set on the *default* manager for a model (only the
 default manager is considered in these situations), Django will use that class
 whenever it needs to automatically create a manager for the class.  Otherwise,
-it will use :class:`django.db.models.Manager`.
+it will use :class:`djangocg.db.models.Manager`.
 
 .. admonition:: Historical Note
 
@@ -351,7 +351,7 @@ it will use :class:`django.db.models.Manager`.
 Writing correct Managers for use in automatic Manager instances
 ---------------------------------------------------------------
 
-As already suggested by the `django.contrib.gis` example, above, the
+As already suggested by the `djangocg.contrib.gis` example, above, the
 ``use_for_related_fields`` feature is primarily for managers that need to
 return a custom ``QuerySet`` subclass. In providing this functionality in your
 manager, there are a couple of things to remember.

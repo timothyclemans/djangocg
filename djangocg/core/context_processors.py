@@ -8,11 +8,11 @@ RequestContext.
 """
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.middleware.csrf import get_token
-from django.utils import six
-from django.utils.encoding import smart_text
-from django.utils.functional import lazy
+from djangocg.conf import settings
+from djangocg.middleware.csrf import get_token
+from djangocg.utils import six
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.functional import lazy
 
 
 def csrf(request):
@@ -38,12 +38,12 @@ def debug(request):
     context_extras = {}
     if settings.DEBUG and request.META.get('REMOTE_ADDR') in settings.INTERNAL_IPS:
         context_extras['debug'] = True
-        from django.db import connection
+        from djangocg.db import connection
         context_extras['sql_queries'] = connection.queries
     return context_extras
 
 def i18n(request):
-    from django.utils import translation
+    from djangocg.utils import translation
 
     context_extras = {}
     context_extras['LANGUAGES'] = settings.LANGUAGES
@@ -53,7 +53,7 @@ def i18n(request):
     return context_extras
 
 def tz(request):
-    from django.utils import timezone
+    from djangocg.utils import timezone
 
     return {'TIME_ZONE': timezone.get_current_timezone_name()}
 

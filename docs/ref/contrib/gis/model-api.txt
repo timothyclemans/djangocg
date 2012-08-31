@@ -4,14 +4,14 @@
 GeoDjango Model API
 ===================
 
-.. module:: django.contrib.gis.db.models
+.. module:: djangocg.contrib.gis.db.models
    :synopsis: GeoDjango model and field API.
 
 This document explores the details of the GeoDjango Model API.  Throughout this
 section, we'll be using the following geographic model of a `ZIP code`__ as our
 example::
 
-    from django.contrib.gis.db import models
+    from djangocg.contrib.gis.db import models
 
     class Zipcode(models.Model):
         code = models.CharField(max_length=5)
@@ -223,7 +223,7 @@ determining `when to use geography data type over geometry data type
 ``GeoManager``
 ==============
 
-.. currentmodule:: django.contrib.gis.db.models
+.. currentmodule:: djangocg.contrib.gis.db.models
 .. class:: GeoManager
 
 In order to conduct geographic queries, each geographic model requires
@@ -235,8 +235,8 @@ model does not have a geographic field itself, e.g., in the case of a
 if we had an ``Address`` model with a ``ForeignKey`` to our ``Zipcode``
 model::
 
-    from django.contrib.gis.db import models
-    from django.contrib.localflavor.us.models import USStateField
+    from djangocg.contrib.gis.db import models
+    from djangocg.contrib.localflavor.us.models import USStateField
 
     class Address(models.Model):
         num = models.IntegerField()

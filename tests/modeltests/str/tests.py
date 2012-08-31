@@ -3,9 +3,9 @@ from __future__ import absolute_import, unicode_literals
 
 import datetime
 
-from django.test import TestCase
-from django.utils import six
-from django.utils.unittest import skipIf
+from djangocg.test import TestCase
+from djangocg.utils import six
+from djangocg.utils.unittest import skipIf
 
 from .models import Article, InternationalArticle
 

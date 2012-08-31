@@ -1,8 +1,8 @@
-from django.conf import settings
-from django.contrib.syndication.views import Feed
-from django.contrib.sites.models import Site
-from django.contrib import comments
-from django.utils.translation import ugettext as _
+from djangocg.conf import settings
+from djangocg.contrib.syndication.views import Feed
+from djangocg.contrib.sites.models import Site
+from djangocg.contrib import comments
+from djangocg.utils.translation import ugettext as _
 
 class LatestCommentFeed(Feed):
     """Feed of latest comments on the current site."""

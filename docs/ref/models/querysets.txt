@@ -2,7 +2,7 @@
 QuerySet API reference
 ======================
 
-.. currentmodule:: django.db.models.query
+.. currentmodule:: djangocg.db.models.query
 
 This document describes the details of the ``QuerySet`` API. It builds on the
 material presented in the :doc:`model </topics/db/models>` and :doc:`database
@@ -119,7 +119,7 @@ QuerySet API
 ============
 
 Though you usually won't create one manually — you'll go through a
-:class:`~django.db.models.Manager` — here's the formal declaration of a
+:class:`~djangocg.db.models.Manager` — here's the formal declaration of a
 ``QuerySet``:
 
 .. class:: QuerySet([model=None, query=None, using=None])
@@ -146,12 +146,12 @@ Though you usually won't create one manually — you'll go through a
 
         The ``query`` parameter to :class:`QuerySet` exists so that specialized
         query subclasses such as
-        :class:`~django.contrib.gis.db.models.GeoQuerySet` can reconstruct
+        :class:`~djangocg.contrib.gis.db.models.GeoQuerySet` can reconstruct
         internal query state. The value of the parameter is an opaque
         representation of that query state and is not part of a public API.
         To put it simply: if you need to ask, you don't need to use it.
 
-.. currentmodule:: django.db.models.query.QuerySet
+.. currentmodule:: djangocg.db.models.query.QuerySet
 
 Methods that return new QuerySets
 ---------------------------------
@@ -282,7 +282,7 @@ and so on for as many models as you want to join. For example::
 If you try to order by a field that is a relation to another model, Django will
 use the default ordering on the related model (or order by the related model's
 primary key if there is no :attr:`Meta.ordering
-<django.db.models.Options.ordering>` specified. For example::
+<djangocg.db.models.Options.ordering>` specified. For example::
 
     Entry.objects.order_by('blog')
 
@@ -297,7 +297,7 @@ Be cautious when ordering by fields in related models if you are also using
 related model ordering can change the expected results.
 
 It is permissible to specify a multi-valued field to order the results by (for
-example, a :class:`~django.db.models.ManyToManyField` field). Normally
+example, a :class:`~djangocg.db.models.ManyToManyField` field). Normally
 this won't be a sensible thing to do and it's really an advanced usage
 feature. However, if you know that your queryset's filtering or available data
 implies that there will only be one ordering piece of data for each of the main
@@ -456,7 +456,7 @@ Example::
 A few subtleties that are worth mentioning:
 
 * If you have a field called ``foo`` that is a
-  :class:`~django.db.models.ForeignKey`, the default ``values()`` call
+  :class:`~djangocg.db.models.ForeignKey`, the default ``values()`` call
   will return a dictionary key called ``foo_id``, since this is the name
   of the hidden model attribute that stores the actual value (the ``foo``
   attribute refers to the related model). When you are calling
@@ -505,7 +505,7 @@ individualism.
 .. versionchanged:: 1.3
 
 The ``values()`` method previously did not return anything for
-:class:`~django.db.models.ManyToManyField` attributes and would raise an error
+:class:`~djangocg.db.models.ManyToManyField` attributes and would raise an error
 if you tried to pass this type of field to it.
 
 This restriction has been lifted, and you can now also refer to fields on
@@ -518,7 +518,7 @@ and ``ManyToManyField`` attributes::
 
 .. warning::
 
-   Because :class:`~django.db.models.ManyToManyField` attributes and reverse
+   Because :class:`~djangocg.db.models.ManyToManyField` attributes and reverse
    relations can have multiple related rows, including these can have a
    multiplier effect on the size of your result set. This will be especially
    pronounced if you include multiple such fields in your ``values()`` query,
@@ -720,21 +720,21 @@ This is also valid::
 
 ...and would also pull in the ``building`` relation.
 
-You can refer to any :class:`~django.db.models.ForeignKey` or
-:class:`~django.db.models.OneToOneField` relation in the list of fields
+You can refer to any :class:`~djangocg.db.models.ForeignKey` or
+:class:`~djangocg.db.models.OneToOneField` relation in the list of fields
 passed to ``select_related()``. This includes foreign keys that have
 ``null=True`` (which are omitted in a no-parameter ``select_related()`` call).
 It's an error to use both a list of fields and the ``depth`` parameter in the
 same ``select_related()`` call; they are conflicting options.
 
 You can also refer to the reverse direction of a
-:class:`~django.db.models.OneToOneField` in the list of fields passed to
+:class:`~djangocg.db.models.OneToOneField` in the list of fields passed to
 ``select_related`` — that is, you can traverse a
-:class:`~django.db.models.OneToOneField` back to the object on which the field
+:class:`~djangocg.db.models.OneToOneField` back to the object on which the field
 is defined. Instead of specifying the field name, use the :attr:`related_name
-<django.db.models.ForeignKey.related_name>` for the field on the related object.
+<djangocg.db.models.ForeignKey.related_name>` for the field on the related object.
 
-A :class:`~django.db.models.OneToOneField` is not traversed in the reverse
+A :class:`~djangocg.db.models.OneToOneField` is not traversed in the reverse
 direction if you are performing a depth-based ``select_related()`` call.
 
 prefetch_related
@@ -763,8 +763,8 @@ relationship, and does the 'joining' in Python. This allows it to prefetch
 many-to-many and many-to-one objects, which cannot be done using
 ``select_related``, in addition to the foreign key and one-to-one relationships
 that are supported by ``select_related``. It also supports prefetching of
-:class:`~django.contrib.contenttypes.generic.GenericRelation` and
-:class:`~django.contrib.contenttypes.generic.GenericForeignKey`.
+:class:`~djangocg.contrib.contenttypes.generic.GenericRelation` and
+:class:`~djangocg.contrib.contenttypes.generic.GenericForeignKey`.
 
 For example, suppose you have these models::
 
@@ -940,7 +940,7 @@ of the arguments is required, but you should use at least one of them.
   the ``select`` attribute is a dictionary, some care is required so that
   the parameters are matched up correctly with the extra select pieces.
   In this situation, you should use a
-  :class:`django.utils.datastructures.SortedDict` for the ``select``
+  :class:`djangocg.utils.datastructures.SortedDict` for the ``select``
   value, not just a normal Python dictionary.
 
   This will work, for example::
@@ -1104,7 +1104,7 @@ one, doing so will result in an error.
     normalize your models and put the non-loaded data into a separate model
     (and database table). If the columns *must* stay in the one table for some
     reason, create a model with ``Meta.managed = False`` (see the
-    :attr:`managed attribute <django.db.models.Options.managed>` documentation)
+    :attr:`managed attribute <djangocg.db.models.Options.managed>` documentation)
     containing just the fields you normally need to load and use that where you
     might otherwise call ``defer()``. This makes your code more explicit to the
     reader, is slightly faster and consumes a little less memory in the Python
@@ -1210,7 +1210,7 @@ Usually, if another transaction has already acquired a lock on one of the
 selected rows, the query will block until the lock is released. If this is
 not the behavior you want, call ``select_for_update(nowait=True)``. This will
 make the call non-blocking. If a conflicting lock is already acquired by
-another transaction, :exc:`~django.db.DatabaseError` will be raised when the
+another transaction, :exc:`~djangocg.db.DatabaseError` will be raised when the
 queryset is evaluated.
 
 Note that using ``select_for_update()`` will cause the current transaction to be
@@ -1225,7 +1225,7 @@ check with their backend's documentation for specifics in those cases.
 
 Passing ``nowait=True`` to ``select_for_update`` using database backends that
 do not support ``nowait``, such as MySQL, will cause a
-:exc:`~django.db.DatabaseError` to be raised. This is in order to prevent code
+:exc:`~djangocg.db.DatabaseError` to be raised. This is in order to prevent code
 unexpectedly blocking.
 
 Using ``select_for_update`` on backends which do not support
@@ -1248,22 +1248,22 @@ get
 Returns the object matching the given lookup parameters, which should be in
 the format described in `Field lookups`_.
 
-``get()`` raises :exc:`~django.core.exceptions.MultipleObjectsReturned` if more
+``get()`` raises :exc:`~djangocg.core.exceptions.MultipleObjectsReturned` if more
 than one object was found. The
-:exc:`~django.core.excpetions.MultipleObjectsReturned` exception is an
+:exc:`~djangocg.core.excpetions.MultipleObjectsReturned` exception is an
 attribute of the model class.
 
-``get()`` raises a :exc:`~django.core.exceptions.DoesNotExist` exception if an
+``get()`` raises a :exc:`~djangocg.core.exceptions.DoesNotExist` exception if an
 object wasn't found for the given parameters. This exception is also an
 attribute of the model class. Example::
 
     Entry.objects.get(id='foo') # raises Entry.DoesNotExist
 
-The :exc:`~django.core.exceptions.DoesNotExist` exception inherits from
-:exc:`django.core.exceptions.ObjectDoesNotExist`, so you can target multiple
-:exc:`~django.core.exceptions.DoesNotExist` exceptions. Example::
+The :exc:`~djangocg.core.exceptions.DoesNotExist` exception inherits from
+:exc:`djangocg.core.exceptions.ObjectDoesNotExist`, so you can target multiple
+:exc:`~djangocg.core.exceptions.DoesNotExist` exceptions. Example::
 
-    from django.core.exceptions import ObjectDoesNotExist
+    from djangocg.core.exceptions import ObjectDoesNotExist
     try:
         e = Entry.objects.get(id=3)
         b = Blog.objects.get(id=1)
@@ -1291,7 +1291,7 @@ elsewhere, but all it means is that a new object will always be created.
 Normally you won't need to worry about this. However, if your model contains a
 manual primary key value that you set and if that value already exists in the
 database, a call to ``create()`` will fail with an
-:exc:`~django.db.IntegrityError` since primary keys must be unique. Be
+:exc:`~djangocg.db.IntegrityError` since primary keys must be unique. Be
 prepared to handle the exception if you are using manual primary keys.
 
 get_or_create
@@ -1351,7 +1351,7 @@ If you have a field named ``defaults`` and want to use it as an exact lookup in
 The ``get_or_create()`` method has similar error behavior to :meth:`create()`
 when you're using manually specified primary keys. If an object needs to be
 created and the key already exists in the database, an
-:exc:`~django.db.IntegrityError` will be raised.
+:exc:`~djangocg.db.IntegrityError` will be raised.
 
 Finally, a word on using ``get_or_create()`` in Django views. As mentioned
 earlier, ``get_or_create()`` is mostly useful in scripts that need to parse
@@ -1385,7 +1385,7 @@ This has a number of caveats though:
 * The model's ``save()`` method will not be called, and the ``pre_save`` and
   ``post_save`` signals will not be sent.
 * It does not work with child models in a multi-table inheritance scenario.
-* If the model's primary key is an :class:`~django.db.models.AutoField` it
+* If the model's primary key is an :class:`~djangocg.db.models.AutoField` it
   does not retrieve and set the primary key attribute, as ``save()`` does.
 
 The ``batch_size`` parameter controls how many objects are created in single
@@ -1474,12 +1474,12 @@ This example returns the latest ``Entry`` in the table, according to the
     Entry.objects.latest('pub_date')
 
 If your model's :ref:`Meta <meta-options>` specifies
-:attr:`~django.db.models.Options.get_latest_by`, you can leave off the
+:attr:`~djangocg.db.models.Options.get_latest_by`, you can leave off the
 ``field_name`` argument to ``latest()``. Django will use the field specified
-in :attr:`~django.db.models.Options.get_latest_by` by default.
+in :attr:`~djangocg.db.models.Options.get_latest_by` by default.
 
 Like :meth:`get()`, ``latest()`` raises
-:exc:`~django.core.exceptions.DoesNotExist` if there is no object with the given
+:exc:`~djangocg.core.exceptions.DoesNotExist` if there is no object with the given
 parameters.
 
 Note ``latest()`` exists purely for convenience and readability.
@@ -1593,12 +1593,12 @@ and calling ``save()``.
 
 Finally, realize that ``update()`` does an update at the SQL level and, thus,
 does not call any ``save()`` methods on your models, nor does it emit the
-:attr:`~django.db.models.signals.pre_save` or
-:attr:`~django.db.models.signals.post_save` signals (which are a consequence of
-calling :meth:`Model.save() <~django.db.models.Model.save()>`). If you want to
+:attr:`~djangocg.db.models.signals.pre_save` or
+:attr:`~djangocg.db.models.signals.post_save` signals (which are a consequence of
+calling :meth:`Model.save() <~djangocg.db.models.Model.save()>`). If you want to
 update a bunch of records for a model that has a custom
-:meth:`~django.db.models.Model.save()`` method, loop over them and call
-:meth:`~django.db.models.Model.save()`, like this::
+:meth:`~djangocg.db.models.Model.save()`` method, loop over them and call
+:meth:`~djangocg.db.models.Model.save()`, like this::
 
     for e in Entry.objects.filter(pub_date__year=2010):
         e.comments_on = False
@@ -1621,7 +1621,7 @@ For example, to delete all the entries in a particular blog::
     # Delete all the entries belonging to this Blog.
     >>> Entry.objects.filter(blog=b).delete()
 
-By default, Django's :class:`~django.db.models.ForeignKey` emulates the SQL
+By default, Django's :class:`~djangocg.db.models.ForeignKey` emulates the SQL
 constraint ``ON DELETE CASCADE`` — in other words, any objects with foreign
 keys pointing at the objects to be deleted will be deleted along with them.
 For example::
@@ -1632,13 +1632,13 @@ For example::
 
 .. versionadded:: 1.3
     This cascade behavior is customizable via the
-    :attr:`~django.db.models.ForeignKey.on_delete` argument to the
-    :class:`~django.db.models.ForeignKey`.
+    :attr:`~djangocg.db.models.ForeignKey.on_delete` argument to the
+    :class:`~djangocg.db.models.ForeignKey`.
 
 The ``delete()`` method does a bulk delete and does not call any ``delete()``
 methods on your models. It does, however, emit the
-:data:`~django.db.models.signals.pre_delete` and
-:data:`~django.db.models.signals.post_delete` signals for all deleted objects
+:data:`~djangocg.db.models.signals.pre_delete` and
+:data:`~djangocg.db.models.signals.post_delete` signals for all deleted objects
 (including cascaded deletions).
 
 .. _field-lookups:
@@ -2122,10 +2122,10 @@ SQL equivalents::
 Aggregation functions
 ---------------------
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 Django provides the following aggregation functions in the
-``django.db.models`` module. For details on how to use these
+``djangocg.db.models`` module. For details on how to use these
 aggregate functions, see
 :doc:`the topic guide on aggregation </topics/db/aggregation>`.
 

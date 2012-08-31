@@ -5,14 +5,14 @@ from io import BytesIO
 from threading import Lock
 
 from django import http
-from django.core import signals
-from django.core.handlers import base
-from django.core.urlresolvers import set_script_prefix
-from django.utils import datastructures
-from django.utils.encoding import force_str, force_text, iri_to_uri
-from django.utils.log import getLogger
+from djangocg.core import signals
+from djangocg.core.handlers import base
+from djangocg.core.urlresolvers import set_script_prefix
+from djangocg.utils import datastructures
+from djangocg.utils.encoding import force_str, force_text, iri_to_uri
+from djangocg.utils.log import getLogger
 
-logger = getLogger('django.request')
+logger = getLogger('djangocg.request')
 
 
 # See http://www.iana.org/assignments/http-status-codes

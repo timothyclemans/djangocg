@@ -1,21 +1,21 @@
-from django.db import transaction
-from django.conf import settings
-from django.contrib import admin
-from django.contrib.auth.forms import (UserCreationForm, UserChangeForm,
+from djangocg.db import transaction
+from djangocg.conf import settings
+from djangocg.contrib import admin
+from djangocg.contrib.auth.forms import (UserCreationForm, UserChangeForm,
     AdminPasswordChangeForm)
-from django.contrib.auth.models import User, Group
-from django.contrib import messages
-from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404
-from django.template.response import TemplateResponse
-from django.utils.html import escape
-from django.utils.decorators import method_decorator
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.translation import ugettext, ugettext_lazy as _
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.debug import sensitive_post_parameters
+from djangocg.contrib.auth.models import User, Group
+from djangocg.contrib import messages
+from djangocg.core.exceptions import PermissionDenied
+from djangocg.http import HttpResponseRedirect, Http404
+from djangocg.shortcuts import get_object_or_404
+from djangocg.template.response import TemplateResponse
+from djangocg.utils.html import escape
+from djangocg.utils.decorators import method_decorator
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext, ugettext_lazy as _
+from djangocg.views.decorators.csrf import csrf_protect
+from djangocg.views.decorators.debug import sensitive_post_parameters
 
 csrf_protect_m = method_decorator(csrf_protect)
 
@@ -78,7 +78,7 @@ class UserAdmin(admin.ModelAdmin):
         return super(UserAdmin, self).get_form(request, obj, **defaults)
 
     def get_urls(self):
-        from django.conf.urls import patterns
+        from djangocg.conf.urls import patterns
         return patterns('',
             (r'^(\d+)/password/$',
              self.admin_site.admin_view(self.user_change_password))

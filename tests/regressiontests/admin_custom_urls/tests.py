@@ -1,14 +1,14 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.core.urlresolvers import reverse
-from django.template.response import TemplateResponse
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.core.urlresolvers import reverse
+from djangocg.template.response import TemplateResponse
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 from .models import Action
 
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class AdminCustomUrlsTest(TestCase):
     """
     Remember that:

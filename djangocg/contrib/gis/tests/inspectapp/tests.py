@@ -2,11 +2,11 @@ from __future__ import absolute_import
 
 import os
 
-from django.db import connections
-from django.test import TestCase
-from django.contrib.gis.gdal import Driver
-from django.contrib.gis.geometry.test_data import TEST_DATA
-from django.contrib.gis.utils.ogrinspect import ogrinspect
+from djangocg.db import connections
+from djangocg.test import TestCase
+from djangocg.contrib.gis.gdal import Driver
+from djangocg.contrib.gis.geometry.test_data import TEST_DATA
+from djangocg.contrib.gis.utils.ogrinspect import ogrinspect
 
 from .models import AllOGRFields
 
@@ -18,7 +18,7 @@ class OGRInspectTest(TestCase):
 
         expected = [
             '# This is an auto-generated Django model module created by ogrinspect.',
-            'from django.contrib.gis.db import models',
+            'from djangocg.contrib.gis.db import models',
             '',
             'class MyModel(models.Model):',
             '    float = models.FloatField()',
@@ -36,7 +36,7 @@ class OGRInspectTest(TestCase):
 
         expected = [
             '# This is an auto-generated Django model module created by ogrinspect.',
-            'from django.contrib.gis.db import models',
+            'from djangocg.contrib.gis.db import models',
             '',
             'class City(models.Model):',
             '    name = models.CharField(max_length=80)',
@@ -70,7 +70,7 @@ class OGRInspectTest(TestCase):
 
         expected = [
             '# This is an auto-generated Django model module created by ogrinspect.',
-            'from django.contrib.gis.db import models',
+            'from djangocg.contrib.gis.db import models',
             '',
             'class Measurement(models.Model):',
             '    f_decimal = models.DecimalField(max_digits=0, decimal_places=0)',
@@ -98,7 +98,7 @@ def get_ogr_db_string():
     #
     # TODO: Support Oracle (OCI), MySQL, and SpatiaLite.
     drivers = {
-        'django.contrib.gis.db.backends.postgis': ('PostgreSQL', 'PG'),
+        'djangocg.contrib.gis.db.backends.postgis': ('PostgreSQL', 'PG'),
     }
 
     drv_name, db_str = drivers[db['ENGINE']]

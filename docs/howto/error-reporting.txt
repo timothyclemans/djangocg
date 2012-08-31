@@ -146,7 +146,7 @@ production environment (that is, where :setting:`DEBUG` is set to ``False``):
     prevent the values of those variables from being included in error reports
     using the ``sensitive_variables`` decorator::
 
-        from django.views.decorators.debug import sensitive_variables
+        from djangocg.views.decorators.debug import sensitive_variables
 
         @sensitive_variables('user', 'pw', 'cc')
         def process_info(user):
@@ -175,7 +175,7 @@ production environment (that is, where :setting:`DEBUG` is set to ``False``):
     included in the error reports using the ``sensitive_post_parameters``
     decorator::
 
-        from django.views.decorators.debug import sensitive_post_parameters
+        from djangocg.views.decorators.debug import sensitive_post_parameters
 
         @sensitive_post_parameters('pass_word', 'credit_card_number')
         def record_user_profile(request):
@@ -218,7 +218,7 @@ variables and annotate the ``HttpRequest`` object with the names of sensitive
 POST parameters, so that this sensitive information can later be filtered out
 of reports when an error occurs. The actual filtering is done by Django's
 default error reporter filter:
-:class:`django.views.debug.SafeExceptionReporterFilter`. This filter uses the
+:class:`djangocg.views.debug.SafeExceptionReporterFilter`. This filter uses the
 decorators' annotations to replace the corresponding values with stars
 (`**********`) when the error reports are produced. If you wish to override or
 customize this default behavior for your entire site, you need to define your
@@ -237,10 +237,10 @@ attribute::
         ...
 
 Your custom filter class needs to inherit from
-:class:`django.views.debug.SafeExceptionReporterFilter` and may override the
+:class:`djangocg.views.debug.SafeExceptionReporterFilter` and may override the
 following methods:
 
-.. class:: django.views.debug.SafeExceptionReporterFilter
+.. class:: djangocg.views.debug.SafeExceptionReporterFilter
 
 .. method:: SafeExceptionReporterFilter.is_active(self, request)
 

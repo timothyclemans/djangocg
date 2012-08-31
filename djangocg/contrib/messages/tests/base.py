@@ -1,20 +1,20 @@
 from django import http
-from django.conf import settings, global_settings
-from django.contrib.messages import constants, utils, get_level, set_level
-from django.contrib.messages.api import MessageFailure
-from django.contrib.messages.storage import default_storage, base
-from django.contrib.messages.storage.base import Message
-from django.core.urlresolvers import reverse
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils.translation import ugettext_lazy
-from django.utils.unittest import skipIf
+from djangocg.conf import settings, global_settings
+from djangocg.contrib.messages import constants, utils, get_level, set_level
+from djangocg.contrib.messages.api import MessageFailure
+from djangocg.contrib.messages.storage import default_storage, base
+from djangocg.contrib.messages.storage.base import Message
+from djangocg.core.urlresolvers import reverse
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils.translation import ugettext_lazy
+from djangocg.utils.unittest import skipIf
 
 
 def skipUnlessAuthIsInstalled(func):
     return skipIf(
-        'django.contrib.auth' not in settings.INSTALLED_APPS,
-        "django.contrib.auth isn't installed")(func)
+        'djangocg.contrib.auth' not in settings.INSTALLED_APPS,
+        "djangocg.contrib.auth isn't installed")(func)
 
 
 def add_level_messages(storage):
@@ -34,7 +34,7 @@ class override_settings_tags(override_settings):
      def enable(self):
         super(override_settings_tags, self).enable()
         # LEVEL_TAGS is a constant defined in the
-        # django.contrib.messages.storage.base module, so after changing
+        # djangocg.contrib.messages.storage.base module, so after changing
         # settings.MESSAGE_TAGS, we need to update that constant too.
         self.old_level_tags = base.LEVEL_TAGS
         base.LEVEL_TAGS = utils.get_level_tags()
@@ -45,7 +45,7 @@ class override_settings_tags(override_settings):
 
 class BaseTest(TestCase):
     storage_class = default_storage
-    urls = 'django.contrib.messages.tests.urls'
+    urls = 'djangocg.contrib.messages.tests.urls'
     levels = {
         'debug': constants.DEBUG,
         'info': constants.INFO,
@@ -154,9 +154,9 @@ class BaseTest(TestCase):
         data = {
             'messages': ['Test message %d' % x for x in range(10)],
         }
-        show_url = reverse('django.contrib.messages.tests.urls.show')
+        show_url = reverse('djangocg.contrib.messages.tests.urls.show')
         for level in ('debug', 'info', 'success', 'warning', 'error'):
-            add_url = reverse('django.contrib.messages.tests.urls.add',
+            add_url = reverse('djangocg.contrib.messages.tests.urls.add',
                               args=(level,))
             response = self.client.post(add_url, data, follow=True)
             self.assertRedirects(response, show_url)
@@ -172,9 +172,9 @@ class BaseTest(TestCase):
         data = {
             'messages': ['Test message %d' % x for x in range(10)],
         }
-        show_url = reverse('django.contrib.messages.tests.urls.show_template_response')
+        show_url = reverse('djangocg.contrib.messages.tests.urls.show_template_response')
         for level in self.levels.keys():
-            add_url = reverse('django.contrib.messages.tests.urls.add_template_response',
+            add_url = reverse('djangocg.contrib.messages.tests.urls.add_template_response',
                               args=(level,))
             response = self.client.post(add_url, data, follow=True)
             self.assertRedirects(response, show_url)
@@ -196,12 +196,12 @@ class BaseTest(TestCase):
         data = {
             'messages': ['Test message %d' % x for x in range(10)],
         }
-        show_url = reverse('django.contrib.messages.tests.urls.show')
+        show_url = reverse('djangocg.contrib.messages.tests.urls.show')
         messages = []
         for level in ('debug', 'info', 'success', 'warning', 'error'):
             messages.extend([Message(self.levels[level], msg) for msg in
                                                              data['messages']])
-            add_url = reverse('django.contrib.messages.tests.urls.add',
+            add_url = reverse('djangocg.contrib.messages.tests.urls.add',
                               args=(level,))
             self.client.post(add_url, data)
         response = self.client.get(show_url)
@@ -212,7 +212,7 @@ class BaseTest(TestCase):
 
     @override_settings(
         INSTALLED_APPS=filter(
-            lambda app:app!='django.contrib.messages', settings.INSTALLED_APPS),
+            lambda app:app!='djangocg.contrib.messages', settings.INSTALLED_APPS),
         MIDDLEWARE_CLASSES=filter(
             lambda m:'MessageMiddleware' not in m, settings.MIDDLEWARE_CLASSES),
         TEMPLATE_CONTEXT_PROCESSORS=filter(
@@ -228,16 +228,16 @@ class BaseTest(TestCase):
         data = {
             'messages': ['Test message %d' % x for x in range(10)],
         }
-        show_url = reverse('django.contrib.messages.tests.urls.show')
+        show_url = reverse('djangocg.contrib.messages.tests.urls.show')
         for level in ('debug', 'info', 'success', 'warning', 'error'):
-            add_url = reverse('django.contrib.messages.tests.urls.add',
+            add_url = reverse('djangocg.contrib.messages.tests.urls.add',
                               args=(level,))
             self.assertRaises(MessageFailure, self.client.post, add_url,
                               data, follow=True)
 
     @override_settings(
         INSTALLED_APPS=filter(
-            lambda app:app!='django.contrib.messages', settings.INSTALLED_APPS),
+            lambda app:app!='djangocg.contrib.messages', settings.INSTALLED_APPS),
         MIDDLEWARE_CLASSES=filter(
             lambda m:'MessageMiddleware' not in m, settings.MIDDLEWARE_CLASSES),
         TEMPLATE_CONTEXT_PROCESSORS=filter(
@@ -254,9 +254,9 @@ class BaseTest(TestCase):
             'messages': ['Test message %d' % x for x in range(10)],
             'fail_silently': True,
         }
-        show_url = reverse('django.contrib.messages.tests.urls.show')
+        show_url = reverse('djangocg.contrib.messages.tests.urls.show')
         for level in ('debug', 'info', 'success', 'warning', 'error'):
-            add_url = reverse('django.contrib.messages.tests.urls.add',
+            add_url = reverse('djangocg.contrib.messages.tests.urls.add',
                               args=(level,))
             response = self.client.post(add_url, data, follow=True)
             self.assertRedirects(response, show_url)

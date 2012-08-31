@@ -5,14 +5,14 @@ from __future__ import absolute_import
 
 from optparse import make_option
 
-from django.core.exceptions import ImproperlyConfigured
-from django.core.management import call_command
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.management import call_command
 from django import db
-from django.test import simple, TransactionTestCase, skipUnlessDBFeature
-from django.test.simple import DjangoTestSuiteRunner, get_tests
-from django.test.testcases import connections_support_transactions
-from django.utils import unittest
-from django.utils.importlib import import_module
+from djangocg.test import simple, TransactionTestCase, skipUnlessDBFeature
+from djangocg.test.simple import DjangoTestSuiteRunner, get_tests
+from djangocg.test.testcases import connections_support_transactions
+from djangocg.utils import unittest
+from djangocg.utils.importlib import import_module
 
 from ..admin_scripts.tests import AdminScriptTestCase
 from .models import Person
@@ -242,11 +242,11 @@ class Sqlite3InMemoryTestDbs(unittest.TestCase):
             try:
                 db.connections = db.ConnectionHandler({
                     'default': {
-                        'ENGINE': 'django.db.backends.sqlite3',
+                        'ENGINE': 'djangocg.db.backends.sqlite3',
                         option: ':memory:',
                     },
                     'other': {
-                        'ENGINE': 'django.db.backends.sqlite3',
+                        'ENGINE': 'djangocg.db.backends.sqlite3',
                         option: ':memory:',
                     },
                 })

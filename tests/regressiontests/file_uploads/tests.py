@@ -8,13 +8,13 @@ import json
 import os
 import shutil
 
-from django.core.files import temp as tempfile
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.http.multipartparser import MultiPartParser
-from django.test import TestCase, client
-from django.utils.encoding import force_bytes
-from django.utils.six import StringIO
-from django.utils import unittest
+from djangocg.core.files import temp as tempfile
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.http.multipartparser import MultiPartParser
+from djangocg.test import TestCase, client
+from djangocg.utils.encoding import force_bytes
+from djangocg.utils.six import StringIO
+from djangocg.utils import unittest
 
 from . import uploadhandler
 from .models import FileModel, temp_storage, UPLOAD_TO
@@ -295,7 +295,7 @@ class FileUploadTests(TestCase):
                 return ret
 
         # Maybe this is a little more complicated that it needs to be; but if
-        # the django.test.client.FakePayload.read() implementation changes then
+        # the djangocg.test.client.FakePayload.read() implementation changes then
         # this test would fail.  So we need to know exactly what kind of error
         # it raises when there is an attempt to read more than the available bytes:
         try:

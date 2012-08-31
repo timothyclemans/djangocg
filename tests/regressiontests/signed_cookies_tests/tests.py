@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 import time
 
-from django.core import signing
-from django.http import HttpRequest, HttpResponse
-from django.test import TestCase
+from djangocg.core import signing
+from djangocg.http import HttpRequest, HttpResponse
+from djangocg.test import TestCase
 
 
 class SignedCookieTest(TestCase):

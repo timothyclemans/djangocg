@@ -5,20 +5,20 @@ from __future__ import absolute_import, unicode_literals
 import datetime
 import threading
 
-from django.conf import settings
-from django.core.management.color import no_style
-from django.core.exceptions import ImproperlyConfigured
-from django.db import (backend, connection, connections, DEFAULT_DB_ALIAS,
+from djangocg.conf import settings
+from djangocg.core.management.color import no_style
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db import (backend, connection, connections, DEFAULT_DB_ALIAS,
     IntegrityError, transaction)
-from django.db.backends.signals import connection_created
-from django.db.backends.postgresql_psycopg2 import version as pg_version
-from django.db.utils import ConnectionHandler, DatabaseError, load_backend
-from django.test import (TestCase, skipUnlessDBFeature, skipIfDBFeature,
+from djangocg.db.backends.signals import connection_created
+from djangocg.db.backends.postgresql_psycopg2 import version as pg_version
+from djangocg.db.utils import ConnectionHandler, DatabaseError, load_backend
+from djangocg.test import (TestCase, skipUnlessDBFeature, skipIfDBFeature,
     TransactionTestCase)
-from django.test.utils import override_settings
-from django.utils import six
-from django.utils.six.moves import xrange
-from django.utils import unittest
+from djangocg.test.utils import override_settings
+from djangocg.utils import six
+from djangocg.utils.six.moves import xrange
+from djangocg.utils import unittest
 
 from . import models
 
@@ -425,7 +425,7 @@ class BackendTestCase(TestCase):
 # * if sqlite3 (if/once we get #14204 fixed) has referential integrity turned
 #   on or not, something that would be controlled by runtime support and user
 #   preference.
-# verify if its type is django.database.db.IntegrityError.
+# verify if its type is djangocg.database.db.IntegrityError.
 
 class FkConstraintsTests(TransactionTestCase):
 
@@ -521,7 +521,7 @@ class ThreadTests(TestCase):
 
     def test_default_connection_thread_local(self):
         """
-        Ensure that the default connection (i.e. django.db.connection) is
+        Ensure that the default connection (i.e. djangocg.db.connection) is
         different for each thread.
         Refs #17258.
         """
@@ -529,7 +529,7 @@ class ThreadTests(TestCase):
         connection.cursor()
         connections_set.add(connection.connection)
         def runner():
-            from django.db import connection
+            from djangocg.db import connection
             connection.cursor()
             connections_set.add(connection.connection)
         for x in range(2):
@@ -553,7 +553,7 @@ class ThreadTests(TestCase):
         for conn in connections.all():
             connections_set.add(conn)
         def runner():
-            from django.db import connections
+            from djangocg.db import connections
             for conn in connections.all():
                 # Allow thread sharing so the connection can be closed by the
                 # main thread.
@@ -580,7 +580,7 @@ class ThreadTests(TestCase):
 
         def do_thread():
             def runner(main_thread_connection):
-                from django.db import connections
+                from djangocg.db import connections
                 connections['default'] = main_thread_connection
                 try:
                     models.Person.objects.get(first_name="John", last_name="Doe")
@@ -656,7 +656,7 @@ class ThreadTests(TestCase):
 class BackendLoadingTests(TestCase):
     def test_old_style_backends_raise_useful_exception(self):
         self.assertRaisesRegexp(ImproperlyConfigured,
-            "Try using django.db.backends.sqlite3 instead",
+            "Try using djangocg.db.backends.sqlite3 instead",
             load_backend, 'sqlite3')
 
 

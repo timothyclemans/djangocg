@@ -2,12 +2,12 @@
 The staticfiles app
 ===================
 
-.. module:: django.contrib.staticfiles
+.. module:: djangocg.contrib.staticfiles
    :synopsis: An app for handling static files.
 
 .. versionadded:: 1.3
 
-``django.contrib.staticfiles`` collects static files from each of your
+``djangocg.contrib.staticfiles`` collects static files from each of your
 applications (and any other places you specify) into a single location that
 can easily be served in production.
 
@@ -79,7 +79,7 @@ This would allow you to refer to the local file
 STATICFILES_STORAGE
 -------------------
 
-Default: ``'django.contrib.staticfiles.storage.StaticFilesStorage'``
+Default: ``'djangocg.contrib.staticfiles.storage.StaticFilesStorage'``
 
 The file storage engine to use when collecting static files with the
 :djadmin:`collectstatic` management command.
@@ -87,7 +87,7 @@ The file storage engine to use when collecting static files with the
 .. versionadded:: 1.4
 
 A ready-to-use instance of the storage backend defined in this setting
-can be found at ``django.contrib.staticfiles.storage.staticfiles_storage``.
+can be found at ``djangocg.contrib.staticfiles.storage.staticfiles_storage``.
 
 For an example, see :ref:`staticfiles-from-cdn`.
 
@@ -98,19 +98,19 @@ STATICFILES_FINDERS
 
 Default::
 
-    ("django.contrib.staticfiles.finders.FileSystemFinder",
-     "django.contrib.staticfiles.finders.AppDirectoriesFinder")
+    ("djangocg.contrib.staticfiles.finders.FileSystemFinder",
+     "djangocg.contrib.staticfiles.finders.AppDirectoriesFinder")
 
 The list of finder backends that know how to find static files in
 various locations.
 
 The default will find files stored in the :setting:`STATICFILES_DIRS` setting
-(using :class:`django.contrib.staticfiles.finders.FileSystemFinder`) and in a
+(using :class:`djangocg.contrib.staticfiles.finders.FileSystemFinder`) and in a
 ``static`` subdirectory of each app (using
-:class:`django.contrib.staticfiles.finders.AppDirectoriesFinder`)
+:class:`djangocg.contrib.staticfiles.finders.AppDirectoriesFinder`)
 
 One finder is disabled by default:
-:class:`django.contrib.staticfiles.finders.DefaultStorageFinder`. If added to
+:class:`djangocg.contrib.staticfiles.finders.DefaultStorageFinder`. If added to
 your :setting:`STATICFILES_FINDERS` setting, it will look for static files in
 the default file storage as defined by the :setting:`DEFAULT_FILE_STORAGE`
 setting.
@@ -129,7 +129,7 @@ Management Commands
 
 .. highlight:: console
 
-``django.contrib.staticfiles`` exposes three management commands.
+``djangocg.contrib.staticfiles`` exposes three management commands.
 
 collectstatic
 -------------
@@ -151,11 +151,11 @@ specified by the :setting:`INSTALLED_APPS` setting.
 .. versionadded:: 1.4
 
 The :djadmin:`collectstatic` management command calls the
-:meth:`~django.contrib.staticfiles.storage.StaticFilesStorage.post_process`
+:meth:`~djangocg.contrib.staticfiles.storage.StaticFilesStorage.post_process`
 method of the :setting:`STATICFILES_STORAGE` after each run and passes
 a list of paths that have been found by the management command. It also
 receives all command line options of :djadmin:`collectstatic`. This is used
-by the :class:`~django.contrib.staticfiles.storage.CachedStaticFilesStorage`
+by the :class:`~djangocg.contrib.staticfiles.storage.CachedStaticFilesStorage`
 by default.
 
 Some commonly used options are:
@@ -192,7 +192,7 @@ Some commonly used options are:
     .. versionadded:: 1.4
 
     Don't call the
-    :meth:`~django.contrib.staticfiles.storage.StaticFilesStorage.post_process`
+    :meth:`~djangocg.contrib.staticfiles.storage.StaticFilesStorage.post_process`
     method of the configured :setting:`STATICFILES_STORAGE` storage backend.
 
 .. django-admin-option:: --no-default-ignore
@@ -271,7 +271,7 @@ StaticFilesStorage
 
 .. class:: storage.StaticFilesStorage
 
-    A subclass of the :class:`~django.core.files.storage.FileSystemStorage`
+    A subclass of the :class:`~djangocg.core.files.storage.FileSystemStorage`
     storage backend that uses the :setting:`STATIC_ROOT` setting as the base
     file system location and the :setting:`STATIC_URL` setting respectively
     as the base URL.
@@ -284,7 +284,7 @@ StaticFilesStorage
     after each run and gets passed the local storages and paths of found
     files as a dictionary, as well as the command line options.
 
-    The :class:`~django.contrib.staticfiles.storage.CachedStaticFilesStorage`
+    The :class:`~djangocg.contrib.staticfiles.storage.CachedStaticFilesStorage`
     uses this behind the scenes to replace the paths with their hashed
     counterparts and update the cache appropriately.
 
@@ -295,7 +295,7 @@ CachedStaticFilesStorage
 
     .. versionadded:: 1.4
 
-    A subclass of the :class:`~django.contrib.staticfiles.storage.StaticFilesStorage`
+    A subclass of the :class:`~djangocg.contrib.staticfiles.storage.StaticFilesStorage`
     storage backend which caches the files it saves by appending the MD5 hash
     of the file's content to the filename. For example, the file
     ``css/styles.css`` would also be saved as ``css/styles.55e7cbb9ba48.css``.
@@ -308,9 +308,9 @@ CachedStaticFilesStorage
 
     The storage backend automatically replaces the paths found in the saved
     files matching other saved files with the path of the cached copy (using
-    the :meth:`~django.contrib.staticfiles.storage.StaticFilesStorage.post_process`
+    the :meth:`~djangocg.contrib.staticfiles.storage.StaticFilesStorage.post_process`
     method). The regular expressions used to find those paths
-    (``django.contrib.staticfiles.storage.CachedStaticFilesStorage.cached_patterns``)
+    (``djangocg.contrib.staticfiles.storage.CachedStaticFilesStorage.cached_patterns``)
     by default cover the `@import`_ rule and `url()`_ statement of `Cascading
     Style Sheets`_. For example, the ``'css/styles.css'`` file with the
     content
@@ -320,7 +320,7 @@ CachedStaticFilesStorage
         @import url("../admin/css/base.css");
 
     would be replaced by calling the
-    :meth:`~django.core.files.storage.Storage.url`
+    :meth:`~djangocg.core.files.storage.Storage.url`
     method of the ``CachedStaticFilesStorage`` storage backend, ultimatively
     saving a ``'css/styles.55e7cbb9ba48.css'`` file with the following
     content:
@@ -333,7 +333,7 @@ CachedStaticFilesStorage
     following requirements are met:
 
     * the :setting:`STATICFILES_STORAGE` setting is set to
-      ``'django.contrib.staticfiles.storage.CachedStaticFilesStorage'``
+      ``'djangocg.contrib.staticfiles.storage.CachedStaticFilesStorage'``
     * the :setting:`DEBUG` setting is set to ``False``
     * you use the ``staticfiles`` :ttag:`static<staticfiles-static>` template
       tag to refer to your static files in your templates
@@ -362,7 +362,7 @@ CachedStaticFilesStorage
 .. _`url()`: http://www.w3.org/TR/CSS2/syndata.html#uri
 .. _`Cascading Style Sheets`: http://www.w3.org/Style/CSS/
 
-.. currentmodule:: django.contrib.staticfiles.templatetags.staticfiles
+.. currentmodule:: djangocg.contrib.staticfiles.templatetags.staticfiles
 
 Template tags
 =============
@@ -402,12 +402,12 @@ Other Helpers
 =============
 
 There are a few other helpers outside of the
-:mod:`staticfiles <django.contrib.staticfiles>` app to work with static
+:mod:`staticfiles <djangocg.contrib.staticfiles>` app to work with static
 files:
 
-- The :func:`django.core.context_processors.static` context processor
+- The :func:`djangocg.core.context_processors.static` context processor
   which adds :setting:`STATIC_URL` to every template context rendered
-  with :class:`~django.template.RequestContext` contexts.
+  with :class:`~djangocg.template.RequestContext` contexts.
 
 - The builtin template tag :ttag:`static` which takes a path and
   urljoins it with the static prefix :setting:`STATIC_URL`.
@@ -426,7 +426,7 @@ Static file development view
 
 .. highlight:: python
 
-.. function:: django.contrib.staticfiles.views.serve(request, path)
+.. function:: djangocg.contrib.staticfiles.views.serve(request, path)
 
 This view function serves static files in development.
 
@@ -443,10 +443,10 @@ This view is automatically enabled by :djadmin:`runserver` (with a
 local development server, add the following snippet to the end of your
 primary URL configuration::
 
-   from django.conf import settings
+   from djangocg.conf import settings
 
    if settings.DEBUG:
-       urlpatterns += patterns('django.contrib.staticfiles.views',
+       urlpatterns += patterns('djangocg.contrib.staticfiles.views',
            url(r'^static/(?P<path>.*)$', 'serve'),
        )
 
@@ -455,12 +455,12 @@ Note, the beginning of the pattern (``r'^static/'``) should be your
 
 Since this is a bit finicky, there's also a helper function that'll do this for you:
 
-.. function:: django.contrib.staticfiles.urls.staticfiles_urlpatterns()
+.. function:: djangocg.contrib.staticfiles.urls.staticfiles_urlpatterns()
 
 This will return the proper URL pattern for serving static files to your
 already defined pattern list. Use it like this::
 
-   from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+   from djangocg.contrib.staticfiles.urls import staticfiles_urlpatterns
 
    # ... the rest of your URLconf here ...
 

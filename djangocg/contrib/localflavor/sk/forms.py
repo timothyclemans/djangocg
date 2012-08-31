@@ -4,10 +4,10 @@ Slovak-specific form helpers
 
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.localflavor.sk.sk_districts import DISTRICT_CHOICES
-from django.contrib.localflavor.sk.sk_regions import REGION_CHOICES
-from django.forms.fields import Select, RegexField
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.sk.sk_districts import DISTRICT_CHOICES
+from djangocg.contrib.localflavor.sk.sk_regions import REGION_CHOICES
+from djangocg.forms.fields import Select, RegexField
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 class SKRegionSelect(Select):

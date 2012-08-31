@@ -1,1 +1,1 @@
-from django.contrib.formtools.wizard.legacy import FormWizard
+from djangocg.contrib.formtools.wizard.legacy import FormWizard

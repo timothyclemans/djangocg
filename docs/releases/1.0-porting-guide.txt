@@ -112,7 +112,7 @@ New (1.0) ``models.py``::
 
 New (1.0) ``admin.py``::
 
-    from django.contrib import admin
+    from djangocg.contrib import admin
     from models import Author
 
     class AuthorAdmin(admin.ModelAdmin):
@@ -127,7 +127,7 @@ The Admin
 ---------
 
 One of the biggest changes in 1.0 is the new admin. The Django administrative
-interface (``django.contrib.admin``) has been completely refactored; admin
+interface (``djangocg.contrib.admin``) has been completely refactored; admin
 definitions are now completely decoupled from model definitions, the framework
 has been rewritten to use Django's new form-handling library and redesigned with
 extensibility and customization in mind.
@@ -225,20 +225,20 @@ If you're using the admin site, you need to update your root ``urls.py``.
 
 Old (0.96) ``urls.py``::
 
-    from django.conf.urls.defaults import *
+    from djangocg.conf.urls.defaults import *
 
     urlpatterns = patterns('',
-        (r'^admin/', include('django.contrib.admin.urls')),
+        (r'^admin/', include('djangocg.contrib.admin.urls')),
 
         # ... the rest of your URLs here ...
     )
 
 New (1.0) ``urls.py``::
 
-    from django.conf.urls.defaults import *
+    from djangocg.conf.urls.defaults import *
 
     # The next two lines enable the admin and load each admin.py file:
-    from django.contrib import admin
+    from djangocg.contrib import admin
     admin.autodiscover()
 
     urlpatterns = patterns('',
@@ -250,10 +250,10 @@ New (1.0) ``urls.py``::
 Views
 -----
 
-Use ``django.forms`` instead of ``newforms``
+Use ``djangocg.forms`` instead of ``newforms``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Replace ``django.newforms`` with ``django.forms`` -- Django 1.0 renamed the
+Replace ``djangocg.newforms`` with ``djangocg.forms`` -- Django 1.0 renamed the
 ``newforms`` module (introduced in 0.96) to plain old ``forms``. The
 ``oldforms`` module was also removed.
 
@@ -269,15 +269,15 @@ New::
 
     from django import forms
 
-If you're using the old forms system (formerly known as ``django.forms`` and
-``django.oldforms``), you'll have to rewrite your forms. A good place to start
+If you're using the old forms system (formerly known as ``djangocg.forms`` and
+``djangocg.oldforms``), you'll have to rewrite your forms. A good place to start
 is the :doc:`forms documentation </topics/forms/index>`
 
 Handle uploaded files using the new API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Replace use of uploaded files -- that is, entries in ``request.FILES`` -- as
-simple dictionaries with the new :class:`~django.core.files.UploadedFile`. The
+simple dictionaries with the new :class:`~djangocg.core.files.UploadedFile`. The
 old dictionary syntax no longer works.
 
 Thus, in a view like::
@@ -299,11 +299,11 @@ Old (0.96)            New (1.0)
 Work with file fields using the new API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The internal implementation of :class:`django.db.models.FileField` have changed.
+The internal implementation of :class:`djangocg.db.models.FileField` have changed.
 A visible result of this is that the way you access special attributes (URL,
 filename, image size, etc) of these model fields has changed. You will need to
 make the following changes, assuming your model's
-:class:`~django.db.models.FileField` is called ``myfile``:
+:class:`~djangocg.db.models.FileField` is called ``myfile``:
 
 =================================== ========================
 Old (0.96)                           New (1.0)
@@ -317,14 +317,14 @@ Old (0.96)                           New (1.0)
 =================================== ========================
 
 Note that the ``width`` and ``height`` attributes only make sense for
-:class:`~django.db.models.ImageField` fields. More details can be found in the
+:class:`~djangocg.db.models.ImageField` fields. More details can be found in the
 :doc:`model API </ref/models/fields>` documentation.
 
 Use ``Paginator`` instead of ``ObjectPaginator``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``ObjectPaginator`` in 0.96 has been removed and replaced with an improved
-version, :class:`django.core.paginator.Paginator`.
+version, :class:`djangocg.core.paginator.Paginator`.
 
 Templates
 ---------
@@ -365,15 +365,15 @@ Signals
 * Add ``**kwargs`` to any registered signal handlers.
 
 * Connect, disconnect, and send signals via methods on the
-  :class:`~django.dispatch.Signal` object instead of through module methods in
-  ``django.dispatch.dispatcher``.
+  :class:`~djangocg.dispatch.Signal` object instead of through module methods in
+  ``djangocg.dispatch.dispatcher``.
 
 * Remove any use of the ``Anonymous`` and ``Any`` sender options; they no longer
   exist. You can still receive signals sent by any sender by using
   ``sender=None``
 
 * Make any custom signals you've declared into instances of
-  :class:`django.dispatch.Signal` instead of anonymous objects.
+  :class:`djangocg.dispatch.Signal` instead of anonymous objects.
 
 Here's quick summary of the code changes you'll need to make:
 
@@ -381,7 +381,7 @@ Here's quick summary of the code changes you'll need to make:
 Old (0.96)                                         New (1.0)
 =================================================  ======================================
 ``def callback(sender)``                           ``def callback(sender, **kwargs)``
-``sig = object()``                                 ``sig = django.dispatch.Signal()``
+``sig = object()``                                 ``sig = djangocg.dispatch.Signal()``
 ``dispatcher.connect(callback, sig)``              ``sig.connect(callback)``
 ``dispatcher.send(sig, sender)``                   ``sig.send(sender)``
 ``dispatcher.connect(callback, sig, sender=Any)``  ``sig.connect(callback, sender=None)``
@@ -390,7 +390,7 @@ Old (0.96)                                         New (1.0)
 Comments
 --------
 
-If you were using Django 0.96's ``django.contrib.comments`` app, you'll need to
+If you were using Django 0.96's ``djangocg.contrib.comments`` app, you'll need to
 upgrade to the new comments app introduced in 1.0. See
 :doc:`/ref/contrib/comments/upgrade` for details.
 
@@ -409,8 +409,8 @@ Local flavors
 U.S. local flavor
 ~~~~~~~~~~~~~~~~~
 
-``django.contrib.localflavor.usa`` has been renamed to
-:mod:`django.contrib.localflavor.us`. This change was made to match the naming
+``djangocg.contrib.localflavor.usa`` has been renamed to
+:mod:`djangocg.contrib.localflavor.us`. This change was made to match the naming
 scheme of other local flavors. To migrate your code, all you need to do is
 change the imports.
 
@@ -446,8 +446,8 @@ to reconfigure settings after having already used them
 :setting:`LOGIN_URL` has moved
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :setting:`LOGIN_URL` constant moved from ``django.contrib.auth`` into the
-``settings`` module. Instead of using ``from django.contrib.auth import
+The :setting:`LOGIN_URL` constant moved from ``djangocg.contrib.auth`` into the
+``settings`` module. Instead of using ``from djangocg.contrib.auth import
 LOGIN_URL`` refer to :setting:`settings.LOGIN_URL <LOGIN_URL>`.
 
 :setting:`APPEND_SLASH` behavior has been updated
@@ -580,7 +580,7 @@ database file over the original file and start again.
 Internationalization
 --------------------
 
-:func:`django.views.i18n.set_language` now requires a POST request
+:func:`djangocg.views.i18n.set_language` now requires a POST request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Previously, a GET request was used. The old behavior meant that state (the
@@ -601,7 +601,7 @@ If you were previously relying on ``_()`` always being present, you should now
 explicitly import ``ugettext`` or ``ugettext_lazy``, if appropriate, and alias
 it to ``_`` yourself::
 
-    from django.utils.translation import ugettext as _
+    from djangocg.utils.translation import ugettext as _
 
 HTTP request/response objects
 -----------------------------
@@ -625,8 +625,8 @@ receive (``request.GET`` or ``request.POST``); relying on the combined
 Accessing ``HTTPResponse`` headers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``django.http.HttpResponse.headers`` has been renamed to ``_headers`` and
-:class:`~django.http.HttpResponse` now supports containment checking directly.
+``djangocg.http.HttpResponse.headers`` has been renamed to ``_headers`` and
+:class:`~djangocg.http.HttpResponse` now supports containment checking directly.
 So use ``if header in response:`` instead of ``if header in response.headers:``.
 
 Generic relations
@@ -636,17 +636,17 @@ Generic relations have been moved out of core
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The generic relation classes -- ``GenericForeignKey`` and ``GenericRelation``
--- have moved into the :mod:`django.contrib.contenttypes` module.
+-- have moved into the :mod:`djangocg.contrib.contenttypes` module.
 
 Testing
 -------
 
-:meth:`django.test.Client.login` has changed
+:meth:`djangocg.test.Client.login` has changed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Old (0.96)::
 
-    from django.test import Client
+    from djangocg.test import Client
     c = Client()
     c.login('/path/to/login','myuser','mypassword')
 
@@ -661,19 +661,19 @@ Management commands
 Running management commands from your code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:mod:`django.core.management` has been greatly refactored.
+:mod:`djangocg.core.management` has been greatly refactored.
 
 Calls to management services in your code now need to use
 ``call_command``. For example, if you have some test code that calls flush and
 load_data::
 
-      from django.core import management
+      from djangocg.core import management
       management.flush(verbosity=0, interactive=False)
       management.load_data(['test_data'], verbosity=0)
 
 ...you'll need to change this code to read::
 
-      from django.core import management
+      from djangocg.core import management
       management.call_command('flush', verbosity=0, interactive=False)
       management.call_command('loaddata', 'test_data', verbosity=0)
 
@@ -711,16 +711,16 @@ Data structures
 ``SortedDictFromList`` is gone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``django.newforms.forms.SortedDictFromList`` was removed.
-:class:`django.utils.datastructures.SortedDict` can now be instantiated with
+``djangocg.newforms.forms.SortedDictFromList`` was removed.
+:class:`djangocg.utils.datastructures.SortedDict` can now be instantiated with
 a sequence of tuples.
 
 To update your code:
 
-1. Use :class:`django.utils.datastructures.SortedDict` wherever you were
-   using ``django.newforms.forms.SortedDictFromList``.
+1. Use :class:`djangocg.utils.datastructures.SortedDict` wherever you were
+   using ``djangocg.newforms.forms.SortedDictFromList``.
 
-2. Because :meth:`django.utils.datastructures.SortedDict.copy` doesn't
+2. Because :meth:`djangocg.utils.datastructures.SortedDict.copy` doesn't
    return a deepcopy as ``SortedDictFromList.copy()`` did, you will need
    to update your code if you were relying on a deepcopy. Do this by using
    ``copy.deepcopy`` directly.
@@ -733,7 +733,7 @@ Database backend functions have been renamed
 
 Almost *all* of the database backend-level functions have been renamed and/or
 relocated. None of these were documented, but you'll need to change your code
-if you're using any of these functions, all of which are in :mod:`django.db`:
+if you're using any of these functions, all of which are in :mod:`djangocg.db`:
 
 =======================================  ===================================================
 Old (0.96)                               New (1.0)

@@ -2,7 +2,7 @@
 The sitemap framework
 =====================
 
-.. module:: django.contrib.sitemaps
+.. module:: djangocg.contrib.sitemaps
    :synopsis: A framework for generating Google sitemap XML files.
 
 Django comes with a high-level sitemap-generating framework that makes
@@ -23,7 +23,7 @@ you express this information in Python code.
 
 It works much like Django's :doc:`syndication framework
 </ref/contrib/syndication>`. To create a sitemap, just write a
-:class:`~django.contrib.sitemaps.Sitemap` class and point to it in your
+:class:`~djangocg.contrib.sitemaps.Sitemap` class and point to it in your
 :doc:`URLconf </topics/http/urls>`.
 
 Installation
@@ -31,19 +31,19 @@ Installation
 
 To install the sitemap app, follow these steps:
 
-1. Add ``'django.contrib.sitemaps'`` to your :setting:`INSTALLED_APPS`
+1. Add ``'djangocg.contrib.sitemaps'`` to your :setting:`INSTALLED_APPS`
    setting.
 
-2. Make sure ``'django.template.loaders.app_directories.Loader'``
+2. Make sure ``'djangocg.template.loaders.app_directories.Loader'``
    is in your :setting:`TEMPLATE_LOADERS` setting. It's in there by default,
    so you'll only need to change this if you've changed that setting.
 
 3. Make sure you've installed the
-   :mod:`sites framework <django.contrib.sites>`.
+   :mod:`sites framework <djangocg.contrib.sites>`.
 
 (Note: The sitemap application doesn't install any database tables. The only
 reason it needs to go into :setting:`INSTALLED_APPS` is so that the
-:func:`~django.template.loaders.app_directories.Loader` template
+:func:`~djangocg.template.loaders.app_directories.Loader` template
 loader can find the default templates.)
 
 Initialization
@@ -52,7 +52,7 @@ Initialization
 To activate sitemap generation on your Django site, add this line to your
 :doc:`URLconf </topics/http/urls>`::
 
-   (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+   (r'^sitemap\.xml$', 'djangocg.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 
 This tells Django to build a sitemap when a client accesses :file:`/sitemap.xml`.
 
@@ -65,17 +65,17 @@ reference any URL in your site. However, if your sitemap lives at
 
 The sitemap view takes an extra, required argument: ``{'sitemaps': sitemaps}``.
 ``sitemaps`` should be a dictionary that maps a short section label (e.g.,
-``blog`` or ``news``) to its :class:`~django.contrib.sitemaps.Sitemap` class
+``blog`` or ``news``) to its :class:`~djangocg.contrib.sitemaps.Sitemap` class
 (e.g., ``BlogSitemap`` or ``NewsSitemap``). It may also map to an *instance* of
-a :class:`~django.contrib.sitemaps.Sitemap` class (e.g.,
+a :class:`~djangocg.contrib.sitemaps.Sitemap` class (e.g.,
 ``BlogSitemap(some_var)``).
 
 Sitemap classes
 ===============
 
-A :class:`~django.contrib.sitemaps.Sitemap` class is a simple Python
+A :class:`~djangocg.contrib.sitemaps.Sitemap` class is a simple Python
 class that represents a "section" of entries in your sitemap. For example,
-one :class:`~django.contrib.sitemaps.Sitemap` class could represent
+one :class:`~djangocg.contrib.sitemaps.Sitemap` class could represent
 all the entries of your Weblog, while another could represent all of the
 events in your events calendar.
 
@@ -84,8 +84,8 @@ In the simplest case, all these sections get lumped together into one
 sitemap index that references individual sitemap files, one per section. (See
 `Creating a sitemap index`_ below.)
 
-:class:`~django.contrib.sitemaps.Sitemap` classes must subclass
-``django.contrib.sitemaps.Sitemap``. They can live anywhere in your codebase.
+:class:`~djangocg.contrib.sitemaps.Sitemap` classes must subclass
+``djangocg.contrib.sitemaps.Sitemap``. They can live anywhere in your codebase.
 
 A simple example
 ================
@@ -94,7 +94,7 @@ Let's assume you have a blog system, with an ``Entry`` model, and you want your
 sitemap to include all the links to your individual blog entries. Here's how
 your sitemap class might look::
 
-    from django.contrib.sitemaps import Sitemap
+    from djangocg.contrib.sitemaps import Sitemap
     from blog.models import Entry
 
     class BlogSitemap(Sitemap):
@@ -230,17 +230,17 @@ The sitemap framework provides a couple convenience classes for common cases:
 
 .. class:: FlatPageSitemap
 
-    The :class:`django.contrib.sitemaps.FlatPageSitemap` class looks at all
-    publicly visible :mod:`flatpages <django.contrib.flatpages>`
+    The :class:`djangocg.contrib.sitemaps.FlatPageSitemap` class looks at all
+    publicly visible :mod:`flatpages <djangocg.contrib.flatpages>`
     defined for the current :setting:`SITE_ID` (see the
-    :mod:`sites documentation <django.contrib.sites>`) and
+    :mod:`sites documentation <djangocg.contrib.sites>`) and
     creates an entry in the sitemap. These entries include only the
     :attr:`~Sitemap.location` attribute -- not :attr:`~Sitemap.lastmod`,
     :attr:`~Sitemap.changefreq` or :attr:`~Sitemap.priority`.
 
 .. class:: GenericSitemap
 
-    The :class:`django.contrib.sitemaps.GenericSitemap` class allows you to
+    The :class:`djangocg.contrib.sitemaps.GenericSitemap` class allows you to
     create a sitemap by passing it a dictionary which has to contain at least
     a :data:`queryset` entry. This queryset will be used to generate the items
     of the sitemap. It may also have a :data:`date_field` entry that
@@ -248,7 +248,7 @@ The sitemap framework provides a couple convenience classes for common cases:
     This will be used for the :attr:`~Sitemap.lastmod` attribute in the
     generated sitemap. You may also pass :attr:`~Sitemap.priority` and
     :attr:`~Sitemap.changefreq` keyword arguments to the
-    :class:`~django.contrib.sitemaps.GenericSitemap`  constructor to specify
+    :class:`~djangocg.contrib.sitemaps.GenericSitemap`  constructor to specify
     these attributes for all URLs.
 
 Example
@@ -256,8 +256,8 @@ Example
 
 Here's an example of a :doc:`URLconf </topics/http/urls>` using both::
 
-    from django.conf.urls import patterns, url, include
-    from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
+    from djangocg.conf.urls import patterns, url, include
+    from djangocg.contrib.sitemaps import FlatPageSitemap, GenericSitemap
     from blog.models import Entry
 
     info_dict = {
@@ -275,7 +275,7 @@ Here's an example of a :doc:`URLconf </topics/http/urls>` using both::
         # ...
 
         # the sitemap
-        (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+        (r'^sitemap\.xml$', 'djangocg.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
     )
 
 .. _URLconf: ../url_dispatch/
@@ -287,21 +287,21 @@ The sitemap framework also has the ability to create a sitemap index that
 references individual sitemap files, one per each section defined in your
 :data:`sitemaps` dictionary. The only differences in usage are:
 
-* You use two views in your URLconf: :func:`django.contrib.sitemaps.views.index`
-  and :func:`django.contrib.sitemaps.views.sitemap`.
-* The :func:`django.contrib.sitemaps.views.sitemap` view should take a
+* You use two views in your URLconf: :func:`djangocg.contrib.sitemaps.views.index`
+  and :func:`djangocg.contrib.sitemaps.views.sitemap`.
+* The :func:`djangocg.contrib.sitemaps.views.sitemap` view should take a
   :data:`section` keyword argument.
 
 Here's what the relevant URLconf lines would look like for the example above::
 
-    urlpatterns = patterns('django.contrib.sitemaps.views',
+    urlpatterns = patterns('djangocg.contrib.sitemaps.views',
         (r'^sitemap\.xml$', 'index', {'sitemaps': sitemaps}),
         (r'^sitemap-(?P<section>.+)\.xml$', 'sitemap', {'sitemaps': sitemaps}),
     )
 
 This will automatically generate a :file:`sitemap.xml` file that references
 both :file:`sitemap-flatpages.xml` and :file:`sitemap-blog.xml`. The
-:class:`~django.contrib.sitemaps.Sitemap` classes and the :data:`sitemaps`
+:class:`~djangocg.contrib.sitemaps.Sitemap` classes and the :data:`sitemaps`
 dict don't change at all.
 
 You should create an index file if one of your sitemaps has more than 50,000
@@ -314,8 +314,8 @@ If you're not using the vanilla sitemap view -- for example, if it's wrapped
 with a caching decorator -- you must name your sitemap view and pass
 ``sitemap_url_name`` to the index view::
 
-    from django.contrib.sitemaps import views as sitemaps_views
-    from django.views.decorators.cache import cache_page
+    from djangocg.contrib.sitemaps import views as sitemaps_views
+    from djangocg.views.decorators.cache import cache_page
 
     urlpatterns = patterns('',
         url(r'^sitemap.xml$',
@@ -336,7 +336,7 @@ If you wish to use a different template for each sitemap or sitemap index
 available on your site, you may specify it by passing a ``template_name``
 parameter to the ``sitemap`` and ``index`` views via the URLconf::
 
-    urlpatterns = patterns('django.contrib.sitemaps.views',
+    urlpatterns = patterns('djangocg.contrib.sitemaps.views',
         (r'^custom-sitemap\.xml$', 'index', {
             'sitemaps': sitemaps,
             'template_name': 'custom_sitemap.html'
@@ -350,7 +350,7 @@ parameter to the ``sitemap`` and ``index`` views via the URLconf::
 
 .. versionchanged:: 1.4
     In addition, these views also return
-    :class:`~django.template.response.TemplateResponse`
+    :class:`~djangocg.template.response.TemplateResponse`
     instances which allow you to easily customize the response data before
     rendering. For more details, see the
     :doc:`TemplateResponse documentation </ref/template-response>`.
@@ -358,8 +358,8 @@ parameter to the ``sitemap`` and ``index`` views via the URLconf::
 Context variables
 ------------------
 
-When customizing the templates for the :func:`~django.contrib.sitemaps.views.index`
-and :func:`~django.contrib.sitemaps.views.sitemaps` views, you can rely on the
+When customizing the templates for the :func:`~djangocg.contrib.sitemaps.views.index`
+and :func:`~djangocg.contrib.sitemaps.views.sitemaps` views, you can rely on the
 following context variables.
 
 Index
@@ -372,7 +372,7 @@ Sitemap
 
 The variable :data:`urlset` is a list of URLs that should appear in the
 sitemap. Each URL exposes attributes as defined in the
-:class:`~django.contrib.sitemaps.Sitemap` class:
+:class:`~djangocg.contrib.sitemaps.Sitemap` class:
 
 - ``changefreq``
 - ``item``
@@ -417,7 +417,7 @@ Pinging Google
 
 You may want to "ping" Google when your sitemap changes, to let it know to
 reindex your site. The sitemaps framework provides a function to do just
-that: :func:`django.contrib.sitemaps.ping_google()`.
+that: :func:`djangocg.contrib.sitemaps.ping_google()`.
 
 .. function:: ping_google
 
@@ -428,7 +428,7 @@ that: :func:`django.contrib.sitemaps.ping_google()`.
     sitemap by performing a reverse looking in your URLconf.
 
     :func:`ping_google` raises the exception
-    :exc:`django.contrib.sitemaps.SitemapNotFound` if it cannot determine your
+    :exc:`djangocg.contrib.sitemaps.SitemapNotFound` if it cannot determine your
     sitemap URL.
 
 .. admonition:: Register with Google first!
@@ -441,7 +441,7 @@ that: :func:`django.contrib.sitemaps.ping_google()`.
 One useful way to call :func:`ping_google` is from a model's ``save()``
 method::
 
-   from django.contrib.sitemaps import ping_google
+   from djangocg.contrib.sitemaps import ping_google
 
     class Entry(models.Model):
         # ...

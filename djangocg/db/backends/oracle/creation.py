@@ -1,7 +1,7 @@
 import sys
 import time
-from django.db.backends.creation import BaseDatabaseCreation
-from django.utils.six.moves import input
+from djangocg.db.backends.creation import BaseDatabaseCreation
+from djangocg.utils.six.moves import input
 
 TEST_DATABASE_PREFIX = 'test_'
 PASSWORD = 'Im_a_lumberjack'

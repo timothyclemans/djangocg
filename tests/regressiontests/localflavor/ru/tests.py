@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.ru.forms import *
+from djangocg.contrib.localflavor.ru.forms import *
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class RULocalFlavorTests(SimpleTestCase):

@@ -2,10 +2,10 @@
 Creating forms from models
 ==========================
 
-.. module:: django.forms.models
+.. module:: djangocg.forms.models
    :synopsis: ModelForm and ModelFormset.
 
-.. currentmodule:: django.forms
+.. currentmodule:: djangocg.forms
 
 ``ModelForm``
 =============
@@ -22,7 +22,7 @@ class from a Django model.
 
 For example::
 
-    >>> from django.forms import ModelForm
+    >>> from djangocg.forms import ModelForm
 
     # Create the form class.
     >>> class ArticleForm(ModelForm):
@@ -91,7 +91,7 @@ Model field                      Form field
 ``NullBooleanField``             ``CharField``
 
 ``PhoneNumberField``             ``USPhoneNumberField``
-                                 (from ``django.contrib.localflavor.us``)
+                                 (from ``djangocg.contrib.localflavor.us``)
 
 ``PositiveIntegerField``         ``IntegerField``
 
@@ -113,11 +113,11 @@ Model field                      Form field
 As you might expect, the ``ForeignKey`` and ``ManyToManyField`` model field
 types are special cases:
 
-* ``ForeignKey`` is represented by ``django.forms.ModelChoiceField``,
+* ``ForeignKey`` is represented by ``djangocg.forms.ModelChoiceField``,
   which is a ``ChoiceField`` whose choices are a model ``QuerySet``.
 
 * ``ManyToManyField`` is represented by
-  ``django.forms.ModelMultipleChoiceField``, which is a
+  ``djangocg.forms.ModelMultipleChoiceField``, which is a
   ``MultipleChoiceField`` whose choices are a model ``QuerySet``.
 
 In addition, each generated form field has attributes set as follows:
@@ -147,8 +147,8 @@ A full example
 
 Consider this set of models::
 
-    from django.db import models
-    from django.forms import ModelForm
+    from djangocg.db import models
+    from djangocg.forms import ModelForm
 
     TITLE_CHOICES = (
         ('MR', 'Mr.'),
@@ -377,7 +377,7 @@ attribute of ``Author`` to be represented by a ``<textarea>`` instead
 of its default ``<input type="text">``, you can override the field's
 widget::
 
-    from django.forms import ModelForm, Textarea
+    from djangocg.forms import ModelForm, Textarea
 
     class AuthorForm(ModelForm):
         class Meta:
@@ -550,7 +550,7 @@ Like :doc:`regular formsets </topics/forms/formsets>`, Django provides a couple
 of enhanced formset classes that make it easy to work with Django models. Let's
 reuse the ``Author`` model from above::
 
-    >>> from django.forms.models import modelformset_factory
+    >>> from djangocg.forms.models import modelformset_factory
     >>> AuthorFormSet = modelformset_factory(Author)
 
 This will create a formset that is capable of working with the data associated
@@ -586,7 +586,7 @@ queryset that includes all objects in the model (e.g.,
 Alternatively, you can create a subclass that sets ``self.queryset`` in
 ``__init__``::
 
-    from django.forms.models import BaseModelFormSet
+    from djangocg.forms.models import BaseModelFormSet
 
     class BaseAuthorFormSet(BaseModelFormSet):
         def __init__(self, *args, **kwargs):
@@ -841,7 +841,7 @@ you have these two models::
 If you want to create a formset that allows you to edit books belonging to
 a particular author, you could do this::
 
-    >>> from django.forms.models import inlineformset_factory
+    >>> from djangocg.forms.models import inlineformset_factory
     >>> BookFormSet = inlineformset_factory(Author, Book)
     >>> author = Author.objects.get(name=u'Mike Royko')
     >>> formset = BookFormSet(instance=author)

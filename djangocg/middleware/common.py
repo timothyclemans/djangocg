@@ -1,14 +1,14 @@
 import hashlib
 import re
 
-from django.conf import settings
+from djangocg.conf import settings
 from django import http
-from django.core.mail import mail_managers
-from django.utils.http import urlquote
-from django.core import urlresolvers
-from django.utils.log import getLogger
+from djangocg.core.mail import mail_managers
+from djangocg.utils.http import urlquote
+from djangocg.core import urlresolvers
+from djangocg.utils.log import getLogger
 
-logger = getLogger('django.request')
+logger = getLogger('djangocg.request')
 
 
 class CommonMiddleware(object):

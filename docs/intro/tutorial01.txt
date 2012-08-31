@@ -17,7 +17,7 @@ tell Django is installed and which version by running the following command:
 
 .. code-block:: bash
 
-    python -c "import django; print(django.get_version())"
+    python -c "import django; print(djangocg.get_version())"
 
 You should see either the version of your Django installation or an error
 telling "No module named django". Check also that the version number matches
@@ -199,9 +199,9 @@ following keys in the :setting:`DATABASES` ``'default'`` item to match
 your database connection settings.
 
 * :setting:`ENGINE <DATABASE-ENGINE>` -- Either
-  ``'django.db.backends.postgresql_psycopg2'``,
-  ``'django.db.backends.mysql'``, ``'django.db.backends.sqlite3'`` or
-  ``'django.db.backends.oracle'``. Other backends are :setting:`also available
+  ``'djangocg.db.backends.postgresql_psycopg2'``,
+  ``'djangocg.db.backends.mysql'``, ``'djangocg.db.backends.sqlite3'`` or
+  ``'djangocg.db.backends.oracle'``. Other backends are :setting:`also available
   <DATABASE-ENGINE>`.
 
 * :setting:`NAME` -- The name of your database. If you're using
@@ -224,7 +224,7 @@ your database connection settings.
   machine (not used for SQLite).
 
 If you're new to databases, we recommend simply using SQLite by setting
-:setting:`ENGINE` to ``'django.db.backends.sqlite3'`` and :setting:`NAME` to
+:setting:`ENGINE` to ``'djangocg.db.backends.sqlite3'`` and :setting:`NAME` to
 the place where you'd like to store the database. SQLite is included in Python,
 so you won't need to install anything else to support your database.
 
@@ -248,18 +248,18 @@ you can package and distribute them for use by others in their projects.
 By default, :setting:`INSTALLED_APPS` contains the following apps, all of which
 come with Django:
 
-* :mod:`django.contrib.auth` -- An authentication system.
+* :mod:`djangocg.contrib.auth` -- An authentication system.
 
-* :mod:`django.contrib.contenttypes` -- A framework for content types.
+* :mod:`djangocg.contrib.contenttypes` -- A framework for content types.
 
-* :mod:`django.contrib.sessions` -- A session framework.
+* :mod:`djangocg.contrib.sessions` -- A session framework.
 
-* :mod:`django.contrib.sites` -- A framework for managing multiple sites
+* :mod:`djangocg.contrib.sites` -- A framework for managing multiple sites
   with one Django installation.
 
-* :mod:`django.contrib.messages` -- A messaging framework.
+* :mod:`djangocg.contrib.messages` -- A messaging framework.
 
-* :mod:`django.contrib.staticfiles` -- A framework for managing
+* :mod:`djangocg.contrib.staticfiles` -- A framework for managing
   static files.
 
 These applications are included by default as a convenience for the common case.
@@ -351,7 +351,7 @@ the text of the choice and a vote tally. Each ``Choice`` is associated with a
 These concepts are represented by simple Python classes. Edit the
 :file:`polls/models.py` file so it looks like this::
 
-    from django.db import models
+    from djangocg.db import models
 
     class Poll(models.Model):
         question = models.CharField(max_length=200)
@@ -363,33 +363,33 @@ These concepts are represented by simple Python classes. Edit the
         votes = models.IntegerField()
 
 The code is straightforward. Each model is represented by a class that
-subclasses :class:`django.db.models.Model`. Each model has a number of class
+subclasses :class:`djangocg.db.models.Model`. Each model has a number of class
 variables, each of which represents a database field in the model.
 
-Each field is represented by an instance of a :class:`~django.db.models.Field`
-class -- e.g., :class:`~django.db.models.CharField` for character fields and
-:class:`~django.db.models.DateTimeField` for datetimes. This tells Django what
+Each field is represented by an instance of a :class:`~djangocg.db.models.Field`
+class -- e.g., :class:`~djangocg.db.models.CharField` for character fields and
+:class:`~djangocg.db.models.DateTimeField` for datetimes. This tells Django what
 type of data each field holds.
 
-The name of each :class:`~django.db.models.Field` instance (e.g. ``question`` or
+The name of each :class:`~djangocg.db.models.Field` instance (e.g. ``question`` or
 ``pub_date`` ) is the field's name, in machine-friendly format. You'll use this
 value in your Python code, and your database will use it as the column name.
 
 You can use an optional first positional argument to a
-:class:`~django.db.models.Field` to designate a human-readable name. That's used
+:class:`~djangocg.db.models.Field` to designate a human-readable name. That's used
 in a couple of introspective parts of Django, and it doubles as documentation.
 If this field isn't provided, Django will use the machine-readable name. In this
 example, we've only defined a human-readable name for ``Poll.pub_date``. For all
 other fields in this model, the field's machine-readable name will suffice as
 its human-readable name.
 
-Some :class:`~django.db.models.Field` classes have required elements.
-:class:`~django.db.models.CharField`, for example, requires that you give it a
-:attr:`~django.db.models.Field.max_length`. That's used not only in the database
+Some :class:`~djangocg.db.models.Field` classes have required elements.
+:class:`~djangocg.db.models.CharField`, for example, requires that you give it a
+:attr:`~djangocg.db.models.Field.max_length`. That's used not only in the database
 schema, but in validation, as we'll soon see.
 
 Finally, note a relationship is defined, using
-:class:`~django.db.models.ForeignKey`. That tells Django each ``Choice`` is related
+:class:`~djangocg.db.models.ForeignKey`. That tells Django each ``Choice`` is related
 to a single ``Poll``. Django supports all the common database relationships:
 many-to-ones, many-to-manys and one-to-ones.
 
@@ -417,16 +417,16 @@ Edit the :file:`settings.py` file again, and change the
 it'll look like this::
 
     INSTALLED_APPS = (
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.sites',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
+        'djangocg.contrib.auth',
+        'djangocg.contrib.contenttypes',
+        'djangocg.contrib.sessions',
+        'djangocg.contrib.sites',
+        'djangocg.contrib.messages',
+        'djangocg.contrib.staticfiles',
         # Uncomment the next line to enable the admin:
-        # 'django.contrib.admin',
+        # 'djangocg.contrib.admin',
         # Uncomment the next line to enable admin documentation:
-        # 'django.contrib.admindocs',
+        # 'djangocg.contrib.admindocs',
         'polls',
     )
 
@@ -560,7 +560,7 @@ Once you're in the shell, explore the :doc:`database API </topics/db/queries>`::
     # Support for time zones is enabled in the default settings file, so
     # Django expects a datetime with tzinfo for pub_date. Use timezone.now()
     # instead of datetime.datetime.now() and it will do the right thing.
-    >>> from django.utils import timezone
+    >>> from djangocg.utils import timezone
     >>> p = Poll(question="What's new?", pub_date=timezone.now())
 
     # Save the object into the database. You have to call save() explicitly.
@@ -591,7 +591,7 @@ Once you're in the shell, explore the :doc:`database API </topics/db/queries>`::
 Wait a minute. ``<Poll: Poll object>`` is, utterly, an unhelpful representation
 of this object. Let's fix that by editing the polls model (in the
 ``polls/models.py`` file) and adding a
-:meth:`~django.db.models.Model.__unicode__` method to both ``Poll`` and
+:meth:`~djangocg.db.models.Model.__unicode__` method to both ``Poll`` and
 ``Choice``::
 
     class Poll(models.Model):
@@ -604,45 +604,45 @@ of this object. Let's fix that by editing the polls model (in the
         def __unicode__(self):
             return self.choice_text
 
-It's important to add :meth:`~django.db.models.Model.__unicode__` methods to
+It's important to add :meth:`~djangocg.db.models.Model.__unicode__` methods to
 your models, not only for your own sanity when dealing with the interactive
 prompt, but also because objects' representations are used throughout Django's
 automatically-generated admin.
 
-.. admonition:: Why :meth:`~django.db.models.Model.__unicode__` and not
-                :meth:`~django.db.models.Model.__str__`?
+.. admonition:: Why :meth:`~djangocg.db.models.Model.__unicode__` and not
+                :meth:`~djangocg.db.models.Model.__str__`?
 
     If you're familiar with Python, you might be in the habit of adding
-    :meth:`~django.db.models.Model.__str__` methods to your classes, not
-    :meth:`~django.db.models.Model.__unicode__` methods. We use
-    :meth:`~django.db.models.Model.__unicode__` here because Django models deal
+    :meth:`~djangocg.db.models.Model.__str__` methods to your classes, not
+    :meth:`~djangocg.db.models.Model.__unicode__` methods. We use
+    :meth:`~djangocg.db.models.Model.__unicode__` here because Django models deal
     with Unicode by default. All data stored in your database is converted to
     Unicode when it's returned.
 
-    Django models have a default :meth:`~django.db.models.Model.__str__` method
-    that calls :meth:`~django.db.models.Model.__unicode__` and converts the
+    Django models have a default :meth:`~djangocg.db.models.Model.__str__` method
+    that calls :meth:`~djangocg.db.models.Model.__unicode__` and converts the
     result to a UTF-8 bytestring. This means that ``unicode(p)`` will return a
     Unicode string, and ``str(p)`` will return a normal string, with characters
     encoded as UTF-8.
 
     If all of this is gibberish to you, just remember to add
-    :meth:`~django.db.models.Model.__unicode__` methods to your models. With any
+    :meth:`~djangocg.db.models.Model.__unicode__` methods to your models. With any
     luck, things should Just Work for you.
 
 Note these are normal Python methods. Let's add a custom method, just for
 demonstration::
 
     import datetime
-    from django.utils import timezone
+    from djangocg.utils import timezone
     # ...
     class Poll(models.Model):
         # ...
         def was_published_recently(self):
             return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
-Note the addition of ``import datetime`` and ``from django.utils import
+Note the addition of ``import datetime`` and ``from djangocg.utils import
 timezone``, to reference Python's standard :mod:`datetime` module and Django's
-time-zone-related utilities in :mod:`django.utils.timezone`, respectively. If
+time-zone-related utilities in :mod:`djangocg.utils.timezone`, respectively. If
 you aren't familiar with time zone handling in Python, you can learn more in
 the :doc:`time zone support docs </topics/i18n/timezones>`.
 

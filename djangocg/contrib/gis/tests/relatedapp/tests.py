@@ -2,11 +2,11 @@ from __future__ import absolute_import
 
 from datetime import date
 
-from django.contrib.gis.geos import GEOSGeometry, Point, MultiPoint
-from django.contrib.gis.db.models import Collect, Count, Extent, F, Union
-from django.contrib.gis.geometry.backend import Geometry
-from django.contrib.gis.tests.utils import mysql, oracle, no_mysql, no_oracle, no_spatialite
-from django.test import TestCase
+from djangocg.contrib.gis.geos import GEOSGeometry, Point, MultiPoint
+from djangocg.contrib.gis.db.models import Collect, Count, Extent, F, Union
+from djangocg.contrib.gis.geometry.backend import Geometry
+from djangocg.contrib.gis.tests.utils import mysql, oracle, no_mysql, no_oracle, no_spatialite
+from djangocg.test import TestCase
 
 from .models import City, Location, DirectoryEntry, Parcel, Book, Author, Article
 
@@ -217,7 +217,7 @@ class RelatedGeoModelTest(TestCase):
     def test11_geoquery_pickle(self):
         "Ensuring GeoQuery objects are unpickled correctly.  See #10839."
         import pickle
-        from django.contrib.gis.db.models.sql import GeoQuery
+        from djangocg.contrib.gis.db.models.sql import GeoQuery
         qs = City.objects.all()
         q_str = pickle.dumps(qs.query)
         q = pickle.loads(q_str)

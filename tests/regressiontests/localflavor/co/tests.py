@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.co.forms import CODepartmentSelect
+from djangocg.contrib.localflavor.co.forms import CODepartmentSelect
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 class COLocalFlavorTests(SimpleTestCase):
     def test_CODepartmentSelect(self):

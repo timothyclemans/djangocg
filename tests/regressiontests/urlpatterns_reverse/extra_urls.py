@@ -4,7 +4,7 @@ Some extra URL patterns that are included at the top level.
 
 from __future__ import absolute_import
 
-from django.conf.urls import patterns, url, include
+from djangocg.conf.urls import patterns, url, include
 
 from .views import empty_view
 

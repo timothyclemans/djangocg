@@ -7,17 +7,17 @@ from collections import defaultdict
 from functools import partial
 from operator import attrgetter
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.db import connection
-from django.db.models import signals
-from django.db import models, router, DEFAULT_DB_ALIAS
-from django.db.models.fields.related import RelatedField, Field, ManyToManyRel
-from django.db.models.loading import get_model
-from django.forms import ModelForm
-from django.forms.models import BaseModelFormSet, modelformset_factory, save_instance
-from django.contrib.admin.options import InlineModelAdmin, flatten_fieldsets
-from django.contrib.contenttypes.models import ContentType
-from django.utils.encoding import smart_text
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.db import connection
+from djangocg.db.models import signals
+from djangocg.db import models, router, DEFAULT_DB_ALIAS
+from djangocg.db.models.fields.related import RelatedField, Field, ManyToManyRel
+from djangocg.db.models.loading import get_model
+from djangocg.forms import ModelForm
+from djangocg.forms.models import BaseModelFormSet, modelformset_factory, save_instance
+from djangocg.contrib.admin.options import InlineModelAdmin, flatten_fieldsets
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.utils.encoding import smart_text
 
 class GenericForeignKey(object):
     """
@@ -252,7 +252,7 @@ class ReverseGenericRelatedObjectsDescriptor(object):
             return self
 
         # This import is done here to avoid circular import importing this module
-        from django.contrib.contenttypes.models import ContentType
+        from djangocg.contrib.contenttypes.models import ContentType
 
         # Dynamically create a class that subclasses the related model's
         # default manager.
@@ -382,7 +382,7 @@ class BaseGenericInlineFormSet(BaseModelFormSet):
     def __init__(self, data=None, files=None, instance=None, save_as_new=None,
                  prefix=None, queryset=None):
         # Avoid a circular import.
-        from django.contrib.contenttypes.models import ContentType
+        from djangocg.contrib.contenttypes.models import ContentType
         opts = self.model._meta
         self.instance = instance
         self.rel_name = '-'.join((
@@ -412,7 +412,7 @@ class BaseGenericInlineFormSet(BaseModelFormSet):
 
     def save_new(self, form, commit=True):
         # Avoid a circular import.
-        from django.contrib.contenttypes.models import ContentType
+        from djangocg.contrib.contenttypes.models import ContentType
         kwargs = {
             self.ct_field.get_attname(): ContentType.objects.get_for_model(self.instance).pk,
             self.ct_fk_field.get_attname(): self.instance.pk,
@@ -435,7 +435,7 @@ def generic_inlineformset_factory(model, form=ModelForm,
     """
     opts = model._meta
     # Avoid a circular import.
-    from django.contrib.contenttypes.models import ContentType
+    from djangocg.contrib.contenttypes.models import ContentType
     # if there is no field called `ct_field` let the exception propagate
     ct_field = opts.get_field(ct_field)
     if not isinstance(ct_field, models.ForeignKey) or ct_field.rel.to != ContentType:

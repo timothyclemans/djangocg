@@ -13,10 +13,10 @@ import warnings
 try:
     import MySQLdb as Database
 except ImportError as e:
-    from django.core.exceptions import ImproperlyConfigured
+    from djangocg.core.exceptions import ImproperlyConfigured
     raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
 
-from django.utils.functional import cached_property
+from djangocg.utils.functional import cached_property
 
 # We want version (1, 2, 1, 'final', 2) or later. We can't just use
 # lexicographic ordering in this check because then (1, 2, 1, 'gamma')
@@ -24,26 +24,26 @@ from django.utils.functional import cached_property
 version = Database.version_info
 if (version < (1, 2, 1) or (version[:3] == (1, 2, 1) and
         (len(version) < 5 or version[3] != 'final' or version[4] < 2))):
-    from django.core.exceptions import ImproperlyConfigured
+    from djangocg.core.exceptions import ImproperlyConfigured
     raise ImproperlyConfigured("MySQLdb-1.2.1p2 or newer is required; you have %s" % Database.__version__)
 
 from MySQLdb.converters import conversions, Thing2Literal
 from MySQLdb.constants import FIELD_TYPE, CLIENT
 
-from django.db import utils
-from django.db.backends import *
-from django.db.backends.signals import connection_created
-from django.db.backends.mysql.client import DatabaseClient
-from django.db.backends.mysql.creation import DatabaseCreation
-from django.db.backends.mysql.introspection import DatabaseIntrospection
-from django.db.backends.mysql.validation import DatabaseValidation
-from django.utils.functional import cached_property
-from django.utils.safestring import SafeBytes, SafeText
-from django.utils import six
-from django.utils import timezone
+from djangocg.db import utils
+from djangocg.db.backends import *
+from djangocg.db.backends.signals import connection_created
+from djangocg.db.backends.mysql.client import DatabaseClient
+from djangocg.db.backends.mysql.creation import DatabaseCreation
+from djangocg.db.backends.mysql.introspection import DatabaseIntrospection
+from djangocg.db.backends.mysql.validation import DatabaseValidation
+from djangocg.utils.functional import cached_property
+from djangocg.utils.safestring import SafeBytes, SafeText
+from djangocg.utils import six
+from djangocg.utils import timezone
 
 # Raise exceptions for database warnings if DEBUG is on
-from django.conf import settings
+from djangocg.conf import settings
 if settings.DEBUG:
     warnings.filterwarnings("error", category=Database.Warning)
 
@@ -193,7 +193,7 @@ class DatabaseFeatures(BaseDatabaseFeatures):
         return self._mysql_storage_engine != 'MyISAM'
 
 class DatabaseOperations(BaseDatabaseOperations):
-    compiler_module = "django.db.backends.mysql.compiler"
+    compiler_module = "djangocg.db.backends.mysql.compiler"
 
     def date_extract_sql(self, lookup_type, field_name):
         # http://dev.mysql.com/doc/mysql/en/date-and-time-functions.html

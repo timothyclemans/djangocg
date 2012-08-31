@@ -1,10 +1,10 @@
 # ACTION_CHECKBOX_NAME is unused, but should stay since its import from here
 # has been referenced in documentation.
-from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
-from django.contrib.admin.options import ModelAdmin, HORIZONTAL, VERTICAL
-from django.contrib.admin.options import StackedInline, TabularInline
-from django.contrib.admin.sites import AdminSite, site
-from django.contrib.admin.filters import (ListFilter, SimpleListFilter,
+from djangocg.contrib.admin.helpers import ACTION_CHECKBOX_NAME
+from djangocg.contrib.admin.options import ModelAdmin, HORIZONTAL, VERTICAL
+from djangocg.contrib.admin.options import StackedInline, TabularInline
+from djangocg.contrib.admin.sites import AdminSite, site
+from djangocg.contrib.admin.filters import (ListFilter, SimpleListFilter,
     FieldListFilter, BooleanFieldListFilter, RelatedFieldListFilter,
     ChoicesFieldListFilter, DateFieldListFilter, AllValuesFieldListFilter)
 
@@ -17,9 +17,9 @@ def autodiscover():
     """
 
     import copy
-    from django.conf import settings
-    from django.utils.importlib import import_module
-    from django.utils.module_loading import module_has_submodule
+    from djangocg.conf import settings
+    from djangocg.utils.importlib import import_module
+    from djangocg.utils.module_loading import module_has_submodule
 
     for app in settings.INSTALLED_APPS:
         mod = import_module(app)

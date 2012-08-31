@@ -2,8 +2,8 @@ from __future__ import absolute_import
 
 from datetime import date
 
-from django.db.models.sql.query import InvalidQuery
-from django.test import TestCase
+from djangocg.db.models.sql.query import InvalidQuery
+from djangocg.test import TestCase
 
 from .models import Author, Book, Coffee, Reviewer, FriendlyAuthor
 

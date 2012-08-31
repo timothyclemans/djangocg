@@ -4,10 +4,10 @@ from datetime import datetime, date
 import os
 import time
 
-from django.utils.dateformat import format
-from django.utils import dateformat, translation, unittest
-from django.utils.timezone import utc
-from django.utils.tzinfo import FixedOffset, LocalTimezone
+from djangocg.utils.dateformat import format
+from djangocg.utils import dateformat, translation, unittest
+from djangocg.utils.timezone import utc
+from djangocg.utils.tzinfo import FixedOffset, LocalTimezone
 
 
 class DateFormatTests(unittest.TestCase):

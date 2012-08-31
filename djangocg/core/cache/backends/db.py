@@ -4,15 +4,15 @@ import time
 from datetime import datetime
 
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from djangocg.utils.six.moves import cPickle as pickle
 except ImportError:
     import pickle
 
-from django.conf import settings
-from django.core.cache.backends.base import BaseCache
-from django.db import connections, router, transaction, DatabaseError
-from django.utils import timezone
-from django.utils.encoding import force_bytes
+from djangocg.conf import settings
+from djangocg.core.cache.backends.base import BaseCache
+from djangocg.db import connections, router, transaction, DatabaseError
+from djangocg.utils import timezone
+from djangocg.utils.encoding import force_bytes
 
 
 class Options(object):

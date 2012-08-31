@@ -1,34 +1,34 @@
 from functools import update_wrapper, partial
 from django import forms
-from django.conf import settings
-from django.forms.formsets import all_valid
-from django.forms.models import (modelform_factory, modelformset_factory,
+from djangocg.conf import settings
+from djangocg.forms.formsets import all_valid
+from djangocg.forms.models import (modelform_factory, modelformset_factory,
     inlineformset_factory, BaseInlineFormSet)
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.admin import widgets, helpers
-from django.contrib.admin.util import unquote, flatten_fieldsets, get_deleted_objects, model_format_dict
-from django.contrib.admin.templatetags.admin_static import static
-from django.contrib import messages
-from django.views.decorators.csrf import csrf_protect
-from django.core.exceptions import PermissionDenied, ValidationError
-from django.core.paginator import Paginator
-from django.core.urlresolvers import reverse
-from django.db import models, transaction, router
-from django.db.models.related import RelatedObject
-from django.db.models.fields import BLANK_CHOICE_DASH, FieldDoesNotExist
-from django.db.models.sql.constants import LOOKUP_SEP, QUERY_TERMS
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
-from django.template.response import SimpleTemplateResponse, TemplateResponse
-from django.utils.decorators import method_decorator
-from django.utils.datastructures import SortedDict
-from django.utils.html import escape, escapejs
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.text import capfirst, get_text_list
-from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
-from django.utils.encoding import force_text
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib.admin import widgets, helpers
+from djangocg.contrib.admin.util import unquote, flatten_fieldsets, get_deleted_objects, model_format_dict
+from djangocg.contrib.admin.templatetags.admin_static import static
+from djangocg.contrib import messages
+from djangocg.views.decorators.csrf import csrf_protect
+from djangocg.core.exceptions import PermissionDenied, ValidationError
+from djangocg.core.paginator import Paginator
+from djangocg.core.urlresolvers import reverse
+from djangocg.db import models, transaction, router
+from djangocg.db.models.related import RelatedObject
+from djangocg.db.models.fields import BLANK_CHOICE_DASH, FieldDoesNotExist
+from djangocg.db.models.sql.constants import LOOKUP_SEP, QUERY_TERMS
+from djangocg.http import Http404, HttpResponse, HttpResponseRedirect
+from djangocg.shortcuts import get_object_or_404
+from djangocg.template.response import SimpleTemplateResponse, TemplateResponse
+from djangocg.utils.decorators import method_decorator
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.html import escape, escapejs
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.text import capfirst, get_text_list
+from djangocg.utils.translation import ugettext as _
+from djangocg.utils.translation import ungettext
+from djangocg.utils.encoding import force_text
 
 HORIZONTAL, VERTICAL = 1, 2
 # returns the <ul> class for a given radio_admin field
@@ -359,7 +359,7 @@ class ModelAdmin(BaseModelAdmin):
         return inline_instances
 
     def get_urls(self):
-        from django.conf.urls import patterns, url
+        from djangocg.conf.urls import patterns, url
 
         def wrap(view):
             def wrapper(*args, **kwargs):
@@ -462,7 +462,7 @@ class ModelAdmin(BaseModelAdmin):
         """
         Returns the ChangeList class for use on the changelist page.
         """
-        from django.contrib.admin.views.main import ChangeList
+        from djangocg.contrib.admin.views.main import ChangeList
         return ChangeList
 
     def get_object(self, request, object_id):
@@ -515,7 +515,7 @@ class ModelAdmin(BaseModelAdmin):
 
         The default implementation creates an admin LogEntry object.
         """
-        from django.contrib.admin.models import LogEntry, ADDITION
+        from djangocg.contrib.admin.models import LogEntry, ADDITION
         LogEntry.objects.log_action(
             user_id         = request.user.pk,
             content_type_id = ContentType.objects.get_for_model(object).pk,
@@ -530,7 +530,7 @@ class ModelAdmin(BaseModelAdmin):
 
         The default implementation creates an admin LogEntry object.
         """
-        from django.contrib.admin.models import LogEntry, CHANGE
+        from djangocg.contrib.admin.models import LogEntry, CHANGE
         LogEntry.objects.log_action(
             user_id         = request.user.pk,
             content_type_id = ContentType.objects.get_for_model(object).pk,
@@ -547,7 +547,7 @@ class ModelAdmin(BaseModelAdmin):
 
         The default implementation creates an admin LogEntry object.
         """
-        from django.contrib.admin.models import LogEntry, DELETION
+        from djangocg.contrib.admin.models import LogEntry, DELETION
         LogEntry.objects.log_action(
             user_id         = request.user.id,
             content_type_id = ContentType.objects.get_for_model(self.model).pk,
@@ -571,7 +571,7 @@ class ModelAdmin(BaseModelAdmin):
         """
         # If self.actions is explicitally set to None that means that we don't
         # want *any* actions enabled on this page.
-        from django.contrib.admin.views.main import IS_POPUP_VAR
+        from djangocg.contrib.admin.views.main import IS_POPUP_VAR
         if self.actions is None or IS_POPUP_VAR in request.GET:
             return SortedDict()
 
@@ -691,7 +691,7 @@ class ModelAdmin(BaseModelAdmin):
     def message_user(self, request, message):
         """
         Send a message to the user. The default implementation
-        posts a message using the django.contrib.messages backend.
+        posts a message using the djangocg.contrib.messages backend.
         """
         messages.info(request, message)
 
@@ -1103,7 +1103,7 @@ class ModelAdmin(BaseModelAdmin):
         """
         The 'change list' admin view for this model.
         """
-        from django.contrib.admin.views.main import ERROR_FLAG
+        from djangocg.contrib.admin.views.main import ERROR_FLAG
         opts = self.model._meta
         app_label = opts.app_label
         if not self.has_change_permission(request, None):
@@ -1315,7 +1315,7 @@ class ModelAdmin(BaseModelAdmin):
 
     def history_view(self, request, object_id, extra_context=None):
         "The 'history' admin view for this model."
-        from django.contrib.admin.models import LogEntry
+        from djangocg.contrib.admin.models import LogEntry
         model = self.model
         opts = model._meta
         app_label = opts.app_label

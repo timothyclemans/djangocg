@@ -1,14 +1,14 @@
 import decimal
 import datetime
 
-from django.conf import settings
-from django.utils import dateformat, numberformat, datetime_safe
-from django.utils.importlib import import_module
-from django.utils.encoding import force_str
-from django.utils.functional import lazy
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.translation import get_language, to_locale, check_for_language
+from djangocg.conf import settings
+from djangocg.utils import dateformat, numberformat, datetime_safe
+from djangocg.utils.importlib import import_module
+from djangocg.utils.encoding import force_str
+from djangocg.utils.functional import lazy
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.translation import get_language, to_locale, check_for_language
 
 # format_cache is a mapping from (format_type, lang) to the format string.
 # By using the cache, it is possible to avoid running get_format_modules
@@ -31,7 +31,7 @@ def iter_format_modules(lang):
     Does the heavy lifting of finding format modules.
     """
     if check_for_language(lang):
-        format_locations = ['django.conf.locale.%s']
+        format_locations = ['djangocg.conf.locale.%s']
         if settings.FORMAT_MODULE_PATH:
             format_locations.append(settings.FORMAT_MODULE_PATH + '.%s')
             format_locations.reverse()

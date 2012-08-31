@@ -1,4 +1,4 @@
-from django.contrib.formtools.wizard import storage
+from djangocg.contrib.formtools.wizard import storage
 
 
 class SessionStorage(storage.BaseStorage):

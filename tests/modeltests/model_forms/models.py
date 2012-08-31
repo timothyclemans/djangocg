@@ -11,10 +11,10 @@ from __future__ import unicode_literals
 import os
 import tempfile
 
-from django.core.files.storage import FileSystemStorage
-from django.db import models
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.core.files.storage import FileSystemStorage
+from djangocg.db import models
+from djangocg.utils import six
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 temp_storage_dir = tempfile.mkdtemp(dir=os.environ['DJANGO_TEST_TEMP_DIR'])
@@ -91,7 +91,7 @@ class WriterProfile(models.Model):
     def __str__(self):
         return "%s is %s" % (self.writer, self.age)
 
-from django.contrib.localflavor.us.models import PhoneNumberField
+from djangocg.contrib.localflavor.us.models import PhoneNumberField
 @python_2_unicode_compatible
 class PhoneNumber(models.Model):
     phone = PhoneNumberField()

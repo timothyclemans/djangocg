@@ -2,15 +2,15 @@ from __future__ import absolute_import
 
 import datetime
 
-from django.contrib import admin
-from django.contrib.admin.options import IncorrectLookupParameters
-from django.contrib.admin.views.main import ChangeList, SEARCH_VAR, ALL_VAR
-from django.contrib.auth.models import User
-from django.template import Context, Template
-from django.test import TestCase
-from django.test.client import RequestFactory
-from django.utils import formats
-from django.utils import six
+from djangocg.contrib import admin
+from djangocg.contrib.admin.options import IncorrectLookupParameters
+from djangocg.contrib.admin.views.main import ChangeList, SEARCH_VAR, ALL_VAR
+from djangocg.contrib.auth.models import User
+from djangocg.template import Context, Template
+from djangocg.test import TestCase
+from djangocg.test.client import RequestFactory
+from djangocg.utils import formats
+from djangocg.utils import six
 
 from .admin import (ChildAdmin, QuartetAdmin, BandAdmin, ChordsBandAdmin,
     GroupAdmin, ParentAdmin, DynamicListDisplayChildAdmin,

@@ -1,5 +1,5 @@
 import cx_Oracle
-from django.db.backends.oracle.introspection import DatabaseIntrospection
+from djangocg.db.backends.oracle.introspection import DatabaseIntrospection
 
 class OracleIntrospection(DatabaseIntrospection):
     # Associating any OBJECTVAR instances with GeometryField.  Of course,

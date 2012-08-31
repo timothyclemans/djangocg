@@ -1,19 +1,19 @@
 import os
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.test import TestCase, Client
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import User
+from djangocg.test import TestCase, Client
+from djangocg.test.utils import override_settings
 
 
 @override_settings(
     LOGIN_URL='/accounts/login/',
     MIDDLEWARE_CLASSES=(
-        'django.middleware.common.CommonMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+        'djangocg.middleware.common.CommonMiddleware',
+        'djangocg.contrib.sessions.middleware.SessionMiddleware',
+        'djangocg.middleware.csrf.CsrfViewMiddleware',
+        'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+        'djangocg.contrib.messages.middleware.MessageMiddleware',
+        'djangocg.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     ),
     TEMPLATE_DIRS=(
         os.path.join(os.path.dirname(__file__), 'templates'),
@@ -22,7 +22,7 @@ from django.test.utils import override_settings
 )
 class FlatpageCSRFTests(TestCase):
     fixtures = ['sample_flatpages', 'example_site']
-    urls = 'django.contrib.flatpages.tests.urls'
+    urls = 'djangocg.contrib.flatpages.tests.urls'
 
     def setUp(self):
         self.client = Client(enforce_csrf_checks=True)

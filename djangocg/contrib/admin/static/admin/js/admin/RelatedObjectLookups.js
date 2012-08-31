@@ -2,7 +2,7 @@
 // and Add Another links.
 
 function html_unescape(text) {
-    // Unescape a string that was escaped using django.utils.html.escape.
+    // Unescape a string that was escaped using djangocg.utils.html.escape.
     text = text.replace(/&lt;/g, '<');
     text = text.replace(/&gt;/g, '>');
     text = text.replace(/&quot;/g, '"');
@@ -68,7 +68,7 @@ function showAddAnotherPopup(triggeringLink) {
 
 function dismissAddAnotherPopup(win, newId, newRepr) {
     // newId and newRepr are expected to have previously been escaped by
-    // django.utils.html.escape.
+    // djangocg.utils.html.escape.
     newId = html_unescape(newId);
     newRepr = html_unescape(newRepr);
     var name = windowname_to_id(win.name);

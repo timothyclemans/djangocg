@@ -1,20 +1,20 @@
 import os
 import re
 
-from django.conf import settings
-from django.contrib.sites.models import Site, RequestSite
-from django.contrib.auth.models import User
-from django.core import mail
-from django.core.urlresolvers import reverse, NoReverseMatch
-from django.http import QueryDict
-from django.utils.encoding import force_text
-from django.utils.html import escape
-from django.utils.http import urlquote
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.contrib.sites.models import Site, RequestSite
+from djangocg.contrib.auth.models import User
+from djangocg.core import mail
+from djangocg.core.urlresolvers import reverse, NoReverseMatch
+from djangocg.http import QueryDict
+from djangocg.utils.encoding import force_text
+from djangocg.utils.html import escape
+from djangocg.utils.http import urlquote
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
-from django.contrib.auth import SESSION_KEY, REDIRECT_FIELD_NAME
-from django.contrib.auth.forms import (AuthenticationForm, PasswordChangeForm,
+from djangocg.contrib.auth import SESSION_KEY, REDIRECT_FIELD_NAME
+from djangocg.contrib.auth.forms import (AuthenticationForm, PasswordChangeForm,
                 SetPasswordForm, PasswordResetForm)
 
 
@@ -27,14 +27,14 @@ from django.contrib.auth.forms import (AuthenticationForm, PasswordChangeForm,
         os.path.join(os.path.dirname(__file__), 'templates'),
     ),
     USE_TZ=False,
-    PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',),
+    PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',),
 )
 class AuthViewsTestCase(TestCase):
     """
     Helper base class for all the follow test cases.
     """
     fixtures = ['authtestdata.json']
-    urls = 'django.contrib.auth.tests.urls'
+    urls = 'djangocg.contrib.auth.tests.urls'
 
     def login(self, password='password'):
         response = self.client.post('/login/', {
@@ -50,7 +50,7 @@ class AuthViewsTestCase(TestCase):
 
 
 class AuthViewNamedURLTests(AuthViewsTestCase):
-    urls = 'django.contrib.auth.urls'
+    urls = 'djangocg.contrib.auth.urls'
 
     def test_named_urls(self):
         "Named URLs should be reversible"
@@ -233,7 +233,7 @@ class ChangePasswordTest(AuthViewsTestCase):
 class LoginTest(AuthViewsTestCase):
 
     def test_current_site_in_context_after_login(self):
-        response = self.client.get(reverse('django.contrib.auth.views.login'))
+        response = self.client.get(reverse('djangocg.contrib.auth.views.login'))
         self.assertEqual(response.status_code, 200)
         if Site._meta.installed:
             site = Site.objects.get_current()
@@ -245,7 +245,7 @@ class LoginTest(AuthViewsTestCase):
                      'Login form is not an AuthenticationForm')
 
     def test_security_check(self, password='password'):
-        login_url = reverse('django.contrib.auth.views.login')
+        login_url = reverse('djangocg.contrib.auth.views.login')
 
         # Those URLs should not pass the security check
         for bad_url in ('http://example.com',
@@ -402,7 +402,7 @@ class LogoutTest(AuthViewsTestCase):
         self.confirm_logged_out()
 
     def test_security_check(self, password='password'):
-        logout_url = reverse('django.contrib.auth.views.logout')
+        logout_url = reverse('djangocg.contrib.auth.views.logout')
 
         # Those URLs should not pass the security check
         for bad_url in ('http://example.com',

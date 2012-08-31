@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from django.test import TestCase
+from djangocg.test import TestCase
 
 from .models import Person, Movie, Event, Screening, ScreeningNullFK, Package, PackageNullFK
 

@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from django.contrib import admin
-from django.core.exceptions import ImproperlyConfigured
-from django.test import TestCase
+from djangocg.contrib import admin
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test import TestCase
 
 from .models import Person, Place, Location
 

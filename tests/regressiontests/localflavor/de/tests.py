@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.de.forms import (DEZipCodeField, DEStateSelect,
+from djangocg.contrib.localflavor.de.forms import (DEZipCodeField, DEStateSelect,
     DEIdentityCardNumberField)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class DELocalFlavorTests(SimpleTestCase):

@@ -1,7 +1,7 @@
 from django import http
-from django.template import (Context, RequestContext,
+from djangocg.template import (Context, RequestContext,
                              loader, TemplateDoesNotExist)
-from django.views.decorators.csrf import requires_csrf_token
+from djangocg.views.decorators.csrf import requires_csrf_token
 
 
 # This can be called when CsrfViewMiddleware.process_view has not run,
@@ -57,10 +57,10 @@ def permission_denied(request, template_name='403.html'):
 def shortcut(request, content_type_id, object_id):
     # TODO: Remove this in Django 2.0.
     # This is a legacy view that depends on the contenttypes framework.
-    # The core logic was moved to django.contrib.contenttypes.views after
+    # The core logic was moved to djangocg.contrib.contenttypes.views after
     # Django 1.0, but this remains here for backwards compatibility.
     # Note that the import is *within* this function, rather than being at
     # module level, because we don't want to assume people have contenttypes
     # installed.
-    from django.contrib.contenttypes.views import shortcut as real_shortcut
+    from djangocg.contrib.contenttypes.views import shortcut as real_shortcut
     return real_shortcut(request, content_type_id, object_id)

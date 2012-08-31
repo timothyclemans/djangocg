@@ -2,16 +2,16 @@
 Query subclasses which provide extra functionality beyond simple data retrieval.
 """
 
-from django.core.exceptions import FieldError
-from django.db.models.fields import DateField, FieldDoesNotExist
-from django.db.models.sql.constants import *
-from django.db.models.sql.datastructures import Date
-from django.db.models.sql.query import Query
-from django.db.models.sql.where import AND, Constraint
-from django.utils.datastructures import SortedDict
-from django.utils.functional import Promise
-from django.utils.encoding import force_text
-from django.utils import six
+from djangocg.core.exceptions import FieldError
+from djangocg.db.models.fields import DateField, FieldDoesNotExist
+from djangocg.db.models.sql.constants import *
+from djangocg.db.models.sql.datastructures import Date
+from djangocg.db.models.sql.query import Query
+from djangocg.db.models.sql.where import AND, Constraint
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.functional import Promise
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
 
 
 __all__ = ['DeleteQuery', 'UpdateQuery', 'InsertQuery', 'DateQuery',

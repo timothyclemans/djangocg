@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.es.forms import (ESPostalCodeField, ESPhoneNumberField,
+from djangocg.contrib.localflavor.es.forms import (ESPostalCodeField, ESPhoneNumberField,
     ESIdentityCardNumberField, ESCCCField, ESRegionSelect, ESProvinceSelect)
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class ESLocalFlavorTests(SimpleTestCase):

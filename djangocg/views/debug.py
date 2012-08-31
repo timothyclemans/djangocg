@@ -6,16 +6,16 @@ import re
 import sys
 import types
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.http import (HttpResponse, HttpResponseServerError,
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.http import (HttpResponse, HttpResponseServerError,
     HttpResponseNotFound, HttpRequest, build_request_repr)
-from django.template import Template, Context, TemplateDoesNotExist
-from django.template.defaultfilters import force_escape, pprint
-from django.utils.html import escape
-from django.utils.importlib import import_module
-from django.utils.encoding import force_bytes, smart_text
-from django.utils import six
+from djangocg.template import Template, Context, TemplateDoesNotExist
+from djangocg.template.defaultfilters import force_escape, pprint
+from djangocg.utils.html import escape
+from djangocg.utils.importlib import import_module
+from djangocg.utils.encoding import force_bytes, smart_text
+from djangocg.utils import six
 
 HIDDEN_SETTINGS = re.compile('API|TOKEN|KEY|SECRET|PASS|PROFANITIES_LIST|SIGNATURE')
 
@@ -223,7 +223,7 @@ class ExceptionReporter(object):
         "Return a Context instance containing traceback information."
 
         if self.exc_type and issubclass(self.exc_type, TemplateDoesNotExist):
-            from django.template.loader import template_source_loaders
+            from djangocg.template.loader import template_source_loaders
             self.template_does_not_exist = True
             self.loader_debug_info = []
             for loader in template_source_loaders:
@@ -391,7 +391,7 @@ class ExceptionReporter(object):
             if pre_context_lineno is not None:
                 frames.append({
                     'tb': tb,
-                    'type': module_name.startswith('django.') and 'django' or 'user',
+                    'type': module_name.startswith('djangocg.') and 'django' or 'user',
                     'filename': filename,
                     'function': function,
                     'lineno': lineno + 1,

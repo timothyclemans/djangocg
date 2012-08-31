@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.db import connection
-from django.test import TestCase
+from djangocg.db import connection
+from djangocg.test import TestCase
 
 from .models import A01, A02, B01, B02, C01, C02, Unmanaged2, Managed1
 

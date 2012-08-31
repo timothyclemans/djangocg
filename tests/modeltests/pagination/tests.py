@@ -2,9 +2,9 @@ from __future__ import absolute_import, unicode_literals
 
 from datetime import datetime
 
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from django.test import TestCase
-from django.utils import six
+from djangocg.core.paginator import Paginator, InvalidPage, EmptyPage
+from djangocg.test import TestCase
+from djangocg.utils import six
 
 from .models import Article
 

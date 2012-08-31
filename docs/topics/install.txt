@@ -164,7 +164,7 @@ following at your shell prompt (not the interactive Python prompt):
 
 .. code-block:: bash
 
-    python -c "import sys; sys.path = sys.path[1:]; import django; print(django.__path__)"
+    python -c "import sys; sys.path = sys.path[1:]; import django; print(djangocg.__path__)"
 
 
 .. _install-django-code:
@@ -280,7 +280,7 @@ latest bug fixes and improvements, follow these instructions:
 
    .. code-block:: bash
 
-       git clone git://github.com/django/django.git django-trunk
+       git clone git://github.com/django/djangocg.git django-trunk
 
    This will create a directory ``django-trunk`` in your current directory.
 
@@ -326,7 +326,7 @@ containing the full path to the ``django-trunk`` directory to your system's
 
 .. code-block:: bash
 
-    echo WORKING-DIR/django-trunk > SITE-PACKAGES-DIR/django.pth
+    echo WORKING-DIR/django-trunk > SITE-PACKAGES-DIR/djangocg.pth
 
 In the above line, change ``WORKING-DIR/django-trunk`` to match the full path
 to your new ``django-trunk`` directory, and change ``SITE-PACKAGES-DIR`` to

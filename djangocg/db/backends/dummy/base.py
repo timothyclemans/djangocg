@@ -7,9 +7,9 @@ Each of these API functions, except connection.close(), raises
 ImproperlyConfigured.
 """
 
-from django.core.exceptions import ImproperlyConfigured
-from django.db.backends import *
-from django.db.backends.creation import BaseDatabaseCreation
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db.backends import *
+from djangocg.db.backends.creation import BaseDatabaseCreation
 
 def complain(*args, **kwargs):
     raise ImproperlyConfigured("settings.DATABASES is improperly configured. "

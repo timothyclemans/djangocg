@@ -1,16 +1,16 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.contrib.auth.models import User, Group, Permission, AnonymousUser
-from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ImproperlyConfigured
-from django.test import TestCase
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import User, Group, Permission, AnonymousUser
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
 
 
 class BackendTest(TestCase):
 
-    backend = 'django.contrib.auth.backends.ModelBackend'
+    backend = 'djangocg.contrib.auth.backends.ModelBackend'
 
     def setUp(self):
         self.curr_auth = settings.AUTHENTICATION_BACKENDS
@@ -155,7 +155,7 @@ class RowlevelBackendTest(TestCase):
     """
     Tests for auth backend that supports object level permissions
     """
-    backend = 'django.contrib.auth.tests.auth_backends.SimpleRowlevelBackend'
+    backend = 'djangocg.contrib.auth.tests.auth_backends.SimpleRowlevelBackend'
 
     def setUp(self):
         self.curr_auth = settings.AUTHENTICATION_BACKENDS
@@ -197,7 +197,7 @@ class AnonymousUserBackendTest(TestCase):
     Tests for AnonymousUser delegating to backend.
     """
 
-    backend = 'django.contrib.auth.tests.auth_backends.SimpleRowlevelBackend'
+    backend = 'djangocg.contrib.auth.tests.auth_backends.SimpleRowlevelBackend'
 
     def setUp(self):
         self.curr_auth = settings.AUTHENTICATION_BACKENDS
@@ -239,7 +239,7 @@ class InActiveUserBackendTest(TestCase):
     """
     Tests for a inactive user
     """
-    backend = 'django.contrib.auth.tests.auth_backends.SimpleRowlevelBackend'
+    backend = 'djangocg.contrib.auth.tests.auth_backends.SimpleRowlevelBackend'
 
     def setUp(self):
         self.curr_auth = settings.AUTHENTICATION_BACKENDS

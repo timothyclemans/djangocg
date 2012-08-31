@@ -22,14 +22,14 @@ rather than the HTML rendered to the end-user.
 """
 from __future__ import absolute_import, unicode_literals
 
-from django.conf import settings
-from django.core import mail
-from django.test import Client, TestCase, RequestFactory
-from django.test.utils import override_settings
+from djangocg.conf import settings
+from djangocg.core import mail
+from djangocg.test import Client, TestCase, RequestFactory
+from djangocg.test.utils import override_settings
 
 from .views import get_view
 
-@override_settings(PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class ClientTest(TestCase):
     fixtures = ['testdata.json']
 
@@ -101,7 +101,7 @@ class ClientTest(TestCase):
         # front of non-absolute URLs.
         self.assertRedirects(response, '/test_client/get_view/')
 
-        host = 'django.testserver'
+        host = 'djangocg.testserver'
         client_providing_host = Client(HTTP_HOST=host)
         response = client_providing_host.get('/test_client/redirect_view/')
         # Check that the response was a 302 (redirect) with absolute URI
@@ -120,10 +120,10 @@ class ClientTest(TestCase):
         # Check that the response was a 301 (permanent redirect)
         self.assertRedirects(response, 'http://testserver/test_client/get_view/', status_code=301)
 
-        client_providing_host = Client(HTTP_HOST='django.testserver')
+        client_providing_host = Client(HTTP_HOST='djangocg.testserver')
         response = client_providing_host.get('/test_client/permanent_redirect_view/')
         # Check that the response was a 301 (permanent redirect) with absolute URI
-        self.assertRedirects(response, 'http://django.testserver/test_client/get_view/', status_code=301)
+        self.assertRedirects(response, 'http://djangocg.testserver/test_client/get_view/', status_code=301)
 
     def test_temporary_redirect(self):
         "GET a URL that does a non-permanent redirect"
@@ -414,7 +414,7 @@ class ClientTest(TestCase):
         except KeyError:
             pass
 
-        from django.contrib.sessions.models import Session
+        from djangocg.contrib.sessions.models import Session
         response = self.client.post('/test_client/session_view/')
 
         # Check that the session was modified
@@ -467,7 +467,7 @@ class CSRFEnabledClientTests(TestCase):
     def setUp(self):
         # Enable the CSRF middleware for this test
         self.old_MIDDLEWARE_CLASSES = settings.MIDDLEWARE_CLASSES
-        csrf_middleware_class = 'django.middleware.csrf.CsrfViewMiddleware'
+        csrf_middleware_class = 'djangocg.middleware.csrf.CsrfViewMiddleware'
         if csrf_middleware_class not in settings.MIDDLEWARE_CLASSES:
             settings.MIDDLEWARE_CLASSES += (csrf_middleware_class,)
 

@@ -1,8 +1,8 @@
 from functools import update_wrapper
 
-from django.contrib import admin
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib import admin
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
@@ -33,7 +33,7 @@ class ActionAdmin(admin.ModelAdmin):
     def get_urls(self):
         # Add the URL of our custom 'add_view' view to the front of the URLs
         # list.  Remove the existing one(s) first
-        from django.conf.urls import patterns, url
+        from djangocg.conf.urls import patterns, url
 
         def wrap(view):
             def wrapper(*args, **kwargs):

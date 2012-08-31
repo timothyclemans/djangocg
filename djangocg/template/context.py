@@ -1,13 +1,13 @@
 from copy import copy
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.importlib import import_module
 
 # Cache of actual callables.
 _standard_context_processors = None
 # We need the CSRF processor no matter what the user has in their settings,
 # because otherwise it is a security vulnerability, and we can't afford to leave
 # this to human error or failure to read migration instructions.
-_builtin_context_processors =  ('django.core.context_processors.csrf',)
+_builtin_context_processors =  ('djangocg.core.context_processors.csrf',)
 
 class ContextPopException(Exception):
     "pop() has been called more times than push()"
@@ -138,7 +138,7 @@ class RenderContext(BaseContext):
 # This is a function rather than module-level procedural code because we only
 # want it to execute if somebody uses RequestContext.
 def get_standard_processors():
-    from django.conf import settings
+    from djangocg.conf import settings
     global _standard_context_processors
     if _standard_context_processors is None:
         processors = []

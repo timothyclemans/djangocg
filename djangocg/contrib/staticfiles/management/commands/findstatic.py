@@ -2,10 +2,10 @@ from __future__ import unicode_literals
 
 import os
 from optparse import make_option
-from django.core.management.base import LabelCommand
-from django.utils.encoding import smart_text
+from djangocg.core.management.base import LabelCommand
+from djangocg.utils.encoding import smart_text
 
-from django.contrib.staticfiles import finders
+from djangocg.contrib.staticfiles import finders
 
 class Command(LabelCommand):
     help = "Finds the absolute paths for the given static file(s)."

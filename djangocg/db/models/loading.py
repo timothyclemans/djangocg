@@ -1,11 +1,11 @@
 "Utilities for loading models and the modules that contain them."
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.datastructures import SortedDict
-from django.utils.importlib import import_module
-from django.utils.module_loading import module_has_submodule
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.importlib import import_module
+from djangocg.utils.module_loading import module_has_submodule
+from djangocg.utils import six
 
 import imp
 import sys

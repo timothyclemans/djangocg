@@ -2,9 +2,9 @@
 # Modified from original contribution by Aryeh Leib Taurog, which was
 # released under the New BSD license.
 
-from django.contrib.gis.geos import *
-from django.contrib.gis.geos.error import GEOSIndexError
-from django.utils import unittest
+from djangocg.contrib.gis.geos import *
+from djangocg.contrib.gis.geos.error import GEOSIndexError
+from djangocg.utils import unittest
 
 def getItem(o,i): return o[i]
 def delItem(o,i): del o[i]

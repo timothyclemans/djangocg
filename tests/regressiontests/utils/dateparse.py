@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 from datetime import date, time, datetime
 
-from django.utils.dateparse import parse_date, parse_time, parse_datetime
-from django.utils import unittest
-from django.utils.tzinfo import FixedOffset
+from djangocg.utils.dateparse import parse_date, parse_time, parse_datetime
+from djangocg.utils import unittest
+from djangocg.utils.tzinfo import FixedOffset
 
 
 class DateParseTests(unittest.TestCase):

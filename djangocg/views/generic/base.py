@@ -2,13 +2,13 @@ from __future__ import unicode_literals
 
 from functools import update_wrapper
 from django import http
-from django.core.exceptions import ImproperlyConfigured
-from django.template.response import TemplateResponse
-from django.utils.log import getLogger
-from django.utils.decorators import classonlymethod
-from django.utils import six
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.template.response import TemplateResponse
+from djangocg.utils.log import getLogger
+from djangocg.utils.decorators import classonlymethod
+from djangocg.utils import six
 
-logger = getLogger('django.request')
+logger = getLogger('djangocg.request')
 
 
 class ContextMixin(object):

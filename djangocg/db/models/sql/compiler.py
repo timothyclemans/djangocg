@@ -1,15 +1,15 @@
-from django.utils.six.moves import zip
+from djangocg.utils.six.moves import zip
 
-from django.core.exceptions import FieldError
-from django.db import transaction
-from django.db.backends.util import truncate_name
-from django.db.models.query_utils import select_related_descend
-from django.db.models.sql.constants import *
-from django.db.models.sql.datastructures import EmptyResultSet
-from django.db.models.sql.expressions import SQLEvaluator
-from django.db.models.sql.query import get_order_dir, Query
-from django.db.utils import DatabaseError
-from django.utils import six
+from djangocg.core.exceptions import FieldError
+from djangocg.db import transaction
+from djangocg.db.backends.util import truncate_name
+from djangocg.db.models.query_utils import select_related_descend
+from djangocg.db.models.sql.constants import *
+from djangocg.db.models.sql.datastructures import EmptyResultSet
+from djangocg.db.models.sql.expressions import SQLEvaluator
+from djangocg.db.models.sql.query import get_order_dir, Query
+from djangocg.db.utils import DatabaseError
+from djangocg.utils import six
 
 
 class SQLCompiler(object):
@@ -1071,10 +1071,10 @@ class SQLDateCompiler(SQLCompiler):
         """
         resolve_columns = hasattr(self, 'resolve_columns')
         if resolve_columns:
-            from django.db.models.fields import DateTimeField
+            from djangocg.db.models.fields import DateTimeField
             fields = [DateTimeField()]
         else:
-            from django.db.backends.util import typecast_timestamp
+            from djangocg.db.backends.util import typecast_timestamp
             needs_string_cast = self.connection.features.needs_datetime_string_cast
 
         offset = len(self.query.extra_select)

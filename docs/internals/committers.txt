@@ -168,14 +168,14 @@ Justin Bronn
     Justin Bronn is a computer scientist and attorney specializing
     in legal topics related to intellectual property and spatial law.
 
-    In 2007, Justin began developing ``django.contrib.gis`` in a branch,
+    In 2007, Justin began developing ``djangocg.contrib.gis`` in a branch,
     a.k.a. GeoDjango_, which was merged in time for Django 1.0.  While
     implementing GeoDjango, Justin obtained a deep knowledge of Django's
     internals including the ORM, the admin, and Oracle support.
 
     Justin lives in San Francisco, CA.
 
-.. _GeoDjango: http://geodjango.org/
+.. _GeoDjango: http://geodjangocg.org/
 
 Karen Tracey
     Karen has a background in distributed operating systems (graduate school),

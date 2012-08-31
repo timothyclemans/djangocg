@@ -1,10 +1,10 @@
 # prerequisites imports
 from ctypes import c_void_p
-from django.contrib.gis.gdal.base import GDALBase
-from django.contrib.gis.gdal.error import OGRException
-from django.contrib.gis.gdal.prototypes import ds as capi
+from djangocg.contrib.gis.gdal.base import GDALBase
+from djangocg.contrib.gis.gdal.error import OGRException
+from djangocg.contrib.gis.gdal.prototypes import ds as capi
 
-from django.utils import six
+from djangocg.utils import six
 
 # For more information, see the OGR C API source code:
 #  http://www.gdal.org/ogr/ogr__api_8h.html

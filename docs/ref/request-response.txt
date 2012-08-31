@@ -2,7 +2,7 @@
 Request and response objects
 ============================
 
-.. module:: django.http
+.. module:: djangocg.http
    :synopsis: Classes dealing with HTTP requests and responses.
 
 Quick overview
@@ -164,9 +164,9 @@ All attributes should be considered read-only, unless stated otherwise below.
 
 .. attribute:: HttpRequest.user
 
-    A ``django.contrib.auth.models.User`` object representing the currently
+    A ``djangocg.contrib.auth.models.User`` object representing the currently
     logged-in user. If the user isn't currently logged in, ``user`` will be set
-    to an instance of ``django.contrib.auth.models.AnonymousUser``. You
+    to an instance of ``djangocg.contrib.auth.models.AnonymousUser``. You
     can tell them apart with ``is_authenticated()``, like so::
 
         if request.user.is_authenticated():
@@ -229,8 +229,8 @@ Methods
 
         This middleware should be positioned before any other middleware that
         relies on the value of :meth:`~HttpRequest.get_host()` -- for instance,
-        :class:`~django.middleware.common.CommonMiddleware` or
-        :class:`~django.middleware.csrf.CsrfViewMiddleware`.
+        :class:`~djangocg.middleware.common.CommonMiddleware` or
+        :class:`~djangocg.middleware.csrf.CsrfViewMiddleware`.
 
 .. method:: HttpRequest.get_full_path()
 
@@ -254,7 +254,7 @@ Methods
    .. versionadded:: 1.4
 
    Returns a cookie value for a signed cookie, or raises a
-   :class:`~django.core.signing.BadSignature` exception if the signature is
+   :class:`~djangocg.core.signing.BadSignature` exception if the signature is
    no longer valid. If you provide the ``default`` argument the exception
    will be suppressed and that default value will be returned instead.
 
@@ -357,7 +357,7 @@ QueryDict objects
 .. class:: QueryDict
 
 In an :class:`HttpRequest` object, the ``GET`` and ``POST`` attributes are instances
-of ``django.http.QueryDict``. :class:`QueryDict` is a dictionary-like
+of ``djangocg.http.QueryDict``. :class:`QueryDict` is a dictionary-like
 class customized to deal with multiple values for the same key. This is
 necessary because some HTML form elements, notably
 ``<select multiple="multiple">``, pass multiple values for the same key.
@@ -376,7 +376,7 @@ a subclass of dictionary. Exceptions are outlined here:
 
     Returns the value for the given key. If the key has more than one value,
     ``__getitem__()`` returns the last value. Raises
-    ``django.utils.datastructures.MultiValueDictKeyError`` if the key does not
+    ``djangocg.utils.datastructures.MultiValueDictKeyError`` if the key does not
     exist. (This is a subclass of Python's standard ``KeyError``, so you can
     stick to catching ``KeyError``.)
 
@@ -530,7 +530,7 @@ Django, :class:`HttpResponse` objects are your responsibility. Each view you
 write is responsible for instantiating, populating and returning an
 :class:`HttpResponse`.
 
-The :class:`HttpResponse` class lives in the :mod:`django.http` module.
+The :class:`HttpResponse` class lives in the :mod:`djangocg.http` module.
 
 Usage
 -----
@@ -541,7 +541,7 @@ Passing strings
 Typical usage is to pass the contents of the page, as a string, to the
 :class:`HttpResponse` constructor::
 
-    >>> from django.http import HttpResponse
+    >>> from djangocg.http import HttpResponse
     >>> response = HttpResponse("Here's the text of the Web page.")
     >>> response = HttpResponse("Text only, please.", content_type="text/plain")
 
@@ -727,7 +727,7 @@ HttpResponse subclasses
 
 Django includes a number of ``HttpResponse`` subclasses that handle different
 types of HTTP responses. Like ``HttpResponse``, these subclasses live in
-:mod:`django.http`.
+:mod:`djangocg.http`.
 
 .. class:: HttpResponseRedirect
 
@@ -778,5 +778,5 @@ types of HTTP responses. Like ``HttpResponse``, these subclasses live in
 
     If a custom subclass of :class:`HttpResponse` implements a ``render``
     method, Django will treat it as emulating a
-    :class:`~django.template.response.SimpleTemplateResponse`, and the
+    :class:`~djangocg.template.response.SimpleTemplateResponse`, and the
     ``render`` method must itself return a valid response object.

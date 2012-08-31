@@ -12,8 +12,8 @@ try:
 except ImportError:
     pytz = None
 
-from django.conf import settings
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.utils import six
 
 __all__ = [
     'utc', 'get_default_timezone', 'get_current_timezone',
@@ -179,7 +179,7 @@ class override(object):
     """
     Temporarily set the time zone for the current thread.
 
-    This is a context manager that uses ``~django.utils.timezone.activate()``
+    This is a context manager that uses ``~djangocg.utils.timezone.activate()``
     to set the timezone on entry, and restores the previously active timezone
     on exit.
 

@@ -1,12 +1,12 @@
 from __future__ import absolute_import
 
-from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.urlresolvers import reverse
 from django import forms
-from django.test import TestCase
-from django.utils.unittest import expectedFailure
-from django.views.generic.base import View
-from django.views.generic.edit import FormMixin
+from djangocg.test import TestCase
+from djangocg.utils.unittest import expectedFailure
+from djangocg.views.generic.base import View
+from djangocg.views.generic.edit import FormMixin
 
 from . import views
 from .models import Artist, Author
@@ -139,7 +139,7 @@ class UpdateViewTests(TestCase):
         res = self.client.put('/edit/author/%d/update/' % a.pk,
                         {'name': 'Randall Munroe (author of xkcd)', 'slug': 'randall-munroe'})
         # Here is the expected failure. PUT data are not processed in any special
-        # way by django. So the request will equal to a POST without data, hence
+        # way by djangocg. So the request will equal to a POST without data, hence
         # the form will be invalid and redisplayed with errors (status code 200).
         # See also #12635
         self.assertEqual(res.status_code, 302)

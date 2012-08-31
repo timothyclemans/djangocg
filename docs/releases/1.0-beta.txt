@@ -26,14 +26,14 @@ This beta release does not contain any major new features, but does
 include several smaller updates and improvements to Django:
 
 Generic relations in forms and admin
-    Classes are now included in ``django.contrib.contenttypes`` which
+    Classes are now included in ``djangocg.contrib.contenttypes`` which
     can be used to support generic relations in both the admin
     interface and in end-user forms. See :ref:`the documentation for
     generic relations <generic-relations>` for details.
 
 Improved flexibility in the admin
     Following up on the refactoring of Django's administrative
-    interface (``django.contrib.admin``), introduced in Django 1.0
+    interface (``djangocg.contrib.admin``), introduced in Django 1.0
     alpha 1, two new hooks have been added to allow customized pre-
     and post-save handling of model instances in the admin. Full
     details are in :doc:`the admin documentation </ref/contrib/admin/index>`.
@@ -63,8 +63,8 @@ Removal of deprecated features
     A number of features and methods which had previously been marked
     as deprecated, and which were scheduled for removal prior to the
     1.0 release, are no longer present in Django. These include
-    imports of the form library from ``django.newforms`` (now located
-    simply at ``django.forms``), the ``form_for_model`` and
+    imports of the form library from ``djangocg.newforms`` (now located
+    simply at ``djangocg.forms``), the ``form_for_model`` and
     ``form_for_instance`` helper functions (which have been replaced
     by ``ModelForm``) and a number of deprecated features which were
     replaced by the dispatcher, file-uploading and file-storage

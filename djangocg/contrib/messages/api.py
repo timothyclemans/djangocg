@@ -1,5 +1,5 @@
-from django.contrib.messages import constants
-from django.contrib.messages.storage import default_storage
+from djangocg.contrib.messages import constants
+from djangocg.contrib.messages.storage import default_storage
 
 __all__ = (
     'add_message', 'get_messages',
@@ -20,7 +20,7 @@ def add_message(request, level, message, extra_tags='', fail_silently=False):
         return request._messages.add(level, message, extra_tags)
     if not fail_silently:
         raise MessageFailure('You cannot add messages without installing '
-                    'django.contrib.messages.middleware.MessageMiddleware')
+                    'djangocg.contrib.messages.middleware.MessageMiddleware')
 
 
 def get_messages(request):

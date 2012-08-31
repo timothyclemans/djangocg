@@ -1,4 +1,4 @@
-from django.db import models
+from djangocg.db import models
 
 class Event(models.Model):
     dt = models.DateTimeField()

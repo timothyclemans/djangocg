@@ -141,15 +141,15 @@ def get_template_dirs():
     """
     Returns a set of all directories that contain project templates.
     """
-    from django.conf import settings
+    from djangocg.conf import settings
     dirs = set()
-    if ('django.template.loaders.filesystem.load_template_source' in settings.TEMPLATE_LOADERS 
-        or  'django.template.loaders.filesystem.Loader' in settings.TEMPLATE_LOADERS):
+    if ('djangocg.template.loaders.filesystem.load_template_source' in settings.TEMPLATE_LOADERS 
+        or  'djangocg.template.loaders.filesystem.Loader' in settings.TEMPLATE_LOADERS):
         dirs.update(map(unicode, settings.TEMPLATE_DIRS))
 
-    if ('django.template.loaders.app_directories.load_template_source' in settings.TEMPLATE_LOADERS
-        or 'django.template.loaders.app_directories.Loader' in settings.TEMPLATE_LOADERS):
-        from django.template.loaders.app_directories import app_template_dirs
+    if ('djangocg.template.loaders.app_directories.load_template_source' in settings.TEMPLATE_LOADERS
+        or 'djangocg.template.loaders.app_directories.Loader' in settings.TEMPLATE_LOADERS):
+        from djangocg.template.loaders.app_directories import app_template_dirs
         dirs.update(app_template_dirs)
     return dirs
 

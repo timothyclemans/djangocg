@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.db import transaction, IntegrityError
-from django.test import TestCase
+from djangocg.db import transaction, IntegrityError
+from djangocg.test import TestCase
 
 from .models import (Place, Restaurant, Waiter, ManualPrimaryKey, RelatedModel,
     MultiModel)

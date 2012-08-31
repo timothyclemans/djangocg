@@ -7,7 +7,7 @@ when explicitly needed.
 """
 from __future__ import unicode_literals
 
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 # All 31 states, plus the `Distrito Federal`.
 STATE_CHOICES = (

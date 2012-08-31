@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 
-from django.core.paginator import Paginator, InvalidPage
-from django.core.exceptions import ImproperlyConfigured
-from django.http import Http404
-from django.utils.translation import ugettext as _
-from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
+from djangocg.core.paginator import Paginator, InvalidPage
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.http import Http404
+from djangocg.utils.translation import ugettext as _
+from djangocg.views.generic.base import TemplateResponseMixin, ContextMixin, View
 
 
 class MultipleObjectMixin(ContextMixin):

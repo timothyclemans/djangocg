@@ -3,11 +3,11 @@ from __future__ import unicode_literals
 
 import os
 
-from django.contrib.contenttypes.models import ContentType
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils import six
-from django.utils import translation
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils import six
+from djangocg.utils import translation
 
 
 @override_settings(

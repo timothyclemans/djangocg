@@ -3,8 +3,8 @@ from __future__ import absolute_import
 import datetime
 from decimal import Decimal
 
-from django.db.models import Avg, Sum, Count, Max, Min
-from django.test import TestCase, Approximate
+from djangocg.db.models import Avg, Sum, Count, Max, Min
+from djangocg.test import TestCase, Approximate
 
 from .models import Author, Publisher, Book, Store
 

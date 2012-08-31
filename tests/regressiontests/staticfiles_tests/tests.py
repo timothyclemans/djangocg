@@ -8,20 +8,20 @@ import shutil
 import sys
 import tempfile
 
-from django.template import loader, Context
-from django.conf import settings
-from django.core.cache.backends.base import BaseCache
-from django.core.exceptions import ImproperlyConfigured
-from django.core.files.storage import default_storage
-from django.core.management import call_command
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils.encoding import smart_text
-from django.utils.functional import empty
-from django.utils._os import rmtree_errorhandler
-from django.utils import six
+from djangocg.template import loader, Context
+from djangocg.conf import settings
+from djangocg.core.cache.backends.base import BaseCache
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.files.storage import default_storage
+from djangocg.core.management import call_command
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.functional import empty
+from djangocg.utils._os import rmtree_errorhandler
+from djangocg.utils import six
 
-from django.contrib.staticfiles import finders, storage
+from djangocg.contrib.staticfiles import finders, storage
 
 TEST_ROOT = os.path.dirname(__file__)
 TEST_SETTINGS = {
@@ -35,12 +35,12 @@ TEST_SETTINGS = {
         ('prefix', os.path.join(TEST_ROOT, 'project', 'prefixed')),
     ),
     'STATICFILES_FINDERS': (
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'django.contrib.staticfiles.finders.DefaultStorageFinder',
+        'djangocg.contrib.staticfiles.finders.FileSystemFinder',
+        'djangocg.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'djangocg.contrib.staticfiles.finders.DefaultStorageFinder',
     ),
 }
-from django.contrib.staticfiles.management.commands.collectstatic import Command as CollectstaticCommand
+from djangocg.contrib.staticfiles.management.commands.collectstatic import Command as CollectstaticCommand
 
 
 class BaseStaticFilesTestCase(object):
@@ -351,7 +351,7 @@ class TestCollectionNonLocalStorage(CollectionTestCase, TestNoFilesCreated):
 
 # we set DEBUG to False here since the template tag wouldn't work otherwise
 @override_settings(**dict(TEST_SETTINGS,
-    STATICFILES_STORAGE='django.contrib.staticfiles.storage.CachedStaticFilesStorage',
+    STATICFILES_STORAGE='djangocg.contrib.staticfiles.storage.CachedStaticFilesStorage',
     DEBUG=False,
 ))
 class TestCollectionCachedStorage(BaseCollectionTestCase,
@@ -637,7 +637,7 @@ class TestServeStaticWithURLHelper(TestServeStatic, TestDefaults):
 
 class TestServeAdminMedia(TestServeStatic):
     """
-    Test serving media from django.contrib.admin.
+    Test serving media from djangocg.contrib.admin.
     """
     def _response(self, filepath):
         return self.client.get(
@@ -714,12 +714,12 @@ class TestMiscFinder(TestCase):
 
     def test_get_finder(self):
         self.assertIsInstance(finders.get_finder(
-            'django.contrib.staticfiles.finders.FileSystemFinder'),
+            'djangocg.contrib.staticfiles.finders.FileSystemFinder'),
             finders.FileSystemFinder)
 
     def test_get_finder_bad_classname(self):
         self.assertRaises(ImproperlyConfigured, finders.get_finder,
-                          'django.contrib.staticfiles.finders.FooBarFinder')
+                          'djangocg.contrib.staticfiles.finders.FooBarFinder')
 
     def test_get_finder_bad_module(self):
         self.assertRaises(ImproperlyConfigured,

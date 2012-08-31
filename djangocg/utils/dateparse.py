@@ -7,9 +7,9 @@
 
 import datetime
 import re
-from django.utils import six
-from django.utils.timezone import utc
-from django.utils.tzinfo import FixedOffset
+from djangocg.utils import six
+from djangocg.utils.timezone import utc
+from djangocg.utils.tzinfo import FixedOffset
 
 date_re = re.compile(
     r'(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})$'

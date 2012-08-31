@@ -5,7 +5,7 @@ Sets up the terminal color scheme.
 import os
 import sys
 
-from django.utils import termcolors
+from djangocg.utils import termcolors
 
 def supports_color():
     """

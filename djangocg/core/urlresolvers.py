@@ -11,16 +11,16 @@ from __future__ import unicode_literals
 import re
 from threading import local
 
-from django.http import Http404
-from django.core.exceptions import ImproperlyConfigured, ViewDoesNotExist
-from django.utils.datastructures import MultiValueDict
-from django.utils.encoding import force_str, force_text, iri_to_uri
-from django.utils.functional import memoize, lazy
-from django.utils.importlib import import_module
-from django.utils.module_loading import module_has_submodule
-from django.utils.regex_helper import normalize
-from django.utils import six
-from django.utils.translation import get_language
+from djangocg.http import Http404
+from djangocg.core.exceptions import ImproperlyConfigured, ViewDoesNotExist
+from djangocg.utils.datastructures import MultiValueDict
+from djangocg.utils.encoding import force_str, force_text, iri_to_uri
+from djangocg.utils.functional import memoize, lazy
+from djangocg.utils.importlib import import_module
+from djangocg.utils.module_loading import module_has_submodule
+from djangocg.utils.regex_helper import normalize
+from djangocg.utils import six
+from djangocg.utils.translation import get_language
 
 
 _resolver_cache = {} # Maps URLconf modules to RegexURLResolver instances.
@@ -120,7 +120,7 @@ get_callable = memoize(get_callable, _callable_cache, 1)
 
 def get_resolver(urlconf):
     if urlconf is None:
-        from django.conf import settings
+        from djangocg.conf import settings
         urlconf = settings.ROOT_URLCONF
     return RegexURLResolver(r'^/', urlconf)
 get_resolver = memoize(get_resolver, _resolver_cache, 1)
@@ -135,8 +135,8 @@ def get_ns_resolver(ns_pattern, resolver):
 get_ns_resolver = memoize(get_ns_resolver, _ns_resolver_cache, 2)
 
 def get_mod_func(callback):
-    # Converts 'django.views.news.stories.story_detail' to
-    # ['django.views.news.stories', 'story_detail']
+    # Converts 'djangocg.views.news.stories.story_detail' to
+    # ['djangocg.views.news.stories', 'story_detail']
     try:
         dot = callback.rindex('.')
     except ValueError:
@@ -349,8 +349,8 @@ class RegexURLResolver(LocaleRegexProvider):
         callback = getattr(self.urlconf_module, 'handler%s' % view_type, None)
         if not callback:
             # No handler specified in file; use default
-            # Lazy import, since django.urls imports this file
-            from django.conf import urls
+            # Lazy import, since djangocg.urls imports this file
+            from djangocg.conf import urls
             callback = getattr(urls, 'handler%s' % view_type)
         return get_callable(callback), {}
 

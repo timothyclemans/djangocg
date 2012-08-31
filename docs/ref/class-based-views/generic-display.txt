@@ -8,18 +8,18 @@ many projects they are typically the most commonly used views.
 DetailView
 ----------
 
-.. class:: django.views.generic.detail.DetailView
+.. class:: djangocg.views.generic.detail.DetailView
 
     While this view is executing, ``self.object`` will contain the object that
     the view is operating upon.
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.detail.SingleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.detail.BaseDetailView`
-    * :class:`django.views.generic.detail.SingleObjectMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.detail.SingleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.detail.BaseDetailView`
+    * :class:`djangocg.views.generic.detail.SingleObjectMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Method Flowchart**
 
@@ -36,8 +36,8 @@ DetailView
 
     **Example views.py**::
 
-        from django.views.generic.detail import DetailView
-        from django.utils import timezone
+        from djangocg.views.generic.detail import DetailView
+        from djangocg.utils import timezone
 
         from articles.models import Article
 
@@ -52,7 +52,7 @@ DetailView
 
     **Example urls.py**::
 
-        from django.conf.urls import patterns, url
+        from djangocg.conf.urls import patterns, url
 
         from article.views import ArticleDetailView
 
@@ -63,7 +63,7 @@ DetailView
 ListView
 --------
 
-.. class:: django.views.generic.list.ListView
+.. class:: djangocg.views.generic.list.ListView
 
     A page representing a list of objects.
 
@@ -73,12 +73,12 @@ ListView
 
     **Mixins**
 
-    * :class:`django.views.generic.list.ListView`
-    * :class:`django.views.generic.list.MultipleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.list.BaseListView`
-    * :class:`django.views.generic.list.MultipleObjectMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.list.ListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.list.BaseListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Method Flowchart**
 

@@ -3,16 +3,16 @@ from __future__ import unicode_literals
 import base64
 import hashlib
 
-from django.dispatch import receiver
-from django.conf import settings
-from django.test.signals import setting_changed
-from django.utils import importlib
-from django.utils.datastructures import SortedDict
-from django.utils.encoding import force_bytes
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.crypto import (
+from djangocg.dispatch import receiver
+from djangocg.conf import settings
+from djangocg.test.signals import setting_changed
+from djangocg.utils import importlib
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.encoding import force_bytes
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.crypto import (
     pbkdf2, constant_time_compare, get_random_string)
-from django.utils.translation import ugettext_noop as _
+from djangocg.utils.translation import ugettext_noop as _
 
 
 UNUSABLE_PASSWORD = '!'  # This will never be a valid encoded hash

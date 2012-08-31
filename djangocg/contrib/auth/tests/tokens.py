@@ -1,11 +1,11 @@
 import sys
 from datetime import date, timedelta
 
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.test import TestCase
-from django.utils import unittest
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.auth.tokens import PasswordResetTokenGenerator
+from djangocg.test import TestCase
+from djangocg.utils import unittest
 
 
 class TokenGeneratorTest(TestCase):

@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from django.contrib.sites.models import Site
-from django.db import models
-from django.test import TestCase
+from djangocg.contrib.sites.models import Site
+from djangocg.db import models
+from djangocg.test import TestCase
 
 from .models.publication import Publication
 from .models.article import Article

@@ -1,5 +1,5 @@
-from django.template import Library
-from django.template.defaulttags import url as default_url, ssi as default_ssi
+from djangocg.template import Library
+from djangocg.template.defaulttags import url as default_url, ssi as default_ssi
 
 register = Library()
 

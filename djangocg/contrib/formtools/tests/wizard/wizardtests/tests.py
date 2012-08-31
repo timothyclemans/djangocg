@@ -3,16 +3,16 @@ from __future__ import unicode_literals
 import os
 
 from django import forms
-from django.test import TestCase
-from django.test.client import RequestFactory
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.contrib.formtools.wizard.views import CookieWizardView
-from django.contrib.formtools.tests.wizard.forms import UserForm, UserFormSet
+from djangocg.test import TestCase
+from djangocg.test.client import RequestFactory
+from djangocg.conf import settings
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.formtools.wizard.views import CookieWizardView
+from djangocg.contrib.formtools.tests.wizard.forms import UserForm, UserFormSet
 
 
 class WizardTests(object):
-    urls = 'django.contrib.formtools.tests.wizard.wizardtests.urls'
+    urls = 'djangocg.contrib.formtools.tests.wizard.wizardtests.urls'
 
     def setUp(self):
         self.testuser, created = User.objects.get_or_create(username='testuser1')
@@ -280,7 +280,7 @@ class WizardTestKwargs(TestCase):
             'cookie_contact_wizard-current_step': 'form4',
         }
     )
-    urls = 'django.contrib.formtools.tests.wizard.wizardtests.urls'
+    urls = 'djangocg.contrib.formtools.tests.wizard.wizardtests.urls'
 
     def setUp(self):
         self.testuser, created = User.objects.get_or_create(username='testuser1')

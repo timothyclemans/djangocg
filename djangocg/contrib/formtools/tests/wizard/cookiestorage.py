@@ -1,10 +1,10 @@
-from django.test import TestCase
-from django.core import signing
-from django.core.exceptions import SuspiciousOperation
-from django.http import HttpResponse
+from djangocg.test import TestCase
+from djangocg.core import signing
+from djangocg.core.exceptions import SuspiciousOperation
+from djangocg.http import HttpResponse
 
-from django.contrib.formtools.wizard.storage.cookie import CookieStorage
-from django.contrib.formtools.tests.wizard.storage import get_request, TestStorage
+from djangocg.contrib.formtools.wizard.storage.cookie import CookieStorage
+from djangocg.contrib.formtools.tests.wizard.storage import get_request, TestStorage
 
 
 class TestCookieStorage(TestStorage, TestCase):

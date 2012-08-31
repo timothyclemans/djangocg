@@ -1,4 +1,4 @@
-from django.contrib.localflavor.gb import forms
+from djangocg.contrib.localflavor.gb import forms
 
 import warnings
 warnings.warn(

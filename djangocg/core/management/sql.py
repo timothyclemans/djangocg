@@ -4,21 +4,21 @@ import codecs
 import os
 import re
 
-from django.conf import settings
-from django.core.management.base import CommandError
-from django.db import models
-from django.db.models import get_models
+from djangocg.conf import settings
+from djangocg.core.management.base import CommandError
+from djangocg.db import models
+from djangocg.db.models import get_models
 
 def sql_create(app, style, connection):
     "Returns a list of the CREATE TABLE SQL statements for the given app."
 
-    if connection.settings_dict['ENGINE'] == 'django.db.backends.dummy':
+    if connection.settings_dict['ENGINE'] == 'djangocg.db.backends.dummy':
         # This must be the "dummy" database backend, which means the user
         # hasn't set ENGINE for the database.
         raise CommandError("Django doesn't know which syntax to use for your SQL statements,\n" +
             "because you haven't specified the ENGINE setting for the database.\n" +
             "Edit your settings file and change DATBASES['default']['ENGINE'] to something like\n" +
-            "'django.db.backends.postgresql' or 'django.db.backends.mysql'.")
+            "'djangocg.db.backends.postgresql' or 'djangocg.db.backends.mysql'.")
 
     # Get installed models, so we generate REFERENCES right.
     # We trim models from the current app so that the sqlreset command does not

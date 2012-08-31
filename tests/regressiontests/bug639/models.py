@@ -1,8 +1,8 @@
 import tempfile
 
-from django.core.files.storage import FileSystemStorage
-from django.db import models
-from django.forms import ModelForm
+from djangocg.core.files.storage import FileSystemStorage
+from djangocg.db import models
+from djangocg.forms import ModelForm
 
 
 temp_storage_dir = tempfile.mkdtemp()

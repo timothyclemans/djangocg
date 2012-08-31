@@ -1,6 +1,6 @@
 # coding: utf-8
-from django.contrib import admin
-from django.db import models
+from djangocg.contrib import admin
+from djangocg.db import models
 
 
 class Band(models.Model):

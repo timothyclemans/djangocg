@@ -1,7 +1,7 @@
 import signal
 import weakref
 
-from django.utils.unittest.compatibility import wraps
+from djangocg.utils.unittest.compatibility import wraps
 
 __unittest = True
 

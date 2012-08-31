@@ -4,7 +4,7 @@ Test cases for the template loaders
 Note: This test requires setuptools!
 """
 
-from django.conf import settings
+from djangocg.conf import settings
 
 if __name__ == '__main__':
     settings.configure()
@@ -14,11 +14,11 @@ import pkg_resources
 import imp
 import os.path
 
-from django.template import TemplateDoesNotExist, Context
-from django.template.loaders.eggs import Loader as EggLoader
-from django.template import loader
-from django.utils import unittest
-from django.utils.six import StringIO
+from djangocg.template import TemplateDoesNotExist, Context
+from djangocg.template.loaders.eggs import Loader as EggLoader
+from djangocg.template import loader
+from djangocg.utils import unittest
+from djangocg.utils.six import StringIO
 
 
 # Mock classes and objects for pkg_resources functions.
@@ -100,8 +100,8 @@ class CachedLoader(unittest.TestCase):
     def setUp(self):
         self.old_TEMPLATE_LOADERS = settings.TEMPLATE_LOADERS
         settings.TEMPLATE_LOADERS = (
-            ('django.template.loaders.cached.Loader', (
-                    'django.template.loaders.filesystem.Loader',
+            ('djangocg.template.loaders.cached.Loader', (
+                    'djangocg.template.loaders.filesystem.Loader',
                 )
             ),
         )

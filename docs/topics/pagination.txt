@@ -2,7 +2,7 @@
 Pagination
 ==========
 
-.. module:: django.core.paginator
+.. module:: djangocg.core.paginator
    :synopsis: Classes to help you easily manage paginated data.
 
 Django provides a few classes that help you manage paginated data -- that is,
@@ -16,7 +16,7 @@ Give :class:`Paginator` a list of objects, plus the number of items you'd like t
 have on each page, and it gives you methods for accessing the items for each
 page::
 
-    >>> from django.core.paginator import Paginator
+    >>> from djangocg.core.paginator import Paginator
     >>> objects = ['john', 'paul', 'george', 'ringo']
     >>> p = Paginator(objects, 2)
 
@@ -83,7 +83,7 @@ show how you can display the results. This example assumes you have a
 
 The view function looks like this::
 
-    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    from djangocg.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
     def listing(request):
         contact_list = Contacts.objects.all()

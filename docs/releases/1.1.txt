@@ -67,7 +67,7 @@ This change is slightly backwards incompatible if existing tests need to test
 transactional behavior, if they rely on invalid assumptions about the test
 environment, or if they require a specific test case ordering.
 
-For these cases, :class:`~django.test.TransactionTestCase` can be used instead.
+For these cases, :class:`~djangocg.test.TransactionTestCase` can be used instead.
 This is a just a quick fix to get around test case errors revealed by the new
 rollback approach; in the long-term tests should be rewritten to correct the
 test case.
@@ -78,7 +78,7 @@ Removed ``SetRemoteAddrFromForwardedFor`` middleware
 ----------------------------------------------------
 
 For convenience, Django 1.0 included an optional middleware class --
-``django.middleware.http.SetRemoteAddrFromForwardedFor`` -- which updated the
+``djangocg.middleware.http.SetRemoteAddrFromForwardedFor`` -- which updated the
 value of ``REMOTE_ADDR`` based on the HTTP ``X-Forwarded-For`` header commonly
 set by some proxy configurations.
 
@@ -106,7 +106,7 @@ __ https://github.com/django/django/blob/91f18400cc0fb37659e2dbaab5484ff2081f1f3
 Names of uploaded files are available later
 -------------------------------------------
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 In Django 1.0, files uploaded and stored in a model's :class:`FileField` were
 saved to disk before the model was saved to the database. This meant that the
@@ -120,7 +120,7 @@ has been saved.
 Changes to how model formsets are saved
 ---------------------------------------
 
-.. currentmodule:: django.forms.models
+.. currentmodule:: djangocg.forms.models
 
 In Django 1.1, :class:`BaseModelFormSet` now calls :meth:`ModelForm.save()`.
 
@@ -146,7 +146,7 @@ Permanent redirects and the ``redirect_to()`` generic view
 ----------------------------------------------------------
 
 Django 1.1 adds a ``permanent`` argument to the
-:func:`django.views.generic.simple.redirect_to()` view. This is technically
+:func:`djangocg.views.generic.simple.redirect_to()` view. This is technically
 backwards-incompatible if you were using the ``redirect_to`` view with a
 format-string key called 'permanent', which is highly unlikely.
 
@@ -187,7 +187,7 @@ The major new features in Django 1.1 are:
 ORM improvements
 ----------------
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 Two major enhancements have been added to Django's object-relational mapper
 (ORM): aggregate support, and query expressions.
@@ -257,8 +257,8 @@ particular fields, you can now tell Django not to retrieve them from the
 database.
 
 You'll do this with the new queryset methods
-:meth:`~django.db.models.query.QuerySet.defer` and
-:meth:`~django.db.models.query.QuerySet.only`.
+:meth:`~djangocg.db.models.query.QuerySet.defer` and
+:meth:`~djangocg.db.models.query.QuerySet.only`.
 
 Testing improvements
 --------------------
@@ -269,13 +269,13 @@ A few notable improvements have been made to the :doc:`testing framework
 Test performance improvements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. currentmodule:: django.test
+.. currentmodule:: djangocg.test
 
 Tests written using Django's :doc:`testing framework </topics/testing>` now run
 dramatically faster (as much as 10 times faster in many cases).
 
 This was accomplished through the introduction of transaction-based tests: when
-using :class:`django.test.TestCase`, your tests will now be run in a transaction
+using :class:`djangocg.test.TestCase`, your tests will now be run in a transaction
 which is rolled back when finished, instead of by flushing and re-populating the
 database. This results in an immense speedup for most types of unit tests. See
 the documentation for :class:`TestCase` and :class:`TransactionTestCase` for a
@@ -284,7 +284,7 @@ full description, and some important notes on database support.
 Test client improvements
 ------------------------
 
-.. currentmodule:: django.test.client
+.. currentmodule:: djangocg.test.client
 
 A couple of small -- but highly useful -- improvements have been made to the
 test client:
@@ -349,7 +349,7 @@ For full details, see :ref:`the documentation on defining URL namespaces
 GeoDjango
 ---------
 
-In Django 1.1, GeoDjango_ (i.e. ``django.contrib.gis``) has several new
+In Django 1.1, GeoDjango_ (i.e. ``djangocg.contrib.gis``) has several new
 features:
 
 * Support for SpatiaLite_ -- a spatial database for SQLite -- as a spatial
@@ -365,9 +365,9 @@ features:
 
 For more details, see the `GeoDjango documentation`_.
 
-.. _geodjango: http://geodjango.org/
+.. _geodjango: http://geodjangocg.org/
 .. _spatialite: http://www.gaia-gis.it/gaia-sins/
-.. _geodjango documentation: http://geodjango.org/docs/
+.. _geodjango documentation: http://geodjangocg.org/docs/
 
 Other improvements
 ------------------
@@ -382,7 +382,7 @@ Other new features and changes introduced since Django 1.0 include:
   order to allow fine-grained control of when and where the CSRF processing
   takes place.
 
-* :func:`~django.core.urlresolvers.reverse` and code which uses it (e.g., the
+* :func:`~djangocg.core.urlresolvers.reverse` and code which uses it (e.g., the
   ``{% url %}`` template tag) now works with URLs in Django's administrative
   site, provided that the admin URLs are set up via ``include(admin.site.urls)``
   (sending admin requests to the ``admin.site.root`` view still works, but URLs
@@ -430,7 +430,7 @@ Other new features and changes introduced since Django 1.0 include:
   </howto/auth-remote-user>` via a new authentication backend that supports
   the standard ``REMOTE_USER`` environment variable used for this purpose.
 
-* There's a new :func:`django.shortcuts.redirect` function that makes it
+* There's a new :func:`djangocg.shortcuts.redirect` function that makes it
   easier to issue redirects given an object, a view name, or a URL.
 
 * The ``postgresql_psycopg2`` backend now supports :ref:`native PostgreSQL

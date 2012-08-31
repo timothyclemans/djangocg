@@ -35,20 +35,20 @@
 # HAS_GDAL flag will be set to True if the library is present on
 # the system.
 try:
-    from django.contrib.gis.gdal.driver import Driver
-    from django.contrib.gis.gdal.datasource import DataSource
-    from django.contrib.gis.gdal.libgdal import gdal_version, gdal_full_version, gdal_release_date, GDAL_VERSION
-    from django.contrib.gis.gdal.srs import SpatialReference, CoordTransform
-    from django.contrib.gis.gdal.geometries import OGRGeometry
+    from djangocg.contrib.gis.gdal.driver import Driver
+    from djangocg.contrib.gis.gdal.datasource import DataSource
+    from djangocg.contrib.gis.gdal.libgdal import gdal_version, gdal_full_version, gdal_release_date, GDAL_VERSION
+    from djangocg.contrib.gis.gdal.srs import SpatialReference, CoordTransform
+    from djangocg.contrib.gis.gdal.geometries import OGRGeometry
     HAS_GDAL = True
 except:
     HAS_GDAL = False
 
 try:
-    from django.contrib.gis.gdal.envelope import Envelope
+    from djangocg.contrib.gis.gdal.envelope import Envelope
 except ImportError:
     # No ctypes, but don't raise an exception.
     pass
 
-from django.contrib.gis.gdal.error import check_err, OGRException, OGRIndexError, SRSException
-from django.contrib.gis.gdal.geomtype import OGRGeomType
+from djangocg.contrib.gis.gdal.error import check_err, OGRException, OGRIndexError, SRSException
+from djangocg.contrib.gis.gdal.geomtype import OGRGeomType

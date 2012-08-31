@@ -32,7 +32,7 @@ The view can be constructed using a FormView::
 
     # views.py
     from myapp.forms import ContactForm
-    from django.views.generic.edit import FormView
+    from djangocg.views.generic.edit import FormView
 
     class ContactView(FormView):
         template_name = 'contact.html'
@@ -48,11 +48,11 @@ The view can be constructed using a FormView::
 Notes:
 
 * FormView inherits
-  :class:`~django.views.generic.base.TemplateResponseMixin` so
-  :attr:`~django.views.generic.base.TemplateResponseMixin.template_name`
+  :class:`~djangocg.views.generic.base.TemplateResponseMixin` so
+  :attr:`~djangocg.views.generic.base.TemplateResponseMixin.template_name`
   can be used here
 * The default implementation for
-  :meth:`~django.views.generic.edit.FormView.form_valid` simply
+  :meth:`~djangocg.views.generic.edit.FormView.form_valid` simply
   redirects to the :attr:`success_url`
 
 Model Forms
@@ -72,13 +72,13 @@ saves the model automatically.  You can override this if you have any
 special requirements; see below for examples.
 
 You don't even need to provide a attr:`success_url` for
-:class:`~django.views.generic.edit.CreateView` or
-:class:`~django.views.generic.edit.UpdateView` - they will use
+:class:`~djangocg.views.generic.edit.CreateView` or
+:class:`~djangocg.views.generic.edit.UpdateView` - they will use
 :meth:`get_absolute_url()` on the model object if available.
 
 If you want to use a custom :class:`ModelForm` (for instance to add
 extra validation) simply set
-:attr:`~django.views.generic.edit.FormMixin.form_class` on your view.
+:attr:`~djangocg.views.generic.edit.FormMixin.form_class` on your view.
 
 .. note::
     When specifying a custom form class, you must still specify the model,
@@ -91,7 +91,7 @@ class:
 
     # models.py
     from django import models
-    from django.core.urlresolvers import reverse
+    from djangocg.core.urlresolvers import reverse
 
     class Author(models.Model):
         name = models.CharField(max_length=200)
@@ -104,8 +104,8 @@ work. Notice how we're just configuring the generic class-based views
 here; we don't have to write any logic ourselves::
    
     # views.py
-    from django.views.generic.edit import CreateView, UpdateView, DeleteView
-    from django.core.urlresolvers import reverse_lazy
+    from djangocg.views.generic.edit import CreateView, UpdateView, DeleteView
+    from djangocg.core.urlresolvers import reverse_lazy
     from myapp.models import Author
 
     class AuthorCreate(CreateView):
@@ -119,13 +119,13 @@ here; we don't have to write any logic ourselves::
         success_url = reverse_lazy('author-list')
 
 .. note::
-    We have to use :func:`~django.core.urlresolvers.reverse_lazy` here, not
+    We have to use :func:`~djangocg.core.urlresolvers.reverse_lazy` here, not
     just ``reverse`` as the urls are not loaded when the file is imported.
 
 Finally, we hook these new views into the URLconf::
 
     # urls.py
-    from django.conf.urls import patterns, url
+    from djangocg.conf.urls import patterns, url
     from myapp.views import AuthorCreate, AuthorUpdate, AuthorDelete
 
     urlpatterns = patterns('',
@@ -137,10 +137,10 @@ Finally, we hook these new views into the URLconf::
         
 .. note::
 
-    These views inherit :class:`~django.views.generic.detail.SingleObjectTemplateResponseMixin`
-    which uses :attr:`~django.views.generic.detail.SingleObjectTemplateResponseMixin.template_name_prefix`
+    These views inherit :class:`~djangocg.views.generic.detail.SingleObjectTemplateResponseMixin`
+    which uses :attr:`~djangocg.views.generic.detail.SingleObjectTemplateResponseMixin.template_name_prefix`
     to construct the
-    :attr:`~django.views.generic.base.TemplateResponseMixin.template_name`
+    :attr:`~djangocg.views.generic.base.TemplateResponseMixin.template_name`
     based on the model.
 
     In this example:
@@ -161,7 +161,7 @@ foreign key relation to the model::
 
     # models.py
     from django import models
-    from django.contrib.auth import User
+    from djangocg.contrib.auth import User
 
     class Author(models.Model):
         name = models.CharField(max_length=200)
@@ -187,7 +187,7 @@ In the view, use the custom :attr:`form_class` and override
 :meth:`form_valid()` to add the user::
 
     # views.py
-    from django.views.generic.edit import CreateView
+    from djangocg.views.generic.edit import CreateView
     from myapp.models import Author
     from myapp.forms import AuthorForm
     
@@ -201,5 +201,5 @@ In the view, use the custom :attr:`form_class` and override
 
 Note that you'll need to :ref:`decorate this
 view<decorating-class-based-views>` using
-:func:`~django.contrib.auth.decorators.login_required`, or
+:func:`~djangocg.contrib.auth.decorators.login_required`, or
 alternatively handle unauthorised users in the :meth:`form_valid()`.

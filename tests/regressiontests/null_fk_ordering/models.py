@@ -7,8 +7,8 @@ xpected results
 """
 from __future__ import unicode_literals
 
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 # The first two models represent a very simple null FK ordering case.

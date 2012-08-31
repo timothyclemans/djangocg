@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from django.forms import EmailField, IntegerField
-from django.http import HttpResponse
-from django.template.loader import render_to_string
-from django.test import SimpleTestCase, TestCase, skipUnlessDBFeature
-from django.utils import six
-from django.utils.unittest import skip
+from djangocg.forms import EmailField, IntegerField
+from djangocg.http import HttpResponse
+from djangocg.template.loader import render_to_string
+from djangocg.test import SimpleTestCase, TestCase, skipUnlessDBFeature
+from djangocg.utils import six
+from djangocg.utils.unittest import skip
 
 from .models import Person
 
@@ -202,7 +202,7 @@ class SaveRestoreWarningState(TestCase):
 
 class HTMLEqualTests(TestCase):
     def test_html_parser(self):
-        from django.test.html import parse_html
+        from djangocg.test.html import parse_html
         element = parse_html('<div><p>Hello</p></div>')
         self.assertEqual(len(element.children), 1)
         self.assertEqual(element.children[0].name, 'p')
@@ -216,7 +216,7 @@ class HTMLEqualTests(TestCase):
         self.assertEqual(dom[0], 'foo')
 
     def test_parse_html_in_script(self):
-        from django.test.html import parse_html
+        from djangocg.test.html import parse_html
         parse_html('<script>var a = "<p" + ">";</script>');
         parse_html('''
             <script>
@@ -232,7 +232,7 @@ class HTMLEqualTests(TestCase):
         self.assertEqual(dom.children[0], "<p>foo</p> '</scr'+'ipt>' <span>bar</span>")
 
     def test_self_closing_tags(self):
-        from django.test.html import parse_html
+        from djangocg.test.html import parse_html
 
         self_closing_tags = ('br' , 'hr', 'input', 'img', 'meta', 'spacer',
             'link', 'frame', 'base', 'col')
@@ -357,7 +357,7 @@ class HTMLEqualTests(TestCase):
         </html>""")
 
     def test_html_contain(self):
-        from django.test.html import parse_html
+        from djangocg.test.html import parse_html
         # equal html contains each other
         dom1 = parse_html('<p>foo')
         dom2 = parse_html('<p>foo</p>')
@@ -381,7 +381,7 @@ class HTMLEqualTests(TestCase):
         self.assertTrue(dom1 in dom2)
 
     def test_count(self):
-        from django.test.html import parse_html
+        from djangocg.test.html import parse_html
         # equal html contains each other one time
         dom1 = parse_html('<p>foo')
         dom2 = parse_html('<p>foo</p>')
@@ -416,7 +416,7 @@ class HTMLEqualTests(TestCase):
         self.assertEqual(dom2.count(dom1), 0)
 
     def test_parsing_errors(self):
-        from django.test.html import HTMLParseError, parse_html
+        from djangocg.test.html import HTMLParseError, parse_html
         with self.assertRaises(AssertionError):
             self.assertHTMLEqual('<p>', '')
         with self.assertRaises(AssertionError):
@@ -445,7 +445,7 @@ class HTMLEqualTests(TestCase):
             self.assertContains(response, '<p "whats" that>')
 
     def test_unicode_handling(self):
-        from django.http import HttpResponse
+        from djangocg.http import HttpResponse
         response = HttpResponse('<p class="help">Some help text for the title (with unicode ŠĐĆŽćžšđ)</p>')
         self.assertContains(response, '<p class="help">Some help text for the title (with unicode ŠĐĆŽćžšđ)</p>', html=True)
 
@@ -493,8 +493,8 @@ __test__ = {"API_TEST": r"""
 # Some checks of the doctest output normalizer.
 # Standard doctests do fairly
 >>> import json
->>> from django.utils.xmlutils import SimplerXMLGenerator
->>> from django.utils.six import StringIO
+>>> from djangocg.utils.xmlutils import SimplerXMLGenerator
+>>> from djangocg.utils.six import StringIO
 
 >>> def produce_json():
 ...     return json.dumps(['foo', {'bar': ('baz', None, 1.0, 2), 'whiz': 42}])

@@ -39,7 +39,7 @@ imperfect HTML.
 
 It is also important to be particularly careful when using ``is_safe`` with
 custom template tags, the :ttag:`safe` template tag, :mod:`mark_safe
-<django.utils.safestring>`, and when autoescape is turned off.
+<djangocg.utils.safestring>`, and when autoescape is turned off.
 
 In addition, if you are using the template system to output something other
 than HTML, there may be entirely separate characters and words which require
@@ -51,7 +51,7 @@ when that HTML is retrieved and displayed.
 Markup library
 --------------
 
-If you use :mod:`django.contrib.markup`, you need to ensure that the filters are
+If you use :mod:`djangocg.contrib.markup`, you need to ensure that the filters are
 only used on trusted input, or that you have correctly configured them to ensure
 they do not allow raw HTML output. See the documentation of that module for more
 information.
@@ -92,7 +92,7 @@ write :ref:`raw queries <executing-raw-queries>` or execute
 :ref:`custom sql <executing-custom-sql>`. These capabilities should be used
 sparingly and you should always be careful to properly escape any parameters
 that the user can control. In addition, you should exercise caution when using
-:meth:`extra() <django.db.models.query.QuerySet.extra>`.
+:meth:`extra() <djangocg.db.models.query.QuerySet.extra>`.
 
 Clickjacking protection
 =======================
@@ -103,7 +103,7 @@ into performing unintended actions on the target site.
 
 Django contains :ref:`clickjacking protection <clickjacking-prevention>` in
 the form of the
-:mod:`X-Frame-Options middleware <django.middleware.clickjacking.XFrameOptionsMiddleware>`
+:mod:`X-Frame-Options middleware <djangocg.middleware.clickjacking.XFrameOptionsMiddleware>`
 which in a supporting browser can prevent a site from being rendered inside
 a frame. It is possible to disable the protection on a per view basis
 or to configure the exact header value sent.

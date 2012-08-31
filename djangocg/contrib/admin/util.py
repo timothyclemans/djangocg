@@ -3,19 +3,19 @@ from __future__ import unicode_literals
 import datetime
 import decimal
 
-from django.db import models
-from django.db.models.sql.constants import LOOKUP_SEP
-from django.db.models.deletion import Collector
-from django.db.models.related import RelatedObject
-from django.forms.forms import pretty_name
-from django.utils import formats
-from django.utils.html import format_html
-from django.utils.text import capfirst
-from django.utils import timezone
-from django.utils.encoding import force_str, force_text, smart_text
-from django.utils import six
-from django.utils.translation import ungettext
-from django.core.urlresolvers import reverse
+from djangocg.db import models
+from djangocg.db.models.sql.constants import LOOKUP_SEP
+from djangocg.db.models.deletion import Collector
+from djangocg.db.models.related import RelatedObject
+from djangocg.forms.forms import pretty_name
+from djangocg.utils import formats
+from djangocg.utils.html import format_html
+from djangocg.utils.text import capfirst
+from djangocg.utils import timezone
+from djangocg.utils.encoding import force_str, force_text, smart_text
+from djangocg.utils import six
+from djangocg.utils.translation import ungettext
+from djangocg.core.urlresolvers import reverse
 
 def lookup_needs_distinct(opts, lookup_path):
     """
@@ -315,8 +315,8 @@ def help_text_for_field(name, model):
 
 
 def display_for_field(value, field):
-    from django.contrib.admin.templatetags.admin_list import _boolean_icon
-    from django.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
+    from djangocg.contrib.admin.templatetags.admin_list import _boolean_icon
+    from djangocg.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
 
     if field.flatchoices:
         return dict(field.flatchoices).get(value, EMPTY_CHANGELIST_VALUE)
@@ -339,8 +339,8 @@ def display_for_field(value, field):
 
 
 def display_for_value(value, boolean=False):
-    from django.contrib.admin.templatetags.admin_list import _boolean_icon
-    from django.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
+    from djangocg.contrib.admin.templatetags.admin_list import _boolean_icon
+    from djangocg.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
 
     if boolean:
         return _boolean_icon(value)
@@ -403,9 +403,9 @@ def get_fields_from_path(model, path):
     """ Return list of Fields given path relative to model.
 
     e.g. (ModelX, "user__groups__name") -> [
-        <django.db.models.fields.related.ForeignKey object at 0x...>,
-        <django.db.models.fields.related.ManyToManyField object at 0x...>,
-        <django.db.models.fields.CharField object at 0x...>,
+        <djangocg.db.models.fields.related.ForeignKey object at 0x...>,
+        <djangocg.db.models.fields.related.ManyToManyField object at 0x...>,
+        <djangocg.db.models.fields.CharField object at 0x...>,
     ]
     """
     pieces = path.split(LOOKUP_SEP)

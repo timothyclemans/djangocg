@@ -5,10 +5,10 @@ Generic editing views
 The following views are described on this page and provide a foundation for
 editing content:
 
-* :class:`django.views.generic.edit.FormView`
-* :class:`django.views.generic.edit.CreateView`
-* :class:`django.views.generic.edit.UpdateView`
-* :class:`django.views.generic.edit.DeleteView`
+* :class:`djangocg.views.generic.edit.FormView`
+* :class:`djangocg.views.generic.edit.CreateView`
+* :class:`djangocg.views.generic.edit.UpdateView`
+* :class:`djangocg.views.generic.edit.DeleteView`
 
 .. note::
 
@@ -17,7 +17,7 @@ editing content:
     in `myapp/models.py`::
 
         from django import models
-        from django.core.urlresolvers import reverse
+        from djangocg.core.urlresolvers import reverse
 
         class Author(models.Model):
             name = models.CharField(max_length=200)
@@ -28,7 +28,7 @@ editing content:
 FormView
 --------
 
-.. class:: django.views.generic.edit.FormView
+.. class:: djangocg.views.generic.edit.FormView
 
     A view that displays a form. On error, redisplays the form with validation
     errors; on success, redirects to a new URL.
@@ -37,12 +37,12 @@ FormView
 
     This view inherits methods and attributes from the following views:
 
-    * :class:`django.views.generic.edit.FormView`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.edit.BaseFormView`
-    * :class:`django.views.generic.edit.FormMixin`
-    * :class:`django.views.generic.edit.ProcessFormView`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.edit.FormView`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.edit.BaseFormView`
+    * :class:`djangocg.views.generic.edit.FormMixin`
+    * :class:`djangocg.views.generic.edit.ProcessFormView`
+    * :class:`djangocg.views.generic.base.View`
 
     **Example forms.py**::
 
@@ -59,7 +59,7 @@ FormView
     **Example views.py**::
 
         from myapp.forms import ContactForm
-        from django.views.generic.edit import FormView
+        from djangocg.views.generic.edit import FormView
 
         class ContactView(FormView):
             template_name = 'contact.html'
@@ -75,7 +75,7 @@ FormView
 CreateView
 ----------
 
-.. class:: django.views.generic.edit.CreateView
+.. class:: djangocg.views.generic.edit.CreateView
 
     A view that displays a form for creating an object, redisplaying the form
     with validation errors (if there are any) and saving the object.
@@ -84,15 +84,15 @@ CreateView
 
     This view inherits methods and attributes from the following views:
 
-    * :class:`django.views.generic.edit.CreateView`
-    * :class:`django.views.generic.detail.SingleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.edit.BaseCreateView`
-    * :class:`django.views.generic.edit.ModelFormMixin`
-    * :class:`django.views.generic.edit.FormMixin`
-    * :class:`django.views.generic.detail.SingleObjectMixin`
-    * :class:`django.views.generic.edit.ProcessFormView`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.edit.CreateView`
+    * :class:`djangocg.views.generic.detail.SingleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.edit.BaseCreateView`
+    * :class:`djangocg.views.generic.edit.ModelFormMixin`
+    * :class:`djangocg.views.generic.edit.FormMixin`
+    * :class:`djangocg.views.generic.detail.SingleObjectMixin`
+    * :class:`djangocg.views.generic.edit.ProcessFormView`
+    * :class:`djangocg.views.generic.base.View`
 
     **Attributes**
 
@@ -106,7 +106,7 @@ CreateView
 
     **Example views.py**::
 
-        from django.views.generic.edit import CreateView
+        from djangocg.views.generic.edit import CreateView
         from myapp.models import Author
 
         class AuthorCreate(CreateView):
@@ -115,7 +115,7 @@ CreateView
 UpdateView
 ----------
 
-.. class:: django.views.generic.edit.UpdateView
+.. class:: djangocg.views.generic.edit.UpdateView
 
     A view that displays a form for editing an existing object, redisplaying
     the form with validation errors (if there are any) and saving changes to
@@ -126,15 +126,15 @@ UpdateView
 
     This view inherits methods and attributes from the following views:
 
-    * :class:`django.views.generic.edit.UpdateView`
-    * :class:`django.views.generic.detail.SingleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.edit.BaseUpdateView`
-    * :class:`django.views.generic.edit.ModelFormMixin`
-    * :class:`django.views.generic.edit.FormMixin`
-    * :class:`django.views.generic.detail.SingleObjectMixin`
-    * :class:`django.views.generic.edit.ProcessFormView`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.edit.UpdateView`
+    * :class:`djangocg.views.generic.detail.SingleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.edit.BaseUpdateView`
+    * :class:`djangocg.views.generic.edit.ModelFormMixin`
+    * :class:`djangocg.views.generic.edit.FormMixin`
+    * :class:`djangocg.views.generic.detail.SingleObjectMixin`
+    * :class:`djangocg.views.generic.edit.ProcessFormView`
+    * :class:`djangocg.views.generic.base.View`
 
     **Attributes**
 
@@ -148,7 +148,7 @@ UpdateView
 
     **Example views.py**::
 
-        from django.views.generic.edit import UpdateView
+        from djangocg.views.generic.edit import UpdateView
         from myapp.models import Author
 
         class AuthorUpdate(UpdateView):
@@ -157,7 +157,7 @@ UpdateView
 DeleteView
 ----------
 
-.. class:: django.views.generic.edit.DeleteView
+.. class:: djangocg.views.generic.edit.DeleteView
 
     A view that displays a confirmation page and deletes an existing object.
     The given object will only be deleted if the request method is ``POST``. If
@@ -168,14 +168,14 @@ DeleteView
 
     This view inherits methods and attributes from the following views:
 
-    * :class:`django.views.generic.edit.DeleteView`
-    * :class:`django.views.generic.detail.SingleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.edit.BaseDeleteView`
-    * :class:`django.views.generic.edit.DeletionMixin`
-    * :class:`django.views.generic.detail.BaseDetailView`
-    * :class:`django.views.generic.detail.SingleObjectMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.edit.DeleteView`
+    * :class:`djangocg.views.generic.detail.SingleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.edit.BaseDeleteView`
+    * :class:`djangocg.views.generic.edit.DeletionMixin`
+    * :class:`djangocg.views.generic.detail.BaseDetailView`
+    * :class:`djangocg.views.generic.detail.SingleObjectMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Attributes**
 
@@ -190,8 +190,8 @@ DeleteView
 
     **Example views.py**::
 
-        from django.views.generic.edit import DeleteView
-        from django.core.urlresolvers import reverse_lazy
+        from djangocg.views.generic.edit import DeleteView
+        from djangocg.core.urlresolvers import reverse_lazy
         from myapp.models import Author
 
         class AuthorDelete(DeleteView):

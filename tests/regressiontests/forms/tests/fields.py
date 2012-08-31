@@ -5,7 +5,7 @@
 ##########
 
 Each Field class does some sort of validation. Each Field has a clean() method,
-which either raises django.forms.ValidationError or returns the "clean"
+which either raises djangocg.forms.ValidationError or returns the "clean"
 data -- usually a Unicode object, but, in some rare cases, a list.
 
 Each Field's __init__() takes at least these parameters:
@@ -32,10 +32,10 @@ import re
 import os
 from decimal import Decimal
 
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.forms import *
-from django.test import SimpleTestCase
-from django.utils import six
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.forms import *
+from djangocg.test import SimpleTestCase
+from djangocg.utils import six
 
 
 def fix_os_paths(x):
@@ -1029,7 +1029,7 @@ class FieldsTests(SimpleTestCase):
     # SplitDateTimeField ##########################################################
 
     def test_splitdatetimefield_1(self):
-        from django.forms.widgets import SplitDateTimeWidget
+        from djangocg.forms.widgets import SplitDateTimeWidget
         f = SplitDateTimeField()
         assert isinstance(f.widget, SplitDateTimeWidget)
         self.assertEqual(datetime.datetime(2006, 1, 10, 7, 30), f.clean([datetime.date(2006, 1, 10), datetime.time(7, 30)]))

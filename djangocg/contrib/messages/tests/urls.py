@@ -1,10 +1,10 @@
-from django.conf.urls import patterns
-from django.contrib import messages
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponse
-from django.template import RequestContext, Template
-from django.template.response import TemplateResponse
-from django.views.decorators.cache import never_cache
+from djangocg.conf.urls import patterns
+from djangocg.contrib import messages
+from djangocg.core.urlresolvers import reverse
+from djangocg.http import HttpResponseRedirect, HttpResponse
+from djangocg.template import RequestContext, Template
+from djangocg.template.response import TemplateResponse
+from djangocg.views.decorators.cache import never_cache
 
 TEMPLATE = """{% if messages %}
 <ul class="messages">
@@ -29,7 +29,7 @@ def add(request, message_type):
         else:
             getattr(messages, message_type)(request, msg)
 
-    show_url = reverse('django.contrib.messages.tests.urls.show')
+    show_url = reverse('djangocg.contrib.messages.tests.urls.show')
     return HttpResponseRedirect(show_url)
 
 @never_cache
@@ -37,7 +37,7 @@ def add_template_response(request, message_type):
     for msg in request.POST.getlist('messages'):
         getattr(messages, message_type)(request, msg)
 
-    show_url = reverse('django.contrib.messages.tests.urls.show_template_response')
+    show_url = reverse('djangocg.contrib.messages.tests.urls.show_template_response')
     return HttpResponseRedirect(show_url)
 
 @never_cache

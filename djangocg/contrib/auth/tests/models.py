@@ -1,7 +1,7 @@
-from django.conf import settings
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.contrib.auth.models import (Group, User,
+from djangocg.conf import settings
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.contrib.auth.models import (Group, User,
     SiteProfileNotAvailable, UserManager)
 
 

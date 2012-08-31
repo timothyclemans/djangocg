@@ -9,11 +9,11 @@ import datetime
 import decimal
 import json
 
-from django.core.serializers.base import DeserializationError
-from django.core.serializers.python import Serializer as PythonSerializer
-from django.core.serializers.python import Deserializer as PythonDeserializer
-from django.utils import six
-from django.utils.timezone import is_aware
+from djangocg.core.serializers.base import DeserializationError
+from djangocg.core.serializers.python import Serializer as PythonSerializer
+from djangocg.core.serializers.python import Deserializer as PythonDeserializer
+from djangocg.utils import six
+from djangocg.utils.timezone import is_aware
 
 class Serializer(PythonSerializer):
     """

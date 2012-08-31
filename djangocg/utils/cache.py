@@ -22,12 +22,12 @@ import hashlib
 import re
 import time
 
-from django.conf import settings
-from django.core.cache import get_cache
-from django.utils.encoding import iri_to_uri, force_bytes, force_text
-from django.utils.http import http_date
-from django.utils.timezone import get_current_timezone_name
-from django.utils.translation import get_language
+from djangocg.conf import settings
+from djangocg.core.cache import get_cache
+from djangocg.utils.encoding import iri_to_uri, force_bytes, force_text
+from djangocg.utils.http import http_date
+from djangocg.utils.timezone import get_current_timezone_name
+from djangocg.utils.translation import get_language
 
 cc_delim_re = re.compile(r'\s*,\s*')
 

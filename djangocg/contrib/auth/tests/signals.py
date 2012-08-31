@@ -1,11 +1,11 @@
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.contrib.auth import signals
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.contrib.auth import signals
 
 
-@override_settings(USE_TZ=False, PASSWORD_HASHERS=('django.contrib.auth.hashers.SHA1PasswordHasher',))
+@override_settings(USE_TZ=False, PASSWORD_HASHERS=('djangocg.contrib.auth.hashers.SHA1PasswordHasher',))
 class SignalTestCase(TestCase):
-    urls = 'django.contrib.auth.tests.urls'
+    urls = 'djangocg.contrib.auth.tests.urls'
     fixtures = ['authtestdata.json']
 
     def listener_login(self, user, **kwargs):

@@ -6,16 +6,16 @@ from __future__ import unicode_literals
 import copy
 
 from django import forms
-from django.contrib.admin.templatetags.admin_static import static
-from django.core.urlresolvers import reverse
-from django.forms.widgets import RadioFieldRenderer
-from django.forms.util import flatatt
-from django.utils.html import escape, format_html, format_html_join
-from django.utils.text import Truncator
-from django.utils.translation import ugettext as _
-from django.utils.safestring import mark_safe
-from django.utils.encoding import force_text
-from django.utils import six
+from djangocg.contrib.admin.templatetags.admin_static import static
+from djangocg.core.urlresolvers import reverse
+from djangocg.forms.widgets import RadioFieldRenderer
+from djangocg.forms.util import flatatt
+from djangocg.utils.html import escape, format_html, format_html_join
+from djangocg.utils.text import Truncator
+from djangocg.utils.translation import ugettext as _
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils.encoding import force_text
+from djangocg.utils import six
 
 
 class FilteredSelectMultiple(forms.SelectMultiple):
@@ -119,7 +119,7 @@ def url_params_from_lookup_dict(lookups):
             if isinstance(v, (tuple, list)):
                 v = ','.join([str(x) for x in v])
             elif isinstance(v, bool):
-                # See django.db.fields.BooleanField.get_prep_lookup
+                # See djangocg.db.fields.BooleanField.get_prep_lookup
                 v = ('0', '1')[v]
             else:
                 v = six.text_type(v)
@@ -172,7 +172,7 @@ class ForeignKeyRawIdWidget(forms.TextInput):
         return url_params_from_lookup_dict(self.rel.limit_choices_to)
 
     def url_parameters(self):
-        from django.contrib.admin.views.main import TO_FIELD_VAR
+        from djangocg.contrib.admin.views.main import TO_FIELD_VAR
         params = self.base_url_parameters()
         params.update({TO_FIELD_VAR: self.rel.get_related_field().name})
         return params

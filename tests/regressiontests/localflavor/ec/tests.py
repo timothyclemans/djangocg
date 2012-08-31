@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.ec.forms import ECProvinceSelect
+from djangocg.contrib.localflavor.ec.forms import ECProvinceSelect
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 class ECLocalFlavorTests(SimpleTestCase):
     def test_ECProvinceSelect(self):

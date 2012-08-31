@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.db.backends import BaseDatabaseOperations
+from djangocg.db.backends import BaseDatabaseOperations
 
 
 class DatabaseOperations(BaseDatabaseOperations):
@@ -115,7 +115,7 @@ class DatabaseOperations(BaseDatabaseOperations):
             return "TABLESPACE %s" % self.quote_name(tablespace)
 
     def sequence_reset_sql(self, style, model_list):
-        from django.db import models
+        from djangocg.db import models
         output = []
         qn = self.quote_name
         for model in model_list:

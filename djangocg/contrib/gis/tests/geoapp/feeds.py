@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from django.contrib.gis import feeds
+from djangocg.contrib.gis import feeds
 
 from .models import City
 
@@ -51,7 +51,7 @@ class TestW3CGeo3(TestGeoRSS1):
     feed_type = feeds.W3CGeoFeed
 
     def item_geometry(self, item):
-        from django.contrib.gis.geos import Polygon
+        from djangocg.contrib.gis.geos import Polygon
         return Polygon(((0, 0), (0, 1), (1, 1), (1, 0), (0, 0)))
 
 # The feed dictionary to use for URLs.

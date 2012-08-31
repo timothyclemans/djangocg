@@ -1,20 +1,20 @@
 from functools import update_wrapper
-from django.http import Http404, HttpResponseRedirect
-from django.contrib.admin import ModelAdmin, actions
-from django.contrib.admin.forms import AdminAuthenticationForm
-from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.contenttypes import views as contenttype_views
-from django.views.decorators.csrf import csrf_protect
-from django.db.models.base import ModelBase
-from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse, NoReverseMatch
-from django.template.response import TemplateResponse
-from django.utils.safestring import mark_safe
-from django.utils import six
-from django.utils.text import capfirst
-from django.utils.translation import ugettext as _
-from django.views.decorators.cache import never_cache
-from django.conf import settings
+from djangocg.http import Http404, HttpResponseRedirect
+from djangocg.contrib.admin import ModelAdmin, actions
+from djangocg.contrib.admin.forms import AdminAuthenticationForm
+from djangocg.contrib.auth import REDIRECT_FIELD_NAME
+from djangocg.contrib.contenttypes import views as contenttype_views
+from djangocg.views.decorators.csrf import csrf_protect
+from djangocg.db.models.base import ModelBase
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.urlresolvers import reverse, NoReverseMatch
+from djangocg.template.response import TemplateResponse
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
+from djangocg.utils.text import capfirst
+from djangocg.utils.translation import ugettext as _
+from djangocg.views.decorators.cache import never_cache
+from djangocg.conf import settings
 
 LOGIN_FORM_KEY = 'this_is_the_login_form'
 
@@ -66,7 +66,7 @@ class AdminSite(object):
 
         # Don't import the humongous validation code unless required
         if admin_class and settings.DEBUG:
-            from django.contrib.admin.validation import validate
+            from djangocg.contrib.admin.validation import validate
         else:
             validate = lambda model, adminclass: None
 
@@ -150,18 +150,18 @@ class AdminSite(object):
         The default implementation checks that LogEntry, ContentType and the
         auth context processor are installed.
         """
-        from django.contrib.admin.models import LogEntry
-        from django.contrib.contenttypes.models import ContentType
+        from djangocg.contrib.admin.models import LogEntry
+        from djangocg.contrib.contenttypes.models import ContentType
 
         if not LogEntry._meta.installed:
-            raise ImproperlyConfigured("Put 'django.contrib.admin' in your "
+            raise ImproperlyConfigured("Put 'djangocg.contrib.admin' in your "
                 "INSTALLED_APPS setting in order to use the admin application.")
         if not ContentType._meta.installed:
-            raise ImproperlyConfigured("Put 'django.contrib.contenttypes' in "
+            raise ImproperlyConfigured("Put 'djangocg.contrib.contenttypes' in "
                 "your INSTALLED_APPS setting in order to use the admin application.")
-        if not ('django.contrib.auth.context_processors.auth' in settings.TEMPLATE_CONTEXT_PROCESSORS or
-            'django.core.context_processors.auth' in settings.TEMPLATE_CONTEXT_PROCESSORS):
-            raise ImproperlyConfigured("Put 'django.contrib.auth.context_processors.auth' "
+        if not ('djangocg.contrib.auth.context_processors.auth' in settings.TEMPLATE_CONTEXT_PROCESSORS or
+            'djangocg.core.context_processors.auth' in settings.TEMPLATE_CONTEXT_PROCESSORS):
+            raise ImproperlyConfigured("Put 'djangocg.contrib.auth.context_processors.auth' "
                 "in your TEMPLATE_CONTEXT_PROCESSORS setting in order to use the admin application.")
 
     def admin_view(self, view, cacheable=False):
@@ -175,7 +175,7 @@ class AdminSite(object):
             class MyAdminSite(AdminSite):
 
                 def get_urls(self):
-                    from django.conf.urls import patterns, url
+                    from djangocg.conf.urls import patterns, url
 
                     urls = super(MyAdminSite, self).get_urls()
                     urls += patterns('',
@@ -204,7 +204,7 @@ class AdminSite(object):
         return update_wrapper(inner, view)
 
     def get_urls(self):
-        from django.conf.urls import patterns, url, include
+        from djangocg.conf.urls import patterns, url, include
 
         if settings.DEBUG:
             self.check_dependencies()
@@ -255,7 +255,7 @@ class AdminSite(object):
         """
         Handles the "change password" task -- both form display and validation.
         """
-        from django.contrib.auth.views import password_change
+        from djangocg.contrib.auth.views import password_change
         url = reverse('admin:password_change_done', current_app=self.name)
         defaults = {
             'current_app': self.name,
@@ -269,7 +269,7 @@ class AdminSite(object):
         """
         Displays the "success" page after a password change.
         """
-        from django.contrib.auth.views import password_change_done
+        from djangocg.contrib.auth.views import password_change_done
         defaults = {
             'current_app': self.name,
             'extra_context': extra_context or {},
@@ -286,10 +286,10 @@ class AdminSite(object):
         generated JavaScript will be leaner and faster.
         """
         if settings.USE_I18N:
-            from django.views.i18n import javascript_catalog
+            from djangocg.views.i18n import javascript_catalog
         else:
-            from django.views.i18n import null_javascript_catalog as javascript_catalog
-        return javascript_catalog(request, packages=['django.conf', 'django.contrib.admin'])
+            from djangocg.views.i18n import null_javascript_catalog as javascript_catalog
+        return javascript_catalog(request, packages=['djangocg.conf', 'djangocg.contrib.admin'])
 
     @never_cache
     def logout(self, request, extra_context=None):
@@ -298,7 +298,7 @@ class AdminSite(object):
 
         This should *not* assume the user is already logged in.
         """
-        from django.contrib.auth.views import logout
+        from djangocg.contrib.auth.views import logout
         defaults = {
             'current_app': self.name,
             'extra_context': extra_context or {},
@@ -312,7 +312,7 @@ class AdminSite(object):
         """
         Displays the login form for the given HttpRequest.
         """
-        from django.contrib.auth.views import login
+        from djangocg.contrib.auth.views import login
         context = {
             'title': _('Log in'),
             'app_path': request.get_full_path(),

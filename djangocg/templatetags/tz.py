@@ -5,10 +5,10 @@ try:
 except ImportError:
     pytz = None
 
-from django.template import Node
-from django.template import TemplateSyntaxError, Library
-from django.utils import six
-from django.utils import timezone
+from djangocg.template import Node
+from djangocg.template import TemplateSyntaxError, Library
+from djangocg.utils import six
+from djangocg.utils import timezone
 
 register = Library()
 

@@ -5,10 +5,10 @@ Classes representing uploaded files.
 import os
 from io import BytesIO
 
-from django.conf import settings
-from django.core.files.base import File
-from django.core.files import temp as tempfile
-from django.utils.encoding import force_str
+from djangocg.conf import settings
+from djangocg.core.files.base import File
+from djangocg.core.files import temp as tempfile
+from djangocg.utils.encoding import force_str
 
 __all__ = ('UploadedFile', 'TemporaryUploadedFile', 'InMemoryUploadedFile',
            'SimpleUploadedFile')

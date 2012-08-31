@@ -18,15 +18,15 @@ try:
 except ImportError:     # Python 2
     from urllib import unquote
     from urlparse import urljoin
-from django.utils.six.moves import socketserver
+from djangocg.utils.six.moves import socketserver
 from wsgiref import simple_server
 from wsgiref.util import FileWrapper   # for backwards compatibility
 
 import django
-from django.core.exceptions import ImproperlyConfigured
-from django.core.management.color import color_style
-from django.core.wsgi import get_wsgi_application
-from django.utils.importlib import import_module
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.management.color import color_style
+from djangocg.core.wsgi import get_wsgi_application
+from djangocg.utils.importlib import import_module
 
 __all__ = ['WSGIServer', 'WSGIRequestHandler']
 
@@ -43,10 +43,10 @@ def get_internal_wsgi_application():
     directly.
 
     If settings.WSGI_APPLICATION is not set (is ``None``), we just return
-    whatever ``django.core.wsgi.get_wsgi_application`` returns.
+    whatever ``djangocg.core.wsgi.get_wsgi_application`` returns.
 
     """
-    from django.conf import settings
+    from djangocg.conf import settings
     app_path = getattr(settings, 'WSGI_APPLICATION')
     if app_path is None:
         return get_wsgi_application()
@@ -131,7 +131,7 @@ class WSGIServer(simple_server.WSGIServer, object):
 class WSGIRequestHandler(simple_server.WSGIRequestHandler, object):
 
     def __init__(self, *args, **kwargs):
-        from django.conf import settings
+        from djangocg.conf import settings
         self.admin_static_prefix = urljoin(settings.STATIC_URL, 'admin/')
         # We set self.path to avoid crashes in log_message() on unsupported
         # requests (like "OPTIONS").

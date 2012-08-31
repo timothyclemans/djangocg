@@ -15,11 +15,11 @@ import sys
 import codecs
 
 from django import conf, bin, get_version
-from django.conf import settings
-from django.db import connection
-from django.test.simple import DjangoTestSuiteRunner
-from django.utils import unittest
-from django.test import LiveServerTestCase
+from djangocg.conf import settings
+from djangocg.db import connection
+from djangocg.test.simple import DjangoTestSuiteRunner
+from djangocg.utils import unittest
+from djangocg.test import LiveServerTestCase
 
 test_dir = os.path.dirname(os.path.dirname(__file__))
 
@@ -48,7 +48,7 @@ class AdminScriptTestCase(unittest.TestCase):
                     settings_file.write("%s = %s\n" % (s, o))
 
             if apps is None:
-                apps = ['django.contrib.auth', 'django.contrib.contenttypes', 'regressiontests.admin_scripts']
+                apps = ['djangocg.contrib.auth', 'djangocg.contrib.contenttypes', 'regressiontests.admin_scripts']
 
             settings_file.write("INSTALLED_APPS = %s\n" % apps)
 
@@ -273,7 +273,7 @@ class DjangoAdminFullPathDefaultSettings(AdminScriptTestCase):
     contains the test application specified using a full path.
     """
     def setUp(self):
-        self.write_settings('settings.py', ['django.contrib.auth', 'django.contrib.contenttypes', 'regressiontests.admin_scripts'])
+        self.write_settings('settings.py', ['djangocg.contrib.auth', 'djangocg.contrib.contenttypes', 'regressiontests.admin_scripts'])
 
     def tearDown(self):
         self.remove_settings('settings.py')
@@ -339,7 +339,7 @@ class DjangoAdminMinimalSettings(AdminScriptTestCase):
     doesn't contain the test application.
     """
     def setUp(self):
-        self.write_settings('settings.py', apps=['django.contrib.auth', 'django.contrib.contenttypes'])
+        self.write_settings('settings.py', apps=['djangocg.contrib.auth', 'djangocg.contrib.contenttypes'])
 
     def tearDown(self):
         self.remove_settings('settings.py')
@@ -474,7 +474,7 @@ class DjangoAdminMultipleSettings(AdminScriptTestCase):
     alternate settings must be used by the running script.
     """
     def setUp(self):
-        self.write_settings('settings.py', apps=['django.contrib.auth', 'django.contrib.contenttypes'])
+        self.write_settings('settings.py', apps=['djangocg.contrib.auth', 'djangocg.contrib.contenttypes'])
         self.write_settings('alternate_settings.py')
 
     def tearDown(self):
@@ -714,7 +714,7 @@ class ManageFullPathDefaultSettings(AdminScriptTestCase):
     contains the test application specified using a full path.
     """
     def setUp(self):
-        self.write_settings('settings.py', ['django.contrib.auth', 'django.contrib.contenttypes', 'regressiontests.admin_scripts'])
+        self.write_settings('settings.py', ['djangocg.contrib.auth', 'djangocg.contrib.contenttypes', 'regressiontests.admin_scripts'])
 
     def tearDown(self):
         self.remove_settings('settings.py')
@@ -780,7 +780,7 @@ class ManageMinimalSettings(AdminScriptTestCase):
     doesn't contain the test application.
     """
     def setUp(self):
-        self.write_settings('settings.py', apps=['django.contrib.auth', 'django.contrib.contenttypes'])
+        self.write_settings('settings.py', apps=['djangocg.contrib.auth', 'djangocg.contrib.contenttypes'])
 
     def tearDown(self):
         self.remove_settings('settings.py')
@@ -919,7 +919,7 @@ class ManageMultipleSettings(AdminScriptTestCase):
     alternate settings must be used by the running script.
     """
     def setUp(self):
-        self.write_settings('settings.py', apps=['django.contrib.auth', 'django.contrib.contenttypes'])
+        self.write_settings('settings.py', apps=['djangocg.contrib.auth', 'djangocg.contrib.contenttypes'])
         self.write_settings('alternate_settings.py')
 
     def tearDown(self):
@@ -1044,10 +1044,10 @@ class ManageValidate(AdminScriptTestCase):
         "manage.py validate does not raise errors when an app imports a base class that itself has an abstract base"
         self.write_settings('settings.py',
             apps=['admin_scripts.app_with_import',
-                  'django.contrib.comments',
-                  'django.contrib.auth',
-                  'django.contrib.contenttypes',
-                  'django.contrib.sites'],
+                  'djangocg.contrib.comments',
+                  'djangocg.contrib.auth',
+                  'djangocg.contrib.contenttypes',
+                  'djangocg.contrib.sites'],
             sdict={'DEBUG': True})
         args = ['validate']
         out, err = self.run_manage(args)
@@ -1066,7 +1066,7 @@ class CustomTestRunner(DjangoTestSuiteRunner):
 
 class ManageTestCommand(AdminScriptTestCase):
     def setUp(self):
-        from django.core.management.commands.test import Command as TestCommand
+        from djangocg.core.management.commands.test import Command as TestCommand
         self.cmd = TestCommand()
 
     def test_liveserver(self):
@@ -1101,7 +1101,7 @@ class ManageTestCommand(AdminScriptTestCase):
 
 class ManageRunserver(AdminScriptTestCase):
     def setUp(self):
-        from django.core.management.commands.runserver import Command
+        from djangocg.core.management.commands.runserver import Command
 
         def monkey_run(*args, **options):
             return
@@ -1275,7 +1275,7 @@ class CommandTypes(AdminScriptTestCase):
         args = ['app_command', 'auth']
         out, err = self.run_manage(args)
         self.assertNoOutput(err)
-        self.assertOutput(out, "EXECUTE:AppCommand app=<module 'django.contrib.auth.models'")
+        self.assertOutput(out, "EXECUTE:AppCommand app=<module 'djangocg.contrib.auth.models'")
         self.assertOutput(out, os.sep.join(['django', 'contrib', 'auth', 'models.py']))
         self.assertOutput(out, "'>, options=[('pythonpath', None), ('settings', None), ('traceback', None), ('verbosity', '1')]")
 
@@ -1290,10 +1290,10 @@ class CommandTypes(AdminScriptTestCase):
         args = ['app_command', 'auth', 'contenttypes']
         out, err = self.run_manage(args)
         self.assertNoOutput(err)
-        self.assertOutput(out, "EXECUTE:AppCommand app=<module 'django.contrib.auth.models'")
+        self.assertOutput(out, "EXECUTE:AppCommand app=<module 'djangocg.contrib.auth.models'")
         self.assertOutput(out, os.sep.join(['django', 'contrib', 'auth', 'models.py']))
         self.assertOutput(out, "'>, options=[('pythonpath', None), ('settings', None), ('traceback', None), ('verbosity', '1')]")
-        self.assertOutput(out, "EXECUTE:AppCommand app=<module 'django.contrib.contenttypes.models'")
+        self.assertOutput(out, "EXECUTE:AppCommand app=<module 'djangocg.contrib.contenttypes.models'")
         self.assertOutput(out, os.sep.join(['django', 'contrib', 'contenttypes', 'models.py']))
         self.assertOutput(out, "'>, options=[('pythonpath', None), ('settings', None), ('traceback', None), ('verbosity', '1')]")
 
@@ -1340,7 +1340,7 @@ class ArgumentOrder(AdminScriptTestCase):
     individual command.
     """
     def setUp(self):
-        self.write_settings('settings.py', apps=['django.contrib.auth', 'django.contrib.contenttypes'])
+        self.write_settings('settings.py', apps=['djangocg.contrib.auth', 'djangocg.contrib.contenttypes'])
         self.write_settings('alternate_settings.py')
 
     def tearDown(self):

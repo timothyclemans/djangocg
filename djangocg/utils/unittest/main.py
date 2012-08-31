@@ -4,9 +4,9 @@ import sys
 import os
 import types
 
-from django.utils.unittest import loader, runner
+from djangocg.utils.unittest import loader, runner
 try:
-    from django.utils.unittest.signals import installHandler
+    from djangocg.utils.unittest.signals import installHandler
 except ImportError:
     installHandler = None
 

@@ -1,8 +1,8 @@
-from django.db.models.fields import FieldDoesNotExist
-from django.db.models.sql.constants import LOOKUP_SEP
-from django.db.models.sql.expressions import SQLEvaluator
-from django.db.models.sql.where import Constraint, WhereNode
-from django.contrib.gis.db.models.fields import GeometryField
+from djangocg.db.models.fields import FieldDoesNotExist
+from djangocg.db.models.sql.constants import LOOKUP_SEP
+from djangocg.db.models.sql.expressions import SQLEvaluator
+from djangocg.db.models.sql.where import Constraint, WhereNode
+from djangocg.contrib.gis.db.models.fields import GeometryField
 
 class GeoConstraint(Constraint):
     """

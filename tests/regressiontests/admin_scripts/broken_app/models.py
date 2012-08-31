@@ -1,1 +1,1 @@
-from django.db import modelz
+from djangocg.db import modelz

@@ -1,14 +1,14 @@
 import re
-from django.conf import settings
-from django.conf.urls import patterns, url
-from django.core.exceptions import ImproperlyConfigured
+from djangocg.conf import settings
+from djangocg.conf.urls import patterns, url
+from djangocg.core.exceptions import ImproperlyConfigured
 
-def static(prefix, view='django.views.static.serve', **kwargs):
+def static(prefix, view='djangocg.views.static.serve', **kwargs):
     """
     Helper function to return a URL pattern for serving files in debug mode.
 
-    from django.conf import settings
-    from django.conf.urls.static import static
+    from djangocg.conf import settings
+    from djangocg.conf.urls.static import static
 
     urlpatterns = patterns('',
         # ... the rest of your URLconf goes here ...

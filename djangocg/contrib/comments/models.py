@@ -1,14 +1,14 @@
-from django.contrib.auth.models import User
-from django.contrib.comments.managers import CommentManager
-from django.contrib.contenttypes import generic
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.sites.models import Site
-from django.db import models
-from django.core import urlresolvers
-from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
-from django.conf import settings
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.contrib.auth.models import User
+from djangocg.contrib.comments.managers import CommentManager
+from djangocg.contrib.contenttypes import generic
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib.sites.models import Site
+from djangocg.db import models
+from djangocg.core import urlresolvers
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils import timezone
+from djangocg.conf import settings
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 COMMENT_MAX_LENGTH = getattr(settings,'COMMENT_MAX_LENGTH',3000)
 

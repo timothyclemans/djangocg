@@ -6,5 +6,5 @@ if sys.argv[0].endswith("__main__.py"):
 
 __unittest = True
 
-from django.utils.unittest.main import main_
+from djangocg.utils.unittest.main import main_
 main_()

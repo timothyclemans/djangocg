@@ -1,10 +1,10 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.contenttypes.models import ContentType
-from django.db import connection
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils import six
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.db import connection
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils import six
 
 from .models import (Author, Book, Reader, Qualification, Teacher, Department,
     TaggedItem, Bookmark, AuthorAddress, FavoriteAuthors, AuthorWithAge,

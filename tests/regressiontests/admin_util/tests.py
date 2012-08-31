@@ -2,20 +2,20 @@ from __future__ import absolute_import, unicode_literals
 
 from datetime import datetime
 
-from django.conf import settings
-from django.contrib import admin
-from django.contrib.admin import helpers
-from django.contrib.admin.util import (display_for_field, label_for_field,
+from djangocg.conf import settings
+from djangocg.contrib import admin
+from djangocg.contrib.admin import helpers
+from djangocg.contrib.admin.util import (display_for_field, label_for_field,
     lookup_field, NestedObjects)
-from django.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
-from django.contrib.sites.models import Site
-from django.db import models, DEFAULT_DB_ALIAS
+from djangocg.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
+from djangocg.contrib.sites.models import Site
+from djangocg.db import models, DEFAULT_DB_ALIAS
 from django import forms
-from django.test import TestCase
-from django.utils import unittest
-from django.utils.formats import localize
-from django.utils.safestring import mark_safe
-from django.utils import six
+from djangocg.test import TestCase
+from djangocg.utils import unittest
+from djangocg.utils.formats import localize
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
 
 from .models import Article, Count, Event, Location
 

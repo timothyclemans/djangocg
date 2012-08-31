@@ -1,8 +1,8 @@
-from django.contrib.sessions.backends.base import SessionBase, CreateError
-from django.core.cache import cache
-from django.utils.six.moves import xrange
+from djangocg.contrib.sessions.backends.base import SessionBase, CreateError
+from djangocg.core.cache import cache
+from djangocg.utils.six.moves import xrange
 
-KEY_PREFIX = "django.contrib.sessions.cache"
+KEY_PREFIX = "djangocg.contrib.sessions.cache"
 
 
 class SessionStore(SessionBase):

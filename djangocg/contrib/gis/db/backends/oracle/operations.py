@@ -10,13 +10,13 @@
 import re
 from decimal import Decimal
 
-from django.db.backends.oracle.base import DatabaseOperations
-from django.contrib.gis.db.backends.base import BaseSpatialOperations
-from django.contrib.gis.db.backends.oracle.adapter import OracleSpatialAdapter
-from django.contrib.gis.db.backends.util import SpatialFunction
-from django.contrib.gis.geometry.backend import Geometry
-from django.contrib.gis.measure import Distance
-from django.utils import six
+from djangocg.db.backends.oracle.base import DatabaseOperations
+from djangocg.contrib.gis.db.backends.base import BaseSpatialOperations
+from djangocg.contrib.gis.db.backends.oracle.adapter import OracleSpatialAdapter
+from djangocg.contrib.gis.db.backends.util import SpatialFunction
+from djangocg.contrib.gis.geometry.backend import Geometry
+from djangocg.contrib.gis.measure import Distance
+from djangocg.utils import six
 
 class SDOOperation(SpatialFunction):
     "Base class for SDO* Oracle operations."
@@ -69,7 +69,7 @@ class SDORelate(SpatialFunction):
 dtypes = (Decimal, Distance, float) + six.integer_types
 
 class OracleOperations(DatabaseOperations, BaseSpatialOperations):
-    compiler_module = "django.contrib.gis.db.backends.oracle.compiler"
+    compiler_module = "djangocg.contrib.gis.db.backends.oracle.compiler"
 
     name = 'oracle'
     oracle = True
@@ -282,9 +282,9 @@ class OracleOperations(DatabaseOperations, BaseSpatialOperations):
 
     # Routines for getting the OGC-compliant models.
     def geometry_columns(self):
-        from django.contrib.gis.db.backends.oracle.models import GeometryColumns
+        from djangocg.contrib.gis.db.backends.oracle.models import GeometryColumns
         return GeometryColumns
 
     def spatial_ref_sys(self):
-        from django.contrib.gis.db.backends.oracle.models import SpatialRefSys
+        from djangocg.contrib.gis.db.backends.oracle.models import SpatialRefSys
         return SpatialRefSys

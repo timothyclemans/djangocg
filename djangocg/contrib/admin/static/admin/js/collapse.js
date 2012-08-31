@@ -21,4 +21,4 @@
 			}
 		);
 	});
-})(django.jQuery);
+})(djangocg.jQuery);

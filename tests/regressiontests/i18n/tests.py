@@ -7,21 +7,21 @@ import os
 import pickle
 from threading import local
 
-from django.conf import settings
-from django.template import Template, Context
-from django.template.base import TemplateSyntaxError
-from django.test import TestCase, RequestFactory
-from django.test.utils import override_settings
-from django.utils import translation
-from django.utils.formats import (get_format, date_format, time_format,
+from djangocg.conf import settings
+from djangocg.template import Template, Context
+from djangocg.template.base import TemplateSyntaxError
+from djangocg.test import TestCase, RequestFactory
+from djangocg.test.utils import override_settings
+from djangocg.utils import translation
+from djangocg.utils.formats import (get_format, date_format, time_format,
     localize, localize_input, iter_format_modules, get_format_modules,
     number_format)
-from django.utils.importlib import import_module
-from django.utils.numberformat import format as nformat
-from django.utils.safestring import mark_safe, SafeBytes, SafeString, SafeText
-from django.utils import six
-from django.utils.six import PY3
-from django.utils.translation import (ugettext, ugettext_lazy, activate,
+from djangocg.utils.importlib import import_module
+from djangocg.utils.numberformat import format as nformat
+from djangocg.utils.safestring import mark_safe, SafeBytes, SafeString, SafeText
+from djangocg.utils import six
+from djangocg.utils.six import PY3
+from djangocg.utils.translation import (ugettext, ugettext_lazy, activate,
     deactivate, gettext_lazy, pgettext, npgettext, to_locale,
     get_language_info, get_language, get_language_from_request)
 
@@ -92,7 +92,7 @@ class TranslationTests(TestCase):
             os.path.join(here, 'other', 'locale'),
         )
         with self.settings(LOCALE_PATHS=extended_locale_paths):
-            from django.utils.translation import trans_real
+            from djangocg.utils.translation import trans_real
             trans_real._active = local()
             trans_real._translations = {}
             with translation.override('de'):
@@ -112,7 +112,7 @@ class TranslationTests(TestCase):
             os.path.join(here, 'other', 'locale'),
         )
         with self.settings(LOCALE_PATHS=extended_locale_paths):
-            from django.utils.translation import trans_real
+            from djangocg.utils.translation import trans_real
             trans_real._active = local()
             trans_real._translations = {}
             with translation.override('de'):
@@ -225,8 +225,8 @@ class TranslationTests(TestCase):
         """
         six.text_type(string_concat(...)) should not raise a TypeError - #4796
         """
-        import django.utils.translation
-        self.assertEqual('django', six.text_type(django.utils.translation.string_concat("dja", "ngo")))
+        import djangocg.utils.translation
+        self.assertEqual('django', six.text_type(djangocg.utils.translation.string_concat("dja", "ngo")))
 
     def test_safe_status(self):
         """
@@ -247,7 +247,7 @@ class TranslationTests(TestCase):
         Translations on files with mac or dos end of lines will be converted
         to unix eof in .po catalogs, and they have to match when retrieved
         """
-        from django.utils.translation.trans_real import translation as Trans
+        from djangocg.utils.translation.trans_real import translation as Trans
         ca_translation = Trans('ca')
         ca_translation._catalog['Mac\nEOF\n'] = 'Catalan Mac\nEOF\n'
         ca_translation._catalog['Win\nEOF\n'] = 'Catalan Win\nEOF\n'
@@ -267,7 +267,7 @@ class TranslationTests(TestCase):
         """
         Test the to_language function
         """
-        from django.utils.translation.trans_real import to_language
+        from djangocg.utils.translation.trans_real import to_language
         self.assertEqual(to_language('en_US'), 'en-us')
         self.assertEqual(to_language('sr_Lat'), 'sr-lat')
 
@@ -278,7 +278,7 @@ class TranslationTests(TestCase):
         (%(person)s is translated as %(personne)s in fr.po)
         Refs #16516.
         """
-        from django.template import Template, Context
+        from djangocg.template import Template, Context
         with translation.override('fr'):
             t = Template('{% load i18n %}{% blocktrans %}My name is {{ person }}.{% endblocktrans %}')
             rendered = t.render(Context({'person': 'James'}))
@@ -291,7 +291,7 @@ class TranslationTests(TestCase):
         (%(person) misses a 's' in fr.po, causing the string formatting to fail)
         Refs #18393.
         """
-        from django.template import Template, Context
+        from djangocg.template import Template, Context
         with translation.override('fr'):
             t = Template('{% load i18n %}{% blocktrans %}My other name is {{ person }}.{% endblocktrans %}')
             rendered = t.render(Context({'person': 'James'}))
@@ -424,7 +424,7 @@ class FormattingTests(TestCase):
         conditional test (e.g. 0 or empty string).
         Refs #16938.
         """
-        from django.conf.locale.fr import formats as fr_formats
+        from djangocg.conf.locale.fr import formats as fr_formats
 
         # Back up original formats
         backup_THOUSAND_SEPARATOR = fr_formats.THOUSAND_SEPARATOR
@@ -648,7 +648,7 @@ class FormattingTests(TestCase):
         """
         settings.USE_L10N = True
         with translation.override('de-at', deactivate=True):
-            de_format_mod = import_module('django.conf.locale.de.formats')
+            de_format_mod = import_module('djangocg.conf.locale.de.formats')
             self.assertEqual(list(iter_format_modules('de')), [de_format_mod])
             with self.settings(FORMAT_MODULE_PATH='regressiontests.i18n.other.locale'):
                 test_de_format_mod = import_module('regressiontests.i18n.other.locale.de.formats')
@@ -660,8 +660,8 @@ class FormattingTests(TestCase):
         a stable and correct order in presence of both base ll and ll_CC formats.
         """
         settings.USE_L10N = True
-        en_format_mod = import_module('django.conf.locale.en.formats')
-        en_gb_format_mod = import_module('django.conf.locale.en_GB.formats')
+        en_format_mod = import_module('djangocg.conf.locale.en.formats')
+        en_gb_format_mod = import_module('djangocg.conf.locale.en_GB.formats')
         self.assertEqual(list(iter_format_modules('en-gb')), [en_gb_format_mod, en_format_mod])
 
     def test_get_format_modules_lang(self):
@@ -710,7 +710,7 @@ class MiscTests(TestCase):
         values according to the spec (and that we extract all the pieces in
         the right order).
         """
-        from django.utils.translation.trans_real import parse_accept_lang_header
+        from djangocg.utils.translation.trans_real import parse_accept_lang_header
         p = parse_accept_lang_header
         # Good headers.
         self.assertEqual([('de', 1.0)], p('de'))
@@ -809,13 +809,13 @@ class MiscTests(TestCase):
         self.assertEqual(g(r), 'zh-cn')
 
     def test_get_language_from_path_real(self):
-        from django.utils.translation.trans_real import get_language_from_path as g
+        from djangocg.utils.translation.trans_real import get_language_from_path as g
         self.assertEqual(g('/pl/'), 'pl')
         self.assertEqual(g('/pl'), 'pl')
         self.assertEqual(g('/xyz/'), None)
 
     def test_get_language_from_path_null(self):
-        from django.utils.translation.trans_null import get_language_from_path as g
+        from djangocg.utils.translation.trans_null import get_language_from_path as g
         self.assertEqual(g('/pl/'), None)
         self.assertEqual(g('/pl'), None)
         self.assertEqual(g('/xyz/'), None)
@@ -836,7 +836,7 @@ class MiscTests(TestCase):
 class ResolutionOrderI18NTests(TestCase):
 
     def setUp(self):
-        from django.utils.translation import trans_real
+        from djangocg.utils.translation import trans_real
         # Okay, this is brutal, but we have no other choice to fully reset
         # the translation framework
         trans_real._active = local()

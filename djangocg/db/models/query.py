@@ -6,15 +6,15 @@ import copy
 import itertools
 import sys
 
-from django.core import exceptions
-from django.db import connections, router, transaction, IntegrityError
-from django.db.models.fields import AutoField
-from django.db.models.query_utils import (Q, select_related_descend,
+from djangocg.core import exceptions
+from djangocg.db import connections, router, transaction, IntegrityError
+from djangocg.db.models.fields import AutoField
+from djangocg.db.models.query_utils import (Q, select_related_descend,
     deferred_class_factory, InvalidQuery)
-from django.db.models.deletion import Collector
-from django.db.models import sql
-from django.utils.functional import partition
-from django.utils import six
+from djangocg.db.models.deletion import Collector
+from djangocg.db.models import sql
+from djangocg.utils.functional import partition
+from djangocg.utils import six
 
 # Used to control how many objects are worked with at once in some cases (e.g.
 # when deleting objects).
@@ -1613,7 +1613,7 @@ def prefetch_related_objects(result_cache, related_lookups):
     Populates prefetched objects caches for a list of results
     from a QuerySet
     """
-    from django.db.models.sql.constants import LOOKUP_SEP
+    from djangocg.db.models.sql.constants import LOOKUP_SEP
 
     if len(result_cache) == 0:
         return # nothing to do

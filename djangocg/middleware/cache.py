@@ -5,9 +5,9 @@ URL. The canonical way to enable cache middleware is to set
 ``FetchFromCacheMiddleware`` as the last::
 
     MIDDLEWARE_CLASSES = [
-        'django.middleware.cache.UpdateCacheMiddleware',
+        'djangocg.middleware.cache.UpdateCacheMiddleware',
         ...
-        'django.middleware.cache.FetchFromCacheMiddleware'
+        'djangocg.middleware.cache.FetchFromCacheMiddleware'
     ]
 
 This is counter-intuitive, but correct: ``UpdateCacheMiddleware`` needs to run
@@ -48,9 +48,9 @@ More details about how the caching works:
 
 """
 
-from django.conf import settings
-from django.core.cache import get_cache, DEFAULT_CACHE_ALIAS
-from django.utils.cache import get_cache_key, learn_cache_key, patch_response_headers, get_max_age
+from djangocg.conf import settings
+from djangocg.core.cache import get_cache, DEFAULT_CACHE_ALIAS
+from djangocg.utils.cache import get_cache_key, learn_cache_key, patch_response_headers, get_max_age
 
 
 class UpdateCacheMiddleware(object):
@@ -82,7 +82,7 @@ class UpdateCacheMiddleware(object):
         # cause it to be accessed here. If it hasn't been accessed, then the
         # user's logged-in status has not affected the response anyway.
         if self.cache_anonymous_only and self._session_accessed(request):
-            assert hasattr(request, 'user'), "The Django cache middleware with CACHE_MIDDLEWARE_ANONYMOUS_ONLY=True requires authentication middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'django.contrib.auth.middleware.AuthenticationMiddleware' before the CacheMiddleware."
+            assert hasattr(request, 'user'), "The Django cache middleware with CACHE_MIDDLEWARE_ANONYMOUS_ONLY=True requires authentication middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'djangocg.contrib.auth.middleware.AuthenticationMiddleware' before the CacheMiddleware."
             if request.user.is_authenticated():
                 # Don't cache user-variable requests from authenticated users.
                 return False

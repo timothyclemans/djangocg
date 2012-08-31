@@ -9,8 +9,8 @@ from __future__ import absolute_import
 import os
 import shutil
 
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.utils import unittest
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.utils import unittest
 
 from .models import Photo, PhotoForm, temp_storage_dir
 

@@ -2,7 +2,7 @@
 Aggregation
 ===========
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 The topic guide on :doc:`Django's database-abstraction API </topics/db/queries>`
 described the way that you can use Django queries that create,
@@ -55,17 +55,17 @@ In a hurry? Here's how to do common aggregate queries, assuming the models above
     73
 
     # Average price across all books.
-    >>> from django.db.models import Avg
+    >>> from djangocg.db.models import Avg
     >>> Book.objects.all().aggregate(Avg('price'))
     {'price__avg': 34.35}
 
     # Max price across all books.
-    >>> from django.db.models import Max
+    >>> from djangocg.db.models import Max
     >>> Book.objects.all().aggregate(Max('price'))
     {'price__max': Decimal('81.20')}
 
     # Each publisher, each with a count of books as a "num_books" attribute.
-    >>> from django.db.models import Count
+    >>> from djangocg.db.models import Count
     >>> pubs = Publisher.objects.annotate(num_books=Count('book'))
     >>> pubs
     [<Publisher BaloneyPress>, <Publisher SalamiPress>, ...]
@@ -73,7 +73,7 @@ In a hurry? Here's how to do common aggregate queries, assuming the models above
     73
 
     # The top 5 publishers, in order by number of books.
-    >>> from django.db.models import Count
+    >>> from djangocg.db.models import Count
     >>> pubs = Publisher.objects.annotate(num_books=Count('book')).order_by('-num_books')[:5]
     >>> pubs[0].num_books
     1323
@@ -92,7 +92,7 @@ What we need is a way to calculate summary values over the objects that
 belong to this ``QuerySet``. This is done by appending an ``aggregate()``
 clause onto the ``QuerySet``::
 
-    >>> from django.db.models import Avg
+    >>> from djangocg.db.models import Avg
     >>> Book.objects.all().aggregate(Avg('price'))
     {'price__avg': 34.35}
 
@@ -120,7 +120,7 @@ If you want to generate more than one aggregate, you just add another
 argument to the ``aggregate()`` clause. So, if we also wanted to know
 the maximum and minimum price of all books, we would issue the query::
 
-    >>> from django.db.models import Avg, Max, Min, Count
+    >>> from djangocg.db.models import Avg, Max, Min, Count
     >>> Book.objects.aggregate(Avg('price'), Max('price'), Min('price'))
     {'price__avg': 34.35, 'price__max': Decimal('81.20'), 'price__min': Decimal('12.99')}
 
@@ -385,7 +385,7 @@ without any harmful effects, since that is already playing a role in the
 query.
 
 This behavior is the same as that noted in the queryset documentation for
-:meth:`~django.db.models.query.QuerySet.distinct` and the general rule is the
+:meth:`~djangocg.db.models.query.QuerySet.distinct` and the general rule is the
 same: normally you won't want extra columns playing a part in the result, so
 clear out the ordering, or at least make sure it's restricted only to those
 fields you also select in a ``values()`` call.

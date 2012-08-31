@@ -6,11 +6,11 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.contrib.localflavor.de.de_states import STATE_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Field, RegexField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.de.de_states import STATE_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Field, RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 id_re = re.compile(r"^(?P<residence>\d{10})(?P<origin>\w{1,3})[-\ ]?(?P<birthday>\d{7})[-\ ]?(?P<validity>\d{7})[-\ ]?(?P<checksum>\d{1})$")

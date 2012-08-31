@@ -1,14 +1,14 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.contrib.sites.models import get_current_site
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
-from django.http import HttpResponse, Http404
-from django.template import loader, TemplateDoesNotExist, RequestContext
-from django.utils import feedgenerator, tzinfo
-from django.utils.encoding import force_text, iri_to_uri, smart_text
-from django.utils.html import escape
-from django.utils.timezone import is_naive
+from djangocg.conf import settings
+from djangocg.contrib.sites.models import get_current_site
+from djangocg.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from djangocg.http import HttpResponse, Http404
+from djangocg.template import loader, TemplateDoesNotExist, RequestContext
+from djangocg.utils import feedgenerator, tzinfo
+from djangocg.utils.encoding import force_text, iri_to_uri, smart_text
+from djangocg.utils.html import escape
+from djangocg.utils.timezone import is_naive
 
 
 def add_domain(domain, url, secure=False):

@@ -1,4 +1,4 @@
-from django.contrib.gis.gdal import SpatialReference
+from djangocg.contrib.gis.gdal import SpatialReference
 
 def add_srs_entry(srs, auth_name='EPSG', auth_srid=None, ref_sys_name=None,
                   database=None):
@@ -11,7 +11,7 @@ def add_srs_entry(srs, auth_name='EPSG', auth_srid=None, ref_sys_name=None,
     is excluded in PostGIS 1.3 and below, and the following adds it to the
     `spatial_ref_sys` table:
 
-    >>> from django.contrib.gis.utils import add_srs_entry
+    >>> from djangocg.contrib.gis.utils import add_srs_entry
     >>> add_srs_entry(900913)
 
     Keyword Arguments:
@@ -29,10 +29,10 @@ def add_srs_entry(srs, auth_name='EPSG', auth_srid=None, ref_sys_name=None,
 
      database:
       The name of the database connection to use; the default is the value
-      of `django.db.DEFAULT_DB_ALIAS` (at the time of this writing, it's value
+      of `djangocg.db.DEFAULT_DB_ALIAS` (at the time of this writing, it's value
       is 'default').
     """
-    from django.db import connections, DEFAULT_DB_ALIAS
+    from djangocg.db import connections, DEFAULT_DB_ALIAS
     if not database:
         database = DEFAULT_DB_ALIAS
     connection = connections[database]

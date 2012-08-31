@@ -19,11 +19,11 @@ from optparse import make_option
 from os import path
 
 import django
-from django.template import Template, Context
-from django.utils import archive
-from django.utils._os import rmtree_errorhandler
-from django.core.management.base import BaseCommand, CommandError
-from django.core.management.commands.makemessages import handle_extensions
+from djangocg.template import Template, Context
+from djangocg.utils import archive
+from djangocg.utils._os import rmtree_errorhandler
+from djangocg.core.management.base import BaseCommand, CommandError
+from djangocg.core.management.commands.makemessages import handle_extensions
 
 
 _drive_re = re.compile('^([a-z]):', re.I)
@@ -35,7 +35,7 @@ class TemplateCommand(BaseCommand):
     Copies either a Django application layout template or a Django project
     layout template into the specified directory.
 
-    :param style: A color style object (see django.core.management.color).
+    :param style: A color style object (see djangocg.core.management.color).
     :param app_or_project: The string 'app' or 'project'.
     :param name: The name of the application or project.
     :param directory: The directory to which the template should be copied.
@@ -120,7 +120,7 @@ class TemplateCommand(BaseCommand):
         }), autoescape=False)
 
         # Setup a stub settings environment for template rendering
-        from django.conf import settings
+        from djangocg.conf import settings
         if not settings.configured:
             settings.configure()
 
@@ -188,11 +188,11 @@ class TemplateCommand(BaseCommand):
     def handle_template(self, template, subdir):
         """
         Determines where the app or project templates are.
-        Use django.__path__[0] as the default because we don't
+        Use djangocg.__path__[0] as the default because we don't
         know into which directory Django has been installed.
         """
         if template is None:
-            return path.join(django.__path__[0], 'conf', subdir)
+            return path.join(djangocg.__path__[0], 'conf', subdir)
         else:
             if template.startswith('file://'):
                 template = template[7:]

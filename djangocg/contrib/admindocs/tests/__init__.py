@@ -1,9 +1,9 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.contrib.admindocs import views
-from django.db.models import fields as builtin_fields
-from django.utils import unittest
-from django.utils.translation import ugettext as _
+from djangocg.contrib.admindocs import views
+from djangocg.db.models import fields as builtin_fields
+from djangocg.utils import unittest
+from djangocg.utils.translation import ugettext as _
 
 from . import fields
 

@@ -2,11 +2,11 @@ from __future__ import absolute_import, unicode_literals
 
 from datetime import datetime
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.db.models.fields import Field, FieldDoesNotExist
-from django.test import TestCase, skipIfDBFeature, skipUnlessDBFeature
-from django.utils.six import PY3
-from django.utils.translation import ugettext_lazy
+from djangocg.core.exceptions import ObjectDoesNotExist
+from djangocg.db.models.fields import Field, FieldDoesNotExist
+from djangocg.test import TestCase, skipIfDBFeature, skipUnlessDBFeature
+from djangocg.utils.six import PY3
+from djangocg.utils.translation import ugettext_lazy
 
 from .models import Article
 

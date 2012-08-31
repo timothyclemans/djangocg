@@ -3,10 +3,10 @@
 import datetime
 import os
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.core.mail.backends.console import EmailBackend as ConsoleEmailBackend
-from django.utils import six
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.mail.backends.console import EmailBackend as ConsoleEmailBackend
+from djangocg.utils import six
 
 class EmailBackend(ConsoleEmailBackend):
     def __init__(self, *args, **kwargs):

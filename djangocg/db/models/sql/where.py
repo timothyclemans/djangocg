@@ -8,11 +8,11 @@ import collections
 import datetime
 from itertools import repeat
 
-from django.utils import tree
-from django.db.models.fields import Field
-from django.db.models.sql.datastructures import EmptyResultSet
-from django.db.models.sql.aggregates import Aggregate
-from django.utils.six.moves import xrange
+from djangocg.utils import tree
+from djangocg.db.models.fields import Field
+from djangocg.db.models.sql.datastructures import EmptyResultSet
+from djangocg.db.models.sql.aggregates import Aggregate
+from djangocg.utils.six.moves import xrange
 
 # Connection types
 AND = 'AND'
@@ -345,7 +345,7 @@ class Constraint(object):
         instance.
         """
         # Because of circular imports, we need to import this here.
-        from django.db.models.base import ObjectDoesNotExist
+        from djangocg.db.models.base import ObjectDoesNotExist
         try:
             if self.field:
                 params = self.field.get_db_prep_lookup(lookup_type, value,

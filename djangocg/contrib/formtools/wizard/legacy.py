@@ -3,16 +3,16 @@ FormWizard class -- implements a multi-page form, validating between each
 step and storing the form's state as HTML hidden fields so that no state is
 stored on the server side.
 """
-from django.forms import HiddenInput
-from django.http import Http404
-from django.shortcuts import render_to_response
-from django.template.context import RequestContext
-from django.utils.crypto import constant_time_compare
-from django.utils.translation import ugettext_lazy as _
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_protect
+from djangocg.forms import HiddenInput
+from djangocg.http import Http404
+from djangocg.shortcuts import render_to_response
+from djangocg.template.context import RequestContext
+from djangocg.utils.crypto import constant_time_compare
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.decorators import method_decorator
+from djangocg.views.decorators.csrf import csrf_protect
 
-from django.contrib.formtools.utils import form_hmac
+from djangocg.contrib.formtools.utils import form_hmac
 
 class FormWizard(object):
     # The HTML (and POST data) field name for the "step" variable.
@@ -38,7 +38,7 @@ class FormWizard(object):
         import warnings
         warnings.warn(
             'Old-style form wizards have been deprecated; use the class-based '
-            'views in django.contrib.formtools.wizard.views instead.',
+            'views in djangocg.contrib.formtools.wizard.views instead.',
             DeprecationWarning)
 
     def __repr__(self):

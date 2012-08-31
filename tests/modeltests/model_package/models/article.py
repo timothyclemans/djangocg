@@ -1,5 +1,5 @@
-from django.contrib.sites.models import Site
-from django.db import models
+from djangocg.contrib.sites.models import Site
+from djangocg.db import models
 
 
 class Article(models.Model):

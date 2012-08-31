@@ -26,7 +26,7 @@ What's new in Django 1.1 beta 1
 Model improvements
 ------------------
 
-.. currentmodule:: django.db.models
+.. currentmodule:: djangocg.db.models
 
 A number of features have been added to Django's model layer:
 
@@ -70,8 +70,8 @@ particular fields, you can now tell Django not to retrieve them from the
 database.
 
 You'll do this with the new queryset methods
-:meth:`~django.db.models.query.QuerySet.defer` and
-:meth:`~django.db.models.query.QuerySet.only`.
+:meth:`~djangocg.db.models.query.QuerySet.defer` and
+:meth:`~djangocg.db.models.query.QuerySet.only`.
 
 New admin features
 ------------------
@@ -99,7 +99,7 @@ one fell swoop.
 Testing improvements
 --------------------
 
-.. currentmodule:: django.test.client
+.. currentmodule:: djangocg.test.client
 
 A couple of small but very useful improvements have been made to the
 :doc:`testing framework </topics/testing>`:
@@ -146,7 +146,7 @@ release, including:
   </howto/auth-remote-user>` via a new authentication backend that supports
   the standard ``REMOTE_USER`` environment variable used for this purpose.
 
-* There's a new :func:`django.shortcuts.redirect` function that makes it
+* There's a new :func:`djangocg.shortcuts.redirect` function that makes it
   easier to issue redirects given an object, a view name, or a URL.
 
 * The ``postgresql_psycopg2`` backend now supports :ref:`native PostgreSQL

@@ -2,13 +2,13 @@
 Generic date views
 ==================
 
-Date-based generic views (in the module :mod:`django.views.generic.dates`)
+Date-based generic views (in the module :mod:`djangocg.views.generic.dates`)
 are views for displaying drilldown pages for date-based data.
 
 ArchiveIndexView
 ----------------
 
-.. class:: django.views.generic.dates.ArchiveIndexView
+.. class:: djangocg.views.generic.dates.ArchiveIndexView
 
     A top-level index page showing the "latest" objects, by date. Objects with
     a date in the *future* are not included unless you set ``allow_future`` to
@@ -16,14 +16,14 @@ ArchiveIndexView
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.dates.ArchiveIndexView`
-    * :class:`django.views.generic.list.MultipleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.dates.BaseArchiveIndexView`
-    * :class:`django.views.generic.dates.BaseDateListView`
-    * :class:`django.views.generic.list.MultipleObjectMixin`
-    * :class:`django.views.generic.dates.DateMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.dates.ArchiveIndexView`
+    * :class:`djangocg.views.generic.list.MultipleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.dates.BaseArchiveIndexView`
+    * :class:`djangocg.views.generic.dates.BaseDateListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectMixin`
+    * :class:`djangocg.views.generic.dates.DateMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Notes**
 
@@ -36,7 +36,7 @@ ArchiveIndexView
 YearArchiveView
 ---------------
 
-.. class:: django.views.generic.dates.YearArchiveView
+.. class:: djangocg.views.generic.dates.YearArchiveView
 
     A yearly archive page showing all available months in a given year. Objects
     with a date in the *future* are not displayed unless you set
@@ -44,15 +44,15 @@ YearArchiveView
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.dates.YearArchiveView`
-    * :class:`django.views.generic.list.MultipleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.dates.BaseYearArchiveView`
-    * :class:`django.views.generic.dates.YearMixin`
-    * :class:`django.views.generic.dates.BaseDateListView`
-    * :class:`django.views.generic.list.MultipleObjectMixin`
-    * :class:`django.views.generic.dates.DateMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.dates.YearArchiveView`
+    * :class:`djangocg.views.generic.list.MultipleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.dates.BaseYearArchiveView`
+    * :class:`djangocg.views.generic.dates.YearMixin`
+    * :class:`djangocg.views.generic.dates.BaseDateListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectMixin`
+    * :class:`djangocg.views.generic.dates.DateMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     .. attribute:: make_object_list
 
@@ -69,12 +69,12 @@ YearArchiveView
     **Context**
 
     In addition to the context provided by
-    :class:`django.views.generic.list.MultipleObjectMixin` (via
-    :class:`django.views.generic.dates.BaseDateListView`), the template's
+    :class:`djangocg.views.generic.list.MultipleObjectMixin` (via
+    :class:`djangocg.views.generic.dates.BaseDateListView`), the template's
     context will be:
 
     * ``date_list``: A
-      :meth:`DateQuerySet<django.db.models.query.QuerySet.dates>` object object
+      :meth:`DateQuerySet<djangocg.db.models.query.QuerySet.dates>` object object
       containing all months that have objects available according to
       ``queryset``, represented as
       :class:`datetime.datetime<python:datetime.datetime>` objects, in
@@ -98,7 +98,7 @@ YearArchiveView
 MonthArchiveView
 ----------------
 
-.. class:: django.views.generic.dates.MonthArchiveView
+.. class:: djangocg.views.generic.dates.MonthArchiveView
 
     A monthly archive page showing all objects in a given month. Objects with a
     date in the *future* are not displayed unless you set ``allow_future`` to
@@ -106,26 +106,26 @@ MonthArchiveView
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.dates.MonthArchiveView`
-    * :class:`django.views.generic.list.MultipleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.dates.BaseMonthArchiveView`
-    * :class:`django.views.generic.dates.YearMixin`
-    * :class:`django.views.generic.dates.MonthMixin`
-    * :class:`django.views.generic.dates.BaseDateListView`
-    * :class:`django.views.generic.list.MultipleObjectMixin`
-    * :class:`django.views.generic.dates.DateMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.dates.MonthArchiveView`
+    * :class:`djangocg.views.generic.list.MultipleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.dates.BaseMonthArchiveView`
+    * :class:`djangocg.views.generic.dates.YearMixin`
+    * :class:`djangocg.views.generic.dates.MonthMixin`
+    * :class:`djangocg.views.generic.dates.BaseDateListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectMixin`
+    * :class:`djangocg.views.generic.dates.DateMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Context**
 
     In addition to the context provided by
-    :class:`~django.views.generic.list.MultipleObjectMixin` (via
-    :class:`~django.views.generic.dates.BaseDateListView`), the template's
+    :class:`~djangocg.views.generic.list.MultipleObjectMixin` (via
+    :class:`~djangocg.views.generic.dates.BaseDateListView`), the template's
     context will be:
 
     * ``date_list``: A
-      :meth:`DateQuerySet<django.db.models.query.QuerySet.dates>` object
+      :meth:`DateQuerySet<djangocg.db.models.query.QuerySet.dates>` object
       containing all days that have objects available in the given month,
       according to ``queryset``, represented as
       :class:`datetime.datetime<python:datetime.datetime>` objects, in
@@ -149,7 +149,7 @@ MonthArchiveView
 WeekArchiveView
 ---------------
 
-.. class:: django.views.generic.dates.WeekArchiveView
+.. class:: djangocg.views.generic.dates.WeekArchiveView
 
     A weekly archive page showing all objects in a given week. Objects with a
     date in the *future* are not displayed unless you set ``allow_future`` to
@@ -157,22 +157,22 @@ WeekArchiveView
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.dates.WeekArchiveView`
-    * :class:`django.views.generic.list.MultipleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.dates.BaseWeekArchiveView`
-    * :class:`django.views.generic.dates.YearMixin`
-    * :class:`django.views.generic.dates.WeekMixin`
-    * :class:`django.views.generic.dates.BaseDateListView`
-    * :class:`django.views.generic.list.MultipleObjectMixin`
-    * :class:`django.views.generic.dates.DateMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.dates.WeekArchiveView`
+    * :class:`djangocg.views.generic.list.MultipleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.dates.BaseWeekArchiveView`
+    * :class:`djangocg.views.generic.dates.YearMixin`
+    * :class:`djangocg.views.generic.dates.WeekMixin`
+    * :class:`djangocg.views.generic.dates.BaseDateListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectMixin`
+    * :class:`djangocg.views.generic.dates.DateMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Context**
 
     In addition to the context provided by
-    :class:`~django.views.generic.list.MultipleObjectMixin` (via
-    :class:`~django.views.generic.dates.BaseDateListView`), the template's
+    :class:`~djangocg.views.generic.list.MultipleObjectMixin` (via
+    :class:`~djangocg.views.generic.dates.BaseDateListView`), the template's
     context will be:
 
     * ``week``: A :class:`datetime.date<python:datetime.date>` object
@@ -193,7 +193,7 @@ WeekArchiveView
 DayArchiveView
 --------------
 
-.. class:: django.views.generic.dates.DayArchiveView
+.. class:: djangocg.views.generic.dates.DayArchiveView
 
     A day archive page showing all objects in a given day. Days in the future
     throw a 404 error, regardless of whether any objects exist for future days,
@@ -201,23 +201,23 @@ DayArchiveView
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.dates.DayArchiveView`
-    * :class:`django.views.generic.list.MultipleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.dates.BaseDayArchiveView`
-    * :class:`django.views.generic.dates.YearMixin`
-    * :class:`django.views.generic.dates.MonthMixin`
-    * :class:`django.views.generic.dates.DayMixin`
-    * :class:`django.views.generic.dates.BaseDateListView`
-    * :class:`django.views.generic.list.MultipleObjectMixin`
-    * :class:`django.views.generic.dates.DateMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.dates.DayArchiveView`
+    * :class:`djangocg.views.generic.list.MultipleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.dates.BaseDayArchiveView`
+    * :class:`djangocg.views.generic.dates.YearMixin`
+    * :class:`djangocg.views.generic.dates.MonthMixin`
+    * :class:`djangocg.views.generic.dates.DayMixin`
+    * :class:`djangocg.views.generic.dates.BaseDateListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectMixin`
+    * :class:`djangocg.views.generic.dates.DateMixin`
+    * :class:`djangocg.views.generic.base.View`
 
     **Context**
 
     In addition to the context provided by
-    :class:`~django.views.generic.list.MultipleObjectMixin` (via
-    :class:`~django.views.generic.dates.BaseDateListView`), the template's
+    :class:`~djangocg.views.generic.list.MultipleObjectMixin` (via
+    :class:`~djangocg.views.generic.dates.BaseDateListView`), the template's
     context will be:
 
     * ``day``: A :class:`datetime.date<python:datetime.date>` object
@@ -246,32 +246,32 @@ DayArchiveView
 TodayArchiveView
 ----------------
 
-.. class:: django.views.generic.dates.TodayArchiveView
+.. class:: djangocg.views.generic.dates.TodayArchiveView
 
     A day archive page showing all objects for *today*. This is exactly the
-    same as :class:`django.views.generic.dates.DayArchiveView`, except today's
+    same as :class:`djangocg.views.generic.dates.DayArchiveView`, except today's
     date is used instead of the ``year``/``month``/``day`` arguments.
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.dates.TodayArchiveView`
-    * :class:`django.views.generic.list.MultipleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.dates.BaseTodayArchiveView`
-    * :class:`django.views.generic.dates.BaseDayArchiveView`
-    * :class:`django.views.generic.dates.YearMixin`
-    * :class:`django.views.generic.dates.MonthMixin`
-    * :class:`django.views.generic.dates.DayMixin`
-    * :class:`django.views.generic.dates.BaseDateListView`
-    * :class:`django.views.generic.list.MultipleObjectMixin`
-    * :class:`django.views.generic.dates.DateMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.dates.TodayArchiveView`
+    * :class:`djangocg.views.generic.list.MultipleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.dates.BaseTodayArchiveView`
+    * :class:`djangocg.views.generic.dates.BaseDayArchiveView`
+    * :class:`djangocg.views.generic.dates.YearMixin`
+    * :class:`djangocg.views.generic.dates.MonthMixin`
+    * :class:`djangocg.views.generic.dates.DayMixin`
+    * :class:`djangocg.views.generic.dates.BaseDateListView`
+    * :class:`djangocg.views.generic.list.MultipleObjectMixin`
+    * :class:`djangocg.views.generic.dates.DateMixin`
+    * :class:`djangocg.views.generic.base.View`
 
 
 DateDetailView
 --------------
 
-.. class:: django.views.generic.dates.DateDetailView
+.. class:: djangocg.views.generic.dates.DateDetailView
 
     A page representing an individual object. If the object has a date value in
     the future, the view will throw a 404 error by default, unless you set
@@ -279,20 +279,20 @@ DateDetailView
 
     **Ancestors (MRO)**
 
-    * :class:`django.views.generic.dates.DateDetailView`
-    * :class:`django.views.generic.detail.SingleObjectTemplateResponseMixin`
-    * :class:`django.views.generic.base.TemplateResponseMixin`
-    * :class:`django.views.generic.dates.BaseDateDetailView`
-    * :class:`django.views.generic.dates.YearMixin`
-    * :class:`django.views.generic.dates.MonthMixin`
-    * :class:`django.views.generic.dates.DayMixin`
-    * :class:`django.views.generic.dates.DateMixin`
-    * :class:`django.views.generic.detail.BaseDetailView`
-    * :class:`django.views.generic.detail.SingleObjectMixin`
-    * :class:`django.views.generic.base.View`
+    * :class:`djangocg.views.generic.dates.DateDetailView`
+    * :class:`djangocg.views.generic.detail.SingleObjectTemplateResponseMixin`
+    * :class:`djangocg.views.generic.base.TemplateResponseMixin`
+    * :class:`djangocg.views.generic.dates.BaseDateDetailView`
+    * :class:`djangocg.views.generic.dates.YearMixin`
+    * :class:`djangocg.views.generic.dates.MonthMixin`
+    * :class:`djangocg.views.generic.dates.DayMixin`
+    * :class:`djangocg.views.generic.dates.DateMixin`
+    * :class:`djangocg.views.generic.detail.BaseDetailView`
+    * :class:`djangocg.views.generic.detail.SingleObjectMixin`
+    * :class:`djangocg.views.generic.base.View`
 
 .. note::
 
     All of the generic views listed above have matching Base* views that only
     differ in that the they do not include the
-    :class:`~django.views.generic.detail.SingleObjectTemplateResponseMixin`.
+    :class:`~djangocg.views.generic.detail.SingleObjectTemplateResponseMixin`.

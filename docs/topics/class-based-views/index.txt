@@ -24,10 +24,10 @@ Basic examples
 ==============
 
 Django provides base view classes which will suit a wide range of applications.
-All views inherit from the :class:`~django.views.generic.base.View` class, which
+All views inherit from the :class:`~djangocg.views.generic.base.View` class, which
 handles linking the view in to the URLs, HTTP method dispatching and other
-simple features. :class:`~django.views.generic.base.RedirectView` is for a simple HTTP
-redirect, and :class:`~django.views.generic.base.TemplateView` extends the base class
+simple features. :class:`~djangocg.views.generic.base.RedirectView` is for a simple HTTP
+redirect, and :class:`~djangocg.views.generic.base.TemplateView` extends the base class
 to make it also render a template.
 
 
@@ -38,8 +38,8 @@ The simplest way to use generic views is to create them directly in your
 URLconf. If you're only changing a few simple attributes on a class-based view,
 you can simply pass them into the ``as_view`` method call itself::
 
-    from django.conf.urls import patterns, url, include
-    from django.views.generic import TemplateView
+    from djangocg.conf.urls import patterns, url, include
+    from djangocg.views.generic import TemplateView
 
     urlpatterns = patterns('',
         (r'^about/', TemplateView.as_view(template_name="about.html")),
@@ -47,7 +47,7 @@ you can simply pass them into the ``as_view`` method call itself::
 
 Any arguments given will override the ``template_name`` on the
 A similar overriding pattern can be used for the ``url`` attribute on
-:class:`~django.views.generic.base.RedirectView`.
+:class:`~djangocg.views.generic.base.RedirectView`.
 
 
 Subclassing generic views
@@ -58,22 +58,22 @@ existing view and override attributes (such as the ``template_name``) or
 methods (such as ``get_context_data``) in your subclass to provide new values
 or methods. Consider, for example, a view that just displays one template,
 ``about.html``. Django has a generic view to do this -
-:class:`~django.views.generic.base.TemplateView` - so we can just subclass it,
+:class:`~djangocg.views.generic.base.TemplateView` - so we can just subclass it,
 and override the template name::
 
     # some_app/views.py
-    from django.views.generic import TemplateView
+    from djangocg.views.generic import TemplateView
 
     class AboutView(TemplateView):
         template_name = "about.html"
 
 Then we just need to add this new view into our URLconf.
-`~django.views.generic.base.TemplateView` is a class, not a function, so we
+`~djangocg.views.generic.base.TemplateView` is a class, not a function, so we
 point the URL to the ``as_view`` class method instead, which provides a
 function-like entry to class-based views::
 
     # urls.py
-    from django.conf.urls import patterns, url, include
+    from djangocg.conf.urls import patterns, url, include
     from some_app.views import AboutView
 
     urlpatterns = patterns('',
@@ -96,11 +96,11 @@ Decorating in URLconf
 ---------------------
 
 The simplest way of decorating class-based views is to decorate the
-result of the :meth:`~django.views.generic.base.View.as_view` method.
+result of the :meth:`~djangocg.views.generic.base.View.as_view` method.
 The easiest place to do this is in the URLconf where you deploy your view::
 
-    from django.contrib.auth.decorators import login_required, permission_required
-    from django.views.generic import TemplateView
+    from djangocg.contrib.auth.decorators import login_required, permission_required
+    from djangocg.views.generic import TemplateView
 
     from .views import VoteView
 
@@ -120,7 +120,7 @@ Decorating the class
 
 To decorate every instance of a class-based view, you need to decorate
 the class definition itself. To do this you apply the decorator to the
-:meth:`~django.views.generic.base.View.dispatch` method of the class.
+:meth:`~djangocg.views.generic.base.View.dispatch` method of the class.
 
 A method on a class isn't quite the same as a standalone function, so
 you can't just apply a function decorator to the method -- you need to
@@ -128,9 +128,9 @@ transform it into a method decorator first. The ``method_decorator``
 decorator transforms a function decorator into a method decorator so
 that it can be used on an instance method. For example::
 
-    from django.contrib.auth.decorators import login_required
-    from django.utils.decorators import method_decorator
-    from django.views.generic import TemplateView
+    from djangocg.contrib.auth.decorators import login_required
+    from djangocg.utils.decorators import method_decorator
+    from djangocg.views.generic import TemplateView
 
     class ProtectedView(TemplateView):
         template_name = 'secret.html'

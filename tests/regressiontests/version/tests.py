@@ -1,7 +1,7 @@
 import re
 
 from django import get_version
-from django.utils.unittest import TestCase
+from djangocg.utils.unittest import TestCase
 
 class VersionTests(TestCase):
 

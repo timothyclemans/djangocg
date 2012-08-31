@@ -1,9 +1,9 @@
-# Quick tests for the markup templatetags (django.contrib.markup)
+# Quick tests for the markup templatetags (djangocg.contrib.markup)
 import re
 
-from django.template import Template, Context
-from django.utils import unittest
-from django.utils.html import escape
+from djangocg.template import Template, Context
+from djangocg.utils import unittest
+from djangocg.utils.html import escape
 
 try:
     import textile

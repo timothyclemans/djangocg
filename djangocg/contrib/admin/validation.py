@@ -1,11 +1,11 @@
-from django.core.exceptions import ImproperlyConfigured
-from django.db import models
-from django.db.models.fields import FieldDoesNotExist
-from django.forms.models import (BaseModelForm, BaseModelFormSet, fields_for_model,
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.db import models
+from djangocg.db.models.fields import FieldDoesNotExist
+from djangocg.forms.models import (BaseModelForm, BaseModelFormSet, fields_for_model,
     _get_foreign_key)
-from django.contrib.admin import ListFilter, FieldListFilter
-from django.contrib.admin.util import get_fields_from_path, NotRelationField
-from django.contrib.admin.options import (flatten_fieldsets, BaseModelAdmin,
+from djangocg.contrib.admin import ListFilter, FieldListFilter
+from djangocg.contrib.admin.util import get_fields_from_path, NotRelationField
+from djangocg.contrib.admin.options import (flatten_fieldsets, BaseModelAdmin,
     HORIZONTAL, VERTICAL)
 
 

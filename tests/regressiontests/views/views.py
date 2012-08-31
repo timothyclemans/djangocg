@@ -2,15 +2,15 @@ from __future__ import absolute_import
 
 import sys
 
-from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import get_resolver
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, render
-from django.template import Context, RequestContext, TemplateDoesNotExist
-from django.views.debug import technical_500_response, SafeExceptionReporterFilter
-from django.views.decorators.debug import (sensitive_post_parameters,
+from djangocg.core.exceptions import PermissionDenied
+from djangocg.core.urlresolvers import get_resolver
+from djangocg.http import HttpResponse, HttpResponseRedirect
+from djangocg.shortcuts import render_to_response, render
+from djangocg.template import Context, RequestContext, TemplateDoesNotExist
+from djangocg.views.debug import technical_500_response, SafeExceptionReporterFilter
+from djangocg.views.decorators.debug import (sensitive_post_parameters,
                                            sensitive_variables)
-from django.utils.log import getLogger
+from djangocg.utils.log import getLogger
 
 from . import BrokenException, except_args
 
@@ -118,7 +118,7 @@ def raises_template_does_not_exist(request):
         return technical_500_response(request, *sys.exc_info())
 
 def send_log(request, exc_info):
-    logger = getLogger('django.request')
+    logger = getLogger('djangocg.request')
     # The default logging config has a logging filter to ensure admin emails are
     # only sent with DEBUG=False, but since someone might choose to remove that
     # filter, we still want to be able to test the behavior of error emails

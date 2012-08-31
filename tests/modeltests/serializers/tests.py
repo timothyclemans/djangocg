@@ -5,13 +5,13 @@ import json
 from datetime import datetime
 from xml.dom import minidom
 
-from django.conf import settings
-from django.core import serializers
-from django.db import transaction, connection
-from django.test import TestCase, TransactionTestCase, Approximate
-from django.utils import six
-from django.utils.six import StringIO
-from django.utils import unittest
+from djangocg.conf import settings
+from djangocg.core import serializers
+from djangocg.db import transaction, connection
+from djangocg.test import TestCase, TransactionTestCase, Approximate
+from djangocg.utils import six
+from djangocg.utils.six import StringIO
+from djangocg.utils import unittest
 
 from .models import (Category, Author, Article, AuthorProfile, Actor, Movie,
     Score, Player, Team)
@@ -24,7 +24,7 @@ class SerializerRegistrationTests(unittest.TestCase):
 
         serializers._serializers = {}
         settings.SERIALIZATION_MODULES = {
-            "json2" : "django.core.serializers.json",
+            "json2" : "djangocg.core.serializers.json",
         }
 
     def tearDown(self):
@@ -36,7 +36,7 @@ class SerializerRegistrationTests(unittest.TestCase):
 
     def test_register(self):
         "Registering a new serializer populates the full registry. Refs #14823"
-        serializers.register_serializer('json3', 'django.core.serializers.json')
+        serializers.register_serializer('json3', 'djangocg.core.serializers.json')
 
         public_formats = serializers.get_public_serializer_formats()
         self.assertIn('json3', public_formats)
@@ -46,7 +46,7 @@ class SerializerRegistrationTests(unittest.TestCase):
     def test_unregister(self):
         "Unregistering a serializer doesn't cause the registry to be repopulated. Refs #14823"
         serializers.unregister_serializer('xml')
-        serializers.register_serializer('json3', 'django.core.serializers.json')
+        serializers.register_serializer('json3', 'djangocg.core.serializers.json')
 
         public_formats = serializers.get_public_serializer_formats()
 

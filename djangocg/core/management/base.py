@@ -10,10 +10,10 @@ from optparse import make_option, OptionParser
 import traceback
 
 import django
-from django.core.exceptions import ImproperlyConfigured
-from django.core.management.color import color_style
-from django.utils.encoding import force_str
-from django.utils.six import StringIO
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.core.management.color import color_style
+from djangocg.utils.encoding import force_str
+from djangocg.utils.six import StringIO
 
 
 class CommandError(Exception):
@@ -174,7 +174,7 @@ class BaseCommand(object):
         override this method.
 
         """
-        return django.get_version()
+        return djangocg.get_version()
 
     def usage(self, subcommand):
         """
@@ -236,13 +236,13 @@ class BaseCommand(object):
         # Switch to English, because django-admin.py creates database content
         # like permissions, and those shouldn't contain any translations.
         # But only do this if we can assume we have a working settings file,
-        # because django.utils.translation requires settings.
+        # because djangocg.utils.translation requires settings.
         saved_lang = None
         self.stdout = OutputWrapper(options.get('stdout', sys.stdout))
         self.stderr = OutputWrapper(options.get('stderr', sys.stderr), self.style.ERROR)
 
         if self.can_import_settings:
-            from django.utils import translation
+            from djangocg.utils import translation
             saved_lang = translation.get_language()
             translation.activate('en-us')
 
@@ -254,7 +254,7 @@ class BaseCommand(object):
                 if self.output_transaction:
                     # This needs to be imported here, because it relies on
                     # settings.
-                    from django.db import connections, DEFAULT_DB_ALIAS
+                    from djangocg.db import connections, DEFAULT_DB_ALIAS
                     connection = connections[options.get('database', DEFAULT_DB_ALIAS)]
                     if connection.ops.start_transaction_sql():
                         self.stdout.write(self.style.SQL_KEYWORD(connection.ops.start_transaction_sql()))
@@ -272,7 +272,7 @@ class BaseCommand(object):
         If app is None, then this will validate all installed apps.
 
         """
-        from django.core.management.validation import get_validation_errors
+        from djangocg.core.management.validation import get_validation_errors
         s = StringIO()
         num_errors = get_validation_errors(s, app)
         if num_errors:
@@ -303,7 +303,7 @@ class AppCommand(BaseCommand):
     args = '<appname appname ...>'
 
     def handle(self, *app_labels, **options):
-        from django.db import models
+        from djangocg.db import models
         if not app_labels:
             raise CommandError('Enter at least one appname.')
         try:

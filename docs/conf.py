@@ -185,7 +185,7 @@ html_additional_pages = {}
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Djangodoc'
 
-modindex_common_prefix = ["django."]
+modindex_common_prefix = ["djangocg."]
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -199,7 +199,7 @@ latex_elements = {
 # (source start file, target name, title, author, document class [howto/manual]).
 #latex_documents = []
 latex_documents = [
-  ('contents', 'django.tex', 'Django Documentation',
+  ('contents', 'djangocg.tex', 'Django Documentation',
    'Django Software Foundation', 'manual'),
 ]
 

@@ -1,11 +1,11 @@
-from django.contrib.flatpages.models import FlatPage
-from django.template import loader, RequestContext
-from django.shortcuts import get_object_or_404
-from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
-from django.conf import settings
-from django.core.xheaders import populate_xheaders
-from django.utils.safestring import mark_safe
-from django.views.decorators.csrf import csrf_protect
+from djangocg.contrib.flatpages.models import FlatPage
+from djangocg.template import loader, RequestContext
+from djangocg.shortcuts import get_object_or_404
+from djangocg.http import Http404, HttpResponse, HttpResponsePermanentRedirect
+from djangocg.conf import settings
+from djangocg.core.xheaders import populate_xheaders
+from djangocg.utils.safestring import mark_safe
+from djangocg.views.decorators.csrf import csrf_protect
 
 DEFAULT_TEMPLATE = 'flatpages/default.html'
 
@@ -51,7 +51,7 @@ def render_flatpage(request, f):
     # If registration is required for accessing this page, and the user isn't
     # logged in, redirect to the login page.
     if f.registration_required and not request.user.is_authenticated():
-        from django.contrib.auth.views import redirect_to_login
+        from djangocg.contrib.auth.views import redirect_to_login
         return redirect_to_login(request.path)
     if f.template_name:
         t = loader.select_template((f.template_name, DEFAULT_TEMPLATE))

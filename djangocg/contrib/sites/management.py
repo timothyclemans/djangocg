@@ -2,12 +2,12 @@
 Creates the default Site object.
 """
 
-from django.db.models import signals
-from django.db import connections
-from django.db import router
-from django.contrib.sites.models import Site
-from django.contrib.sites import models as site_app
-from django.core.management.color import no_style
+from djangocg.db.models import signals
+from djangocg.db import connections
+from djangocg.db import router
+from djangocg.contrib.sites.models import Site
+from djangocg.contrib.sites import models as site_app
+from djangocg.core.management.color import no_style
 
 def create_default_site(app, created_models, verbosity, db, **kwargs):
     # Only create the default sites in databases where Django created the table

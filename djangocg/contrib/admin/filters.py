@@ -7,13 +7,13 @@ certain test -- e.g. being a DateField or ForeignKey.
 """
 import datetime
 
-from django.db import models
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.encoding import smart_text
-from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
+from djangocg.db import models
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils import timezone
 
-from django.contrib.admin.util import (get_model_from_relation,
+from djangocg.contrib.admin.util import (get_model_from_relation,
     reverse_field_path, get_limit_choices_to_from_path, prepare_lookup_value)
 
 class ListFilter(object):
@@ -186,7 +186,7 @@ class RelatedFieldListFilter(FieldListFilter):
         return [self.lookup_kwarg, self.lookup_kwarg_isnull]
 
     def choices(self, cl):
-        from django.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
+        from djangocg.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
         yield {
             'selected': self.lookup_val is None and not self.lookup_val_isnull,
             'query_string': cl.get_query_string({},
@@ -368,7 +368,7 @@ class AllValuesFieldListFilter(FieldListFilter):
         return [self.lookup_kwarg, self.lookup_kwarg_isnull]
 
     def choices(self, cl):
-        from django.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
+        from djangocg.contrib.admin.views.main import EMPTY_CHANGELIST_VALUE
         yield {
             'selected': (self.lookup_val is None
                 and self.lookup_val_isnull is None),

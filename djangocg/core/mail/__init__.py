@@ -3,16 +3,16 @@ Tools for sending email.
 """
 from __future__ import unicode_literals
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.utils.importlib import import_module
 
 # Imported for backwards compatibility, and for the sake
 # of a cleaner namespace. These symbols used to be in
 # django/core/mail.py before the introduction of email
 # backends and the subsequent reorganization (See #10355)
-from django.core.mail.utils import CachedDnsName, DNS_NAME
-from django.core.mail.message import (
+from djangocg.core.mail.utils import CachedDnsName, DNS_NAME
+from djangocg.core.mail.message import (
     EmailMessage, EmailMultiAlternatives,
     SafeMIMEText, SafeMIMEMultipart,
     DEFAULT_ATTACHMENT_MIME_TYPE, make_msgid,

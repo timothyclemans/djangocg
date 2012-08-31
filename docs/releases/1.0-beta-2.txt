@@ -27,7 +27,7 @@ beta 1, see :doc:`the 1.0 beta 1 release notes </releases/1.0-beta>`.
 
 This beta release includes two major features:
 
-Refactored ``django.contrib.comments``
+Refactored ``djangocg.contrib.comments``
     As part of a Google Summer of Code project, Thejaswi Puthraya
     carried out a major rewrite and refactoring of Django's bundled
     comment system, greatly increasing its flexibility and
@@ -54,11 +54,11 @@ release contains a large number of smaller improvements and bugfixes
 from the ongoing push to 1.0.
 
 Also, as part of its ongoing deprecation process, Django's old
-form-handling system has been removed; this means ``django.oldforms``
+form-handling system has been removed; this means ``djangocg.oldforms``
 no longer exists, and its various API hooks (such as automatic
 manipulators) are no longer present in Django. This system has been
 completely replaced by :doc:`the new form-handling system
-</topics/forms/index>` in ``django.forms``.
+</topics/forms/index>` in ``djangocg.forms``.
 
 
 The Django 1.0 roadmap

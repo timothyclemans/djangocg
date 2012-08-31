@@ -1,7 +1,7 @@
-from django.contrib.admin import ModelAdmin
-from django.contrib.gis.admin.widgets import OpenLayersWidget
-from django.contrib.gis.gdal import OGRGeomType
-from django.contrib.gis.db import models
+from djangocg.contrib.admin import ModelAdmin
+from djangocg.contrib.gis.admin.widgets import OpenLayersWidget
+from djangocg.contrib.gis.gdal import OGRGeomType
+from djangocg.contrib.gis.db import models
 
 class GeoModelAdmin(ModelAdmin):
     """
@@ -118,7 +118,7 @@ class GeoModelAdmin(ModelAdmin):
                       }
         return OLMap
 
-from django.contrib.gis import gdal
+from djangocg.contrib.gis import gdal
 if gdal.HAS_GDAL:
     # Use the official spherical mercator projection SRID on versions
     # of GDAL that support it; otherwise, fallback to 900913.

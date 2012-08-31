@@ -1,9 +1,9 @@
-from django.conf import settings
-from django.template.base import TemplateSyntaxError, Library, Node, TextNode,\
+from djangocg.conf import settings
+from djangocg.template.base import TemplateSyntaxError, Library, Node, TextNode,\
     token_kwargs, Variable
-from django.template.loader import get_template
-from django.utils.safestring import mark_safe
-from django.utils import six
+from djangocg.template.loader import get_template
+from djangocg.utils.safestring import mark_safe
+from djangocg.utils import six
 
 register = Library()
 

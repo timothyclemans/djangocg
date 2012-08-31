@@ -2,12 +2,12 @@ from __future__ import absolute_import, unicode_literals
 
 import datetime
 
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import RegexField, Select
-from django.utils.translation import ugettext_lazy as _
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import RegexField, Select
+from djangocg.utils.translation import ugettext_lazy as _
 
-from django.contrib.localflavor.mk.mk_choices import MK_MUNICIPALITIES
+from djangocg.contrib.localflavor.mk.mk_choices import MK_MUNICIPALITIES
 
 
 class MKIdentityCardNumberField(RegexField):

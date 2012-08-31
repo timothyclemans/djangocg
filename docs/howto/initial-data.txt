@@ -155,7 +155,7 @@ your app directory, ``<modelname>`` is the model's name in lowercase
 and ``<backend>`` is the last part of the module name provided for the
 :setting:`ENGINE` in your settings file (e.g., if you have defined a
 database with an :setting:`ENGINE` value of
-``django.db.backends.sqlite3``, Django will look for
+``djangocg.db.backends.sqlite3``, Django will look for
 ``<appname>/sql/<modelname>.sqlite3.sql``).
 
 Backend-specific SQL data is executed before non-backend-specific SQL

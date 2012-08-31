@@ -4,14 +4,14 @@ import inspect
 import os
 import sys
 
-from django.conf import settings
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase, RequestFactory
-from django.test.utils import (setup_test_template_loader,
+from djangocg.conf import settings
+from djangocg.core.files.uploadedfile import SimpleUploadedFile
+from djangocg.test import TestCase, RequestFactory
+from djangocg.test.utils import (setup_test_template_loader,
                                restore_template_loaders)
-from django.core.urlresolvers import reverse
-from django.views.debug import ExceptionReporter
-from django.core import mail
+from djangocg.core.urlresolvers import reverse
+from djangocg.views.debug import ExceptionReporter
+from djangocg.core import mail
 
 from .. import BrokenException, except_args
 from ..views import (sensitive_view, non_sensitive_view, paranoid_view,

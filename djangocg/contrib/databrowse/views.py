@@ -1,5 +1,5 @@
-from django.http import Http404
-from django.shortcuts import render_to_response
+from djangocg.http import Http404
+from djangocg.shortcuts import render_to_response
 
 ###########
 # CHOICES #

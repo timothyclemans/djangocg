@@ -1,8 +1,8 @@
 import os
 import unittest
-from django.contrib.gis.gdal import DataSource, Envelope, OGRGeometry, OGRException, OGRIndexError, GDAL_VERSION
-from django.contrib.gis.gdal.field import OFTReal, OFTInteger, OFTString
-from django.contrib.gis.geometry.test_data import get_ds_file, TestDS, TEST_DATA
+from djangocg.contrib.gis.gdal import DataSource, Envelope, OGRGeometry, OGRException, OGRIndexError, GDAL_VERSION
+from djangocg.contrib.gis.gdal.field import OFTReal, OFTInteger, OFTString
+from djangocg.contrib.gis.geometry.test_data import get_ds_file, TestDS, TEST_DATA
 
 # List of acceptable data sources.
 ds_list = (TestDS('test_point', nfeat=5, nfld=3, geom='POINT', gtype=1, driver='ESRI Shapefile',

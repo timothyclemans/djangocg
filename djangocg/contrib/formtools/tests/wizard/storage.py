@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from django.http import HttpRequest
-from django.conf import settings
-from django.utils.importlib import import_module
+from djangocg.http import HttpRequest
+from djangocg.conf import settings
+from djangocg.utils.importlib import import_module
 
-from django.contrib.auth.models import User
+from djangocg.contrib.auth.models import User
 
 
 def get_request():

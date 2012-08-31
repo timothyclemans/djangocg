@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from django.conf.urls import patterns, url
-from django.views.generic import RedirectView
+from djangocg.conf.urls import patterns, url
+from djangocg.views.generic import RedirectView
 
 from . import views
 

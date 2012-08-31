@@ -2,7 +2,7 @@
 Regression tests for initial SQL insertion.
 """
 
-from django.db import models
+from djangocg.db import models
 
 
 class Simple(models.Model):

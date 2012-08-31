@@ -6,11 +6,11 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 
-from django.contrib.localflavor.cz.cz_regions import REGION_CHOICES
-from django.core.validators import EMPTY_VALUES
-from django.forms import ValidationError
-from django.forms.fields import Select, RegexField, Field
-from django.utils.translation import ugettext_lazy as _
+from djangocg.contrib.localflavor.cz.cz_regions import REGION_CHOICES
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Select, RegexField, Field
+from djangocg.utils.translation import ugettext_lazy as _
 
 
 birth_number = re.compile(r'^(?P<birth>\d{6})/?(?P<id>\d{3,4})$')

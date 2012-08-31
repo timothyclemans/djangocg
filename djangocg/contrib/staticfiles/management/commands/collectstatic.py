@@ -4,13 +4,13 @@ import os
 import sys
 from optparse import make_option
 
-from django.core.files.storage import FileSystemStorage
-from django.core.management.base import CommandError, NoArgsCommand
-from django.utils.encoding import smart_text
-from django.utils.datastructures import SortedDict
-from django.utils.six.moves import input
+from djangocg.core.files.storage import FileSystemStorage
+from djangocg.core.management.base import CommandError, NoArgsCommand
+from djangocg.utils.encoding import smart_text
+from djangocg.utils.datastructures import SortedDict
+from djangocg.utils.six.moves import input
 
-from django.contrib.staticfiles import finders, storage
+from djangocg.contrib.staticfiles import finders, storage
 
 
 class Command(NoArgsCommand):

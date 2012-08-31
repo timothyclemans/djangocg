@@ -1,14 +1,14 @@
 import time
 from django import forms
-from django.forms.util import ErrorDict
-from django.conf import settings
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.comments.models import Comment
-from django.utils.crypto import salted_hmac, constant_time_compare
-from django.utils.encoding import force_text
-from django.utils.text import get_text_list
-from django.utils import timezone
-from django.utils.translation import ungettext, ugettext, ugettext_lazy as _
+from djangocg.forms.util import ErrorDict
+from djangocg.conf import settings
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.contrib.comments.models import Comment
+from djangocg.utils.crypto import salted_hmac, constant_time_compare
+from djangocg.utils.encoding import force_text
+from djangocg.utils.text import get_text_list
+from djangocg.utils import timezone
+from djangocg.utils.translation import ungettext, ugettext, ugettext_lazy as _
 
 COMMENT_MAX_LENGTH = getattr(settings,'COMMENT_MAX_LENGTH', 3000)
 
@@ -85,7 +85,7 @@ class CommentSecurityForm(forms.Form):
         Generate a HMAC security hash from the provided info.
         """
         info = (content_type, object_pk, timestamp)
-        key_salt = "django.contrib.forms.CommentSecurityForm"
+        key_salt = "djangocg.contrib.forms.CommentSecurityForm"
         value = "-".join(info)
         return salted_hmac(key_salt, value).hexdigest()
 

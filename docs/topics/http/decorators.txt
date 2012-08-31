@@ -2,7 +2,7 @@
 View decorators
 ===============
 
-.. module:: django.views.decorators.http
+.. module:: djangocg.views.decorators.http
 
 Django provides several decorators that can be applied to views to support
 various HTTP features.
@@ -10,16 +10,16 @@ various HTTP features.
 Allowed HTTP methods
 ====================
 
-The decorators in :mod:`django.views.decorators.http` can be used to restrict
+The decorators in :mod:`djangocg.views.decorators.http` can be used to restrict
 access to views based on the request method. These decorators will return
-a :class:`django.http.HttpResponseNotAllowed` if the conditions are not met.
+a :class:`djangocg.http.HttpResponseNotAllowed` if the conditions are not met.
 
 .. function:: require_http_methods(request_method_list)
 
     Decorator to require that a view only accept particular request
     methods. Usage::
 
-        from django.views.decorators.http import require_http_methods
+        from djangocg.views.decorators.http import require_http_methods
 
         @require_http_methods(["GET", "POST"])
         def my_view(request):
@@ -56,7 +56,7 @@ a :class:`django.http.HttpResponseNotAllowed` if the conditions are not met.
 Conditional view processing
 ===========================
 
-The following decorators in :mod:`django.views.decorators.http` can be used to
+The following decorators in :mod:`djangocg.views.decorators.http` can be used to
 control caching behavior on particular views.
 
 .. function:: condition(etag_func=None, last_modified_func=None)
@@ -69,12 +69,12 @@ control caching behavior on particular views.
     headers; see
     :doc:`conditional view processing </topics/conditional-view-processing>`.
 
-.. module:: django.views.decorators.gzip
+.. module:: djangocg.views.decorators.gzip
 
 GZip compression
 ================
 
-The decorators in :mod:`django.views.decorators.gzip` control content
+The decorators in :mod:`djangocg.views.decorators.gzip` control content
 compression on a per-view basis.
 
 .. function:: gzip_page()
@@ -83,12 +83,12 @@ compression on a per-view basis.
     It sets the ``Vary`` header accordingly, so that caches will base their
     storage on the ``Accept-Encoding`` header.
 
-.. module:: django.views.decorators.vary
+.. module:: djangocg.views.decorators.vary
 
 Vary headers
 ============
 
-The decorators in :mod:`django.views.decorators.vary` can be used to control
+The decorators in :mod:`djangocg.views.decorators.vary` can be used to control
 caching based on specific request headers.
 
 .. function:: vary_on_cookie(func)

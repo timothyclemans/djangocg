@@ -4,7 +4,7 @@ Sources:
     http://ru.wikipedia.org/wiki/Коды_субъектов_Российской_Федерации
     http://ru.wikipedia.org/wiki/Федеральные_округа_Российской_Федерации
 """
-from django.utils.translation import ugettext_lazy as _
+from djangocg.utils.translation import ugettext_lazy as _
 
 RU_COUNTY_CHOICES = (
     ("Central Federal County", _("Central Federal County")),

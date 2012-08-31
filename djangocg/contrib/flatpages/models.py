@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from django.db import models
-from django.contrib.sites.models import Site
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+from djangocg.db import models
+from djangocg.contrib.sites.models import Site
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible

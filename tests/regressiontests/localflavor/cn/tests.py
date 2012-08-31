@@ -1,9 +1,9 @@
 # Tests for contrib/localflavor/ CN Form Fields
 from __future__ import unicode_literals
 
-from django.contrib.localflavor.cn.forms import (CNProvinceSelect,
+from djangocg.contrib.localflavor.cn.forms import (CNProvinceSelect,
         CNPostCodeField, CNIDCardField, CNPhoneNumberField, CNCellNumberField)
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 class CNLocalFlavorTests(SimpleTestCase):
     def test_CNProvinceSelect(self):

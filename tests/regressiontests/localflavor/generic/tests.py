@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 import datetime
 
-from django.contrib.localflavor.generic.forms import DateField, DateTimeField
+from djangocg.contrib.localflavor.generic.forms import DateField, DateTimeField
 
-from django.test import SimpleTestCase
+from djangocg.test import SimpleTestCase
 
 
 class GenericLocalFlavorTests(SimpleTestCase):

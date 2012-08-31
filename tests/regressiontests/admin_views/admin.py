@@ -5,15 +5,15 @@ import tempfile
 import os
 
 from django import forms
-from django.contrib import admin
-from django.contrib.admin.views.main import ChangeList
-from django.core.files.storage import FileSystemStorage
-from django.core.mail import EmailMessage
-from django.conf.urls import patterns, url
-from django.db import models
-from django.forms.models import BaseModelFormSet
-from django.http import HttpResponse
-from django.contrib.admin import BooleanFieldListFilter
+from djangocg.contrib import admin
+from djangocg.contrib.admin.views.main import ChangeList
+from djangocg.core.files.storage import FileSystemStorage
+from djangocg.core.mail import EmailMessage
+from djangocg.conf.urls import patterns, url
+from djangocg.db import models
+from djangocg.forms.models import BaseModelFormSet
+from djangocg.http import HttpResponse
+from djangocg.contrib.admin import BooleanFieldListFilter
 
 from .models import (Article, Chapter, Account, Media, Child, Parent, Picture,
     Widget, DooHickey, Grommet, Whatsit, FancyDoodad, Category, Link,
@@ -219,7 +219,7 @@ external_mail.short_description = 'External mail (Another awesome action)'
 
 
 def redirect_to(modeladmin, request, selected):
-    from django.http import HttpResponseRedirect
+    from djangocg.http import HttpResponseRedirect
     return HttpResponseRedirect('/some-where-else/')
 redirect_to.short_description = 'Redirect to (Awesome action)'
 
@@ -650,7 +650,7 @@ site.register(AdminOrderedCallable, AdminOrderedCallableAdmin)
 site.register(Color2, CustomTemplateFilterColorAdmin)
 
 # Register core models we need in our tests
-from django.contrib.auth.models import User, Group
-from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from djangocg.contrib.auth.models import User, Group
+from djangocg.contrib.auth.admin import UserAdmin, GroupAdmin
 site.register(User, UserAdmin)
 site.register(Group, GroupAdmin)

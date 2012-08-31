@@ -5,12 +5,12 @@ Mexican-specific form helpers.
 from __future__ import unicode_literals
 import re
 
-from django.forms import ValidationError
-from django.forms.fields import Select, RegexField
-from django.utils import six
-from django.utils.translation import ugettext_lazy as _
-from django.core.validators import EMPTY_VALUES
-from django.contrib.localflavor.mx.mx_states import STATE_CHOICES
+from djangocg.forms import ValidationError
+from djangocg.forms.fields import Select, RegexField
+from djangocg.utils import six
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.core.validators import EMPTY_VALUES
+from djangocg.contrib.localflavor.mx.mx_states import STATE_CHOICES
 
 DATE_RE = r'\d{2}((01|03|05|07|08|10|12)(0[1-9]|[12]\d|3[01])|02(0[1-9]|[12]\d)|(04|06|09|11)(0[1-9]|[12]\d|30))'
 

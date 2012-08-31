@@ -3,9 +3,9 @@ import sys
 import imp
 from zipimport import zipimporter
 
-from django.utils import unittest
-from django.utils.importlib import import_module
-from django.utils.module_loading import module_has_submodule
+from djangocg.utils import unittest
+from djangocg.utils.importlib import import_module
+from djangocg.utils.module_loading import module_has_submodule
 
 
 class DefaultLoader(unittest.TestCase):

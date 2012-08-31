@@ -1,6 +1,6 @@
-from django.db import models
-from django.contrib.contenttypes.models import ContentType
-from django.utils.encoding import force_text
+from djangocg.db import models
+from djangocg.contrib.contenttypes.models import ContentType
+from djangocg.utils.encoding import force_text
 
 class CommentManager(models.Manager):
 

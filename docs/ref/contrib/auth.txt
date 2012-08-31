@@ -1,4 +1,4 @@
-``django.contrib.auth``
+``djangocg.contrib.auth``
 =======================
 
 See :doc:`/topics/auth`.

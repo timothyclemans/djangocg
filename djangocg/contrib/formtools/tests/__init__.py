@@ -8,15 +8,15 @@ import re
 import warnings
 
 from django import http
-from django.conf import settings
-from django.contrib.formtools import preview, utils
-from django.contrib.formtools.wizard import FormWizard
-from django.test import TestCase
-from django.test.utils import override_settings
-from django.utils import unittest
+from djangocg.conf import settings
+from djangocg.contrib.formtools import preview, utils
+from djangocg.contrib.formtools.wizard import FormWizard
+from djangocg.test import TestCase
+from djangocg.test.utils import override_settings
+from djangocg.utils import unittest
 
-from django.contrib.formtools.tests.wizard import *
-from django.contrib.formtools.tests.forms import *
+from djangocg.contrib.formtools.tests.wizard import *
+from djangocg.contrib.formtools.tests.forms import *
 
 success_string = "Done was called!"
 success_string_encoded = success_string.encode()
@@ -39,7 +39,7 @@ class TestFormPreview(preview.FormPreview):
     ),
 )
 class PreviewTests(TestCase):
-    urls = 'django.contrib.formtools.tests.urls'
+    urls = 'djangocg.contrib.formtools.tests.urls'
 
     def setUp(self):
         super(PreviewTests, self).setUp()
@@ -217,7 +217,7 @@ class DummyRequest(http.HttpRequest):
     ),
 )
 class WizardTests(TestCase):
-    urls = 'django.contrib.formtools.tests.urls'
+    urls = 'djangocg.contrib.formtools.tests.urls'
     input_re = re.compile('name="([^"]+)" value="([^"]+)"')
     wizard_step_data = (
         {
@@ -237,7 +237,7 @@ class WizardTests(TestCase):
         super(WizardTests, self).setUp()
         self.save_warnings_state()
         warnings.filterwarnings('ignore', category=DeprecationWarning,
-                                module='django.contrib.formtools.wizard')
+                                module='djangocg.contrib.formtools.wizard')
 
     def tearDown(self):
         super(WizardTests, self).tearDown()

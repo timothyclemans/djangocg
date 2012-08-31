@@ -25,11 +25,11 @@ class name. For example, here's the default :setting:`MIDDLEWARE_CLASSES`
 created by :djadmin:`django-admin.py startproject <startproject>`::
 
     MIDDLEWARE_CLASSES = (
-        'django.middleware.common.CommonMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
+        'djangocg.middleware.common.CommonMiddleware',
+        'djangocg.contrib.sessions.middleware.SessionMiddleware',
+        'djangocg.middleware.csrf.CsrfViewMiddleware',
+        'djangocg.contrib.auth.middleware.AuthenticationMiddleware',
+        'djangocg.contrib.messages.middleware.MessageMiddleware',
     )
 
 During the request phases (:meth:`process_request` and :meth:`process_view`
@@ -47,7 +47,7 @@ like an onion: each middleware class is a "layer" that wraps the view:
 A Django installation doesn't require any middleware -- e.g.,
 :setting:`MIDDLEWARE_CLASSES` can be empty, if you'd like -- but it's strongly
 suggested that you at least use
-:class:`~django.middleware.common.CommonMiddleware`.
+:class:`~djangocg.middleware.common.CommonMiddleware`.
 
 Writing your own middleware
 ===========================
@@ -62,15 +62,15 @@ Python class that defines one or more of the following methods:
 
 .. method:: process_request(self, request)
 
-``request`` is an :class:`~django.http.HttpRequest` object. This method is
+``request`` is an :class:`~djangocg.http.HttpRequest` object. This method is
 called on each request, before Django decides which view to execute.
 
 ``process_request()`` should return either ``None`` or an
-:class:`~django.http.HttpResponse` object. If it returns ``None``, Django will
+:class:`~djangocg.http.HttpResponse` object. If it returns ``None``, Django will
 continue processing this request, executing any other middleware and, then, the
-appropriate view. If it returns an :class:`~django.http.HttpResponse` object,
+appropriate view. If it returns an :class:`~djangocg.http.HttpResponse` object,
 Django won't bother calling ANY other request, view or exception middleware, or
-the appropriate view; it'll return that :class:`~django.http.HttpResponse`.
+the appropriate view; it'll return that :class:`~djangocg.http.HttpResponse`.
 Response middleware is always called on every response.
 
 .. _view-middleware:
@@ -80,7 +80,7 @@ Response middleware is always called on every response.
 
 .. method:: process_view(self, request, view_func, view_args, view_kwargs)
 
-``request`` is an :class:`~django.http.HttpRequest` object. ``view_func`` is
+``request`` is an :class:`~djangocg.http.HttpRequest` object. ``view_func`` is
 the Python function that Django is about to use. (It's the actual function
 object, not the name of the function as a string.) ``view_args`` is a list of
 positional arguments that will be passed to the view, and ``view_kwargs`` is a
@@ -89,27 +89,27 @@ dictionary of keyword arguments that will be passed to the view. Neither
 (``request``).
 
 ``process_view()`` is called just before Django calls the view. It should
-return either ``None`` or an :class:`~django.http.HttpResponse` object. If it
+return either ``None`` or an :class:`~djangocg.http.HttpResponse` object. If it
 returns ``None``, Django will continue processing this request, executing any
 other ``process_view()`` middleware and, then, the appropriate view. If it
-returns an :class:`~django.http.HttpResponse` object, Django won't bother
+returns an :class:`~djangocg.http.HttpResponse` object, Django won't bother
 calling ANY other request, view or exception middleware, or the appropriate
-view; it'll return that :class:`~django.http.HttpResponse`. Response
+view; it'll return that :class:`~djangocg.http.HttpResponse`. Response
 middleware is always called on every response.
 
 .. note::
 
-    Accessing :attr:`request.POST <django.http.HttpRequest.POST>` or
-    :attr:`request.REQUEST <django.http.HttpRequest.REQUEST>` inside middleware
+    Accessing :attr:`request.POST <djangocg.http.HttpRequest.POST>` or
+    :attr:`request.REQUEST <djangocg.http.HttpRequest.REQUEST>` inside middleware
     from ``process_request`` or ``process_view`` will prevent any view running
     after the middleware from being able to :ref:`modify the upload handlers
     for the request <modifying_upload_handlers_on_the_fly>`, and should
     normally be avoided.
 
-    The :class:`~django.middleware.csrf.CsrfViewMiddleware` class can be
+    The :class:`~djangocg.middleware.csrf.CsrfViewMiddleware` class can be
     considered an exception, as it provides the
-    :func:`~django.views.decorators.csrf.csrf_exempt` and
-    :func:`~django.views.decorators.csrf.csrf_protect` decorators which allow
+    :func:`~djangocg.views.decorators.csrf.csrf_exempt` and
+    :func:`~djangocg.views.decorators.csrf.csrf_protect` decorators which allow
     views to explicitly control at what point the CSRF validation should occur.
 
 .. _template-response-middleware:
@@ -121,20 +121,20 @@ middleware is always called on every response.
 
 .. method:: process_template_response(self, request, response)
 
-``request`` is an :class:`~django.http.HttpRequest` object. ``response`` is a
-subclass of :class:`~django.template.response.SimpleTemplateResponse` (e.g.
-:class:`~django.template.response.TemplateResponse`) or any response object
+``request`` is an :class:`~djangocg.http.HttpRequest` object. ``response`` is a
+subclass of :class:`~djangocg.template.response.SimpleTemplateResponse` (e.g.
+:class:`~djangocg.template.response.TemplateResponse`) or any response object
 that implements a ``render`` method.
 
 ``process_template_response()`` must return a response object that implements a
 ``render`` method. It could alter the given ``response`` by changing
 ``response.template_name`` and ``response.context_data``, or it could create
 and return a brand-new
-:class:`~django.template.response.SimpleTemplateResponse` or equivalent.
+:class:`~djangocg.template.response.SimpleTemplateResponse` or equivalent.
 
 ``process_template_response()`` will only be called if the response
 instance has a ``render()`` method, indicating that it is a
-:class:`~django.template.response.TemplateResponse` or equivalent.
+:class:`~djangocg.template.response.TemplateResponse` or equivalent.
 
 You don't need to explicitly render responses -- responses will be
 automatically rendered once all template response middleware has been
@@ -150,17 +150,17 @@ includes process_template_response.
 
 .. method:: process_response(self, request, response)
 
-``request`` is an :class:`~django.http.HttpRequest` object. ``response`` is the
-:class:`~django.http.HttpResponse` object returned by a Django view.
+``request`` is an :class:`~djangocg.http.HttpRequest` object. ``response`` is the
+:class:`~djangocg.http.HttpResponse` object returned by a Django view.
 
-``process_response()`` must return an :class:`~django.http.HttpResponse`
+``process_response()`` must return an :class:`~djangocg.http.HttpResponse`
 object. It could alter the given ``response``, or it could create and return a
-brand-new :class:`~django.http.HttpResponse`.
+brand-new :class:`~djangocg.http.HttpResponse`.
 
 Unlike the ``process_request()`` and ``process_view()`` methods, the
 ``process_response()`` method is always called, even if the ``process_request()``
 and ``process_view()`` methods of the same middleware class were skipped because
-an earlier middleware method returned an :class:`~django.http.HttpResponse`
+an earlier middleware method returned an :class:`~djangocg.http.HttpResponse`
 (this means that your ``process_response()`` method cannot rely on setup done in
 ``process_request()``, for example). In addition, during the response phase the
 classes are applied in reverse order, from the bottom up. This means classes
@@ -174,13 +174,13 @@ defined at the end of :setting:`MIDDLEWARE_CLASSES` will be run first.
 
 .. method:: process_exception(self, request, exception)
 
-``request`` is an :class:`~django.http.HttpRequest` object. ``exception`` is an
+``request`` is an :class:`~djangocg.http.HttpRequest` object. ``exception`` is an
 ``Exception`` object raised by the view function.
 
 Django calls ``process_exception()`` when a view raises an exception.
 ``process_exception()`` should return either ``None`` or an
-:class:`~django.http.HttpResponse` object. If it returns an
-:class:`~django.http.HttpResponse` object, the response will be returned to
+:class:`~djangocg.http.HttpResponse` object. If it returns an
+:class:`~djangocg.http.HttpResponse` object, the response will be returned to
 the browser. Otherwise, default exception handling kicks in.
 
 Again, middleware are run in reverse order during the response phase, which
@@ -207,7 +207,7 @@ Marking middleware as unused
 
 It's sometimes useful to determine at run-time whether a piece of middleware
 should be used. In these cases, your middleware's ``__init__`` method may raise
-``django.core.exceptions.MiddlewareNotUsed``. Django will then remove that
+``djangocg.core.exceptions.MiddlewareNotUsed``. Django will then remove that
 piece of middleware from the middleware process.
 
 Guidelines

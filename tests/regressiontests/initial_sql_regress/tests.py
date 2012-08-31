@@ -1,4 +1,4 @@
-from django.test import TestCase
+from djangocg.test import TestCase
 
 from .models import Simple
 
@@ -15,9 +15,9 @@ class InitialSQLTests(TestCase):
         self.assertEqual(Simple.objects.count(), 0)
 
     def test_custom_sql(self):
-        from django.core.management.sql import custom_sql_for_model
-        from django.core.management.color import no_style
-        from django.db import connections, DEFAULT_DB_ALIAS
+        from djangocg.core.management.sql import custom_sql_for_model
+        from djangocg.core.management.color import no_style
+        from djangocg.db import connections, DEFAULT_DB_ALIAS
 
         # Simulate the custom SQL loading by syncdb
         connection = connections[DEFAULT_DB_ALIAS]

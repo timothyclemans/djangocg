@@ -10,12 +10,12 @@ try:
 except ImportError:     # Python 2
     from urllib import unquote
 
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-from django.http import Http404
-from django.views import static
+from djangocg.conf import settings
+from djangocg.core.exceptions import ImproperlyConfigured
+from djangocg.http import Http404
+from djangocg.views import static
 
-from django.contrib.staticfiles import finders
+from djangocg.contrib.staticfiles import finders
 
 def serve(request, path, document_root=None, insecure=False, **kwargs):
     """
@@ -24,11 +24,11 @@ def serve(request, path, document_root=None, insecure=False, **kwargs):
 
     To use, put a URL pattern such as::
 
-        (r'^(?P<path>.*)$', 'django.contrib.staticfiles.views.serve')
+        (r'^(?P<path>.*)$', 'djangocg.contrib.staticfiles.views.serve')
 
     in your URLconf.
 
-    It uses the django.views.static view to serve the found files.
+    It uses the djangocg.views.static view to serve the found files.
     """
     if not settings.DEBUG and not insecure:
         raise ImproperlyConfigured("The staticfiles view can only be used in "

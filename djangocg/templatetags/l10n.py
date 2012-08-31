@@ -1,7 +1,7 @@
-from django.template import Node
-from django.template import TemplateSyntaxError, Library
-from django.utils import formats
-from django.utils.encoding import force_text
+from djangocg.template import Node
+from djangocg.template import TemplateSyntaxError, Library
+from djangocg.utils import formats
+from djangocg.utils.encoding import force_text
 
 register = Library()
 

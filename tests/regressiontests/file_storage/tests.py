@@ -14,15 +14,15 @@ try:
 except ImportError:
     import dummy_threading as threading
 
-from django.conf import settings
-from django.core.exceptions import SuspiciousOperation, ImproperlyConfigured
-from django.core.files.base import File, ContentFile
-from django.core.files.images import get_image_dimensions
-from django.core.files.storage import FileSystemStorage, get_storage_class
-from django.core.files.uploadedfile import UploadedFile
-from django.test import SimpleTestCase
-from django.utils import six
-from django.utils import unittest
+from djangocg.conf import settings
+from djangocg.core.exceptions import SuspiciousOperation, ImproperlyConfigured
+from djangocg.core.files.base import File, ContentFile
+from djangocg.core.files.images import get_image_dimensions
+from djangocg.core.files.storage import FileSystemStorage, get_storage_class
+from djangocg.core.files.uploadedfile import UploadedFile
+from djangocg.test import SimpleTestCase
+from djangocg.utils import six
+from djangocg.utils import unittest
 from ..servers.tests import LiveServerBase
 
 # Try to import PIL in either of the two ways it can end up installed.
@@ -44,7 +44,7 @@ class GetStorageClassTests(SimpleTestCase):
         get_storage_class returns the class for a storage backend name/path.
         """
         self.assertEqual(
-            get_storage_class('django.core.files.storage.FileSystemStorage'),
+            get_storage_class('djangocg.core.files.storage.FileSystemStorage'),
             FileSystemStorage)
 
     def test_get_invalid_storage_module(self):
@@ -63,10 +63,10 @@ class GetStorageClassTests(SimpleTestCase):
         """
         self.assertRaisesMessage(
             ImproperlyConfigured,
-            'Storage module "django.core.files.storage" does not define a '\
+            'Storage module "djangocg.core.files.storage" does not define a '\
                 '"NonExistingStorage" class.',
             get_storage_class,
-            'django.core.files.storage.NonExistingStorage')
+            'djangocg.core.files.storage.NonExistingStorage')
 
     def test_get_nonexisting_storage_module(self):
         """
@@ -75,10 +75,10 @@ class GetStorageClassTests(SimpleTestCase):
         # Error message may or may not be the fully qualified path.
         self.assertRaisesRegexp(
             ImproperlyConfigured,
-            ('Error importing storage module django.core.files.non_existing_'
+            ('Error importing storage module djangocg.core.files.non_existing_'
                 'storage: "No module named .*non_existing_storage"'),
             get_storage_class,
-            'django.core.files.non_existing_storage.NonExistingStorage'
+            'djangocg.core.files.non_existing_storage.NonExistingStorage'
         )
 
 class FileStorageTests(unittest.TestCase):
@@ -522,7 +522,7 @@ class DimensionClosingBug(unittest.TestCase):
         def catching_open(*args):
             return FileWrapper(open(*args))
 
-        from django.core.files import images
+        from djangocg.core.files import images
         images.open = catching_open
         try:
             get_image_dimensions(os.path.join(os.path.dirname(__file__), "test1.png"))
@@ -540,7 +540,7 @@ class InconsistentGetImageDimensionsBug(unittest.TestCase):
         """
         Multiple calls of get_image_dimensions() should return the same size.
         """
-        from django.core.files.images import ImageFile
+        from djangocg.core.files.images import ImageFile
 
         img_path = os.path.join(os.path.dirname(__file__), "test.png")
         image = ImageFile(open(img_path, 'rb'))

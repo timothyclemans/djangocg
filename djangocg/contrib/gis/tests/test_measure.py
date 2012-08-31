@@ -3,8 +3,8 @@ Distance and Area objects to allow for sensible and convienient calculation
 and conversions. Here are some tests.
 """
 
-from django.contrib.gis.measure import Distance, Area, D, A
-from django.utils import unittest
+from djangocg.contrib.gis.measure import Distance, Area, D, A
+from djangocg.utils import unittest
 
 
 class DistanceTest(unittest.TestCase):

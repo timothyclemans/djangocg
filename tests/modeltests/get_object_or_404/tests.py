@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from django.http import Http404
-from django.shortcuts import get_object_or_404, get_list_or_404
-from django.test import TestCase
+from djangocg.http import Http404
+from djangocg.shortcuts import get_object_or_404, get_list_or_404
+from djangocg.test import TestCase
 
 from .models import Author, Article
 

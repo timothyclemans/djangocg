@@ -1,7 +1,7 @@
-from django.utils.translation import ugettext_lazy as _
-from django.db.models.fields import CharField
-from django.contrib.localflavor.us.us_states import STATE_CHOICES
-from django.contrib.localflavor.us.us_states import USPS_CHOICES
+from djangocg.utils.translation import ugettext_lazy as _
+from djangocg.db.models.fields import CharField
+from djangocg.contrib.localflavor.us.us_states import STATE_CHOICES
+from djangocg.contrib.localflavor.us.us_states import USPS_CHOICES
 
 class USStateField(CharField):
 
@@ -30,7 +30,7 @@ class PhoneNumberField(CharField):
         super(PhoneNumberField, self).__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
-        from django.contrib.localflavor.us.forms import USPhoneNumberField
+        from djangocg.contrib.localflavor.us.forms import USPhoneNumberField
         defaults = {'form_class': USPhoneNumberField}
         defaults.update(kwargs)
         return super(PhoneNumberField, self).formfield(**defaults)

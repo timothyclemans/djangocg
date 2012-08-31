@@ -130,10 +130,10 @@ through the ``Form.non_field_errors()`` method.
 
 When you really do need to attach the error to a particular field, you should
 store (or amend) a key in the ``Form._errors`` attribute. This attribute is an
-instance of a ``django.forms.util.ErrorDict`` class. Essentially, though, it's
+instance of a ``djangocg.forms.util.ErrorDict`` class. Essentially, though, it's
 just a dictionary. There is a key in the dictionary for each field in the form
 that has an error. Each value in the dictionary is a
-``django.forms.util.ErrorList`` instance, which is a list that knows how to
+``djangocg.forms.util.ErrorList`` instance, which is a list that knows how to
 display itself in different ways. So you can treat ``_errors`` as a dictionary
 mapping field names to lists.
 
@@ -209,7 +209,7 @@ Let's firstly create a custom form field that validates its input is a string
 containing comma-separated email addresses. The full class looks like this::
 
     from django import forms
-    from django.core.validators import validate_email
+    from djangocg.core.validators import validate_email
 
     class MultiEmailField(forms.Field):
         def to_python(self, value):
