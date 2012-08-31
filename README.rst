@@ -1,3 +1,6 @@
+DjangoCG is a fork of Django aiming to completely automate web development by
+generating all the Django/Python code for you.
+
 Django is a high-level Python Web framework that encourages rapid development
 and clean, pragmatic design. Thanks for checking it out.
 
