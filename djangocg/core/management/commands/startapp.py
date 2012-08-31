@@ -37,9 +37,9 @@ class Command(TemplateCommand):
              if line.startswith(')'):
                  stop = start + i
                  break
-        new_url_pattern = "    url(r'^%s/', include('%s.urls'))," % (app_name, app_name)
+        new_url_pattern = "    url(r'^%s/', include('%s.urls')),\n" % (app_name, app_name)
         main_urls_lines.insert(stop, new_url_pattern)
-        new_urls = '\n'.join(main_urls_lines)
+        new_urls = ''.join(main_urls_lines)
         f = open(main_urls_path, 'w')
         f.write(new_urls)
         f.close()
