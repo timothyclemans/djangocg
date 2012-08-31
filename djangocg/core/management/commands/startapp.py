@@ -44,6 +44,27 @@ class Command(TemplateCommand):
         f.write(new_urls)
         f.close()
 
+        # add app to settings.py
+        settings_path = os.path.join(os.path.join(os.getcwd(), project), 'settings.py')
+        f = open(settings_path, 'r')
+        settings_lines = f.readlines()
+        f.close()
+        for i, line in enumerate(settings_lines):
+             if line.startswith('INSTALLED_APPS = ('):
+                 start = i
+                 break
+        for i, line in enumerate(settings_lines[start:]):
+             if line.startswith(')'):
+                 stop = start + i
+                 break
+        new_app = "    '%s.%s',\n" % (project_name, app_name)
+        settings_lines.insert(stop, new_url_pattern)
+        new_settings = ''.join(settings_lines)
+        f = open(settings_path, 'w')
+        f.write(new_settings)
+        f.close()
+
+
         # ensure there is a templates directory
         projects_templates_dir = os.path.join(base_dir, "templates")
         if not os.path.exists(projects_templates_dir):

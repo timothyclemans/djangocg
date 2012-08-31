@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'djangocg.contrib.staticfiles',
     'djangocg.contrib.admin',
     'djangocg.contrib.admindocs',
+    '{{ project_name }}.{{ project_name }}',
 )
 
 # A sample logging configuration. The only tangible logging
